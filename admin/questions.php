@@ -31,6 +31,7 @@
                                             </li>
                                             <li>
                                                 <button class="btn btn-primary" id="search-btn">Search</button>
+                                                <button class="btn btn-danger display-none" id="reset-btn">Reset</button>
                                             </li>
                                         </ul>
                                         <div>
@@ -39,7 +40,7 @@
                                                     <a href="create-test.php" class="btn btn-primary"><i class="fa fa-plus"></i> Add </a>
                                                 </li>
                                                 <li>
-                                                    <button class="btn btn-primary"><i class="fa fa-trash"></i> Delete</button>
+                                                    <button class="btn btn-primary" disabled><i class="fa fa-trash"></i> Delete</button>
                                                 </li>
                                             </ul>
                                         </div>
@@ -222,6 +223,23 @@
                     question =  $('#question-filter').val();
                     page_no = 1;
                     loadQuestions(page_no, page_count);
+                    if (subject || chapter || question) {
+                        $("#reset-btn").removeClass('display-none');
+                    }
+                });
+
+                $("#reset-btn").click(function() {
+                    $('#chapter-filter').html('');
+                    $('#chapter-filter').append(`<option value="">-- Select Chapter --</option>`);
+                    $('#subject-filter').val("");
+                    $('#chapter-filter').val("");
+                    $('#question-filter').val("");
+                    subject = "";
+                    chapter = ""
+                    question = ""
+                    page_no = 1;
+                    loadQuestions(page_no, page_count);
+                    $("#reset-btn").addClass('display-none');
                 })
 
                 loadQuestions(page_no, page_count);
