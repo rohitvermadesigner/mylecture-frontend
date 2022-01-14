@@ -55,7 +55,7 @@
 
     <script>
         $(function() {
-            const token = localStorage.getItem("token");
+            const token = localStorage.getItem("admin_token");
 
             $.ajax({
                 url: base_url + '/admin/student/group-list.php?token',                

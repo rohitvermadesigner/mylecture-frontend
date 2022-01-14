@@ -118,7 +118,7 @@
 
     <script>
         $(function() {
-            const tokanInfoConst = localStorage.getItem("token");
+            const tokanInfoConst = localStorage.getItem("admin_token");
             $.ajax({
                 url: base_url + '/admin/dashboard/stats.php?token= ' + tokanInfoConst,
                 type: 'GET',

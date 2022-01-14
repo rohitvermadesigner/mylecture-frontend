@@ -60,7 +60,7 @@
 
     <script>
         $(function() {
-            const tokanInfoConst = localStorage.getItem("token");
+            const tokanInfoConst = localStorage.getItem("admin_token");
 
             $.ajax({
                 url: base_url + '/admin/student/student-list.php?token='+ tokanInfoConst + '&page_no=1&page_count=10',                

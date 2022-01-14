@@ -146,7 +146,7 @@
     <?php include 'include/footer_script.php' ?>
     <script>
         $(function() {
-            const tokanInfoConst = localStorage.getItem("token");
+            const tokanInfoConst = localStorage.getItem("admin_token");
             $.ajax({
                 url: base_url + '/admin/subject/list.php?token= ' + tokanInfoConst,
                 type: 'GET',

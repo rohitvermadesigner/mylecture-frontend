@@ -92,7 +92,7 @@
 
     <script>
         $(function() {
-            const token = localStorage.getItem("token");
+            const token = localStorage.getItem("admin_token");
             if (token) {
                 $.ajax({
                     // url: base_url + '/admin/student/student-list.php?token='+ token + '&page_no=1&page_count=10',                

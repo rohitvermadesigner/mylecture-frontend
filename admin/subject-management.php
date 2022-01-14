@@ -75,7 +75,7 @@
     <?php include 'include/footer_script.php' ?>
     <script>
         $(function() {
-            const token = localStorage.getItem("token");
+            const token = localStorage.getItem("admin_token");
             $.ajax({
                 url: base_url + '/admin/subject/list.php?token',
                 type: 'GET',
