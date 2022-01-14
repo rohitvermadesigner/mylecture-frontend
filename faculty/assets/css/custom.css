@@ -1,0 +1,434 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+}
+
+.form-control {
+    font-size: 14px;
+}
+
+.user-dashboard {
+    display: flex;
+}
+
+.user-dashboard .dashboard-leftbar {
+    width: 300px;
+    background: #fff;
+    height: 100vh;
+}
+
+.user-dashboard .dashboard-leftbar .logo {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    display: block;
+    padding: 25px 0px;
+}
+
+.user-dashboard .dashboard-leftbar .left-nav ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+.user-dashboard .dashboard-leftbar .left-nav ul li {
+    list-style: none;
+    text-align: center;
+}
+
+.user-dashboard .dashboard-leftbar .left-nav ul li a {
+    display: block;
+    color: #000;
+    padding: 30px 0px;
+    transition: all 0.45s;
+}
+
+.user-dashboard .dashboard-leftbar .left-nav ul li a:hover {
+    padding-left: 10px;
+}
+
+.user-dashboard .dashboard-leftbar .left-nav ul li a {
+    text-decoration: none;
+}
+
+.user-dashboard .dashboard-leftbar .left-nav ul li:nth-child(1) a {
+    background: #cef0fa;
+}
+
+.user-dashboard .dashboard-leftbar .left-nav ul li:nth-child(2) a {
+    background: #ffeed0;
+}
+
+.user-dashboard .dashboard-leftbar .left-nav ul li:nth-child(3) a {
+    background: #fee1d9;
+}
+
+.user-dashboard .dashboard-leftbar .left-nav ul li:nth-child(4) a {
+    background: #e6e9fc;
+}
+
+.user-dashboard .dashboard-leftbar .left-nav ul li a span {
+    display: block;
+}
+
+.user-dashboard .dashboard-leftbar .left-nav ul li a img {
+    width: 60px;
+}
+
+.user-dashboard .dashboard-container {
+    width: calc(100% - 300px);
+    background: #e9ecee;
+}
+
+.user-dashboard .dashboard-container .top-stripe {
+    background: #0083bd;
+    overflow: hidden;
+}
+
+.user-dashboard .dashboard-container .top-stripe ul {
+    margin: 0px;
+    padding: 0px;
+    float: right;
+}
+
+.user-dashboard .dashboard-container .top-stripe ul li {
+    list-style: none;
+    float: left;
+    margin: 0px 10px;
+    color: #fff;
+    padding: 8px;
+}
+
+.user-dashboard .dashboard-container .top-stripe ul li .notification-span {
+    position: relative;
+}
+
+.user-dashboard .dashboard-container .top-stripe ul li .notification-span span {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: red;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -5px;
+    right: -8px;
+    font-size: 10px;
+}
+
+.user-dashboard .dashboard-container .top-stripe ul li .name-cricle {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #009de2;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    float: left;
+    margin-right: 10px;
+}
+
+.user-dashboard .dashboard-container .top-stripe ul li a {
+    color: #fff;
+}
+
+.user-dashboard .dashboard-container .top-stripe ul li a:hover {
+    text-decoration: none;
+}
+
+.user-dashboard .dashboard-container .dashboard-title {
+    background: #009de2;
+    color: #fff;
+    padding: 25px;
+}
+
+.user-dashboard .dashboard-container .dashboard-title h1 {
+    font-size: 24px;
+}
+
+.white-box {
+    background: #fff;
+    box-shadow: 2px 4px 10px rgba(39, 59, 69, 0.4);
+    padding: 15px;
+}
+
+
+/*  */
+
+.four-list ul {
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.four-list ul li {
+    list-style: none;
+    text-align: center;
+    width: 46%;
+    margin: 2%;
+    float: left;
+}
+
+.four-list.three-list ul li {
+    width: 29% !important;
+}
+
+.four-list ul li a {
+    display: block;
+    color: #000;
+    padding: 25px 0px;
+    transition: all 0.45s;
+}
+
+.four-list ul li a:hover {
+    padding-left: 10px;
+}
+
+.four-list ul li a {
+    text-decoration: none;
+}
+
+.four-list ul li:nth-child(1) a {
+    background: #cef0fa;
+}
+
+.four-list ul li:nth-child(2) a {
+    background: #ffeed0;
+}
+
+.four-list ul li:nth-child(3) a {
+    background: #fee1d9;
+}
+
+.four-list ul li:nth-child(4) a {
+    background: #e6e9fc;
+}
+
+.four-list ul li a span {
+    display: block;
+}
+
+.four-list ul li a img {
+    width: 60px;
+}
+
+.student-detail-box .table tr td {
+    padding: 5px 0px;
+    border: 0px;
+}
+
+.student-detail-box .table tr td:nth-child(2) {
+    width: 30px;
+    text-align: center;
+}
+
+.text-analysis-box {
+    background: #f2fafe;
+    padding: 20px;
+    margin-top: 25px;
+}
+
+.report-card-box {
+    margin-top: 25px;
+}
+
+.report-card-box ul {
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.report-card-box ul li {
+    list-style: none;
+    text-align: center;
+    width: 46%;
+    margin: 2%;
+    float: left;
+}
+
+.report-card-box ul li a {
+    display: block;
+    color: #000;
+    padding: 25px 0px;
+    transition: all 0.45s;
+}
+
+.report-card-box ul li a:hover {
+    padding-left: 10px;
+}
+
+.report-card-box ul li a {
+    text-decoration: none;
+}
+
+.report-card-box ul li:nth-child(1) a {
+    background: #cef0fa;
+}
+
+.report-card-box ul li:nth-child(2) a {
+    background: #ffeed0;
+}
+
+.report-card-box ul li h2 {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.no-data-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 50px;
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+}
+
+.no-data-page h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 25px;
+    color: #555;
+}
+
+.no-data-page p {
+    font-size: 14px;
+    margin-top: 15px;
+    color: #555;
+    font-weight: normal;
+}
+
+.no-data-page .btn {
+    margin-top: 15px;
+    font-size: 14px;
+    padding: 8px 20px;
+}
+
+.headingdiv {
+    background: #fff none repeat scroll 0 0;
+    border-bottom: 1px solid rgba(204, 204, 204, 0.34);
+    color: #000;
+    font-family: Roboto;
+    font-weight: 700;
+    font-size: 16px;
+    height: 42px;
+    line-height: 42px;
+    padding-left: 0px;
+    text-align: left;
+    width: auto;
+}
+
+.border-box {
+    border: 1px solid #ccc;
+    position: relative;
+    padding: 20px;
+}
+
+.reporttable th {
+    background: #f7f7f7;
+    padding: 5px;
+    text-transform: uppercase;
+    color: #616161;
+}
+
+.reporttable th,
+.reporttable td {
+    border: 1px solid #ccc;
+    font-size: 13px;
+    padding: 10px 5px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.filter-row .form-control {
+    font-size: 12px;
+    height: 36px;
+}
+
+.filter-row .btn {
+    font-size: 14px;
+}
+
+.filter-row ul {
+    margin: 0px;
+    padding: 0px;
+    float: right;
+}
+
+.filter-row ul li {
+    list-style: none;
+    float: left;
+    margin-left: 10px;
+}
+
+.filter-row ul li svg {
+    margin-right: 5px;
+}
+
+.btn-white {
+    background: #fff;
+}
+
+ul.table-action {
+    margin: 0px;
+    padding: 0px;
+}
+
+ul.table-action li {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    float: left;
+    margin: 0px 10px;
+    cursor: pointer;
+}
+
+.empty-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    width: 100%;
+}
+
+.empty-page p {
+    color: #999;
+}
+
+.question-options-box {
+    padding: 20px;
+}
+
+.question-options-box .headingdiv {
+    margin-bottom: 15px;
+}
+
+.login-box {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    margin-top: 50px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 20px;
+    background: #fff;
+}
+
+.logo-login {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.bg-gray {
+    background: #f1f1f1;
+}

@@ -1,0 +1,332 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {}
+
+
+/* global style begin here */
+
+.space {
+    height: 25px;
+}
+
+.btn-default {
+    background: #ececec;
+}
+
+
+/* global style ends here */
+
+.logoText {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.middle-box {
+    transform: translateY(10%);
+}
+
+.subscription-box-parents {
+    margin-left: 22px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.subscription-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.subscription-box p {
+    margin: 0px;
+    font-weight: 600;
+}
+
+.subscription-box p.text-danger {
+    font-size: 85%;
+}
+
+.logo-login {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.dashboard-4-boxes i {
+    float: right;
+    font-size: 25px;
+    margin-top: 8px;
+}
+
+.dashboard-4-boxes .col-lg-3:nth-child(1) i {
+    color: #e63a36;
+}
+
+.dashboard-4-boxes .col-lg-3:nth-child(2) i {
+    color: #fea21d;
+}
+
+.dashboard-4-boxes .col-lg-3:nth-child(3) i {
+    color: #4da74f;
+}
+
+.dashboard-4-boxes .col-lg-3:nth-child(4) i {
+    color: #11b2c6;
+}
+
+.dashboard-4-boxes .btn {
+    border-radius: 0px;
+    font-size: 13px;
+    padding: 5px 10px;
+    border: 0px;
+    /* display: none; */
+}
+
+.dashboard-4-boxes .col-lg-3:nth-child(1) .btn {
+    background: #e63a36;
+}
+
+.dashboard-4-boxes .col-lg-3:nth-child(2) .btn {
+    background: #fea21d;
+}
+
+.dashboard-4-boxes .col-lg-3:nth-child(3) .btn {
+    background: #4da74f;
+}
+
+.dashboard-4-boxes .col-lg-3:nth-child(4) .btn {
+    background: #11b2c6;
+}
+
+.filter-row ul {
+    margin: 0px;
+    padding: 0px;
+    float: right;
+}
+
+.filter-row ul li {
+    list-style: none;
+    float: left;
+    margin-left: 10px;
+}
+
+.filter-row ul li svg {
+    margin-right: 5px;
+}
+
+ul.table-action {
+    margin: 0px;
+    padding: 0px;
+}
+
+ul.table-action li {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    float: left;
+    margin: 0px 10px;
+    cursor: pointer;
+}
+
+.sbjectnametabl {
+    cursor: pointer;
+}
+
+.subjecticn::before {
+    border: 1px solid;
+    font-size: 14px;
+    font-weight: 400;
+    height: 13px;
+    line-height: 13px;
+    width: 13px;
+    color: #555;
+}
+
+.treeplus::before {
+    border: 1px solid;
+    content: "+";
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    line-height: 12px;
+    margin: 0 5px;
+    text-align: center;
+}
+
+.treeminus:before {
+    content: '-';
+    font-size: 15px;
+}
+
+.topiclist {
+    display: none;
+}
+
+.topiclist ul {
+    margin-left: 10px;
+}
+
+.topiclist li {
+    cursor: pointer;
+    line-height: 25px;
+    min-height: 25px;
+    padding-left: 25px;
+    position: relative;
+    list-style: none;
+}
+
+.topiclist li::before {
+    background: #ccc none repeat scroll 0 0;
+    content: "";
+    height: 1px;
+    left: 0;
+    position: absolute;
+    top: 13px;
+    width: 25px;
+}
+
+.topiclist li::after {
+    background: #ccc none repeat scroll 0 0;
+    bottom: 0;
+    content: "";
+    height: 120%;
+    left: 0;
+    position: absolute;
+    top: -5px;
+    width: 1px;
+}
+
+.topiclist li:last-child::after {
+    height: 19px;
+}
+
+.container-boom {
+    min-height: 425px;
+}
+
+.remove-faculty {
+    cursor: pointer;
+}
+
+.title-primary {
+    position: absolute;
+    top: 0;
+    left: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    z-index: 1000;
+}
+
+.navbar-right-custom {
+    display: flex;
+    gap: 15px;
+}
+
+.filter-list {
+    display: flex;
+    gap: 10px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.filter-list li {
+    list-style: none;
+}
+
+.filter-list li h5 {
+    line-height: 32px;
+    margin-bottom: 0px;
+}
+
+.top-right-btn-list {
+    display: flex;
+    gap: 10px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.top-right-btn-list li {
+    list-style: none;
+}
+
+.action-td i {
+    cursor: pointer;
+}
+
+.boldItalic {
+    color: #000;
+    font-style: italic;
+    font-weight: 700;
+}
+
+.create-text-page .tab-content {
+    padding-top: 20px;
+}
+
+.create-text-page .nav-tabs {
+    pointer-events: none;
+}
+
+.create-text-page .nav-tabs li a {
+    text-align: left;
+}
+
+.create-text-page .nav-tabs li a i {
+    font-size: 30px;
+}
+
+.create-text-page .nav-tabs>li>a {
+    padding: 10px 10px 10px 18px;
+}
+
+.create-text-page .nav-tabs li a span.main-span {
+    display: flex;
+    gap: 15px;
+}
+
+.create-text-page .nav-tabs li a span {
+    display: block;
+}
+
+.create-text-page .add-question-box-in-test {
+    background: #f1f1f1;
+    width: 100%;
+    min-height: 250px;
+    padding: 25px 40px;
+    border: 1px solid #ccc;
+    display: flex;
+    gap: 20px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.create-text-page .add-question-box-in-test p {
+    margin-bottom: 0px;
+    font-size: 15px;
+}
+
+.create-text-page .assign-group-box {
+    border: 1px solid #ccc;
+    padding: 15px;
+}
+
+.create-text-page .assign-group-box ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+.create-text-page .assign-group-box ul li {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 4px;
+}
+
+.create-text-page .assign-group-box ul li input {
+    margin-right: 5px;
+}

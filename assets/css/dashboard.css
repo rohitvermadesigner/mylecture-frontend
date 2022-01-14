@@ -1,0 +1,280 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+}
+
+.user-dashboard {
+    display: flex;
+}
+
+.user-dashboard .dashboard-leftbar {
+    width: 300px;
+    background: #fff;
+    height: 100vh;
+}
+
+.user-dashboard .dashboard-leftbar .logo {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    display: block;
+    padding: 25px 0px;
+}
+
+.user-dashboard .dashboard-leftbar .left-nav ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+.user-dashboard .dashboard-leftbar .left-nav ul li {
+    list-style: none;
+    text-align: center;
+}
+
+.user-dashboard .dashboard-leftbar .left-nav ul li a {
+    display: block;
+    color: #000;
+    padding: 16px 0px;
+    transition: all 0.45s;
+}
+
+.user-dashboard .dashboard-leftbar .left-nav ul li a:hover {
+    padding-left: 10px;
+}
+
+.user-dashboard .dashboard-leftbar .left-nav ul li a {
+    text-decoration: none;
+}
+
+.user-dashboard .dashboard-leftbar .left-nav ul li:nth-child(1) a {
+    background: #cef0fa;
+}
+
+.user-dashboard .dashboard-leftbar .left-nav ul li:nth-child(2) a {
+    background: #ffeed0;
+}
+
+.user-dashboard .dashboard-leftbar .left-nav ul li:nth-child(3) a {
+    background: #fee1d9;
+}
+
+.user-dashboard .dashboard-leftbar .left-nav ul li:nth-child(4) a {
+    background: #e6e9fc;
+}
+
+.user-dashboard .dashboard-leftbar .left-nav ul li a span {
+    display: block;
+}
+
+.user-dashboard .dashboard-leftbar .left-nav ul li a img {
+    width: 60px;
+}
+
+.user-dashboard .dashboard-container {
+    width: calc(100% - 300px);
+    background: #e9ecee;
+}
+
+.user-dashboard .dashboard-container .top-stripe {
+    background: #0083bd;
+    overflow: hidden;
+}
+
+.user-dashboard .dashboard-container .top-stripe ul {
+    margin: 0px;
+    padding: 0px;
+    float: right;
+}
+
+.user-dashboard .dashboard-container .top-stripe ul li {
+    list-style: none;
+    float: left;
+    margin: 0px 10px;
+    color: #fff;
+    padding: 8px;
+}
+
+.user-dashboard .dashboard-container .top-stripe ul li .notification-span {
+    position: relative;
+}
+
+.user-dashboard .dashboard-container .top-stripe ul li .notification-span span {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: red;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -5px;
+    right: -8px;
+    font-size: 10px;
+}
+
+.user-dashboard .dashboard-container .top-stripe ul li .name-cricle {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #009de2;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    float: left;
+    margin-right: 10px;
+}
+
+.user-dashboard .dashboard-container .top-stripe ul li a {
+    color: #fff;
+}
+
+.user-dashboard .dashboard-container .top-stripe ul li a:hover {
+    text-decoration: none;
+}
+
+.user-dashboard .dashboard-container .dashboard-title {
+    background: #009de2;
+    color: #fff;
+    padding: 25px;
+}
+
+.user-dashboard .dashboard-container .dashboard-title h1 {
+    font-size: 24px;
+}
+
+.white-box {
+    background: #fff;
+    box-shadow: 2px 4px 10px rgba(39, 59, 69, 0.4);
+    padding: 15px;
+}
+
+
+/*  */
+
+.four-list ul {
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.four-list ul li {
+    list-style: none;
+    text-align: center;
+    width: 46%;
+    margin: 2%;
+    float: left;
+}
+
+.four-list ul li a {
+    display: block;
+    color: #000;
+    padding: 25px 0px;
+    transition: all 0.45s;
+}
+
+.four-list ul li a:hover {
+    padding-left: 10px;
+}
+
+.four-list ul li a {
+    text-decoration: none;
+}
+
+.four-list ul li:nth-child(1) a {
+    background: #cef0fa;
+}
+
+.four-list ul li:nth-child(2) a {
+    background: #ffeed0;
+}
+
+.four-list ul li:nth-child(3) a {
+    background: #fee1d9;
+}
+
+.four-list ul li:nth-child(4) a {
+    background: #e6e9fc;
+}
+
+.four-list ul li a span {
+    display: block;
+}
+
+.four-list ul li a img {
+    width: 60px;
+}
+
+.student-detail-box .table tr td {
+    padding: 5px 0px;
+    border: 0px;
+}
+
+.student-detail-box .table tr td:nth-child(2) {
+    width: 30px;
+    text-align: center;
+}
+
+.text-analysis-box {
+    background: #f2fafe;
+    padding: 20px;
+    margin-top: 25px;
+}
+
+.report-card-box {
+    margin-top: 25px;
+}
+
+.report-card-box ul {
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.report-card-box ul li {
+    list-style: none;
+    text-align: center;
+    width: 46%;
+    margin: 2%;
+    float: left;
+}
+
+.report-card-box ul li a {
+    display: block;
+    color: #000;
+    padding: 25px 0px;
+    transition: all 0.45s;
+}
+
+.report-card-box ul li a:hover {
+    padding-left: 10px;
+}
+
+.report-card-box ul li a {
+    text-decoration: none;
+}
+
+.report-card-box ul li:nth-child(1) a {
+    background: #cef0fa;
+}
+
+.report-card-box ul li:nth-child(2) a {
+    background: #ffeed0;
+}
+
+.report-card-box ul li h2 {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.btn-white {
+    background: #fff !important;
+}

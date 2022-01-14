@@ -1,0 +1,224 @@
+@media screen and (max-width: 767px) {
+    .container,
+    .container-fluid,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container-xl {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+    .row {
+        margin: 0px;
+    }
+    .top-line {
+        display: none;
+    }
+    .top-stripe ul li:nth-child(2) {
+        display: none;
+    }
+    .top-second-stripe .row {
+        padding: 10px 0px;
+    }
+    /* .logo {
+    width: 100%;
+    display: block;
+    text-align: center;
+    padding: 10px 0px;
+} */
+    .login-list {
+        display: none;
+    }
+    .search-bar-main {
+        display: none;
+    }
+    .nav-toggle-btn {
+        display: inline-block;
+        float: right;
+        margin-top: 10px;
+        margin-right: 10px;
+    }
+    .nav-toggle-btn svg {
+        font-size: 20px;
+    }
+    nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10000;
+        display: none;
+        overflow: auto;
+    }
+    nav .container {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    nav ul {
+        flex-direction: column;
+    }
+    nav ul li {
+        display: block;
+        float: none;
+    }
+    .browse-categories {
+        margin: 0px;
+    }
+    nav ul {
+        border: 0px;
+    }
+    .category-menu {
+        width: 100%;
+        position: static;
+    }
+    nav>.container>ul>li {
+        margin: 0px;
+    }
+    nav ul li a {
+        padding-left: 20px;
+        transition: all 0;
+    }
+    nav>.container>ul>li>a {
+        border-bottom: 1px solid #3cb8ef;
+    }
+    .category-menu>.cat-item:hover>.sub-menu {
+        left: 0px;
+        position: static;
+        width: 100%;
+    }
+    .category-menu .sub-menu {
+        position: static;
+        display: none;
+        visibility: visible;
+        opacity: 1;
+        width: 100%;
+        transition: all 0s;
+    }
+    .category-menu .sub-menu.active {
+        display: block;
+    }
+    .nav-toggle-close-btn {
+        display: inline-block;
+        float: right;
+        padding: 10px 15px;
+    }
+    .features-section .feature-box {
+        padding: 0px;
+    }
+    .demo-classes-section .demo-class-box {
+        padding: 15px 0px;
+    }
+    .online-exam {
+        padding-bottom: 20px;
+    }
+    .get-app-section {
+        padding-bottom: 25px;
+    }
+    .get-app-section .btn {
+        display: block;
+        width: 100%;
+        margin-top: 10px;
+    }
+    .demo-class-box-right-list {
+        margin-top: 20px;
+    }
+    .features-section ul li {
+        list-style: none;
+        width: 100%;
+        padding-left: 0px;
+    }
+    .title-primary {
+        font-size: 24px;
+    }
+    body {
+        font-size: 13px;
+    }
+    .btn {
+        font-size: 13px;
+    }
+    .welcome-section,
+    .career-section,
+    .contact-section,
+    .product-section {
+        padding: 30px 0px;
+    }
+    .career-section {
+        margin: 0px;
+    }
+    .applynow-section .form-group {
+        margin-bottom: 15px;
+    }
+    .welcome-section img {
+        margin-top: 25px;
+    }
+    .product-box .product-body {
+        padding: 15px;
+    }
+    .product-box .product-body .btn {
+        font-size: 12px !important;
+        padding: 8px 6px;
+        margin-top: 15px;
+    }
+    .product-body .row {
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+    .highlight-section {
+        margin: 0px 0px;
+        padding-bottom: 10px;
+    }
+    .highlight-box {
+        margin-bottom: 30px;
+    }
+    .career-box h4 {
+        font-size: 20px;
+    }
+    .applynow-section {
+        padding: 0px;
+    }
+    .contact-section {
+        margin-top: 30px;
+    }
+    .contact-left-cnt {
+        padding: 30px;
+        margin-bottom: 25px;
+    }
+    .single-footer {
+        margin-bottom: 25px;
+    }
+    footer .footer-top {
+        padding: 30px 0px;
+        padding-bottom: 0px;
+    }
+    .category-menu .cat-item a svg {
+        transform: rotate(90deg);
+    }
+    .product-category-nav {
+        margin-bottom: 30px;
+    }
+    .logo img {
+        max-width: 248px;
+        margin-top: 5px;
+    }
+    nav li .submenu {
+        position: static;
+        float: none;
+        width: 100%;
+        display: none;
+    }
+    nav li .submenu.active {
+        display: block;
+    }
+    nav li a svg {
+        float: right;
+        margin-right: 20px;
+        margin-top: 15px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {}
+
+@media screen and (min-width: 1200px) and (max-width: 1499px) {}
