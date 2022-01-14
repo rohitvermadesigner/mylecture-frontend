@@ -18,7 +18,7 @@
                 <li class="dropdown">
                     <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">Admin <i class="fa fa-chevron-down"></i> </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#" onclick="salonLogout();">Log out</a></li>
+                        <li><a href="#" onclick="logout();">Log out</a></li>
                     </ul>
                 </li>
             </ul>
@@ -28,8 +28,8 @@
 </div>
 
 <script>
-    function salonLogout() {
-        localStorage.removeItem('token');
+    function logout() {
+        localStorage.removeItem('admin_token');
         toastr.success('Logout Successfully');
         setTimeout(function() {
             window.location.replace('index.php');
