@@ -9,6 +9,7 @@
 <link href="assets/css/bootstrap-utilities.min.css" rel="stylesheet">
 <link href="assets/css/toastr.min.css" rel="stylesheet">
 <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet">
+<link href="assets/css/richtext.min.css" rel="stylesheet">
 
 <!-- Gritter -->
 <link href="assets/css/style.css" rel="stylesheet">

@@ -383,6 +383,10 @@
                                 <label>Instruction Name </label>
                                 <input type="text" class="form-control" />
                             </div>
+                            <div class="form-group">
+                                <label>Description </label>
+                                <textarea class="richText" name="example"></textarea>
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <div class="table-responsive">

@@ -1,6 +1,6 @@
 $(function() {
 
-    $('')
+    $('.richText').richText();
 
     $('.nav-tabs a[href="#"]').tab('show');
 
