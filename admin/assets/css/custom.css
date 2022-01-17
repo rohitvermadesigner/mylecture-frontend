@@ -236,6 +236,10 @@ ul.table-action li {
     list-style: none;
 }
 
+.filter-list li:last-child {
+    width: 200px;
+}
+
 .filter-list li h5 {
     line-height: 32px;
     margin-bottom: 0px;
@@ -329,4 +333,30 @@ ul.table-action li {
 
 .create-text-page .assign-group-box ul li input {
     margin-right: 5px;
+}
+
+ul.action-list {
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    justify-content: center;
+}
+
+ul.action-list li {
+    list-style: none;
+    cursor: pointer;
+}
+
+ul.action-list li i:hover {
+    color: #009de2;
+}
+
+.hidden-id {
+    display: none;
+}
+
+.d-custom-none {
+    display: none;
 }
