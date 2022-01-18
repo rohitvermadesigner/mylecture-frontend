@@ -65,7 +65,7 @@
                                                 </li>
                                             </ul>
                                             <div class="tab-content">
-                                                <div id="step1" class="tab-pane fade">
+                                                <div id="step1" class="tab-pane active">
                                                     <form action="" method="post" id="step1Form">
                                                         <div class="row">
                                                             <div class="col-md-6">
@@ -184,14 +184,14 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div id="step3" class="tab-pane active">
+                                                <div id="step3" class="tab-pane fade">
                                                     <div class="row">
                                                         <div class="col-md-12">
                                                             <div class="add-question-box-in-test mb-4">
                                                                 <i class="fa fa-check-square-o fa-5x" aria-hidden="true"></i>
                                                                 <p>Directly add questions from the question bank.</p>
                                                                 <p>The selected set of questions will be associated to the test</p>
-                                                                <button class="btn btn-primary select-question-btn" >Select Question</button>
+                                                                <button class="btn btn-primary select-question-btn">Select Question</button>
                                                             </div>
                                                             <div class="question-table-in-test display-none">
                                                                 <div style="display: flex; justify-content: end;">
@@ -1193,7 +1193,7 @@
                     }
                 });
 
-                $('#testQuestionDataTable').on('click','.remove-question-item', function() {
+                $('#testQuestionDataTable').on('click', '.remove-question-item', function() {
                     var question_id = parseInt($(this).parents('tr').attr('data-id'));
                     if (selectedQuestions.indexOf(question_id) > -1) {
                         const indexNo = selectedQuestions.indexOf(question_id);
@@ -1201,10 +1201,13 @@
                         selectedQuestionsData.splice(indexNo, 1);
                     }
                     $(this).parents('tr').remove();
-                    if(selectedQuestions.length == 0){
+                    if (selectedQuestions.length == 0) {
                         $(".add-question-box-in-test").show();
                         $(".question-table-in-test").hide();
                     }
+                    $('#testQuestionDataTable tr').each(function(index, el) {
+                        $(this).children('td').first().text(index++);
+                    });
                 });
 
                 $(".select-question-btn").click(function() {
