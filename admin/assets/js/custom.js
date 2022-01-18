@@ -20,17 +20,6 @@ $(function() {
         }
     });
 
-    $('body').on('change', '#selectList', function() {
-        if ($(this).find('option:selected').val() === 'addCategory') {
-            $('#addCategoryModal').modal('show');
-        }
-    });
-    $('body').on('change', '#selectInstructionList', function() {
-        if ($(this).find('option:selected').val() === 'addInstruction') {
-            $('#addInstructionModal').modal('show');
-        }
-    });
-
     $('body').on('click', '.subjecticn', function() {
         $(this).toggleClass('treeminus');
 
