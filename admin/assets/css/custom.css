@@ -360,3 +360,16 @@ ul.action-list li i:hover {
 .d-custom-none {
     display: none;
 }
+
+.option-flex {
+    display: flex;
+    gap: 10px;
+}
+
+.option-flex .option-group {
+    width: 90%;
+}
+
+.bootstrap-tagsinput {
+    width: 100%;
+}

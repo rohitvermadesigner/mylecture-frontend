@@ -733,6 +733,7 @@
     <script src="assets/js/config.js"></script>
     <script>
         $(function() {
+
             $("#registerForm").validate({
                 rules: {
                     register_name: "required",

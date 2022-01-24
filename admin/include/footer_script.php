@@ -8,11 +8,13 @@
     <!-- Custom and plugin javascript -->
     <script src="assets/js/inspinia.js"></script>
     <script src="assets/js/plugins/pace/pace.min.js"></script>
+    <script src="assets/js/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js"></script>
 
     <!-- jQuery UI -->
     <script src="assets/js/plugins/jquery-ui/jquery-ui.min.js"></script>
     <script src="assets/js/jquery.validate.min.js"></script>
     <script src="assets/js/toastr.min.js"></script>
     <!-- <script src="assets/js/jquery.richtext.js"></script> -->
+     <!-- Tags Input -->
 
     <script src="assets/js/custom.js"></script>

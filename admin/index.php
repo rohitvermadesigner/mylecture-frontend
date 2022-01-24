@@ -55,7 +55,7 @@
                     });
                 }
             } else {
-                window.location.replace('dashboard.php');
+                window.location.replace('dashboard.php');                
             }
         });
     </script>

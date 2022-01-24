@@ -2,7 +2,9 @@ $(function() {
 
     // $('.richText').richText();
 
-    $('.nav-tabs a[href="#"]').tab('show');
+    $('.tagsinput').tagsinput({
+        tagClass: 'label label-primary'
+    });
 
     // $('.stepNext').click(function(e) {
     //     e.preventDefault();

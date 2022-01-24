@@ -278,3 +278,17 @@ body {
 .btn-white {
     background: #fff !important;
 }
+
+.test-list-box {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.test-list-box h5 {
+    font-size: 18px;
+}
+
+.test-list-box li {
+    list-style: none;
+}

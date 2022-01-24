@@ -67,7 +67,7 @@
             <div class="dashboard-title">
                 <div class="overflow-hidden">
                     <h1 class="float-left">Student Dashboard</h1>
-                    <a href="test-page.php" class="btn btn-white float-right">Start Test</a>
+                    <a href="test-list.php" class="btn btn-white float-right">Start Test</a>
                 </div>
             </div>
 
@@ -329,6 +329,11 @@
     <script src="assets/js/toastr.min.js"></script>
 
     <script>
+        const token = localStorage.getItem("studentToken");
+        if (token) {} else {
+            window.location.replace('index.php');
+        }
+
         function logout() {
             localStorage.removeItem('studentToken');
             toastr.success('Logout Successfully');

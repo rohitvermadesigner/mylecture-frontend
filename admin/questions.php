@@ -37,7 +37,7 @@
                                         <div>
                                             <ul class="top-right-btn-list">
                                                 <li>
-                                                    <a href="create-test.php" class="btn btn-primary"><i class="fa fa-plus"></i> Add </a>
+                                                    <a href="create-question.php" class="btn btn-primary"><i class="fa fa-plus"></i> Add </a>
                                                 </li>
                                                 <li>
                                                     <button class="btn btn-primary" disabled><i class="fa fa-trash"></i> Delete</button>
@@ -56,7 +56,7 @@
                                                         <th width="15%">Subject</th>
                                                         <th width="20%">Chapter</th>
                                                         <th width="5%">Level</th>
-                                                        <!-- <th>Action</th> -->
+                                                        <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -114,7 +114,7 @@
                     }
 
                     let url = `${base_url}/admin/question/list.php`;
-                    $('#questionData tbody').html('');
+                    $('#questionData tbody')    .html('');
                     $(".table-loading-wrap").removeClass('display-none');
                     $.ajax({
                         url: url,
@@ -140,9 +140,9 @@
                             <td> ${value.question} </td>
                             <td> ${value.subject} </td>
                             <td> ${value.chapter} </td>
-                            <td> ${value.difficulty_level} </td></tr>`;
-                        countStartAt++;
-                        // '</td><td><span class="remove-question" title="Remove Question"><i class="fa fa-trash-alt"></i></span><span><i class="far fa-edit"></i></span></td></tr>';
+                            <td> ${value.difficulty_level} </td>
+                            <td class="text-center"><span class="remove-question d-none"><i class="fa fa-trash-alt"></i></span><a href="questions-edit.php?id=${value.id}" class="update-question"><i class="fa fa-pencil"></i></a></td></tr>`;
+                            countStartAt++;
                     });
                     $(".table-loading-wrap").addClass('display-none');
                     $('#questionData tbody').append(tr);

@@ -4,7 +4,7 @@
             <h1></h1>
         </div>
         <div class="navbar-right navbar-right-custom">
-            <div class="subscription-box-parents">
+            <!-- <div class="subscription-box-parents">
                 <div class="subscription-box">
                     <p>Subscription: <b>Trial</b></p>
                     <p class="text-danger">Expire 25 Jun 2022</p>
@@ -12,7 +12,7 @@
                 <div>
                     <button type="button" class="btn btn-primary">Upgrade</button>
                 </div>
-            </div>
+            </div> -->
 
             <ul class="nav navbar-top-links">
                 <li class="dropdown">
