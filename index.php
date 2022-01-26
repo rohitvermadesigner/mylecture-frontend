@@ -775,7 +775,7 @@
                         localStorage.setItem("studentToken", token);
                         toastr.success('Register Successfully');
                         setTimeout(function() {
-                            window.location.replace('/dashboard.php');
+                            window.location.replace('student/dashboard.php');
                         }, 1000);
                     },
                     error: function(error) {
@@ -810,7 +810,6 @@
             }
 
             var loginAjaxCall = function(post_data) {
-                debugger;
                 $.ajax({
                     url: base_url + '/student/login.php',
                     type: 'POST',
@@ -822,7 +821,7 @@
                         localStorage.setItem("studentToken", token);
                         message = result.message;
                         toastr.success(message);
-                        window.location.replace('/dashboard.php');
+                        window.location.replace('student/dashboard.php');
                     },
                     error: function(error) {
                         toastr.error(error.responseJSON.message);

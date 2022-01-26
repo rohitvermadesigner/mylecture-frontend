@@ -147,6 +147,7 @@
                         data: paramsData,
                         success: function(result) {
                             let countStartAt = ((page_no - 1) * page_count) + 1;
+                            console.log(countStartAt)
                             totalResults = result.total_results;
                             $(".total-results-count").text(totalResults);
                             insertTestIntoTable(result, countStartAt);

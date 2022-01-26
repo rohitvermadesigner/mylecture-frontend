@@ -46,28 +46,13 @@
             if (token) {
 
                 $('body').on('click', '#createSubject', function() {
-                    let tags = [];
-                    $('[name=tags]').parents('.form-group').find('span.tag').each(function(index,elem){
-                        tags.push($(elem).text());
-                    });
                     let update_data = {
                         "token": token,
-                        "question": $('[name=question]').val(),
-                        "option_1": $('[name=option_1]').val(),
-                        "option_2": $('[name=option_2]').val(),
-                        "option_3": $('[name=option_3]').val(),
-                        "option_4": $('[name=option_4]').val(),
-                        // "option_5": $('[name=option_5]').val(),
-                        "answer": $('[name=answer]:checked').val(),
-                        "subject_id": $('[name=subject_id] option:selected').val(),
-                        "chapter_id": $('[name=chapter_id] option:selected').val(),
-                        "description": $('[name=description]').val(),
-                        "difficulty_level": $('[name=difficulty_level] option:selected').val(),
-                        "tags": tags
+                        "name": $('[name=subject_name]').val(),
                     }
                     console.log(update_data);
                     $.ajax({
-                        url: base_url + '/admin/question/add.php',
+                        url: base_url + '/admin/subject/add.php',
                         type: 'POST',
                         data: JSON.stringify(update_data),
                         dataType: 'JSON',

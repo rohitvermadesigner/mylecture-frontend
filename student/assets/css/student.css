@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
 * {
     margin: 0px;
     padding: 0px;
@@ -7,7 +7,8 @@
 body {
     color: #333;
     font-family: 'Poppins', sans-serif;
-    font-size: 15px;
+    font-size: 14px;
+    font-weight: normal;
 }
 
 .user-dashboard {
@@ -15,7 +16,7 @@ body {
 }
 
 .user-dashboard .dashboard-leftbar {
-    width: 300px;
+    width: 200px;
     background: #fff;
     height: 100vh;
 }
@@ -25,7 +26,11 @@ body {
     margin: auto;
     text-align: center;
     display: block;
-    padding: 25px 0px;
+    padding: 15px;
+}
+
+.user-dashboard .dashboard-leftbar .logo img {
+    width: 100%;
 }
 
 .user-dashboard .dashboard-leftbar .left-nav ul {
@@ -41,7 +46,7 @@ body {
 .user-dashboard .dashboard-leftbar .left-nav ul li a {
     display: block;
     color: #000;
-    padding: 16px 0px;
+    padding: 12px 0px;
     transition: all 0.45s;
 }
 
@@ -78,7 +83,7 @@ body {
 }
 
 .user-dashboard .dashboard-container {
-    width: calc(100% - 300px);
+    width: calc(100% - 200px);
     background: #e9ecee;
 }
 
@@ -144,11 +149,12 @@ body {
 .user-dashboard .dashboard-container .dashboard-title {
     background: #009de2;
     color: #fff;
-    padding: 25px;
+    padding: 15px;
 }
 
 .user-dashboard .dashboard-container .dashboard-title h1 {
     font-size: 24px;
+    margin-bottom: 0px;
 }
 
 .white-box {
@@ -290,8 +296,217 @@ body {
 
 .test-list-box h5 {
     font-size: 18px;
+    margin: 0px;
+    margin-bottom: 10px;
+    font-weight: 600;
 }
 
-.test-list-box li {
+.test-list-box table tr td:first-child {
+    font-weight: bold;
+}
+
+.table-loading-wrap {
+    display: flex;
+    align-items: center;
+    height: 540px;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.table-loading-wrap .loading-img img {
+    width: 145px;
+}
+
+.table-loading-wrap .loading-text {
+    font-size: 20px;
+    color: #adadad;
+}
+
+.filter-list {
+    display: flex;
+    gap: 10px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.filter-list li {
     list-style: none;
+}
+
+.filter-list li:last-child {
+    width: 200px;
+}
+
+.filter-list li h5 {
+    line-height: 32px;
+    margin-bottom: 0px;
+}
+
+.top-right-btn-list {
+    display: flex;
+    gap: 10px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.top-right-btn-list li {
+    list-style: none;
+}
+
+.form-control {
+    font-size: 14px;
+    font-weight: normal !important;
+}
+
+.ibox-title {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #ffffff;
+    border-color: #e7eaec;
+    border-image: none;
+    border-style: solid solid none;
+    border-width: 0px 0 0;
+    color: inherit;
+    margin-bottom: 0;
+    min-height: 48px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
+    font-size: 14px;
+    font-weight: normal !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+}
+
+.btn svg {
+    font-size: 12px;
+}
+
+.btn-primary[disabled],
+.btn-primary[disabled]:hover,
+.btn-primary[disabled]:focus,
+.btn-primary[disabled]:active {
+    background-color: #9d9d9d;
+    border-color: #9d9d9d;
+    cursor: not-allowed;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.h1,
+.h2,
+.h3,
+h1,
+h2,
+h3 {
+    margin-top: 0px;
+}
+
+.create-text-page .tab-content {
+    padding-top: 20px;
+}
+
+.create-text-page .nav-tabs {
+    pointer-events: none;
+}
+
+.create-text-page .nav-tabs li a {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.create-text-page .nav-tabs li a svg {
+    font-size: 30px;
+}
+
+.create-text-page .nav-tabs>li>a {
+    padding: 10px 10px 10px 18px;
+}
+
+.create-text-page .nav-tabs li a span.main-span {
+    display: flex;
+    gap: 15px;
+}
+
+.create-text-page .nav-tabs li a span {
+    display: block;
+}
+
+.create-text-page .add-question-box-in-test {
+    background: #f1f1f1;
+    width: 100%;
+    min-height: 250px;
+    padding: 25px 40px;
+    border: 1px solid #ccc;
+    display: flex;
+    gap: 20px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.create-text-page .add-question-box-in-test p {
+    margin-bottom: 0px;
+    font-size: 15px;
+}
+
+.create-text-page .assign-group-box {
+    border: 1px solid #ccc;
+    padding: 15px;
+}
+
+.create-text-page .assign-group-box ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+.create-text-page .assign-group-box ul li {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 4px;
+}
+
+.create-text-page .assign-group-box ul li input {
+    margin-right: 5px;
+}
+
+.nav-tabs>li>a {
+    color: #a7b1c2;
+    font-weight: normal;
+    padding: 10px 20px 10px 25px;
+}
+
+label.error {
+    color: red;
+    display: inline-block;
+    margin-left: 5px;
+    font-weight: normal;
+}
+
+.display-none {
+    display: none;
+}
+
+.main-row {
+    padding: 25px 10px !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.remove-test {
+    cursor: pointer;
 }
