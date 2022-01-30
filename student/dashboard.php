@@ -16,85 +16,118 @@
             </div>
 
             <div class="row m-0 main-row">
-                <!-- <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="white-box">
-                        <div class="four-list">
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        <img src="assets/images/leftnav-icon1.png" alt="">
-                                        <span>Self Assessor</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="assets/images/leftnav-icon2.png" alt="">
-                                        <span>Topic Simulator </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="assets/images/leftnav-icon3.png" alt="">
-                                        <span>Test Simulator</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <img src="assets/images/leftnav-icon4.png" alt="">
-                                        <span>Top 5 Scorers</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div> -->
-                <div class="col-md-8">
-                    <div class="white-box">
-                        <div class="student-detail-box">
-                            <h4>Manage Profile</h4>
-                            <hr>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="text-center">
-                                        <img src="assets/images/user-icon.png" alt="" style="width: 80px;">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Full Name</label>
-                                        <input type="text" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>DOB</label>
-                                        <input type="text" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>College</label>
-                                        <input type="text" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Course</label>
-                                        <input type="text" class="form-control" />
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <button class="btn btn-primary float-right">Update</button>
-                                    </div>
-                                </div>
-
-                            </div>
+                        <div class="dashboard-stats">
+                            <p>Self Assessor Test</p>
+                            <span id="self_assessor_test_count">0</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
+                    <div class="white-box">
+                        <div class="dashboard-stats">
+                            <p>Topic Simulator Test</p>
+                            <span id="topic_simulator_test_count">0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="white-box">
+                        <div class="dashboard-stats">
+                            <p>Admin Assign Test</p>
+                            <span id="admin_assign_test_count">0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8 mt-5">
+                    <div class="white-box">
+                        <form id="manageProfile">
+                            <div class="student-detail-box">
+                                <h4>Manage Profile</h4>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="text-center">
+                                            <img src="assets/images/user-icon.png" alt="" style="width: 80px;">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Full Name</label>
+                                            <input type="text" class="form-control" name="name" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>DOB</label>
+                                            <input type="date" class="form-control" name="date_of_birth" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Gender</label>
+                                            <select name="gender" class="form-control">
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Email</label>
+                                            <input type="text" class="form-control" name="email_id" disabled />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Mobile</label>
+                                            <input type="text" class="form-control" name="mobile_no" disabled />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Address</label>
+                                            <input type="text" class="form-control" name="address" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>State</label>
+                                            <input type="text" class="form-control" name="state" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>City</label>
+                                            <input type="text" class="form-control" name="city" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Country</label>
+                                            <input type="text" class="form-control" name="country" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Pincode</label>
+                                            <input type="text" class="form-control" name="pincode" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary float-right">Update</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-5">
                     <div class="white-box">
                         <div class="student-detail-box">
                             <h4>Change Password</h4>
@@ -118,7 +151,7 @@
                                         <input type="text" class="form-control" />
                                     </div>
                                 </div>
-                              
+
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <button class="btn btn-primary float-right">Update</button>
@@ -129,6 +162,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-12 mt-5">
                     <div class="white-box">
                         <h4>My Performance</h4>
@@ -212,7 +246,90 @@
 
     <script>
         const token = localStorage.getItem("studentToken");
-        if (token) {} else {
+        if (token) {
+            $.ajax({
+                url: `${base_url}/student/dashboard/dashboard.php`,
+                type: 'GET',
+                dataType: 'JSON',
+                data: {
+                    token: token
+                },
+                success: function(result) {
+                    $('#self_assessor_test_count').text(result.self_assessor_test_count);
+                    $('#topic_simulator_test_count').text(result.topic_simulator_test_count);
+                    $('#admin_assign_test_count').text(result.admin_assign_test_count);
+                }
+            });
+
+            $.ajax({
+                url: `${base_url}/student/get-info.php`,
+                type: 'GET',
+                dataType: 'JSON',
+                data: {
+                    token: token
+                },
+                success: function(result) {
+                    $('[name=name]').val(result.name);
+                    $('[name=email_id]').val(result.email_id);
+                    $('[name=mobile_no]').val(result.mobile_no);
+                    $('[name=group_id]').val(result.group_id);
+                    $('[name=gender]').val(result.gender);
+                    $('[name=date_of_birth]').val(result.date_of_birth);
+                    $('[name=address]').val(result.address);
+                    $('[name=state]').val(result.state);
+                    $('[name=city]').val(result.city);
+                    $('[name=country]').val(result.country);
+                    $('[name=pincode]').val(result.pincode);
+                }
+            });
+
+            $('#manageProfile').validate({
+                rules: {
+                    name: "required",
+                    date_of_birth: "required",
+                    email_id: "required",
+                    mobile_no: "required",
+                    address: "required",
+                    state: "required",
+                    city: "required",
+                    country: "required",
+                    pincode: "required",
+                },
+                submitHandler: function(form) {
+                    manageProfileSubmit();
+                }
+            });
+
+            const manageProfileSubmit = function() {
+                let post_data = {
+                    token: token,
+                    info: {
+                        name: $('[name=name]').val(),
+                        gender: $('[name=gender]').val(),
+                        date_of_birth: $('[name=date_of_birth]').val(),
+                        address: $('[name=address]').val(),
+                        state: $('[name=state]').val(),
+                        city: $('[name=city]').val(),
+                        country: $('[name=country]').val(),
+                        pincode: $('[name=pincode]').val(),
+                    }
+                }
+                $.ajax({
+                    url: base_url + '/student/update-info.php',
+                    type: 'POST',
+                    data: JSON.stringify(post_data),
+                    dataType: 'JSON',
+                    success: function(result) {
+                        console.log(result);
+                        toastr.success(result.message);
+                    },
+                    error: function(error) {
+                        toastr.error(error.responseJSON.message);
+                    }
+                });
+            }
+
+        } else {
             window.location.replace('/');
         }
     </script>
