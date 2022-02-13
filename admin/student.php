@@ -27,14 +27,12 @@
                                             <table class="table" id="questionData">
                                                 <thead>
                                                     <tr>
-                                                        <th><input type="checkbox"></th>
                                                         <th>S.No.</th>
                                                         <th>Candidate Name</th>
                                                         <th>E-mail</th>
                                                         <th>Mobile No.</th>
                                                         <th>Group</th>
                                                         <th>Reg. Date</th>
-                                                        <!-- <th>Action</th> -->
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -72,8 +70,7 @@
                     var trHTML = '';
                     $.each(result.result, function(key, value) {
                         trHTML +=
-                            '<tr><td class="text-center">' +
-                            '</td><td>' + index++ +
+                            '<tr><td>' + index++ +
                             '</td><td>' + value.name + '<span class="question-id d-none">' + value.id +
                             '</td><td>' + value.email_id +
                             '</td><td>' + value.mobile_no +

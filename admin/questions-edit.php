@@ -90,6 +90,27 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <div>Description</div>
+                                                    <textarea type="text" class="form-control" name="description"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <select name="difficulty_level" class="form-control">
+                                                        <option value="">Select Level</option>
+                                                        <option value="easy">Easy</option>
+                                                        <option value="normal">Normal</option>
+                                                        <option value="difficult">Difficult</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input class="tagsinput form-control" type="text" name="tags" value="" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
                                                 <button id="updateQuestion" class="btn btn-primary float-right">Update</button>
                                             </div>
                                         </div>
@@ -108,8 +129,10 @@
         $(function() {
             const token = localStorage.getItem("admin_token");
             if (token) {
-
                 const questionID = document.location.search.substr(4);
+
+                let subjectID = '';
+                let chapterId = '';
                 var getQuestion = function() {
                     const url = `${base_url}/admin/question/get-detail.php`;
                     $.ajax({
@@ -134,6 +157,11 @@
                                     $(this).prop('checked', true);
                                 }
                             });
+                            subjectID = result.subject_id;
+                            chapterId = result.chapter_id;
+                            $('[name=description]').val(result.description);
+                            $('[name=difficulty_level] option:selected').val(result.difficulty_level);
+                            $('[name=tags]').val(result.tags);
                         }
                     });
                 }
@@ -151,8 +179,8 @@
                         "option_4": $('[name=option_4]').val(),
                         "option_5": $('[name=option_5]').val(),
                         "answer": $('[name=answer]:checked').val(),
-                        "subject_id": "1",
-                        "chapter_id": "",
+                        "subject_id": subjectID,
+                        "chapter_id": chapterId,
                         "description": "This is description for question 4",
                         "difficulty_level": "normal",
                         "tags": ["AIEEE", "IIT"]

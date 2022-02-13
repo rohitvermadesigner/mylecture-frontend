@@ -8,7 +8,6 @@
                             <img alt="logo" src="assets/img/logo.png" class="logo" />
                         </span>
                     </a>
-                    <!-- <span class="clear logoText">Logo</span> </a> -->
                 </div>
                 <div class="logo-element">
                     <img src="assets/img/logo-mini.png" />
@@ -22,7 +21,7 @@
                 <ul class="nav nav-second-level collapse" aria-expanded="false">
                     <li><a href="subject-management.php">Subject Management</a></li>
                     <li><a href="questions.php">Questions</a></li>
-                    <li><a href="bulk-upload-questions.php">Bulk upload Questions</a></li>
+                    <!-- <li><a href="bulk-upload-questions.php">Bulk upload Questions</a></li> -->
                 </ul>
             </li>
             
@@ -31,11 +30,11 @@
                 <ul class="nav nav-second-level collapse" aria-expanded="false">
                     <li><a href="group-management.php">Group Management</a></li>
                     <li><a href="student.php">Student</a></li>
-                    <li><a href="bulk-upload-students.php">Bulk upload Students</a></li>
+                    <!-- <li><a href="bulk-upload-students.php">Bulk upload Students</a></li> -->
                 </ul>
             </li>
 
-            <li>
+            <!-- <li>
                 <a href="documents.php"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Documents</span></a>
             </li>
 
@@ -45,7 +44,7 @@
 
             <li>
                 <a href="discount-coupon-module.php"><i class="fa fa-money"></i> <span class="nav-label">Discount Coupon Module</span></a>
-            </li>
+            </li> -->
             <li>
                 <a href="test-management-module.php"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Test Management Module</span></a>
             </li>

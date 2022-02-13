@@ -19,58 +19,29 @@
                         <div class="row mt-3">
                             <div class="col-lg-12">
                                 <div class="ibox float-e-margins">
+                                    <div class="ibox-title">
+                                        <h5>Faculty List</h5>
+                                        <ul class="top-right-btn-list">
+                                            <li>
+                                                <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#addFacultyModal">Add Faculty</button>
+                                            </li>
+                                        </ul>
+                                    </div>
                                     <div class="ibox-content">
-                                    <form id="addFacultyForm">
-                                        <div class="row mt-4">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Name</label>
-                                                    <input type="text" class="form-control" name="name">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Email Id</label>
-                                                    <input type="text" class="form-control" name="email_id">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Mobile Number</label>
-                                                    <input type="text" class="form-control" name="mobile_no">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Password</label>
-                                                    <input type="text" class="form-control" name="password">
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <button type="submit" class="btn btn-primary float-right">Add Faculty</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-
-                                    <hr>
-                                    <table class="table mt-4" id="facultyData">
-                                                <thead>
-                                                    <tr>
-                                                        <th><input type="checkbox"></th>
-                                                        <th>S.No.</th>
-                                                        <th>Name</th>
-                                                        <th>Email</th>
-                                                        <th>Mobile Number</th>
-                                                        <th>Gender</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                </tbody>
-                                            </table>
+                                        <table class="table mt-4" id="facultyData">
+                                            <thead>
+                                                <tr>
+                                                    <th>S.No.</th>
+                                                    <th>Name</th>
+                                                    <th>Email</th>
+                                                    <th>Mobile Number</th>
+                                                    <th>Gender</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -86,32 +57,81 @@
 
     </div>
 
+    <!-- Modal -->
+    <div id="addFacultyModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <form id="addFacultyForm">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Add Faculty</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input type="text" class="form-control" name="name">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Email Id</label>
+                                    <input type="text" class="form-control" name="email_id">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Mobile Number</label>
+                                    <input type="text" class="form-control" name="mobile_no">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="text" class="form-control" name="password">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary float-right">Submit</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
     <?php include 'include/footer_script.php' ?>
 
     <script>
-         $(function() {
+        $(function() {
             const token = localStorage.getItem("admin_token");
             $.ajax({
-                url: base_url + '/admin/faculty/list.php?token',                
+                url: base_url + '/admin/faculty/list.php?token',
                 type: 'GET',
                 data: {
                     token: token
                 },
                 dataType: 'JSON',
                 success: function(result) {
-                    var index =1;
+                    var index = 1;
                     var trHTML = '';
                     $.each(result.result, function(key, value) {
                         trHTML +=
-                            '<tr><td class="text-center">' +
-                            '</td><td>' + index++ +
+                            '<tr><td>' + index++ +
                             '</td><td>' + value.name + '<span class="user-id d-none">' + value.id +
                             '</td><td>' + value.email_id +
                             '</td><td>' + value.mobile_no +
                             '</td><td>' + value.gender +
                             '</td><td><span class="remove-faculty" title="Remove Faculty"><i class="fa fa-trash" aria-hidden="true"></i></span></td></tr>';
                     });
-                    $('#facultyData').append(trHTML);                                   
+                    $('#facultyData').append(trHTML);
                 }
             });
 
@@ -173,7 +193,7 @@
                     data: JSON.stringify(post_data),
                     success: function(result) {
                         console.log(result);
-                        message = result.message;                                        
+                        message = result.message;
                         toastr.success(message);
                         setTimeout(function() {
                             location.reload();

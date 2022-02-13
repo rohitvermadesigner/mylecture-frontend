@@ -62,14 +62,14 @@
                                                 <tbody>
                                                 </tbody>
                                             </table>
-                                            <div class="table-loading-wrap">
+                                            <!-- <div class="table-loading-wrap">
                                                 <div class="loading-img">
                                                     <img src="./assets/img/loader.gif" alt="loader">
                                                 </div>
                                                 <div class="loading-text">
                                                     Loading...
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="text-center">
                                                 <button class="btn btn-primary prevPage" disabled>Prev</button>
                                                 <button class="btn btn-primary nextPage" disabled>Next</button>
@@ -114,7 +114,7 @@
                     }
 
                     let url = `${base_url}/admin/question/list.php`;
-                    $('#questionData tbody')    .html('');
+                    $('#questionData tbody').html('');
                     $(".table-loading-wrap").removeClass('display-none');
                     $.ajax({
                         url: url,
@@ -142,13 +142,13 @@
                             <td> ${value.chapter} </td>
                             <td> ${value.difficulty_level} </td>
                             <td class="text-center"><span class="remove-question d-none"><i class="fa fa-trash-alt"></i></span><a href="questions-edit.php?id=${value.id}" class="update-question"><i class="fa fa-pencil"></i></a></td></tr>`;
-                            countStartAt++;
+                        countStartAt++;
                     });
                     $(".table-loading-wrap").addClass('display-none');
                     $('#questionData tbody').append(tr);
                 }
 
-                
+
 
                 $('.nextPage').click(function() {
                     page_no = page_no + 1;
@@ -182,7 +182,7 @@
                 var getAllSubjects = function() {
                     const url = `${base_url}/admin/subject/list.php`;
                     const paramsData = {
-                        token : token
+                        token: token
                     }
                     $.ajax({
                         url: url,
@@ -191,7 +191,7 @@
                         data: paramsData,
                         success: function(result) {
                             allSubjects = result;
-                            if(allSubjects && allSubjects.length > 0){
+                            if (allSubjects && allSubjects.length > 0) {
                                 allSubjects.forEach(val => {
                                     $('#subject-filter').append(`<option value="${val.id}">${val.name}</option>`)
                                 })
@@ -201,10 +201,10 @@
                 }
 
                 $('#subject-filter').change(function(val) {
-                    subject =  $('#subject-filter').val();
-                    if(subject){
+                    subject = $('#subject-filter').val();
+                    if (subject) {
                         allSubjects.forEach(val => {
-                            if(val.id == subject){
+                            if (val.id == subject) {
                                 $('#chapter-filter').html('');
                                 $('#chapter-filter').append(`<option value="">-- Select Chapter --</option>`);
                                 val.chapter.forEach(chapter => {
@@ -218,9 +218,9 @@
                 });
 
                 $("#search-btn").click(function() {
-                    subject =  $('#subject-filter').val();
-                    chapter =  $('#chapter-filter').val();
-                    question =  $('#question-filter').val();
+                    subject = $('#subject-filter').val();
+                    chapter = $('#chapter-filter').val();
+                    question = $('#question-filter').val();
                     page_no = 1;
                     loadQuestions(page_no, page_count);
                     if (subject || chapter || question) {

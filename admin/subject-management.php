@@ -46,23 +46,21 @@
                                     <div class="ibox-title">
                                         <h5>Subject List</h5>
                                         <ul class="top-right-btn-list">
-                                                <li>
-                                                    <a href="create-subject.php" class="btn btn-primary"><i class="fa fa-plus"></i> Add </a>
-                                                </li>
-                                                <li>
-                                                    <button class="btn btn-primary" disabled=""><i class="fa fa-trash"></i> Delete</button>
-                                                </li>
-                                            </ul>
+                                            <li>
+                                                <a href="create-subject.php" class="btn btn-primary"><i class="fa fa-plus"></i> Add </a>
+                                            </li>
+                                            <!-- <li>
+                                                <button class="btn btn-primary" disabled=""><i class="fa fa-trash"></i> Delete</button>
+                                            </li> -->
+                                        </ul>
                                     </div>
                                     <div class="ibox-content">
                                         <div class="table-responsive mt-3">
                                             <table class="table" id="subjectData">
                                                 <thead>
                                                     <tr>
-                                                        <th width="4%"><input type="checkbox"></th>
                                                         <th width="4%">S.No.</th>
                                                         <th width="92%">Subject Name</th>
-                                                        <!-- <th>Action</th> -->
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -95,7 +93,6 @@
                     if (result && result.length > 0) {
                         result.forEach((subject, sub_key) => {
                             $("#subjectData tbody").append(`<tr>
-                                                                <td><input type="checkbox"></td>
                                                                 <td>${sub_key + 1}</td>
                                                                 <td>
                                                                     <div class="sbjectnametabl">
@@ -118,7 +115,7 @@
                                             <span class="inner-subjection treeplus treeminus"></span>
                                             ${topic.name}
                                             </span></li>`);
-                                            if(topic.subtopic && topic.subtopic.length > 0) {
+                                            if (topic.subtopic && topic.subtopic.length > 0) {
                                                 $(`#subjectData tbody #topic_list_${sub_key} ul#ul_${sub_key} li#chapter_list_${sub_key}_${chap_key} ul#ul_${sub_key}_${chap_key} li#topic_list_${sub_key}_${chap_key}_${topic_key}`).append(`<ul></ul>`);
                                                 topic.subtopic.forEach(subtopic => {
                                                     $(`#subjectData tbody #topic_list_${sub_key} ul#ul_${sub_key} li#chapter_list_${sub_key}_${chap_key} ul#ul_${sub_key}_${chap_key} li#topic_list_${sub_key}_${chap_key}_${topic_key} ul`).append(`<li>${subtopic.name}</li>`)

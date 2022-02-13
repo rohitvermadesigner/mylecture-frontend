@@ -19,18 +19,13 @@
                         <div class="row mt-3">
                             <div class="col-lg-12">
                                 <div class="ibox float-e-margins">
-                                    <div class="ibox-title">
-                                        <h5>Group Management</h5>
-                                    </div>
                                     <div class="ibox-content">
                                     <table class="table" id="groupData">
                                                 <thead>
                                                     <tr>
-                                                        <th><input type="checkbox"></th>
                                                         <th>S.No.</th>
                                                         <th>Group Name</th>
                                                         <th>Group Details</th>
-                                                        <!-- <th>Action</th> -->
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -69,8 +64,7 @@
                     var trHTML = '';
                     $.each(result.result, function(key, value) {
                         trHTML +=
-                            '<tr><td class="text-center">' +
-                            '</td><td>' + index++ +
+                            '<tr><td>' + index++ +
                             '</td><td>' + value.name + '<span class="group-id d-none">' + value.id +
                             '</td><td>' + value.description + '</td></tr>';
                             // '</td><td><span class="remove-question" title="Remove Question"><i class="fa fa-trash-alt"></i></span><span><i class="far fa-edit"></i></span></td></tr>';

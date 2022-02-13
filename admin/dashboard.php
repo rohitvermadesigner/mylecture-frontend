@@ -19,20 +19,20 @@
                     <div class="wrapper wrapper-content">
 
                         <div class="row dashboard-4-boxes">
-                            <div class="col-lg-3">
+                            <div class="col-lg-4">
                                 <div class="ibox">
                                     <div class="ibox-title">
-                                        <h5>Total Candidates</h5>
+                                        <h5>Total Students</h5>
                                     </div>
                                     <div class="ibox-content">
                                         <i class="fa fa-users" aria-hidden="true"></i>
                                         <h1 class="no-margins" id="totalStudent"></h1>
-                                        <small>Candidate Online : <b class="text-success" id="totalOnlineStudent"></b></small>
+                                        <small>Student Online : <b class="text-success" id="totalOnlineStudent"></b></small>
                                     </div>
-                                    <button type="button" class="btn btn-primary btn-block">+ Add New Candidate</button>
+                                    <a href="create-student.php" class="btn btn-primary btn-block">+ Add New Student</a>
                                 </div>
                             </div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-4">
                                 <div class="ibox ">
                                     <div class="ibox-title">
                                         <h5>Total Questions</h5>
@@ -42,11 +42,11 @@
                                         <h1 class="no-margins" id="totalQuestions"></h1>
                                         <small>&nbsp;</small>
                                     </div>
-                                    <button type="button" class="btn btn-primary btn-block">+ Add New Question</button>
+                                    <a href="create-question.php" class="btn btn-primary btn-block">+ Add New Question</a>
                                 </div>
                             </div>
-                            <div class="col-lg-3">
-                                <div class="ibox ">
+                            <div class="col-lg-4">
+                                <div class="ibox">
                                     <div class="ibox-title">
                                         <h5>Total Test</h5>
                                     </div>
@@ -58,7 +58,7 @@
                                     <a href="create-test.php" class="btn btn-primary btn-block">+ Add New Test</a>
                                 </div>
                             </div>
-                            <div class="col-lg-3">
+                            <!-- <div class="col-lg-4">
                                 <div class="ibox ">
                                     <div class="ibox-title">
                                         <h5>Total Products</h5>
@@ -70,23 +70,22 @@
                                     </div>
                                     <button type="button" class="btn btn-primary btn-block">+ Add New Product</button>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
 
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="ibox float-e-margins">
                                     <div class="ibox-title">
-                                        <h5>Candidate List</h5>
+                                        <h5>Student List</h5>
                                     </div>
                                     <div class="ibox-content">
                                         <div class="table-responsive">
                                         <table class="table" id="questionData">
                                                 <thead>
                                                     <tr>
-                                                        <th><input type="checkbox"></th>
                                                         <th>S.No.</th>
-                                                        <th>Candidate Name</th>
+                                                        <th>Student Name</th>
                                                         <th>E-mail</th>
                                                         <th>Mobile No.</th>
                                                         <th>Group</th>
@@ -104,7 +103,35 @@
                             </div>
 
                         </div>
-                    </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="ibox float-e-margins">
+                                    <div class="ibox-title">
+                                        <h5>Faculty List</h5>
+                                    </div>
+                                    <div class="ibox-content">
+                                        <table class="table mt-4" id="facultyData">
+                                            <thead>
+                                                <tr>
+                                                    <th>S.No.</th>
+                                                    <th>Name</th>
+                                                    <th>Email</th>
+                                                    <th>Mobile Number</th>
+                                                    <th>Gender</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>  
                     <?php include 'include/footer.php' ?>
                 </div>
             </div>
@@ -118,9 +145,9 @@
 
     <script>
         $(function() {
-            const tokanInfoConst = localStorage.getItem("admin_token");
+            const token = localStorage.getItem("admin_token");
             $.ajax({
-                url: base_url + '/admin/dashboard/stats.php?token= ' + tokanInfoConst,
+                url: base_url + '/admin/dashboard/stats.php?token= ' + token,
                 type: 'GET',
                 dataType: 'JSON',
                 success: function(result) {
@@ -133,7 +160,7 @@
             });
 
             $.ajax({
-                url: base_url + '/admin/student/student-list.php?token='+ tokanInfoConst + '&page_no=1&page_count=10',                
+                url: base_url + '/admin/student/student-list.php?token='+ token + '&page_no=1&page_count=10',                
                 type: 'GET',
                 dataType: 'JSON',
                 success: function(result) {
@@ -142,8 +169,7 @@
                     var trHTML = '';
                     $.each(result.result, function(key, value) {
                         trHTML +=
-                            '<tr><td class="text-center">' +
-                            '</td><td>' + index++ +
+                            '<tr><td>' + index++ +
                             '</td><td>' + value.name + '<span class="question-id d-none">' + value.id +
                             '</td><td>' + value.email_id +
                             '</td><td>' + value.mobile_no +
@@ -154,6 +180,30 @@
                     $('#questionData').append(trHTML);
                 }
             });
+
+            $.ajax({
+                url: base_url + '/admin/faculty/list.php?token',
+                type: 'GET',
+                data: {
+                    token: token
+                },
+                dataType: 'JSON',
+                success: function(result) {
+                    var index = 1;
+                    var trHTML = '';
+                    $.each(result.result, function(key, value) {
+                        trHTML +=
+                            '<tr><td>' + index++ +
+                            '</td><td>' + value.name + '<span class="user-id d-none">' + value.id +
+                            '</td><td>' + value.email_id +
+                            '</td><td>' + value.mobile_no +
+                            '</td><td>' + value.gender +
+                            '</td><td><span class="remove-faculty" title="Remove Faculty"><i class="fa fa-trash" aria-hidden="true"></i></span></td></tr>';
+                    });
+                    $('#facultyData').append(trHTML);
+                }
+            });
+
         });
     </script>
 
