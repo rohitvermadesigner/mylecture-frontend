@@ -150,13 +150,10 @@
                     success: function(result) {
                         console.log(result);
                         var col4 = '';
-                        var testStartBtn;
+                        var testStartBtn = `<a class="btn btn-primary text-right" disabled>Start Test</a>`;
                         $.each(result.result, function(key, value) {
-                            
-                            if (`${value.is_start_test_button_active}` == 'true') {
+                            if (value.is_start_test_button_active) {
                                 testStartBtn = `<a href="test.php?test_id=${value.id}" class="btn btn-primary text-right">Start Test</a>`;
-                            } else {
-                                testStartBtn = '<a class="btn btn-primary text-right" disabled>Start Test</a>';
                             }
                             col4 +=
                                 `<div class="col-md-6">
