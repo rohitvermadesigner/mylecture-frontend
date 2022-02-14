@@ -78,10 +78,13 @@
                                 <div class="ibox float-e-margins">
                                     <div class="ibox-title">
                                         <h5>Student List</h5>
+                                        <ul class="top-right-btn-list">
+                                            <li> <b>Total</b> : <span class="total-students"></span></li>
+                                        </ul>
                                     </div>
                                     <div class="ibox-content">
                                         <div class="table-responsive">
-                                        <table class="table" id="questionData">
+                                            <table class="table" id="questionData">
                                                 <thead>
                                                     <tr>
                                                         <th>S.No.</th>
@@ -90,7 +93,7 @@
                                                         <th>Mobile No.</th>
                                                         <th>Group</th>
                                                         <th>Reg. Date</th>
-                                                        <!-- <th>Action</th> -->
+                                                        <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -109,6 +112,9 @@
                                 <div class="ibox float-e-margins">
                                     <div class="ibox-title">
                                         <h5>Faculty List</h5>
+                                        <!-- <ul class="top-right-btn-list">
+                                            <li> <b>Total</b> : <span class="total-faculty"></span></li>
+                                        </ul> -->
                                     </div>
                                     <div class="ibox-content">
                                         <table class="table mt-4" id="facultyData">
@@ -131,7 +137,7 @@
 
                         </div>
 
-                    </div>  
+                    </div>
                     <?php include 'include/footer.php' ?>
                 </div>
             </div>
@@ -160,24 +166,25 @@
             });
 
             $.ajax({
-                url: base_url + '/admin/student/student-list.php?token='+ token + '&page_no=1&page_count=10',                
+                url: base_url + '/admin/student/student-list.php?token=' + token + '&page_no=1&page_count=10',
                 type: 'GET',
                 dataType: 'JSON',
                 success: function(result) {
-                    // console.log(result.result);
-                    var index =1;
+                    console.log(result.result);
+                    var index = 1;
                     var trHTML = '';
                     $.each(result.result, function(key, value) {
                         trHTML +=
                             '<tr><td>' + index++ +
-                            '</td><td>' + value.name + '<span class="question-id d-none">' + value.id +
+                            '</td><td>' + value.name + '<span class="student-id d-none">' + value.id +
                             '</td><td>' + value.email_id +
                             '</td><td>' + value.mobile_no +
                             '</td><td>' + value.group +
-                            '</td><td>' + value.date_of_registration + '</td></tr>';
-                            // '</td><td><span class="remove-question" title="Remove Question"><i class="fa fa-trash-alt"></i></span><span><i class="far fa-edit"></i></span></td></tr>';
+                            '</td><td>' + value.date_of_registration +
+                            '<td class="text-center"><span class="remove-student"><i class="fa fa-trash"></i></span></td></tr>';
                     });
                     $('#questionData').append(trHTML);
+                    $('.total-students').text(result.total_results);
                 }
             });
 
@@ -201,11 +208,40 @@
                             '</td><td><span class="remove-faculty" title="Remove Faculty"><i class="fa fa-trash" aria-hidden="true"></i></span></td></tr>';
                     });
                     $('#facultyData').append(trHTML);
+                    // $('.total-faculty').text(result.total_results);
                 }
             });
+
+            $('body').on('click', '.remove-student', function() {
+                    var status = confirm("Are you sure you want to delete ?");
+                    if (status == true) {
+                        var userId = $(this).parents('tr').find('td span.student-id').text();
+                        let removeUser = {
+                            'token': token,
+                            'id': userId,
+                        }
+                        $.ajax({
+                            url: base_url + '/admin/student/student-delete.php',
+                            type: 'POST',
+                            dataType: 'JSON',
+                            data: JSON.stringify(removeUser),
+                            success: function(response) {
+                                message = response.message;
+                                toastr.success(message);
+                                setTimeout(function() {
+                                    location.reload();
+                                }, 1000);
+                            },
+                            error: function(error) {
+                                toastr.error(message);
+                            }
+                        });
+                    }
+                });
 
         });
     </script>
 
 </body>
+
 </html>

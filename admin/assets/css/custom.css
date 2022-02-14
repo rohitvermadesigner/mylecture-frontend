@@ -398,3 +398,7 @@ ul.action-list li i:hover {
     padding: 2px 6px;
     cursor: pointer;
 }
+
+.remove-student {
+    cursor: pointer;
+}
