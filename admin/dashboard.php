@@ -93,7 +93,6 @@
                                                         <th>Mobile No.</th>
                                                         <th>Group</th>
                                                         <th>Reg. Date</th>
-                                                        <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -112,9 +111,9 @@
                                 <div class="ibox float-e-margins">
                                     <div class="ibox-title">
                                         <h5>Faculty List</h5>
-                                        <!-- <ul class="top-right-btn-list">
+                                        <ul class="top-right-btn-list">
                                             <li> <b>Total</b> : <span class="total-faculty"></span></li>
-                                        </ul> -->
+                                        </ul>
                                     </div>
                                     <div class="ibox-content">
                                         <table class="table mt-4" id="facultyData">
@@ -124,8 +123,8 @@
                                                     <th>Name</th>
                                                     <th>Email</th>
                                                     <th>Mobile Number</th>
-                                                    <th>Gender</th>
-                                                    <th>Action</th>
+                                                    <th>Created At</th>
+                                                    <th>Last Login At</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -180,8 +179,7 @@
                             '</td><td>' + value.email_id +
                             '</td><td>' + value.mobile_no +
                             '</td><td>' + value.group +
-                            '</td><td>' + value.date_of_registration +
-                            '<td class="text-center"><span class="remove-student"><i class="fa fa-trash"></i></span></td></tr>';
+                            '</td><td>' + value.date_of_registration + '</td></tr>';
                     });
                     $('#questionData').append(trHTML);
                     $('.total-students').text(result.total_results);
@@ -203,12 +201,13 @@
                             '<tr><td>' + index++ +
                             '</td><td>' + value.name + '<span class="user-id d-none">' + value.id +
                             '</td><td>' + value.email_id +
-                            '</td><td>' + value.mobile_no +
-                            '</td><td>' + value.gender +
-                            '</td><td><span class="remove-faculty" title="Remove Faculty"><i class="fa fa-trash" aria-hidden="true"></i></span></td></tr>';
+                            '</td><td>' + value.mobile_no + 
+                            '</td><td>' + value.created_at +
+                            '</td><td>' + value.last_login_at +
+                            '</td></tr>';
                     });
                     $('#facultyData').append(trHTML);
-                    // $('.total-faculty').text(result.total_results);
+                    $('.total-faculty').text(result.total_results);
                 }
             });
 

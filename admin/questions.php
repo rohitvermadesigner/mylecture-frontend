@@ -39,9 +39,9 @@
                                                 <li>
                                                     <a href="create-question.php" class="btn btn-primary"><i class="fa fa-plus"></i> Add </a>
                                                 </li>
-                                                <li>
+                                                <!-- <li>
                                                     <button class="btn btn-primary" disabled><i class="fa fa-trash"></i> Delete</button>
-                                                </li>
+                                                </li> -->
                                             </ul>
                                         </div>
                                     </div>

@@ -105,11 +105,11 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            <!-- <div class="col-md-6">
                                                 <div class="form-group">
                                                     <input class="tagsinput form-control" type="text" name="tags" value="" />
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="col-md-12">
                                                 <button id="updateQuestion" class="btn btn-primary float-right">Update</button>
                                             </div>
@@ -160,8 +160,8 @@
                             subjectID = result.subject_id;
                             chapterId = result.chapter_id;
                             $('[name=description]').val(result.description);
-                            $('[name=difficulty_level] option:selected').val(result.difficulty_level);
-                            $('[name=tags]').val(result.tags);
+                            $('[name=difficulty_level]').val(result.difficulty_level);
+                            // $('[name=tags]').val(result.tags);
                         }
                     });
                 }
@@ -181,9 +181,9 @@
                         "answer": $('[name=answer]:checked').val(),
                         "subject_id": subjectID,
                         "chapter_id": chapterId,
-                        "description": "This is description for question 4",
-                        "difficulty_level": "normal",
-                        "tags": ["AIEEE", "IIT"]
+                        "description": $('[name=description]').val(),
+                        "difficulty_level":  $('[name=difficulty_level]').val(),
+                        // "tags": ["AIEEE", "IIT"]
                     }
                     $.ajax({
                         url: base_url + '/admin/question/update.php',

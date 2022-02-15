@@ -24,7 +24,7 @@
                                         </div>
 
                                         <div class="clearfix"></div>
-                                        <div class="subject-box">
+                                        <div class="subject-box display-none">
                                             <div class="row m-0">
                                                 <div class="pull-left"><span id="subject_name"></span></div>
                                                 <div class="pull-right">
@@ -34,7 +34,7 @@
                                                     </ul>
                                                 </div>
                                                 <div class="clearfix"></div>
-                                                <div class="chapter-box">
+                                                <!-- <div class="chapter-box">
                                                     <div class="pull-left"><span id="chapter_name"></span></div>
                                                     <div class="pull-right">
                                                         <ul class="subject-right-btn-list">
@@ -42,9 +42,9 @@
                                                             <li class="edit-chapter-btn"><i class="fa fa-pencil"></i></li>
                                                         </ul>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                             </div>
-                                            <div class="create-chapter-box mt-3">
+                                            <div class="create-chapter-box mt-3 display-none">
                                                 <div class="form-group">
                                                     <input type="text" name="chapter_name" class="form-control" placeholder="Enter Chapter Name" />
                                                 </div>

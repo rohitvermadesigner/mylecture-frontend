@@ -35,7 +35,8 @@
                                                     <th>Name</th>
                                                     <th>Email</th>
                                                     <th>Mobile Number</th>
-                                                    <th>Gender</th>
+                                                    <th>Created At</th>
+                                                    <th>Last Login At</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -85,15 +86,15 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Mobile Number</label>
-                                    <input type="text" class="form-control" name="mobile_no">
+                                    <input type="text" class="form-control" name="mobile_no" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="10">
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <!-- <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Password</label>
                                     <input type="text" class="form-control" name="password">
                                 </div>
-                            </div>
+                            </div> -->
 
                         </div>
                     </div>
@@ -128,8 +129,9 @@
                             '</td><td>' + value.name + '<span class="user-id d-none">' + value.id +
                             '</td><td>' + value.email_id +
                             '</td><td>' + value.mobile_no +
-                            '</td><td>' + value.gender +
-                            '</td><td><span class="remove-faculty" title="Remove Faculty"><i class="fa fa-trash" aria-hidden="true"></i></span></td></tr>';
+                            '</td><td>' + value.created_at +
+                            '</td><td>' + value.last_login_at +
+                            '</td><td class="text-center"><span class="remove-faculty" title="Remove Faculty"><i class="fa fa-trash" aria-hidden="true"></i></span></td></tr>';
                     });
                     $('#facultyData').append(trHTML);
                 }
@@ -167,7 +169,6 @@
                     name: 'required',
                     email_id: 'required',
                     mobile_no: 'required',
-                    password: 'required',
                 },
                 submitHandler: function(form) {
                     bankInfoSubmit();
@@ -180,7 +181,6 @@
                     "name": $('[name=name]').val(),
                     "email_id": $('[name=email_id]').val(),
                     "mobile_no": $('[name=mobile_no]').val(),
-                    "password": $('[name=password]').val(),
                 }
                 FacultyAjex(post_data);
             }

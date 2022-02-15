@@ -399,6 +399,8 @@ ul.action-list li i:hover {
     cursor: pointer;
 }
 
-.remove-student {
+.remove-student,
+.remove-group,
+.edit-group {
     cursor: pointer;
 }
