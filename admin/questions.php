@@ -141,14 +141,16 @@
                             <td> ${value.subject} </td>
                             <td> ${value.chapter} </td>
                             <td> ${value.difficulty_level} </td>
-                            <td class="text-center"><span class="remove-question d-none"><i class="fa fa-trash-alt"></i></span><a href="questions-edit.php?id=${value.id}" class="update-question"><i class="fa fa-pencil"></i></a></td></tr>`;
+                            <td class="text-center">
+                            <a href="questions-edit.php?id=${value.id}" class="update-question"><i class="fa fa-pencil"></i></a> &nbsp; 
+                            <span class="remove-question"><i class="fa fa-trash"></i></span>
+                            <span class="question-id d-none">${value.id}</span>
+                            </td></tr>`;
                         countStartAt++;
                     });
                     $(".table-loading-wrap").addClass('display-none');
                     $('#questionData tbody').append(tr);
                 }
-
-
 
                 $('.nextPage').click(function() {
                     page_no = page_no + 1;
@@ -244,6 +246,34 @@
 
                 loadQuestions(page_no, page_count);
                 getAllSubjects();
+
+
+                $('body').on('click', '.remove-question', function() {
+                    var status = confirm("Are you sure you want to delete ?");
+                    if (status == true) {
+                        var questionId = $(this).parents('tr').find('td span.question-id').text();
+                        let removeUser = {
+                            'token': token,
+                            'question_id': questionId,
+                        }
+                        $.ajax({
+                            url: base_url + '/admin/question/delete.php',
+                            type: 'POST',
+                            dataType: 'JSON',
+                            data: JSON.stringify(removeUser),
+                            success: function(response) {
+                                message = response.message;
+                                toastr.success(message);
+                                setTimeout(function() {
+                                    location.reload();
+                                }, 1000);
+                            },
+                            error: function(error) {
+                                toastr.error(message);
+                            }
+                        });
+                    }
+                });
             } else {
                 window.location.replace('index.php');
             }

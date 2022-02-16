@@ -20,7 +20,7 @@
                             <div class="col-lg-12">
                                 <div class="ibox float-e-margins">
                                     <div class="ibox-title">
-                                        <h5>Student List</h5>
+                                        <h5><b>Total</b> : <span class="total-students"></span></h5>
                                         <ul class="top-right-btn-list">
                                             <li>
                                                 <a href="create-student.php" class="btn btn-primary"><i class="fa fa-plus"></i> Add </a>
@@ -91,6 +91,7 @@
                             totalResults = result.total_results;
                             $(".total-results-count").text(totalResults);
                             insertQuestionsIntoTable(result, countStartAt);
+                            checkNextPreviousButton();
                         }
                     });
                 }
@@ -111,6 +112,7 @@
                     });
                     $(".table-loading-wrap").addClass('display-none');
                     $('#questionData').append(tr);
+                    $('.total-students').text(result.total_results);
                 }
 
                 $('.nextPage').click(function() {
@@ -143,30 +145,7 @@
                 }
 
                 loadQuestions(page_no, page_count);
-                // $.ajax({
-                //     url: base_url + '/admin/student/student-list.php?token',
-                //     type: 'GET',
-                //     dataType: 'JSON',
-                //     data: paramsData,
-                //     success: function(result) {
-                //         console.log(result.result);
-                //         var index = 1;
-                //         var trHTML = '';
-                //         $.each(result.result, function(key, value) {
-                //             trHTML +=
-                //                 '<tr><td>' + index++ +
-                //                 '</td><td>' + value.name + '<span class="question-id d-none">' + value.id +
-                //                 '</td><td>' + value.email_id +
-                //                 '</td><td>' + value.mobile_no +
-                //                 '</td><td>' + value.group +
-                //                 '</td><td>' + value.date_of_registration + '</td></tr>';
-                //             // '</td><td><span class="remove-questi on" title="Remove Question"><i class="fa fa-trash-alt"></i></span><span><i class="far fa-edit"></i></span></td></tr>';
-                //         });
-                //         $('#questionData').append(trHTML);
-                //         $('.total-students').text(result.total_results);
-                //     }
-                // });
-
+               
                 $('body').on('click', '.remove-student', function() {
                     var status = confirm("Are you sure you want to delete ?");
                     if (status == true) {

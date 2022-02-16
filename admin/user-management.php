@@ -20,7 +20,7 @@
                             <div class="col-lg-12">
                                 <div class="ibox float-e-margins">
                                     <div class="ibox-title">
-                                        <h5>Faculty List</h5>
+                                        <h5><b>Total</b> : <span class="total-students"></span></h5>
                                         <ul class="top-right-btn-list">
                                             <li>
                                                 <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#addFacultyModal">Add Faculty</button>
@@ -134,6 +134,7 @@
                             '</td><td class="text-center"><span class="remove-faculty" title="Remove Faculty"><i class="fa fa-trash" aria-hidden="true"></i></span></td></tr>';
                     });
                     $('#facultyData').append(trHTML);
+                    $('.total-students').text(result.total_results);
                 }
             });
 

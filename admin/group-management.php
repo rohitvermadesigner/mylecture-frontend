@@ -211,7 +211,7 @@
                             }, 1000);
                         },
                         error: function(error) {
-                            toastr.error(message);
+                            toastr.error(error.responseJSON.message);
                         }
                     });
                 }

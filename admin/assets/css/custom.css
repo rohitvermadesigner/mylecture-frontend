@@ -364,6 +364,7 @@ ul.action-list li i:hover {
 .option-flex {
     display: flex;
     gap: 10px;
+    align-items: flex-end;
 }
 
 .option-flex .option-group {
@@ -402,5 +403,15 @@ ul.action-list li i:hover {
 .remove-student,
 .remove-group,
 .edit-group {
+    cursor: pointer;
+}
+
+.ibox-title {
+    display: flex;
+    align-items: center;
+}
+
+table i {
+    color: #666;
     cursor: pointer;
 }

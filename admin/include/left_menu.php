@@ -17,22 +17,34 @@
                 <a href="dashboard.php"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboard</span></a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label">Question Bank</span> <span class="fa arrow"></span></a>
+                <a href="subject-management.php"><i class="fa fa-files-o"></i> <span class="nav-label">Subject Management</span></a>
+            </li>
+            <li>
+                <a href="questions.php"><i class="fa fa-laptop"></i> <span class="nav-label">Question Bank</span></a>
+            </li>
+            <li>
+                <a href="group-management.php"><i class="fa fa-users"></i> <span class="nav-label">Students Groups</span></a>
+            </li>
+            <li>
+                <a href="student.php"><i class="fa fa-user"></i> <span class="nav-label">Students Management</span></a>
+            </li>
+            <!-- <li>
+                <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label"></span> <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse" aria-expanded="false">
                     <li><a href="subject-management.php">Subject Management</a></li>
                     <li><a href="questions.php">Questions</a></li>
-                    <!-- <li><a href="bulk-upload-questions.php">Bulk upload Questions</a></li> -->
+                    <li><a href="bulk-upload-questions.php">Bulk upload Questions</a></li>
                 </ul>
-            </li>
+            </li> -->
             
-            <li>
+            <!-- <li>
                 <a href="#"><i class="fa fa-laptop"></i> <span class="nav-label">Students Management</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse" aria-expanded="false">
                     <li><a href="group-management.php">Group Management</a></li>
                     <li><a href="student.php">Student</a></li>
-                    <!-- <li><a href="bulk-upload-students.php">Bulk upload Students</a></li> -->
+                    <li><a href="bulk-upload-students.php">Bulk upload Students</a></li>
                 </ul>
-            </li>
+            </li> -->
 
             <!-- <li>
                 <a href="documents.php"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Documents</span></a>
@@ -55,7 +67,7 @@
             </li>
 
             <li>
-                <a href="user-management.php"><i class="fa fa-users"></i> <span class="nav-label">User Management (Admin / Faculty)</span></a>
+                <a href="user-management.php"><i class="fa fa-male"></i> <span class="nav-label">User Management (Admin / Faculty)</span></a>
             </li>
 
         </ul>

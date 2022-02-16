@@ -16,117 +16,116 @@
                                 <div class="ibox float-e-margins">
                                     <div class="ibox-content">
                                         <div class="ibox-content">
-                                            <div class="row">
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <textarea name="question" id="" class="form-control" placeholder="Enter your Question"></textarea>
+                                            <form id="createQuestion">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Enter your Question</label>
+                                                            <textarea name="question" id="" class="form-control" placeholder=""></textarea>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <div class="option-flex">
-                                                            <div>A</div>
-                                                            <div class="">
-                                                                <input type="radio" name="answer" value="1" />
-                                                            </div>
-                                                            <div class="option-group">
-                                                                <input type="text" class="form-control" name="option_1" placeholder="Option One" />
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <div class="option-flex">
+                                                                <div>A</div>
+                                                                <div class="">
+                                                                    <input type="radio" name="answer" value="1" />
+                                                                </div>
+                                                                <div class="option-group">
+                                                                    <label>Option One</label>
+                                                                    <input type="text" class="form-control" name="option_1" placeholder="" />
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <div class="option-flex">
-                                                            <div>B</div>
-                                                            <div class="">
-                                                                <input type="radio" name="answer" value="2" />
-                                                            </div>
-                                                            <div class="option-group">
-                                                                <input type="text" class="form-control" name="option_2" placeholder="Option two" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <div class="option-flex">
-                                                            <div>C</div>
-                                                            <div class="">
-                                                                <input type="radio" name="answer" value="3" />
-                                                            </div>
-                                                            <div class="option-group">
-                                                                <input type="text" class="form-control" name="option_3" placeholder="Option three" />
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <div class="option-flex">
+                                                                <div>B</div>
+                                                                <div class="">
+                                                                    <input type="radio" name="answer" value="2" />
+                                                                </div>
+                                                                <div class="option-group">
+                                                                    <label>Option Two</label>
+                                                                    <input type="text" class="form-control" name="option_2" placeholder="" />
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <div class="option-flex">
-                                                            <div>D</div>
-                                                            <div class="">
-                                                                <input type="radio" name="answer" value="4" />
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <div class="option-flex">
+                                                                <div>C</div>
+                                                                <div class="">
+                                                                    <input type="radio" name="answer" value="3" />
+                                                                </div>
+                                                                <div class="option-group">
+                                                                    <label>Option Three</label>
+                                                                    <input type="text" class="form-control" name="option_3" placeholder="" />
+                                                                </div>
                                                             </div>
-                                                            <div class="option-group">
-                                                                <input type="text" class="form-control" name="option_4" placeholder="Option four" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <div class="option-flex">
+                                                                <div>D</div>
+                                                                <div class="">
+                                                                    <input type="radio" name="answer" value="4" />
+                                                                </div>
+                                                                <div class="option-group">
+                                                                    <label>Option Four</label>
+                                                                    <input type="text" class="form-control" name="option_4" placeholder="" />
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <!-- <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <div class="option-flex">
-                                                        <div>E</div>
-                                                        <div class="">
-                                                            <input type="radio" name="answer" value="5" />
-                                                        </div>
-                                                        <div class="option-group">
-                                                            <input type="text" class="form-control" name="option_5" />
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Enter Description</label>
+                                                            <textarea name="description" id="" class="form-control" placeholder="Enter description"></textarea>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div> -->
-                                                <div class="col-md-12">
-                                                    <div class="form-group">
-                                                        <textarea name="description" id="" class="form-control" placeholder="Enter description"></textarea>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Select Subject</label>
+                                                            <select name="subject_id" class="form-control">
+                                                                <option value="">Select Sebject</option>
+                                                                <option value="subject1">Subject 1</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Select Chapter</label>
+                                                                <select name="chapter_id" class="form-control">
+                                                                    <option value="">Select Chapter</option>
+                                                                    <option value="chapter1">Chapter 1</option>
+                                                                </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Select Lavel</label>
+                                                            <select name="difficulty_level" class="form-control">
+                                                                <option value="">Select Level</option>
+                                                                <option value="easy">Easy</option>
+                                                                <option value="normal">Normal</option>
+                                                                <option value="difficult">Difficult</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Tags</label>
+                                                            <input class="tagsinput form-control" type="text" name="tags" value="" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <button type="submit" class="btn btn-primary float-right">Submit</button>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <select name="subject_id" class="form-control">
-                                                            <option value="">Select Sebject</option>
-                                                            <option value="subject1">Subject 1</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <select name="chapter_id" class="form-control">
-                                                            <option value="">Select Chapter</option>
-                                                            <option value="chapter1">Chapter 1</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <select name="difficulty_level" class="form-control">
-                                                            <option value="">Select Level</option>
-                                                            <option value="easy">Easy</option>
-                                                            <option value="normal">Normal</option>
-                                                            <option value="difficult">Difficult</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <input class="tagsinput form-control" type="text" name="tags" value="" />
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <button id="createQuestion" class="btn btn-primary float-right">Submit</button>
-                                                </div>
-                                            </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -144,9 +143,26 @@
             const token = localStorage.getItem("admin_token");
             if (token) {
 
-                $('body').on('click', '#createQuestion', function() {
+                $('#createQuestion').validate({
+                    rules: {
+                        question: 'required',
+                        option_1: 'required',
+                        option_2: 'required',
+                        option_3: 'required',
+                        option_4: 'required',
+                        description: 'required',
+                        subject_id: 'required',
+                        chapter_id: 'required',
+                        difficulty_level: 'required',
+                    },
+                    submitHandler: function() {
+                        createStudnetSubmit();
+                    }
+                })
+
+                createStudnetSubmit = function() {
                     let tags = [];
-                    $('[name=tags]').parents('.form-group').find('span.tag').each(function(index,elem){
+                    $('[name=tags]').parents('.form-group').find('span.tag').each(function(index, elem) {
                         tags.push($(elem).text());
                     });
                     let update_data = {
@@ -177,7 +193,7 @@
                             toastr.error(error.responseJSON.message);
                         }
                     });
-                });
+                };
             } else {
                 window.location.replace('index.php');
             }
