@@ -19,33 +19,26 @@
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td style="padding: 5px 15px; border: 2px solid #666"><i class="fa fa-user fa-4x"></i></td>
+                                        <td style="padding: 0px 5px;">Candidate Name</td>
+                                        <td style="width: 54%;"> : <span style="color: #f7931e; font-weight: bold; " id="student_name"></span></td>
+                                        <td style="padding: 0px 5px;">Total marks</td>
+                                        <td> : <span style="color: #f7931e; font-weight: bold" id="total_marks"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 0px 5px;">Exam Name</td>
+                                        <td> : <span style="color: #f7931e; font-weight: bold" id="test_name"></span>
+                                        </td>
+                                        <td style="padding: 0px 5px;">Total Questions</td>
                                         <td>
-                                            <table>
-                                                <tbody>
-                                                    <tr>
-                                                        <td style="padding: 0px 5px;">Candidate Name</td>
-                                                        <td> : <span style="color: #f7931e; font-weight: bold">[Your
-                                                                Name]</span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="padding: 0px 5px;">Exam Name</td>
-                                                        <td> : <span style="color: #f7931e; font-weight: bold">NEXT</span>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="padding: 0px 5px;">Remaining Time</td>
-                                                        <td>
-                                                            : <span class="timer-title time-started" id="timer">2:00:00</span>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                            : <span class="timer-title time-started" id="total_questions"></span>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="remaining-time" id="test_duration" style="font-size: 28px;text-align: right;"></div>
                     </div>
                 </div>
             </div>
@@ -55,7 +48,7 @@
                         <div class="question-wrapper">
                             <div class="question-wrapper-inner">
                             </div>
-                            
+
                             <div class="clearfix"></div>
                             <button class="prev btn btn-primary" disabled="disabled">Prev</button>
                             <button class="next btn btn-primary">Next</button>
@@ -68,11 +61,11 @@
                     </div>
                     <div class="col-md-4">
                         <div class="pt-3">
-                            
+
                             <div class="panel panel-default mt-3">
                                 <div class="panel-body" style="height:300px;overflow-y:scroll;">
                                     <ul class="pagination test-questions-btns-wrapper">
-                                    
+
                                     </ul>
                                 </div>
                             </div>
@@ -200,7 +193,7 @@
             <div class="result-question-box">
                 <div class="table-responsive">
                     <table class="table table-bordered">
-                    <tbody></tbody>
+                        <tbody></tbody>
                     </table>
                 </div>
             </div>
@@ -218,21 +211,26 @@
         var testID = queries.test_id;
         var testType = queries.type;
         if (token) {
-            if (testType == 'self-assessor') {
-                $.ajax({
-                    url: `${base_url}/student/test/get-test-questions.php`,
-                    type: 'GET',
-                    dataType: 'JSON',
-                    data: {
-                        token: token,
-                        test_id: testID,
-                        type: testType
-                    },
-                    success: function(result) {
-                        let question = '';
-                        let indexCount = 1;
-                        $.each(result.questions, function(key, value) {
-                            question += `
+            let test_duration;
+            $.ajax({
+                url: `${base_url}/student/test/get-test-questions.php`,
+                type: 'GET',
+                dataType: 'JSON',
+                data: {
+                    token: token,
+                    test_id: testID,
+                    type: testType
+                },
+                success: function(result) {
+                    $("#student_name").text(result.student_name);
+                    $("#test_name").text(result.test_name);
+                    $("#total_marks").text(result.total_marks);
+                    $("#total_questions").text(result.total_questions);
+                    test_duration = result.test_duration;
+                    let question = '';
+                    let indexCount = 1;
+                    $.each(result.questions, function(key, value) {
+                        question += `
                         <div class="step">
                                     <div class="que">
                                         <p><b>${indexCount++}.</b>
@@ -241,515 +239,190 @@
                                     </div>
                                     <div class="ans-options">
                                         <ul>
-                                            <li><input type="radio" data-id="${value.id}" value="1"><span>a)</span> <span>${value.option_1}</span></li>
-                                            <li><input type="radio" data-id="${value.id}" value="2"><span>b)</span> <span>${value.option_2}</span></li>
-                                            <li><input type="radio" data-id="${value.id}" value="3"><span>c)</span> <span>${value.option_3}</span></li>
-                                            <li><input type="radio" data-id="${value.id}" value="4"><span>d)</span> <span>${value.option_4}</span></li>
+                                            <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;" type="radio" data-id="${value.id}" value="1"><span style="margin-right:5px;">a)</span> <span>${value.option_1}</span></label></li>
+                                            <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;"type="radio" data-id="${value.id}" value="2"><span style="margin-right:5px;">b)</span> <span>${value.option_2}</span></label></li>
+                                            <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;" type="radio" data-id="${value.id}" value="3"><span style="margin-right:5px;">c)</span> <span>${value.option_3}</span></label></li>
+                                            <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;" type="radio" data-id="${value.id}" value="4"><span style="margin-right:5px;">d)</span> <span>${value.option_4}</span></label></li>
                                         </ul>
                                    </div>
                         </div>
                         `
-                        });
+                    });
+                    $('.question-wrapper-inner').append(question);
+                    $('.question-wrapper-inner').find('.step').eq(0).addClass('active');
 
-
-                        $('.question-wrapper-inner').append(question);
-                        $('.question-wrapper-inner').find('.step').eq(0).addClass('active');
-
-                        // ** right btn begin here ** //
-                        let rightBtns = '';
-                        let indexBtnCount = 1;
-                        $.each(result.questions, function(key, value) {
-                            rightBtns += `
+                    // ** right btn begin here ** //
+                    let rightBtns = '';
+                    let indexBtnCount = 1;
+                    $.each(result.questions, function(key, value) {
+                        rightBtns += `
                         <li class="active" data-seq="1"><a class="test-ques que-not-attempted" href="javascript:void(0);" data-href="page01">${indexBtnCount++}</a></li>
                         `
-                        });
-                        $('.test-questions-btns-wrapper').append(rightBtns);
-                        // ** customJs begin here ** //
-                        $('.test-questions li').each(function(index, elem) {
-                            $(elem).attr('id', 'step' + index);
-                        });
-
-                        $('.question-wrapper-inner').find('.ans-options').each(function(index1, elem1) {
-                            $(elem1).parents('.step').each(function(index0, elem0) {
-                                $(elem0).addClass('step' + index1);
-                            });
-                            $(elem1).children('ul').find('li input').each(function(index2, elem2) {
-                                $(elem2).attr('name', index1);
-                            });
-                        });
-
-                        var index = $(".step.active").index(".step"),
-                            stepsCount = $(".step").length,
-                            prevBtn = $(".prev"),
-                            nextBtn = $(".next"),
-                            clearBtn = $('#clear')
-
-                        prevBtn.click(function() {
-                            nextBtn.prop("disabled", false);
-
-                            if (index > 0) {
-                                index--;
-                                $(".step").removeClass("active").eq(index).addClass("active");
-                                $(".test-questions-btns-wrapper li").removeClass("active").eq(index).addClass("active").find('a').removeClass('que-save');
-                            };
-
-                            if (index === 0) {
-                                $(this).prop("disabled", true);
-                            }
-                        });
-
-                        nextBtn.click(function() {
-                            prevBtn.prop("disabled", false);
-
-                            if (index < stepsCount - 1) {
-                                index++;
-                                $(".step").removeClass("active").eq(index).addClass("active");
-                                $(".test-questions-btns-wrapper li").removeClass("active").eq(index).addClass("active").prevAll().find('a').addClass('que-save');
-                            };
-
-                            if (index === stepsCount - 1) {
-                                $(this).prop("disabled", true);
-                            }
-                        });
-
-                        clearBtn.click(function() {
-                            $(".step.active").find('input').each(function() {
-                                $(this).prop('checked', false);
-                            });
-                        });
-
-                        // ** customJs ends here ** //
-                    }
-                });
-                const submitTest = function() {
-                    let questionsList = [];
-                    $(".question-wrapper-inner .step").each(function(v) {
-                        var questionObj = {
-                            id: $(this).find('li input').attr('data-id'),
-                            answer: $(this).find('li input[type=radio]:checked').val()
-                        }
-                        questionsList.push(questionObj);
                     });
-                    let post_questions = {
-                        token: token,
-                        test_id: testID,
-                        type: testType,
-                        questions: questionsList
-                    }
-                    $.ajax({
-                        url: base_url + '/student/submit-test/self-declared-test.php',
-                        type: 'POST',
-                        data: JSON.stringify(post_questions),
-                        dataType: 'JSON',
-                        success: function(result) {
-                            // toastr.success(result.status);
-                            $('.test-page-section').hide();
-                            $('.result-page-section').show();
-                            $('.result-page-section .obtain_percentage').text(result.obtain_percentage);
-                            $('.result-page-section .attempt_questions').text(result.attempt_questions);
-                            $('.result-page-section .correct_questions').text(result.correct_questions);
-                            $('.result-page-section .obtain_marks').text(result.obtain_marks);
-                            $('.result-page-section .total_marks').text(result.total_marks);
-                            $('.result-page-section .total_questions').text(result.total_questions);
-                           
-                        let questionListTrCount = 1;
-                        let questionListTr = '';
-                        $.each(result.questions, function(key, value) {
-                            questionListTr += `
-                            <tr>
-                            <td>
-                                <div class="row">
-                                    <div class="col-md-9">
-                                        <div class="que">
-                                            <p><b>${questionListTrCount++}.</b>
-                                                <span>${value.question}</span>
-                                            </p>
-                                        </div>
-                                        <div class="ans-options-result">
-                                            <ul>
-                                                <li><span>1)</span> <span>${value.option_1}</span></li>
-                                                <li><span>2)</span> <span>${value.option_2}</span></li>
-                                                <li><span>3)</span> <span>${value.option_3}</span></li>
-                                                <li><span>4)</span> <span>${value.option_4}</span></li>
+                    $('.test-questions-btns-wrapper').append(rightBtns);
 
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <p>Attempt Answer : <b class="attempt_answer">${value.attempt_answer}</b> </p>
-                                        <p class="text-success">Correct Answer : <b class="correct_answer">${value.correct_answer}</b></p>
-                                    </div>
+                    // ** customJs begin here ** //
 
-                                </div>
-                            </td>
-                        </tr>
-                        `
+                    $('.question-wrapper-inner').find('.ans-options').each(function(index1, elem1) {
+                        $(elem1).parents('.step').each(function(index0, elem0) {
+                            $(elem0).addClass('step' + index1);
                         });
-                        $('.result-question-box table tbody').append(questionListTr);
-                        },
-                        error: function(error) {
-                            toastr.error(error.responseJSON.message);
+                        $(elem1).children('ul').find('li input').each(function(index2, elem2) {
+                            $(elem2).attr('name', index1);
+                        });
+                    });
+                    var index = $(".step.active").index(".step"),
+                        stepsCount = $(".step").length,
+                        prevBtn = $(".prev"),
+                        nextBtn = $(".next"),
+                        clearBtn = $('#clear')
+
+                    prevBtn.click(function() {
+                        nextBtn.prop("disabled", false);
+
+                        if (index > 0) {
+                            index--;
+                            $(".step").removeClass("active").eq(index).addClass("active");
+                            $(".test-questions-btns-wrapper li").removeClass("active").eq(index).addClass("active").find('a').removeClass('que-save');
+                        };
+
+                        if (index === 0) {
+                            $(this).prop("disabled", true);
                         }
                     });
+
+                    nextBtn.click(function() {
+                        prevBtn.prop("disabled", false);
+
+                        if (index < stepsCount - 1) {
+                            index++;
+                            $(".step").removeClass("active").eq(index).addClass("active");
+                            $(".test-questions-btns-wrapper li").removeClass("active").eq(index).addClass("active").prevAll().find('a').addClass('que-save');
+                        };
+
+                        if (index === stepsCount - 1) {
+                            $(this).prop("disabled", true);
+                        }
+                    });
+
+                    clearBtn.click(function() {
+                        $(".step.active").find('input').each(function() {
+                            $(this).prop('checked', false);
+                        });
+                    });
+                    // ** customJs ends here ** //
+
+                    let count = test_duration.split(":")[1]
+                    let countDownDate = addMinutes(new Date(), count)
+                    var x = setInterval(function() {
+
+                        // Get today's date and time
+                        var now = new Date().getTime();
+
+                        // Find the distance between now and the count down date
+                        var distance = countDownDate - now;
+
+                        // Time calculations for days, hours, minutes and seconds
+                        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                        // Display the result in the element with id="demo"
+                        $("#test_duration").text(`${twoDigit(hours)}:${twoDigit(minutes)}:${twoDigit(seconds)}`)
+
+                        // If the count down is finished, write some text
+                        if (distance < 0) {
+                            clearInterval(x);
+                            submitTest();
+                        }
+                    }, 1000);
+
                 }
-                $('.submitTest').click(function() {
-                    submitTest();
-                });
-            } else if (testType == 'topic-simulator') {
-                $.ajax({
-                    url: `${base_url}/student/test/get-test-questions.php`,
-                    type: 'GET',
-                    dataType: 'JSON',
-                    data: {
-                        token: token,
-                        test_id: testID,
-                        type: testType
-                    },
-                    success: function(result) {
-                        let question = '';
-                        let indexCount = 1;
-                        $.each(result.questions, function(key, value) {
-                            question += `
-                        <div class="step">
-                                    <div class="que">
-                                        <p><b>${indexCount++}.</b>
-                                            <span>${value.question}</span>
-                                        </p>
-                                    </div>
-                                    <div class="ans-options">
-                                        <ul>
-                                            <li><input type="radio" data-id="${value.id}" value="1"><span>a)</span> <span>${value.option_1}</span></li>
-                                            <li><input type="radio" data-id="${value.id}" value="2"><span>b)</span> <span>${value.option_2}</span></li>
-                                            <li><input type="radio" data-id="${value.id}" value="3"><span>c)</span> <span>${value.option_3}</span></li>
-                                            <li><input type="radio" data-id="${value.id}" value="4"><span>d)</span> <span>${value.option_4}</span></li>
-                                        </ul>
-                                   </div>
-                        </div>
-                        `
-                        });
+            });
 
-
-                        $('.question-wrapper-inner').append(question);
-                        $('.question-wrapper-inner').find('.step').eq(0).addClass('active');
-
-                        // ** right btn begin here ** //
-                        let rightBtns = '';
-                        let indexBtnCount = 1;
-                        $.each(result.questions, function(key, value) {
-                            rightBtns += `
-                        <li class="active" data-seq="1"><a class="test-ques que-not-attempted" href="javascript:void(0);" data-href="page01">${indexBtnCount++}</a></li>
-                        `
-                        });
-                        $('.test-questions-btns-wrapper').append(rightBtns);
-                        // ** customJs begin here ** //
-                        $('.test-questions li').each(function(index, elem) {
-                            $(elem).attr('id', 'step' + index);
-                        });
-
-                        $('.question-wrapper-inner').find('.ans-options').each(function(index1, elem1) {
-                            $(elem1).parents('.step').each(function(index0, elem0) {
-                                $(elem0).addClass('step' + index1);
-                            });
-                            $(elem1).children('ul').find('li input').each(function(index2, elem2) {
-                                $(elem2).attr('name', index1);
-                            });
-                        });
-
-                        var index = $(".step.active").index(".step"),
-                            stepsCount = $(".step").length,
-                            prevBtn = $(".prev"),
-                            nextBtn = $(".next"),
-                            clearBtn = $('#clear')
-
-                        prevBtn.click(function() {
-                            nextBtn.prop("disabled", false);
-
-                            if (index > 0) {
-                                index--;
-                                $(".step").removeClass("active").eq(index).addClass("active");
-                                $(".test-questions-btns-wrapper li").removeClass("active").eq(index).addClass("active").find('a').removeClass('que-save');
-                            };
-
-                            if (index === 0) {
-                                $(this).prop("disabled", true);
-                            }
-                        });
-
-                        nextBtn.click(function() {
-                            prevBtn.prop("disabled", false);
-
-                            if (index < stepsCount - 1) {
-                                index++;
-                                $(".step").removeClass("active").eq(index).addClass("active");
-                                $(".test-questions-btns-wrapper li").removeClass("active").eq(index).addClass("active").prevAll().find('a').addClass('que-save');
-                            };
-
-                            if (index === stepsCount - 1) {
-                                $(this).prop("disabled", true);
-                            }
-                        });
-
-                        clearBtn.click(function() {
-                            $(".step.active").find('input').each(function() {
-                                $(this).prop('checked', false);
-                            });
-                        });
-
-                        // ** customJs ends here ** //
-                    }
-                });
-                const submitTest = function() {
-                    let questionsList = [];
-                    $(".question-wrapper-inner .step").each(function(v) {
-                        var questionObj = {
-                            id: $(this).find('li input').attr('data-id'),
-                            answer: $(this).find('li input[type=radio]:checked').val()
-                        }
-                        questionsList.push(questionObj);
-                    });
-                    let post_questions = {
-                        token: token,
-                        test_id: testID,
-                        type: testType,
-                        questions: questionsList
-                    }
-                    $.ajax({
-                        url: base_url + '/student/submit-test/self-declared-test.php',
-                        type: 'POST',
-                        data: JSON.stringify(post_questions),
-                        dataType: 'JSON',
-                        success: function(result) {
-                            toastr.success(result.status);
-                            $('.test-page-section').hide();
-                            $('.result-page-section').show();
-                            $('.result-page-section .obtain_percentage').text(result.obtain_percentage);
-                            $('.result-page-section .attempt_questions').text(result.attempt_questions);
-                            $('.result-page-section .correct_questions').text(result.correct_questions);
-                            $('.result-page-section .obtain_marks').text(result.obtain_marks);
-                            $('.result-page-section .total_marks').text(result.total_marks);
-                            $('.result-page-section .total_questions').text(result.total_questions);
-                           
-                        let questionListTrCount = 1;
-                        let questionListTr = '';
-                        $.each(result.questions, function(key, value) {
-                            questionListTr += `
-                            <tr>
-                            <td>
-                                <div class="row">
-                                    <div class="col-md-9">
-                                        <div class="que">
-                                            <p><b>${questionListTrCount++}.</b>
-                                                <span>${value.question}</span>
-                                            </p>
-                                        </div>
-                                        <div class="ans-options-result">
-                                            <ul>
-                                                <li><span>1)</span> <span>${value.option_1}</span></li>
-                                                <li><span>2)</span> <span>${value.option_2}</span></li>
-                                                <li><span>3)</span> <span>${value.option_3}</span></li>
-                                                <li><span>4)</span> <span>${value.option_4}</span></li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <p>Attempt Answer : <b class="attempt_answer">${value.attempt_answer}</b> </p>
-                                        <p class="text-success">Correct Answer : <b class="correct_answer">${value.correct_answer}</b></p>
-                                    </div>
-
-                                </div>
-                            </td>
-                        </tr>
-                        `
-                        });
-                        $('.result-question-box table tbody').append(questionListTr);
-                        },
-                        error: function(error) {
-                            toastr.error(error.responseJSON.message);
-                        }
-                    });
-                }
-                $('.submitTest').click(function() {
-                    submitTest();
-                });
-            } else {
-                $.ajax({
-                    url: `${base_url}/student/test/get-admin-assign-test-questions.php`,
-                    type: 'GET',
-                    dataType: 'JSON',
-                    data: {
-                        token: token,
-                        test_id: testID
-                    },
-                    success: function(result) {
-                        let question = '';
-                        let indexCount = 1;
-                        $.each(result.questions, function(key, value) {
-                            question += `
-                        <div class="step">
-                                    <div class="que">
-                                        <p><b>${indexCount++}.</b>
-                                            <span>${value.question}</span>
-                                        </p>
-                                    </div>
-                                    <div class="ans-options">
-                                        <ul>
-                                            <li><input type="radio" data-id="${value.id}" value="1"><span>a)</span> <span>${value.option_1}</span></li>
-                                            <li><input type="radio" data-id="${value.id}" value="2"><span>b)</span> <span>${value.option_2}</span></li>
-                                            <li><input type="radio" data-id="${value.id}" value="3"><span>c)</span> <span>${value.option_3}</span></li>
-                                            <li><input type="radio" data-id="${value.id}" value="4"><span>d)</span> <span>${value.option_4}</span></li>
-                                        </ul>
-                                   </div>
-                        </div>
-                        `
-                        });
-
-
-                        $('.question-wrapper-inner').append(question);
-                        $('.question-wrapper-inner').find('.step').eq(0).addClass('active');
-
-                        // ** right btn begin here ** //
-                        let rightBtns = '';
-                        let indexBtnCount = 1;
-                        $.each(result.questions, function(key, value) {
-                            rightBtns += `
-                        <li class="active" data-seq="1"><a class="test-ques que-not-attempted" href="javascript:void(0);" data-href="page01">${indexBtnCount++}</a></li>
-                        `
-                        });
-                        $('.test-questions-btns-wrapper').append(rightBtns);
-                        // ** customJs begin here ** //
-                        $('.test-questions li').each(function(index, elem) {
-                            $(elem).attr('id', 'step' + index);
-                        });
-
-                        $('.question-wrapper-inner').find('.ans-options').each(function(index1, elem1) {
-                            $(elem1).parents('.step').each(function(index0, elem0) {
-                                $(elem0).addClass('step' + index1);
-                            });
-                            $(elem1).children('ul').find('li input').each(function(index2, elem2) {
-                                $(elem2).attr('name', index1);
-                            });
-                        });
-
-                        var index = $(".step.active").index(".step"),
-                            stepsCount = $(".step").length,
-                            prevBtn = $(".prev"),
-                            nextBtn = $(".next"),
-                            clearBtn = $('#clear')
-
-                        prevBtn.click(function() {
-                            nextBtn.prop("disabled", false);
-
-                            if (index > 0) {
-                                index--;
-                                $(".step").removeClass("active").eq(index).addClass("active");
-                                $(".test-questions-btns-wrapper li").removeClass("active").eq(index).addClass("active").find('a').removeClass('que-save');
-                            };
-
-                            if (index === 0) {
-                                $(this).prop("disabled", true);
-                            }
-                        });
-
-                        nextBtn.click(function() {
-                            prevBtn.prop("disabled", false);
-
-                            if (index < stepsCount - 1) {
-                                index++;
-                                $(".step").removeClass("active").eq(index).addClass("active");
-                                $(".test-questions-btns-wrapper li").removeClass("active").eq(index).addClass("active").prevAll().find('a').addClass('que-save');
-                            };
-
-                            if (index === stepsCount - 1) {
-                                $(this).prop("disabled", true);
-                            }
-                        });
-
-                        clearBtn.click(function() {
-                            $(".step.active").find('input').each(function() {
-                                $(this).prop('checked', false);
-                            });
-                        });
-
-                        // ** customJs ends here ** //
-                    }
-                });
-                const submitTest = function() {
-                    let questionsList = [];
-                    $(".question-wrapper-inner .step").each(function(v) {
-                        var questionObj = {
-                            id: $(this).find('li input').attr('data-id'),
-                            answer: $(this).find('li input[type=radio]:checked').val()
-                        }
-                        questionsList.push(questionObj);
-                    });
-                    let post_questions = {
-                        token: token,
-                        test_id: testID,
-                        questions: questionsList
-                    }
-                    $.ajax({
-                        url: base_url + '/student/submit-test/admin-declared-test.php',
-                        type: 'POST',
-                        data: JSON.stringify(post_questions),
-                        dataType: 'JSON',
-                        success: function(result) {
-                            toastr.success(result.status);
-                            $('.test-page-section').hide();
-                            $('.result-page-section').show();
-                            $('.result-page-section .obtain_percentage').text(result.obtain_percentage);
-                            $('.result-page-section .attempt_questions').text(result.attempt_questions);
-                            $('.result-page-section .correct_questions').text(result.correct_questions);
-                            $('.result-page-section .obtain_marks').text(result.obtain_marks);
-                            $('.result-page-section .total_marks').text(result.total_marks);
-                            $('.result-page-section .total_questions').text(result.total_questions);
-                           
-                        let questionListTrCount = 1;
-                        let questionListTr = '';
-                        $.each(result.questions, function(key, value) {
-                            questionListTr += `
-                            <tr>
-                            <td>
-                                <div class="row">
-                                    <div class="col-md-9">
-                                        <div class="que">
-                                            <p><b>${questionListTrCount++}.</b>
-                                                <span>${value.question}</span>
-                                            </p>
-                                        </div>
-                                        <div class="ans-options-result">
-                                            <ul>
-                                                <li><span>1)</span> <span>${value.option_1}</span></li>
-                                                <li><span>2)</span> <span>${value.option_2}</span></li>
-                                                <li><span>3)</span> <span>${value.option_3}</span></li>
-                                                <li><span>4)</span> <span>${value.option_4}</span></li>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <p>Attempt Answer : <b class="attempt_answer">${value.attempt_answer}</b> </p>
-                                        <p class="text-success">Correct Answer : <b class="correct_answer">${value.correct_answer}</b></p>
-                                    </div>
-
-                                </div>
-                            </td>
-                        </tr>
-                        `
-                        });
-                        $('.result-question-box table tbody').append(questionListTr);
-
-                        },
-                        error: function(error) {
-                            toastr.error(error.responseJSON.message);
-                        }
-                    });
-                }
-                $('.submitTest').click(function() {
-                    submitTest();
-                });
+            function twoDigit(num) {
+                return num > 10 ? num : `0${num}`;
             }
 
+            function addMinutes(date, minutes) {
+                return new Date(date.getTime() + minutes * 60000);
+            }
+
+
+            const submitTest = function() {
+                let questionsList = [];
+                $(".question-wrapper-inner .step").each(function(v) {
+                    var questionObj = {
+                        id: $(this).find('li input').attr('data-id'),
+                        answer: $(this).find('li input[type=radio]:checked').val()
+                    }
+                    questionsList.push(questionObj);
+                });
+                let post_questions = {
+                    token: token,
+                    test_id: testID,
+                    type: testType,
+                    questions: questionsList
+                }
+                $.ajax({
+                    url: base_url + '/student/submit-test/self-declared-test.php',
+                    type: 'POST',
+                    data: JSON.stringify(post_questions),
+                    dataType: 'JSON',
+                    success: function(result) {
+                        toastr.success(result.status);
+                        $('.test-page-section').hide();
+                        $('.result-page-section').show();
+                        $('.result-page-section .obtain_percentage').text(result.obtain_percentage);
+                        $('.result-page-section .attempt_questions').text(result.attempt_questions);
+                        $('.result-page-section .correct_questions').text(result.correct_questions);
+                        $('.result-page-section .obtain_marks').text(result.obtain_marks);
+                        $('.result-page-section .total_marks').text(result.total_marks);
+                        $('.result-page-section .total_questions').text(result.total_questions);
+
+                        let questionListTrCount = 1;
+                        let questionListTr = '';
+                        $.each(result.questions, function(key, value) {
+                            questionListTr += `
+                            <tr>
+                            <td>
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <div class="que">
+                                            <p><b>${questionListTrCount++}.</b>
+                                                <span>${value.question}</span>
+                                            </p>
+                                        </div>
+                                        <div class="ans-options-result">
+                                            <ul>
+                                                <li><span>1)</span> <span>${value.option_1}</span></li>
+                                                <li><span>2)</span> <span>${value.option_2}</span></li>
+                                                <li><span>3)</span> <span>${value.option_3}</span></li>
+                                                <li><span>4)</span> <span>${value.option_4}</span></li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <p>Attempt Answer : <b class="attempt_answer">${value.attempt_answer}</b> </p>
+                                        <p class="text-success">Correct Answer : <b class="correct_answer">${value.correct_answer}</b></p>
+                                    </div>
+
+                                </div>
+                            </td>
+                        </tr>
+                        `
+                        });
+                        $('.result-question-box table tbody').append(questionListTr);
+                    },
+                    error: function(error) {
+                        toastr.error(error.responseJSON.message);
+                    }
+                });
+            }
+            $('.submitTest').click(function() {
+                submitTest();
+            });
         } else {
             window.location.replace('/');
         }
