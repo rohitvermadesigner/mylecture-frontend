@@ -2,7 +2,7 @@ function logout() {
     localStorage.removeItem('studentToken');
     toastr.success('Logout Successfully');
     setTimeout(function() {
-        window.location.replace('/');
+        window.location.replace('../index.php');
     }, 1000);
 }
 

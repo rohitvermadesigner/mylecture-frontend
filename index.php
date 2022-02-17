@@ -645,7 +645,7 @@
                                         <form class="login-form" id="loginForm">
                                             <div class="form-group custom-form-group">
                                                 <label>Email ID</label>
-                                                <input type="text" class="form-control" name="email_id" />
+                                                <input type="email" class="form-control" name="email_id" />
                                             </div>
                                             <div class="form-group custom-form-group">
                                                 <label>Password</label>
@@ -662,21 +662,13 @@
                                                 </p>
                                             </div>
                                         </form>
-                                        <form class="reset-form" action="" >
+                                        <form class="reset-form" id="resetForm">
                                             <div class="form-group custom-form-group">
-                                                <label>New Password</label>
-                                                <input type="password" class="form-control" />
+                                                <label>Email ID</label>
+                                                <input type="email" class="form-control" name="forget_email_id">
                                             </div>
                                             <div class="form-group custom-form-group">
-                                                <label>Confirm Password</label>
-                                                <input type="password" class="form-control">
-                                            </div>
-                                            <div class="form-group custom-form-group">
-                                                <label>4 digit OTP</label>
-                                                <input type="password" class="form-control">
-                                            </div>
-                                            <div class="form-group custom-form-group">
-                                                <button class="btn btn-primary btn-block">Reset Password</button>
+                                                <button type="submit" class="btn btn-primary btn-block">Reset Password</button>
                                             </div>
                                         </form>
                                     </div>
@@ -750,14 +742,14 @@
                     register_password: "Create Password",
                     gender: "required",
                     termCondition: "required",
-               },
+                },
 
                 submitHandler: function(form) {
                     registerSubmit();
                 }
             });
 
-            const registerSubmit = function(){
+            const registerSubmit = function() {
                 let post_data = {
                     name: $('[name=register_name]').val(),
                     email_id: $('[name=register_email_id]').val(),
@@ -779,7 +771,7 @@
                         }, 1000);
                     },
                     error: function(error) {
-                        toastr.error(error.responseJSON.message);   
+                        toastr.error(error.responseJSON.message);
                     }
                 });
             }
@@ -829,7 +821,50 @@
                     }
                 });
             }
-       
+
+            $("#resetForm").validate({
+                rules: {
+                    forget_email_id: "required",
+                },
+                messages: {
+                    forget_email_id: "Email ID",
+                },
+
+                submitHandler: function(form) {
+                    forgotSubmit();
+                }
+            });
+
+            var forgotSubmit = function() {
+                let token = '';
+                var message = '';
+                let post_data = {
+                    email_id: $('[name=forget_email_id]').val(),
+                }
+                forgotAjaxCall(post_data);
+            }
+
+            var forgotAjaxCall = function(post_data) {
+                $.ajax({
+                    url: base_url + '/student/forgot-password.php',
+                    type: 'POST',
+                    dataType: 'JSON',
+                    data: JSON.stringify(post_data),
+                    success: function(result) {
+                        console.log(result);
+                        token = result.token;
+                        localStorage.setItem("studentToken", token);
+                        message = result.message;
+                        toastr.success(message);
+                        $('.reset-form').hide();
+                        $('.login-form').show();
+                    },
+                    error: function(error) {
+                        toastr.error(error.responseJSON.message);
+                    }
+                });
+            }
+
         });
     </script>
 </body>
