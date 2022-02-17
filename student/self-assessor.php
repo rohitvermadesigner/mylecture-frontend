@@ -66,14 +66,11 @@
                                             <tr>
                                                 <th class="text-center">S.No.</th>
                                                 <th>Name</th>
-                                                <th>Duration</th>
-                                                <th>Total Questions</th>
-                                                <th>Subject</th>
-                                                <th>Chapter</th>
-                                                <th>No of Attemps</th>
-                                                <th width="100">Successfully Submitted</th>
-                                                <th>Created at</th>
-                                                <th>Last attempt at</th>
+                                                <th>Duration<br />Total Questions</th>
+                                                <th>Subject<br />Chapter</th>
+                                                <th width="100">No of Attemps</th>
+                                                <th>Successfully Submitted</th>
+                                                <th>Created at<br />Last attempt at</th>
                                                 <th class="text-center"></span> Action</th>
                                             </tr>
                                         </thead>
@@ -153,15 +150,12 @@
                         tr +=
                             `<tr>
                             <td class="text-center"> ${countStartAt} </td>
-                            <td> ${value.name}</td>
-                            <td> ${value.duration} </td>
-                            <td> ${value.total_questions} </td>
-                            <td> ${value.subject} </td>
-                            <td> ${value.chapter} </td>
+                            <td> ${value.name} </td>
+                            <td> ${value.duration}<br/>${value.total_questions}</td>
+                            <td> ${value.subject}<br/>${value.chapter} </td>
                             <td> ${value.no_of_attemps} </td>
                             <td> ${value.successfully_submitted} </td>
-                            <td> ${value.created_at} </td>
-                            <td> ${value.last_attempt_at} </td>
+                            <td> ${value.created_at}<br/>${value.last_attempt_at || '-'} </td>
                             <td class="text-center"> <span class="test-id d-none">${value.id}</span> <span class="remove-test"><i class="fa fa-trash-alt"></i></span> </td>
                             </tr>`;
                         countStartAt++;
