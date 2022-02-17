@@ -135,12 +135,12 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
+                                                <!-- <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Tags</label>
                                                         <input class="tagsinput form-control" type="text" name="tags" value="" />
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 <div class="col-md-12">
                                                     <button type="submit" class="btn btn-primary float-right">Submit</button>
                                                 </div>
@@ -278,10 +278,10 @@
                 })
 
                 createStudnetSubmit = function() {
-                    let tags = [];
-                    $('[name=tags]').parents('.form-group').find('span.tag').each(function(index, elem) {
-                        tags.push($(elem).text());
-                    });
+                    // let tags = [];
+                    // $('[name=tags]').parents('.form-group').find('span.tag').each(function(index, elem) {
+                    //     tags.push($(elem).text());
+                    // });
                     let update_data = {
                         "token": token,
                         "question": $('[name=question]').val(),
@@ -296,7 +296,7 @@
                         "topic_id": $('#topic-filter').val(),
                         "description": $('[name=description]').val(),
                         "difficulty_level": $('[name=difficulty_level]').val(),
-                        "tags": tags
+                        // "tags": tags
                     }
                     console.log(update_data);
                     $.ajax({
