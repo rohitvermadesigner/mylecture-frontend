@@ -69,9 +69,10 @@
                                                 <th>Duration<br />Total Questions</th>
                                                 <th>Subject<br />Chapter</th>
                                                 <th width="100">No of Attemps</th>
-                                                <th>Successfully Submitted</th>
+                                                <th>Successfully<br> Submitted</th>
                                                 <th>Created at<br />Last attempt at</th>
                                                 <th class="text-center"></span> Action</th>
+                                                <th class="text-center">Start Test</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -159,8 +160,8 @@
                             <td class="text-center"> 
                             <span class="test-id d-none">${value.id}</span> 
                             <span class="remove-test"><i class="fa fa-trash-alt"></i></span>
-                            <a href="test.php?test_id=${value.id}&type=self-assessor" class="btn btn-primary text-right">Start Test</a>
                             </td>
+                            <td><a href="test.php?test_id=${value.id}&type=self-assessor" class="btn btn-primary btn-sm">Start</a></td>
                             </tr>`;
                         countStartAt++;
                     });

@@ -47,12 +47,15 @@
                                         <thead>
                                             <tr>
                                                 <th class="text-center">S.No.</th>
-                                                <th>Test Name</th>
-                                                <th>Total Questions</th>
-                                                <th>Subject</th>
-                                                <th>Attempt</th>
-                                                <th>Successfully Submitted</th>
-                                                <th class="text-center">Action</th>
+                                                <th width="100">Name</th>
+                                                <th>Duration<br />Total Questions</th>
+                                                <th>Subject<br />Chapter</th>
+                                                <th>Topic</th>
+                                                <th width="100">No of Attemps</th>
+                                                <th>Successfully<br> Submitted</th>
+                                                <th>Created at<br />Last attempt at</th>
+                                                <th class="text-center"> Action</th>
+                                                <th class="text-center">Start Test</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -130,14 +133,19 @@
                     $.each(result.result, function(key, value) {
                         tr +=
                             `<tr>
-                            <td> <input type="checkbox" value="${value.id}" name="child-check" class="child-check" /> </td>
                             <td class="text-center"> ${countStartAt} </td>
                             <td> ${value.name}</td>
-                            <td> ${value.total_questions} </td>
-                            <td> ${value.subject} </td>
+                            <td> ${value.duration}<br/>${value.total_questions}</td>
+                            <td> ${value.subject}<br/>${value.chapter} </td>
+                            <td> ${value.topic} </td>
                             <td> ${value.no_of_attemps} </td>
                             <td> ${value.successfully_submitted} </td>
-                            <td class="text-center"> <span class="test-id d-none">${value.id}</span> <span class="remove-test"><i class="fa fa-trash-alt"></i></span> </td>
+                            <td> ${value.created_at}<br/>${value.last_attempt_at || '-'} </td>
+                            <td class="text-center"> 
+                            <span class="test-id d-none">${value.id}</span> 
+                            <span class="remove-test"><i class="fa fa-trash-alt"></i></span> 
+                            </td>
+                            <td><a href="test.php?test_id=${value.id}&type=topic-simulator" class="btn btn-primary text-right">Start</a></td>
                             </tr>`;
                         countStartAt++;
                     });
@@ -292,4 +300,5 @@
     </script>
 
 </body>
+
 </html>
