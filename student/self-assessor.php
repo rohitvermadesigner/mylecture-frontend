@@ -159,7 +159,12 @@
                             <td> ${value.created_at}<br/>${value.last_attempt_at || '-'} </td>
                             <td class="text-center"> 
                             <span class="test-id d-none">${value.id}</span> 
+<<<<<<< HEAD
                             <span class="remove-test"><i class="fa fa-trash-alt"></i></span>
+=======
+                            <button class="btn btn-danger remove-test" style="width: 60px;font-size: 12px;border-radius: 5px;">Delete</button>
+                            <a href="test.php?test_id=${value.id}&type=self-assessor" class="btn btn-primary" style="width: 80px;font-size: 12px;border-radius: 5px;">Start Test</a>
+>>>>>>> f3107dda334c8916f25c46bec029778e912c2d2e
                             </td>
                             <td><a href="test.php?test_id=${value.id}&type=self-assessor" class="btn btn-primary btn-sm">Start</a></td>
                             </tr>`;
