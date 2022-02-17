@@ -289,12 +289,13 @@
                         "option_2": $('[name=option_2]').val(),
                         "option_3": $('[name=option_3]').val(),
                         "option_4": $('[name=option_4]').val(),
-                        // "option_5": $('[name=option_5]').val(),
+                        "option_5": $('[name=option_5]').val(),
                         "answer": $('[name=answer]:checked').val(),
-                        "subject_id": $('[name=subject_id] option:selected').val(),
-                        "chapter_id": $('[name=chapter_id] option:selected').val(),
+                        "subject_id": $('#subject-filter').val(),
+                        "chapter_id": $('#chapter-filter').val(),
+                        "topic_id": $('#topic-filter').val(),
                         "description": $('[name=description]').val(),
-                        "difficulty_level": $('[name=difficulty_level] option:selected').val(),
+                        "difficulty_level": $('[name=difficulty_level]').val(),
                         "tags": tags
                     }
                     console.log(update_data);
@@ -305,6 +306,7 @@
                         dataType: 'JSON',
                         success: function(result) {
                             toastr.success(result.message);
+                            window.location.replace('questions.php');
                         },
                         error: function(error) {
                             toastr.error(error.responseJSON.message);
