@@ -238,10 +238,7 @@
                             $('#topic-filter').append(`<option value="${val.id}">${val.name}</option>`)
                         })
                     }
-                })
-
-
-
+                });
 
             } else {
                 window.location.replace('/');

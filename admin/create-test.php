@@ -890,7 +890,7 @@
                             test_id: testId,
                             questions: questionsArr,
                         }
-                        $.ajax({                                                                                                                
+                        $.ajax({
                             url: base_url + '/admin/test/step-3/add.php',
                             type: 'POST',
                             data: JSON.stringify(post_data),

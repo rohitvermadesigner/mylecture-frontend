@@ -64,7 +64,6 @@
                                                     <label>Select Subject</label>
                                                     <select class="form-control" id="subject-filter" name="subject_id">
                                                         <option value="">-- Select Subject --</option>
-                                                        <option value="35">-- Select Subject --</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -73,7 +72,6 @@
                                                     <label>Select Chapter</label>
                                                     <select class="form-control" id="chapter-filter" name="chapter_id">
                                                         <option value="">-- Select Chapter --</option>
-                                                        <option value="248">-- Select Chapter --</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -114,79 +112,7 @@
         </div>
     </section>
 
-
-    <!-- Add questions Modal Start -->
-    <div id="addQuestionsModal" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-lg" style="width:90vw;">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add Questions</h4>
-                </div>
-                <div class="modal-body">
-                    <ul class="filter-list">
-                        <li>
-                            <select class="form-control" id="subject-filter">
-                                <option value="">-- Select Subject --</option>
-                            </select>
-                        </li>
-                        <li>
-                            <select class="form-control" id="chapter-filter">
-                                <option value="">-- Select Chapter --</option>
-                            </select>
-                        </li>
-                        <li>
-                            <input type="search" class="form-control" id="question-filter" placeholder="Type Question..">
-                        </li>
-                        <li>
-                            <button class="btn btn-primary" id="search-btn">Search</button>
-                            <button class="btn btn-danger display-none" id="reset-btn">Reset</button>
-                        </li>
-                    </ul>
-
-                    <div class="table-responsive mt-3">
-                        <table class="table" id="questionData">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th width="5%">S.No.</th>
-                                    <th width="55%">Questions Details</th>
-                                    <th width="15%">Subject</th>
-                                    <th width="20%">Chapter</th>
-                                    <th width="5%">Level</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                        <div class="table-loading-wrap">
-                            <div class="loading-img">
-                                <img src="./assets/images/loader.gif" alt="loader">
-                            </div>
-                            <div class="loading-text">
-                                Loading...
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <button class="btn btn-primary prevPage" disabled>Prev</button>
-                            <button class="btn btn-primary nextPage" disabled>Next</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <span class="mr-3 question-selected-text"></span>
-                    <button type="button" class="btn btn-primary" id="addQuestionForTest">Add Questions for Test</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Add questions Modal End -->
-
     <?php include 'include/footer_script.php' ?>
-
 
     <script>
         $(function() {
@@ -237,6 +163,104 @@
                         }
                     });
                 }
+
+                var getAllSubjects = function() {
+                    $.ajax({
+                        url: `${base_url}/student/common/subject-list.php`,
+                        type: 'GET',
+                        dataType: 'JSON',
+                        data: {
+                            token: token
+                        },
+                        success: function(result) {
+                            console.log(result);
+                            subjectList = result;
+                            allSubjects = result;
+                            var index = 1;
+                            var trHTML = '';
+                            if (allSubjects && allSubjects.length > 0) {
+                                allSubjects.forEach(val => {
+                                    $('#subject-filter').append(`<option value="${val.id}">${val.name}</option>`)
+                                })
+                            }
+                            // $('#subject-filter').append('<option value="addSubject" class="boldItalic">Add Subject</option>');
+                        },
+                        error: function(error) {
+                            debugger;
+                            // toastr.error(error.responseJSON.message);
+                        }
+                    });
+                }
+                getAllSubjects();
+
+                $('#subject-filter').change(function(val) {
+                    subject = $('#subject-filter').val();
+                    var index = 1;
+                    var trHTML = '';
+                    if (subject) {
+                        allSubjects.forEach(val => {
+                            chapterList = val.chapter;
+                            if (val.id == subject) {
+                                $('#chapter-filter').html('');
+                                $('#chapter-filter').append(`<option value="">-- Select Chapter --</option>`);
+                                val.chapter.forEach(chapter => {
+                                    $('#chapter-filter').append(`<option value="${chapter.id}">${chapter.name}</option>`)
+                                })
+                                $('#chapterData tbody').html('');
+                                val.chapter.forEach(chapter => {
+                                    trHTML +=
+                                        `<tr id="${chapter.id}">
+                                <td>${index++}</td>
+                                <td>${chapter.name}</td>
+                                <td class="text-center">
+                                    <ul class="action-list">
+                                    <li class="update-chapter-icon"><i class="fa fa-pencil"></i></li>
+                                    <li class="remove-chapter"><i class="fa fa-trash-o"></i></li>
+                                    </ul>
+                                </td>
+                                </tr>`;
+                                });
+                                $('#chapterData tbody').append(trHTML);
+                            }
+                        })
+                        // $('#chapter-filter').append('<option value="addChapter" class="boldItalic">Add Chapter</option>');
+                    }
+
+                    if ($(this).val() == 'addSubject') {
+                        $('#addSubjectModal').modal('show');
+                        $(this).val('');
+                        selectedSubject = undefined;
+                        $('#addSubjectModal [name=subject_name]').val("");
+                        $('#addSubjectModal button.add-subject').show();
+                        $('#addSubjectModal button.update-subject').hide();
+                    }
+                });
+
+                $('#chapter-filter').change(function(val) {
+                    chapter = $('#chapter-filter').val();
+                    if (chapter) {
+                        allChapters.forEach(val => {
+                            if (val.id == chapter) {
+                                $('#topic-filter').html('');
+                                $('#topic-filter').append(`<option value="">-- Select Topic --</option>`);
+                                val.topic.forEach(topic => {
+                                    $('#topic-filter').append(`<option value="${topic.id}">${topic.name}</option>`)
+                                })
+                            }
+
+                        })
+                        // $('#topic-filter').append('<option value="addTopic" class="boldItalic">Add Topic</option>');
+                    }
+                    if ($(this).val() == 'addChapter') {
+                        $('#addChapterModal').modal('show');
+                        $(this).val('');
+                        selectedChapter = undefined;
+                        $('#addChapterModal [name=chapter_name]').val("");
+                        $('#addChapterModal button.add-chapter').show();
+                        $('#addChapterModal button.update-chapter').hide();
+                    }
+                });
+
 
             } else {
                 window.location.replace('/');
