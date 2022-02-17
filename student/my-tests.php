@@ -20,24 +20,24 @@
                     <div class="white-box box-boom">
 
                         <div class="my-tests-page">
-                            <ul class="nav nav-tabs nav-justified">
+                            <!-- <ul class="nav nav-tabs nav-justified">
                                 <li class="active"><a data-toggle="tab" href="#selfAssessor">Self Assessor</a>
                                 </li>
                                 <li><a data-toggle="tab" href="#topicSimulator">Topic Simulator</a>
                                 </li>
                                 <li><a data-toggle="tab" href="#adminAssign">Admin Assign</a>
                                 </li>
-                            </ul>
-                            <div class="tab-content mt-4">
-                                <div id="selfAssessor" class="tab-pane active">
+                            </ul> -->
+                            <div class="tab-content">
+                                <!-- <div id="selfAssessor" class="tab-pane">
                                     <div class="row">
                                     </div>
                                 </div>
                                 <div id="topicSimulator" class="tab-pane">
                                     <div class="row">
                                     </div>
-                                </div>
-                                <div id="adminAssign" class="tab-pane">
+                                </div> -->
+                                <div id="adminAssign" class="tab-pane active">
                                     <div class="row">
                                     </div>
                                 </div>
