@@ -156,7 +156,11 @@
                             <td> ${value.no_of_attemps} </td>
                             <td> ${value.successfully_submitted} </td>
                             <td> ${value.created_at}<br/>${value.last_attempt_at || '-'} </td>
-                            <td class="text-center"> <span class="test-id d-none">${value.id}</span> <span class="remove-test"><i class="fa fa-trash-alt"></i></span> </td>
+                            <td class="text-center"> 
+                            <span class="test-id d-none">${value.id}</span> 
+                            <span class="remove-test"><i class="fa fa-trash-alt"></i></span>
+                            <a href="test.php?test_id=${value.id}&type=self-assessor" class="btn btn-primary text-right">Start Test</a>
+                            </td>
                             </tr>`;
                         countStartAt++;
                     });
