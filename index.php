@@ -702,6 +702,18 @@
                                                 <button type="submit" class="btn btn-primary btn-block">Register</button>
                                             </div>
                                         </form>
+                                        <form class="otp-form" id="otpForm">
+                                            <div class="form-group custom-form-group">
+                                                <label>OTP</label>
+                                                <input type="text" class="form-control" name="otp">
+                                            </div>
+                                            <div class="form-group custom-form-group">
+                                                <button type="submit" class="btn btn-primary btn-block">Verify OTP</button>
+                                            </div>
+                                            <div class="form-group text-center">
+                                                <div id="timer"></div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
 
@@ -764,11 +776,77 @@
                     data: JSON.stringify(post_data),
                     success: function(response) {
                         token = response.token;
-                        localStorage.setItem("studentToken", token);
+                        localStorage.setItem("tempToken", token);
                         toastr.success('Register Successfully');
-                        setTimeout(function() {
-                            window.location.replace('student/dashboard.php');
+                        $('.register-form').hide();
+                        $('.otp-form').show();
+                        var counter = 60 ;
+                        var interval = setInterval(function() {
+                            counter--;
+                            if (counter <= 0) {
+                                clearInterval(interval);
+                                $('#timer').html('<button type="button" id="btn-resend-otp">Resend OTP</button>');
+                                return;
+                            } else {
+                                $('#timer').html(counter);
+                            }
                         }, 1000);
+                    },
+                    error: function(error) {
+                        toastr.error(error.responseJSON.message);
+                    }
+                });
+            }
+
+            $('body').on('click','#btn-resend-otp',function(){
+                let tempToken = localStorage.getItem("tempToken", token);
+                let post_data = {
+                    token: tempToken,
+                }
+                $.ajax({
+                    url: base_url + '/student/resend-otp.php',
+                    type: 'POST',
+                    dataType: 'JSON',
+                    data: JSON.stringify(post_data),
+                    success: function(result) {
+                        toastr.success(result.message);
+                    },
+                    error: function(error) {
+                        toastr.error(error.responseJSON.message);
+                    }
+                });
+            })
+
+            $("#otpForm").validate({
+                rules: {
+                    otp: "required",
+                },
+                messages: {
+                    otp: "OTP",
+                },
+
+                submitHandler: function(form) {
+                    otpFormSubmit();
+                }
+            });
+
+            var otpFormSubmit = function() {
+                debugger;
+                let tempToken = localStorage.getItem("tempToken", token);
+                let post_data = {
+                    token: tempToken,
+                    otp: $('[name=otp]').val(),
+                }
+                $.ajax({
+                    url: base_url + '/student/verify-otp.php',
+                    type: 'POST',
+                    dataType: 'JSON',
+                    data: JSON.stringify(post_data),
+                    success: function(result) {
+                        localStorage.removeItem("tempToken");
+                        localStorage.setItem("studentToken", result.token);
+                        toastr.success(result.message);
+                        window.location.replace('student/dashboard.php');
                     },
                     error: function(error) {
                         toastr.error(error.responseJSON.message);

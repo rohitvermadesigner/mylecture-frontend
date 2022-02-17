@@ -541,6 +541,7 @@ footer a:hover {
 }
 
 .reset-form,
+.otp-form,
 .verify-form {
     display: none;
 }
@@ -1285,4 +1286,11 @@ input:-internal-autofill-selected {
 
 label.error {
     color: red;
+}
+
+#btn-resend-otp {
+    background: no-repeat;
+    border: 0px;
+    color: #007bff;
+    font-weight: bold;
 }
