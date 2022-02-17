@@ -39,13 +39,13 @@
                     <img src="assets/images/leftnav-icon3.png" alt="">
                     <span>Live Lectures</span>
                 </a>
-            </li>
+            </li>-->
             <li>
                 <a href="#">
                     <img src="assets/images/leftnav-icon4.png" alt="">
-                    <span>Top 5 Scorers</span>
+                    <span>Report</span>
                 </a>
-            </li> -->
+            </li> 
         </ul>
     </div>
 </div>
