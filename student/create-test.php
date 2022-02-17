@@ -11,7 +11,7 @@
             <?php include 'include/header.php' ?>
             <div class="dashboard-title">
                 <div class="overflow-hidden">
-                    <h1 class="float-left">Create Test</h1>
+                    <h1 class="float-left">Create Self Assessor Test</h1>
                 </div>
             </div>
 
@@ -118,6 +118,7 @@
         $(function() {
             const token = localStorage.getItem("studentToken");
             if (token) {
+                let subjectArray = [];
                 $('#selfAssessorForm').validate({
                     rules: {
                         test_name: 'required',
@@ -173,95 +174,40 @@
                             token: token
                         },
                         success: function(result) {
-                            console.log(result);
-                            subjectList = result;
-                            allSubjects = result;
-                            var index = 1;
-                            var trHTML = '';
-                            if (allSubjects && allSubjects.length > 0) {
-                                allSubjects.forEach(val => {
-                                    $('#subject-filter').append(`<option value="${val.id}">${val.name}</option>`)
-                                })
-                            }
-                            // $('#subject-filter').append('<option value="addSubject" class="boldItalic">Add Subject</option>');
+                            subjectArray = result;
+                            mapSubjectDropdown();
                         },
                         error: function(error) {
-                            debugger;
-                            // toastr.error(error.responseJSON.message);
+                            toastr.error(error.responseJSON.message);
                         }
                     });
                 }
                 getAllSubjects();
 
-                $('#subject-filter').change(function(val) {
-                    subject = $('#subject-filter').val();
-                    var index = 1;
+                var mapSubjectDropdown = function() {
                     var trHTML = '';
-                    if (subject) {
-                        allSubjects.forEach(val => {
-                            chapterList = val.chapter;
-                            if (val.id == subject) {
-                                $('#chapter-filter').html('');
-                                $('#chapter-filter').append(`<option value="">-- Select Chapter --</option>`);
-                                val.chapter.forEach(chapter => {
-                                    $('#chapter-filter').append(`<option value="${chapter.id}">${chapter.name}</option>`)
-                                })
-                                $('#chapterData tbody').html('');
-                                val.chapter.forEach(chapter => {
-                                    trHTML +=
-                                        `<tr id="${chapter.id}">
-                                <td>${index++}</td>
-                                <td>${chapter.name}</td>
-                                <td class="text-center">
-                                    <ul class="action-list">
-                                    <li class="update-chapter-icon"><i class="fa fa-pencil"></i></li>
-                                    <li class="remove-chapter"><i class="fa fa-trash-o"></i></li>
-                                    </ul>
-                                </td>
-                                </tr>`;
-                                });
-                                $('#chapterData tbody').append(trHTML);
-                            }
+                    if (subjectArray && subjectArray.length > 0) {
+                        $('#subject-filter').html(`<option value="">-- Select Subject --</option>`)
+                        subjectArray.forEach(val => {
+                            $('#subject-filter').append(`<option value="${val.id}">${val.name}</option>`)
                         })
-                        // $('#chapter-filter').append('<option value="addChapter" class="boldItalic">Add Chapter</option>');
                     }
+                }
 
-                    if ($(this).val() == 'addSubject') {
-                        $('#addSubjectModal').modal('show');
-                        $(this).val('');
-                        selectedSubject = undefined;
-                        $('#addSubjectModal [name=subject_name]').val("");
-                        $('#addSubjectModal button.add-subject').show();
-                        $('#addSubjectModal button.update-subject').hide();
+                $("#subject-filter").change(function() {
+                    let selectedSubject = $('[name=subject_id]').val();
+                    subjectArray.forEach(val => {
+                        if (val.id == selectedSubject) {
+                            chapterArray = val.chapter;
+                        }
+                    });
+                    if (chapterArray && chapterArray.length > 0) {
+                        $('#chapter-filter').html(`<option value="">-- Select Chapter --</option>`)
+                        chapterArray.forEach(val => {
+                            $('#chapter-filter').append(`<option value="${val.id}">${val.name}</option>`)
+                        })
                     }
                 });
-
-                $('#chapter-filter').change(function(val) {
-                    chapter = $('#chapter-filter').val();
-                    if (chapter) {
-                        allChapters.forEach(val => {
-                            if (val.id == chapter) {
-                                $('#topic-filter').html('');
-                                $('#topic-filter').append(`<option value="">-- Select Topic --</option>`);
-                                val.topic.forEach(topic => {
-                                    $('#topic-filter').append(`<option value="${topic.id}">${topic.name}</option>`)
-                                })
-                            }
-
-                        })
-                        // $('#topic-filter').append('<option value="addTopic" class="boldItalic">Add Topic</option>');
-                    }
-                    if ($(this).val() == 'addChapter') {
-                        $('#addChapterModal').modal('show');
-                        $(this).val('');
-                        selectedChapter = undefined;
-                        $('#addChapterModal [name=chapter_name]').val("");
-                        $('#addChapterModal button.add-chapter').show();
-                        $('#addChapterModal button.update-chapter').hide();
-                    }
-                });
-
-
             } else {
                 window.location.replace('/');
             }
