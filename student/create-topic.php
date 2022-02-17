@@ -11,7 +11,7 @@
             <?php include 'include/header.php' ?>
             <div class="dashboard-title">
                 <div class="overflow-hidden">
-                    <h1 class="float-left">Create Test</h1>
+                    <h1 class="float-left">Create Topic Simulator Test</h1>
                 </div>
             </div>
 
@@ -65,7 +65,6 @@
                                                     <label>Select Subject</label>
                                                     <select class="form-control" id="subject-filter" name="subject_id">
                                                         <option value="">-- Select Subject --</option>
-                                                        <option value="35">-- Select Subject --</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -74,7 +73,6 @@
                                                     <label>Select Chapter</label>
                                                     <select class="form-control" id="chapter-filter" name="chapter_id">
                                                         <option value="">-- Select Chapter --</option>
-                                                        <option value="248">-- Select Chapter --</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -83,7 +81,6 @@
                                                     <label>Select Topic</label>
                                                     <select class="form-control" id="topic-filter" name="topic_id">
                                                         <option value="">-- Select Topic --</option>
-                                                        <option value="2">-- Select Topic --</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -132,13 +129,9 @@
     <script>
         $(function() {
             const token = localStorage.getItem("studentToken");
-
-            let allChapters = [];
-            var selectedSubject;
-            var subjectList;
-            var chapterList;
-
             if (token) {
+                let subjectArray = [];
+                let chapterArray = [];
                 $('#topicForm').validate({
                     rules: {
                         test_name: 'required',
@@ -196,25 +189,56 @@
                             token: token
                         },
                         success: function(result) {
-                            console.log(result);
-                            subjectList = result;
-                            allSubjects = result;
-                            var index = 1;
-                            var trHTML = '';
-                            if (allSubjects && allSubjects.length > 0) {
-                                allSubjects.forEach(val => {
-                                    $('#subject-filter').append(`<option value="${val.id}">${val.name}</option>`)
-                                })
-                            }
-                            $('#subject-filter').append('<option value="addSubject" class="boldItalic">Add Subject</option>');
+                            subjectArray = result;
+                            mapSubjectDropdown();
                         },
                         error: function(error) {
-                            debugger;
-                            // toastr.error(error.responseJSON.message);
+                            toastr.error(error.responseJSON.message);
                         }
                     });
                 }
                 getAllSubjects();
+
+                var mapSubjectDropdown = function() {
+                    var trHTML = '';
+                    if (subjectArray && subjectArray.length > 0) {
+                        $('#subject-filter').html(`<option value="">-- Select Subject --</option>`)
+                        subjectArray.forEach(val => {
+                            $('#subject-filter').append(`<option value="${val.id}">${val.name}</option>`)
+                        })
+                    }
+                }
+
+                $("#subject-filter").change(function() {
+                    let selectedSubject = $('[name=subject_id]').val();
+                    subjectArray.forEach(val => {
+                        if (val.id == selectedSubject) {
+                            chapterArray = val.chapter;
+                        }
+                    });
+                    if (chapterArray && chapterArray.length > 0) {
+                        $('#chapter-filter').html(`<option value="">-- Select Chapter --</option>`)
+                        chapterArray.forEach(val => {
+                            $('#chapter-filter').append(`<option value="${val.id}">${val.name}</option>`)
+                        })
+                    }
+                })
+
+                $("#chapter-filter").change(function() {
+                    let selectedChapter = $('[name=chapter_id]').val();
+                    let topicArray = [];
+                    chapterArray.forEach(val => {
+                        if (val.id == selectedChapter) {
+                            topicArray = val.topic;
+                        }
+                    });
+                    if (topicArray && topicArray.length > 0) {
+                        $('#topic-filter').html(`<option value="">-- Select Topic --</option>`)
+                        topicArray.forEach(val => {
+                            $('#topic-filter').append(`<option value="${val.id}">${val.name}</option>`)
+                        })
+                    }
+                })
 
 
 
