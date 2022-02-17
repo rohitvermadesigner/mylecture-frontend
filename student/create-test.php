@@ -149,7 +149,6 @@
                         "marks_for_correct_question": $('[name=marks_for_correct_question]').val(),
                         "marks_for_incorrect_question": $('[name=marks_for_incorrect_question]').val()
                     }
-                    console.log(update_data);
                     $.ajax({
                         url: base_url + '/student/self-assessor/add.php',
                         type: 'POST',
