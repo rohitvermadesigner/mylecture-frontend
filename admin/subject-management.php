@@ -45,14 +45,14 @@
                                 <div class="ibox float-e-margins">
                                     <div class="ibox-title">
                                         <h5>Subject List</h5>
-                                        <ul class="top-right-btn-list">
+                                        <!-- <ul class="top-right-btn-list">
                                             <li>
                                                 <a href="create-subject.php" class="btn btn-primary"><i class="fa fa-plus"></i> Add </a>
                                             </li>
-                                            <!-- <li>
+                                            <li>
                                                 <button class="btn btn-primary" disabled=""><i class="fa fa-trash"></i> Delete</button>
-                                            </li> -->
-                                        </ul>
+                                            </li>
+                                        </ul> -->
                                     </div>
                                     <div class="ibox-content">
                                         <div class="table-responsive mt-3">

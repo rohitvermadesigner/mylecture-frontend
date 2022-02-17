@@ -364,7 +364,7 @@ ul.action-list li i:hover {
 .option-flex {
     display: flex;
     gap: 10px;
-    align-items: flex-end;
+    align-items: flex-start;
 }
 
 .option-flex .option-group {
@@ -414,4 +414,9 @@ ul.action-list li i:hover {
 table i {
     color: #666;
     cursor: pointer;
+}
+
+.modal-body-scrollable {
+    height: 450px;
+    overflow: auto;
 }
