@@ -34,9 +34,9 @@
                                         <li>
                                             <a href="create-topic.php" class="btn btn-primary"><i class="fa fa-plus"></i> Add </a>
                                         </li>
-                                        <li>
+                                        <!-- <li>
                                             <button class="btn btn-primary remove-all-test" disabled><i class="fa fa-trash"></i> Delete</button>
-                                        </li>
+                                        </li> -->
                                     </ul>
                                 </div>
                             </div>
@@ -46,7 +46,6 @@
                                     <table class="table" id="testData">
                                         <thead>
                                             <tr>
-                                                <th width="25px"> <input type="checkbox" class="parent-check" /> </th>
                                                 <th class="text-center">S.No.</th>
                                                 <th>Test Name</th>
                                                 <th>Total Questions</th>
@@ -138,7 +137,7 @@
                             <td> ${value.subject} </td>
                             <td> ${value.no_of_attemps} </td>
                             <td> ${value.successfully_submitted} </td>
-                            <td class="text-center"> <span class="remove-test"><i class="fa fa-trash-alt"></i></span> </td>
+                            <td class="text-center"> <span class="test-id d-none">${value.id}</span> <span class="remove-test"><i class="fa fa-trash-alt"></i></span> </td>
                             </tr>`;
                         countStartAt++;
                     });
