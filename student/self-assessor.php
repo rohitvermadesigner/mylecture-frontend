@@ -24,14 +24,14 @@
                                     <li>
                                         <input type="text" class="form-control" placeholder="Type Test Name" id="test-filter">
                                     </li>
-                                    <li>
+                                    <!-- <li>
                                         <select class="form-control" id="difficulty-filter">
                                             <option value="">Select Difficulty Level</option>
                                             <option value="easy">Easy</option>
                                             <option value="normal">Normal</option>
                                             <option value="difficult">Difficult</option>
                                         </select>
-                                    </li>
+                                    </li> -->
                                     <!-- <li>
                                         <select class="form-control" id="test-category-filter">
                                             <option value="">Select Test Category</option>
@@ -52,9 +52,9 @@
                                         <li>
                                             <a href="create-test.php" class="btn btn-primary"><i class="fa fa-plus"></i> Add </a>
                                         </li>
-                                        <li>
+                                        <!-- <li>
                                             <button class="btn btn-primary remove-all-test" disabled><i class="fa fa-trash"></i> Delete</button>
-                                        </li>
+                                        </li> -->
                                     </ul>
                                 </div>
                             </div>
@@ -64,13 +64,17 @@
                                     <table class="table" id="testData">
                                         <thead>
                                             <tr>
-                                                <th width="25px"> <input type="checkbox" class="parent-check" /> </th>
                                                 <th class="text-center">S.No.</th>
-                                                <th>Test Name</th>
+                                                <th>Name</th>
+                                                <th>Duration</th>
                                                 <th>Total Questions</th>
-                                                <th>Difficulty Level</th>
-                                                <th>Attempt</th>
-                                                <th class="text-center">Action</th>
+                                                <th>Subject</th>
+                                                <th>Chapter</th>
+                                                <th>No of Attemps</th>
+                                                <th width="100">Successfully Submitted</th>
+                                                <th>Created at</th>
+                                                <th>Last attempt at</th>
+                                                <th class="text-center"></span> Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -148,13 +152,17 @@
                     $.each(result.result, function(key, value) {
                         tr +=
                             `<tr>
-                            <td> <input type="checkbox" value="${value.id}" name="child-check" class="child-check" /> </td>
                             <td class="text-center"> ${countStartAt} </td>
                             <td> ${value.name}</td>
+                            <td> ${value.duration} </td>
                             <td> ${value.total_questions} </td>
-                            <td> ${value.difficulty_level} </td>
+                            <td> ${value.subject} </td>
+                            <td> ${value.chapter} </td>
                             <td> ${value.no_of_attemps} </td>
-                            <td class="text-center"> <span class="remove-test"><i class="fa fa-trash-alt"></i></span> </td>
+                            <td> ${value.successfully_submitted} </td>
+                            <td> ${value.created_at} </td>
+                            <td> ${value.last_attempt_at} </td>
+                            <td class="text-center"> <span class="test-id d-none">${value.id}</span> <span class="remove-test"><i class="fa fa-trash-alt"></i></span> </td>
                             </tr>`;
                         countStartAt++;
                     });
@@ -192,45 +200,6 @@
                     }
                 }
 
-                // var getTestCatrgory = function() {
-                //     const url = `${base_url}/admin/test/category/list.php`;
-                //     const paramsData = {
-                //         token: token
-                //     }
-                //     $.ajax({
-                //         url: url,
-                //         type: 'GET',
-                //         dataType: 'JSON',
-                //         data: paramsData,
-                //         success: function(result) {
-                //             if (result.result && result.result.length > 0) {
-                //                 result.result.forEach(val => {
-                //                     $('#test-category-filter').append(`<option value="${val.id}">${val.name}</option>`)
-                //                 })
-                //             }
-                //         }
-                //     });
-                // }
-
-                // var getStudentGroups = function() {
-                //     const url = `${base_url}/admin/student/group-list.php`;
-                //     const paramsData = {
-                //         token: token
-                //     }
-                //     $.ajax({
-                //         url: url,
-                //         type: 'GET',
-                //         dataType: 'JSON',
-                //         data: paramsData,
-                //         success: function(result) {
-                //             if (result.result && result.result.length > 0) {
-                //                 result.result.forEach(val => {
-                //                     $('#student-group-filter').append(`<option value="${val.id}">${val.name}</option>`)
-                //                 })
-                //             }
-                //         }
-                //     });
-                // }
 
                 $("#search-btn").click(function() {
                     test_name = $('#test-filter').val();
@@ -266,7 +235,7 @@
                 $('body').on('click', '.remove-test', function() {
                     var status = confirm("Are you sure you want to delete ?");
                     if (status == true) {
-                        var testId = $(this).parents('tr').find('input[type=checkbox]').val();
+                        var testId = $(this).parents('tr').find('.test-id').text();
                         let removeTest = {
                             'token': token,
                             'test_id': testId,

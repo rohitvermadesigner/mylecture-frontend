@@ -28,14 +28,14 @@
                     <span>My Tests</span>
                 </a>
             </li>
-            <li>
-                <a href="my-tests.php">
+            <!-- <li>
+                <a href="#">
                     <img src="assets/images/leftnav-icon3.png" alt="">
                     <span>Test Simulator</span>
                 </a>
             </li>
             <li>
-                <a href="my-tests.php">
+                <a href="#">
                     <img src="assets/images/leftnav-icon3.png" alt="">
                     <span>Live Lectures</span>
                 </a>
@@ -45,7 +45,7 @@
                     <img src="assets/images/leftnav-icon4.png" alt="">
                     <span>Top 5 Scorers</span>
                 </a>
-            </li>
+            </li> -->
         </ul>
     </div>
 </div>

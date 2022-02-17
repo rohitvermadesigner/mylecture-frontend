@@ -761,6 +761,20 @@
                 }
             });
 
+            const otpTimer = function() {
+                var counter = 60;
+                var interval = setInterval(function() {
+                    counter--;
+                    if (counter <= 0) {
+                        clearInterval(interval);
+                        $('#timer').html('<button type="button" id="btn-resend-otp">Resend OTP</button>');
+                        return;
+                    } else {
+                        $('#timer').html(counter);
+                    }
+                }, 1000);
+            }
+
             const registerSubmit = function() {
                 let post_data = {
                     name: $('[name=register_name]').val(),
@@ -780,17 +794,7 @@
                         toastr.success('Register Successfully');
                         $('.register-form').hide();
                         $('.otp-form').show();
-                        var counter = 60 ;
-                        var interval = setInterval(function() {
-                            counter--;
-                            if (counter <= 0) {
-                                clearInterval(interval);
-                                $('#timer').html('<button type="button" id="btn-resend-otp">Resend OTP</button>');
-                                return;
-                            } else {
-                                $('#timer').html(counter);
-                            }
-                        }, 1000);
+                        otpTimer();
                     },
                     error: function(error) {
                         toastr.error(error.responseJSON.message);
@@ -798,7 +802,7 @@
                 });
             }
 
-            $('body').on('click','#btn-resend-otp',function(){
+            $('body').on('click', '#btn-resend-otp', function() {
                 let tempToken = localStorage.getItem("tempToken", token);
                 let post_data = {
                     token: tempToken,
@@ -810,6 +814,7 @@
                     data: JSON.stringify(post_data),
                     success: function(result) {
                         toastr.success(result.message);
+                        otpTimer();
                     },
                     error: function(error) {
                         toastr.error(error.responseJSON.message);

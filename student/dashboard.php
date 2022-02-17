@@ -163,7 +163,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-12 mt-5">
+                <!-- <div class="col-md-12 mt-5">
                     <div class="white-box">
                         <h4>My Performance</h4>
                         <hr>
@@ -236,7 +236,7 @@
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
