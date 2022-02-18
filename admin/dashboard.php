@@ -26,7 +26,9 @@
                                     </div>
                                     <div class="ibox-content">
                                         <i class="fa fa-users" aria-hidden="true"></i>
-                                        <h1 class="no-margins" id="totalStudent"></h1>
+                                        <a href="student.php">
+                                            <h1 class="no-margins" id="totalStudent"></h1>
+                                        </a>
                                         <small>Student Online : <b class="text-success" id="totalOnlineStudent"></b></small>
                                     </div>
                                     <a href="create-student.php" class="btn btn-primary btn-block">+ Add New Student</a>
@@ -39,7 +41,9 @@
                                     </div>
                                     <div class="ibox-content">
                                         <i class="fa fa-book" aria-hidden="true"></i>
-                                        <h1 class="no-margins" id="totalQuestions"></h1>
+                                        <a href="questions.php">
+                                            <h1 class="no-margins" id="totalQuestions"></h1>
+                                        </a>
                                         <small>&nbsp;</small>
                                     </div>
                                     <a href="create-question.php" class="btn btn-primary btn-block">+ Add New Question</a>
@@ -52,7 +56,9 @@
                                     </div>
                                     <div class="ibox-content">
                                         <i class="fa fa-list-alt" aria-hidden="true"></i>
-                                        <h1 class="no-margins" id="totalTests"></h1>
+                                        <a href="test-management-module.php">
+                                            <h1 class="no-margins" id="totalTests"></h1>
+                                        </a>
                                         <small>&nbsp;</small>
                                     </div>
                                     <a href="create-test.php" class="btn btn-primary btn-block">+ Add New Test</a>
@@ -174,12 +180,14 @@
                     var trHTML = '';
                     $.each(result.result, function(key, value) {
                         trHTML +=
-                            '<tr><td>' + index++ +
-                            '</td><td>' + value.name + '<span class="student-id d-none">' + value.id +
-                            '</td><td>' + value.email_id +
-                            '</td><td>' + value.mobile_no +
-                            '</td><td>' + value.group +
-                            '</td><td>' + value.date_of_registration + '</td></tr>';
+                            `<tr>
+                            <td>${index++} ${value.is_online ? '<span class="isOnline"></span>' : ''}</td>
+                            <td>${value.name}</td>
+                            <td>${value.email_id}</td>
+                            <td>${value.mobile_no}</td>
+                            <td>${value.group}</td>
+                            <td>${value.date_of_registration}</td>
+                            </tr>`;
                     });
                     $('#questionData').append(trHTML);
                     $('.total-students').text(result.total_results);
@@ -201,7 +209,7 @@
                             '<tr><td>' + index++ +
                             '</td><td>' + value.name + '<span class="user-id d-none">' + value.id +
                             '</td><td>' + value.email_id +
-                            '</td><td>' + value.mobile_no + 
+                            '</td><td>' + value.mobile_no +
                             '</td><td>' + value.created_at +
                             '</td><td>' + value.last_login_at +
                             '</td></tr>';
@@ -212,31 +220,31 @@
             });
 
             $('body').on('click', '.remove-student', function() {
-                    var status = confirm("Are you sure you want to delete ?");
-                    if (status == true) {
-                        var userId = $(this).parents('tr').find('td span.student-id').text();
-                        let removeUser = {
-                            'token': token,
-                            'id': userId,
-                        }
-                        $.ajax({
-                            url: base_url + '/admin/student/student-delete.php',
-                            type: 'POST',
-                            dataType: 'JSON',
-                            data: JSON.stringify(removeUser),
-                            success: function(response) {
-                                message = response.message;
-                                toastr.success(message);
-                                setTimeout(function() {
-                                    location.reload();
-                                }, 1000);
-                            },
-                            error: function(error) {
-                                toastr.error(message);
-                            }
-                        });
+                var status = confirm("Are you sure you want to delete ?");
+                if (status == true) {
+                    var userId = $(this).parents('tr').find('td span.student-id').text();
+                    let removeUser = {
+                        'token': token,
+                        'id': userId,
                     }
-                });
+                    $.ajax({
+                        url: base_url + '/admin/student/student-delete.php',
+                        type: 'POST',
+                        dataType: 'JSON',
+                        data: JSON.stringify(removeUser),
+                        success: function(response) {
+                            message = response.message;
+                            toastr.success(message);
+                            setTimeout(function() {
+                                location.reload();
+                            }, 1000);
+                        },
+                        error: function(error) {
+                            toastr.error(message);
+                        }
+                    });
+                }
+            });
 
         });
     </script>

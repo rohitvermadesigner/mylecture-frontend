@@ -254,8 +254,6 @@
         $(function() {
             const token = localStorage.getItem("admin_token");
             if (token) {
-
-                let allChapters = [];
                 var selectedSubject;
                 var subjectList;
                 var chapterList;
@@ -354,6 +352,8 @@
                 }
                 getAllSubjects();
 
+                var chapterArray = [];
+
                 $('#subject-filter').change(function(val) {
                     subject = $('#subject-filter').val();
                     var index = 1;
@@ -362,6 +362,7 @@
                         allSubjects.forEach(val => {
                             chapterList = val.chapter;
                             if (val.id == subject) {
+                                chapterArray = val.chapter;
                                 $('#chapter-filter').html('');
                                 $('#chapter-filter').append(`<option value="">-- Select Chapter --</option>`);
                                 val.chapter.forEach(chapter => {
@@ -398,12 +399,15 @@
                 });
 
                 $('#chapter-filter').change(function(val) {
+
+                    let selectedChapter = $('#chapter-filter').val();
                     chapter = $('#chapter-filter').val();
                     if (chapter) {
-                        allChapters.forEach(val => {
+                        chapterArray.forEach(val => {
                             if (val.id == chapter) {
                                 $('#topic-filter').html('');
                                 $('#topic-filter').append(`<option value="">-- Select Topic --</option>`);
+                                debugger;
                                 val.topic.forEach(topic => {
                                     $('#topic-filter').append(`<option value="${topic.id}">${topic.name}</option>`)
                                 })

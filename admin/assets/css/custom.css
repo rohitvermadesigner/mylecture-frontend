@@ -1,422 +1,429 @@
 * {
-    margin: 0px;
-    padding: 0px;
+  margin: 0px;
+  padding: 0px;
 }
 
-body {}
-
+body {
+}
 
 /* global style begin here */
 
 .space {
-    height: 25px;
+  height: 25px;
 }
 
 .btn-default {
-    background: #ececec;
+  background: #ececec;
 }
-
 
 /* global style ends here */
 
 .logoText {
-    font-size: 24px;
-    font-weight: bold;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .middle-box {
-    transform: translateY(10%);
+  transform: translateY(10%);
 }
 
 .subscription-box-parents {
-    margin-left: 22px;
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
+  margin-left: 22px;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 .subscription-box {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .subscription-box p {
-    margin: 0px;
-    font-weight: 600;
+  margin: 0px;
+  font-weight: 600;
 }
 
 .subscription-box p.text-danger {
-    font-size: 85%;
+  font-size: 85%;
 }
 
 .logo-login {
-    margin-top: 10px;
-    margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .dashboard-4-boxes i {
-    float: right;
-    font-size: 25px;
-    margin-top: 8px;
+  float: right;
+  font-size: 25px;
+  margin-top: 8px;
 }
 
 .dashboard-4-boxes .col-lg-3:nth-child(1) i {
-    color: #e63a36;
+  color: #e63a36;
 }
 
 .dashboard-4-boxes .col-lg-3:nth-child(2) i {
-    color: #fea21d;
+  color: #fea21d;
 }
 
 .dashboard-4-boxes .col-lg-3:nth-child(3) i {
-    color: #4da74f;
+  color: #4da74f;
 }
 
 .dashboard-4-boxes .col-lg-3:nth-child(4) i {
-    color: #11b2c6;
+  color: #11b2c6;
 }
 
 .dashboard-4-boxes .btn {
-    border-radius: 0px;
-    font-size: 13px;
-    padding: 5px 10px;
-    border: 0px;
-    /* display: none; */
+  border-radius: 0px;
+  font-size: 13px;
+  padding: 5px 10px;
+  border: 0px;
+  /* display: none; */
 }
 
 .dashboard-4-boxes .col-lg-4:nth-child(1) .btn {
-    background: #e63a36;
+  background: #e63a36;
 }
 
 .dashboard-4-boxes .col-lg-4:nth-child(2) .btn {
-    background: #fea21d;
+  background: #fea21d;
 }
 
 .dashboard-4-boxes .col-lg-4:nth-child(3) .btn {
-    background: #4da74f;
+  background: #4da74f;
 }
 
 .dashboard-4-boxes .col-lg-4:nth-child(4) .btn {
-    background: #11b2c6;
+  background: #11b2c6;
 }
 
 .filter-row ul {
-    margin: 0px;
-    padding: 0px;
-    float: right;
+  margin: 0px;
+  padding: 0px;
+  float: right;
 }
 
 .filter-row ul li {
-    list-style: none;
-    float: left;
-    margin-left: 10px;
+  list-style: none;
+  float: left;
+  margin-left: 10px;
 }
 
 .filter-row ul li svg {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 
 ul.table-action {
-    margin: 0px;
-    padding: 0px;
+  margin: 0px;
+  padding: 0px;
 }
 
 ul.table-action li {
-    margin: 0px;
-    padding: 0px;
-    list-style: none;
-    float: left;
-    margin: 0px 10px;
-    cursor: pointer;
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  float: left;
+  margin: 0px 10px;
+  cursor: pointer;
 }
 
 .sbjectnametabl {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .subjecticn::before {
-    border: 1px solid;
-    font-size: 14px;
-    font-weight: 400;
-    height: 13px;
-    line-height: 13px;
-    width: 13px;
-    color: #555;
+  border: 1px solid;
+  font-size: 14px;
+  font-weight: 400;
+  height: 13px;
+  line-height: 13px;
+  width: 13px;
+  color: #555;
 }
 
 .treeplus::before {
-    border: 1px solid;
-    content: "+";
-    display: inline-block;
-    height: 15px;
-    width: 15px;
-    line-height: 12px;
-    margin: 0 5px;
-    text-align: center;
+  border: 1px solid;
+  content: "+";
+  display: inline-block;
+  height: 15px;
+  width: 15px;
+  line-height: 12px;
+  margin: 0 5px;
+  text-align: center;
 }
 
 .treeminus:before {
-    content: '-';
-    font-size: 15px;
+  content: "-";
+  font-size: 15px;
 }
 
 .topiclist {
-    display: none;
+  display: none;
 }
 
 .topiclist ul {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 .topiclist li {
-    cursor: pointer;
-    line-height: 25px;
-    min-height: 25px;
-    padding-left: 25px;
-    position: relative;
-    list-style: none;
+  cursor: pointer;
+  line-height: 25px;
+  min-height: 25px;
+  padding-left: 25px;
+  position: relative;
+  list-style: none;
 }
 
 .topiclist li::before {
-    background: #ccc none repeat scroll 0 0;
-    content: "";
-    height: 1px;
-    left: 0;
-    position: absolute;
-    top: 13px;
-    width: 25px;
+  background: #ccc none repeat scroll 0 0;
+  content: "";
+  height: 1px;
+  left: 0;
+  position: absolute;
+  top: 13px;
+  width: 25px;
 }
 
 .topiclist li::after {
-    background: #ccc none repeat scroll 0 0;
-    bottom: 0;
-    content: "";
-    height: 120%;
-    left: 0;
-    position: absolute;
-    top: -5px;
-    width: 1px;
+  background: #ccc none repeat scroll 0 0;
+  bottom: 0;
+  content: "";
+  height: 120%;
+  left: 0;
+  position: absolute;
+  top: -5px;
+  width: 1px;
 }
 
 .topiclist li:last-child::after {
-    height: 19px;
+  height: 19px;
 }
 
 .container-boom {
-    min-height: 425px;
+  min-height: 425px;
 }
 
 .remove-faculty {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .title-primary {
-    position: absolute;
-    top: 0;
-    left: 12px;
-    font-size: 16px;
-    font-weight: 600;
-    z-index: 1000;
+  position: absolute;
+  top: 0;
+  left: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  z-index: 1000;
 }
 
 .navbar-right-custom {
-    display: flex;
-    gap: 15px;
+  display: flex;
+  gap: 15px;
 }
 
 .filter-list {
-    display: flex;
-    gap: 10px;
-    margin: 0px;
-    padding: 0px;
+  display: flex;
+  gap: 10px;
+  margin: 0px;
+  padding: 0px;
 }
 
 .filter-list li {
-    list-style: none;
+  list-style: none;
 }
 
 .filter-list li:last-child {
-    width: 200px;
+  width: 200px;
 }
 
 .filter-list li h5 {
-    line-height: 32px;
-    margin-bottom: 0px;
+  line-height: 32px;
+  margin-bottom: 0px;
 }
 
 .top-right-btn-list {
-    display: flex;
-    gap: 10px;
-    margin: 0px;
-    padding: 0px;
+  display: flex;
+  gap: 10px;
+  margin: 0px;
+  padding: 0px;
 }
 
 .top-right-btn-list li {
-    list-style: none;
+  list-style: none;
 }
 
 .action-td i {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .boldItalic {
-    color: #000;
-    font-style: italic;
-    font-weight: 700;
+  color: #000;
+  font-style: italic;
+  font-weight: 700;
 }
 
 .create-text-page .tab-content {
-    padding-top: 20px;
+  padding-top: 20px;
 }
 
 .create-text-page .nav-tabs {
-    pointer-events: none;
+  pointer-events: none;
 }
 
 .create-text-page .nav-tabs li a {
-    text-align: left;
+  text-align: left;
 }
 
 .create-text-page .nav-tabs li a i {
-    font-size: 30px;
+  font-size: 30px;
 }
 
-.create-text-page .nav-tabs>li>a {
-    padding: 10px 10px 10px 18px;
+.create-text-page .nav-tabs > li > a {
+  padding: 10px 10px 10px 18px;
 }
 
 .create-text-page .nav-tabs li a span.main-span {
-    display: flex;
-    gap: 15px;
+  display: flex;
+  gap: 15px;
 }
 
 .create-text-page .nav-tabs li a span {
-    display: block;
+  display: block;
 }
 
 .create-text-page .add-question-box-in-test {
-    background: #f1f1f1;
-    width: 100%;
-    min-height: 250px;
-    padding: 25px 40px;
-    border: 1px solid #ccc;
-    display: flex;
-    gap: 20px;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+  background: #f1f1f1;
+  width: 100%;
+  min-height: 250px;
+  padding: 25px 40px;
+  border: 1px solid #ccc;
+  display: flex;
+  gap: 20px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .create-text-page .add-question-box-in-test p {
-    margin-bottom: 0px;
-    font-size: 15px;
+  margin-bottom: 0px;
+  font-size: 15px;
 }
 
 .create-text-page .assign-group-box {
-    border: 1px solid #ccc;
-    padding: 15px;
+  border: 1px solid #ccc;
+  padding: 15px;
 }
 
 .create-text-page .assign-group-box ul {
-    margin: 0px;
-    padding: 0px;
+  margin: 0px;
+  padding: 0px;
 }
 
 .create-text-page .assign-group-box ul li {
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 4px;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 4px;
 }
 
 .create-text-page .assign-group-box ul li input {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 
 ul.action-list {
-    margin: 0px;
-    padding: 0px;
-    display: flex;
-    gap: 6px;
-    align-items: center;
-    justify-content: center;
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
 }
 
 ul.action-list li {
-    list-style: none;
-    cursor: pointer;
+  list-style: none;
+  cursor: pointer;
 }
 
 ul.action-list li i:hover {
-    color: #009de2;
+  color: #009de2;
 }
 
 .hidden-id {
-    display: none;
+  display: none;
 }
 
 .d-custom-none {
-    display: none;
+  display: none;
 }
 
 .option-flex {
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
 }
 
 .option-flex .option-group {
-    width: 90%;
+  width: 90%;
 }
 
 .bootstrap-tagsinput {
-    width: 100%;
+  width: 100%;
 }
 
 .subject-box,
 .chapter-box {
-    border: 1px solid #ccc;
-    padding: 10px;
-    overflow: hidden;
+  border: 1px solid #ccc;
+  padding: 10px;
+  overflow: hidden;
 }
 
 .chapter-box {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .subject-box ul.subject-right-btn-list {
-    margin: 0px;
-    padding: 0px;
-    display: flex;
-    gap: 5px;
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  gap: 5px;
 }
 
 .subject-box ul.subject-right-btn-list li {
-    list-style: none;
-    background: #f1f1f1;
-    padding: 2px 6px;
-    cursor: pointer;
+  list-style: none;
+  background: #f1f1f1;
+  padding: 2px 6px;
+  cursor: pointer;
 }
 
 .remove-student,
 .remove-group,
 .edit-group {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .ibox-title {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 table i {
-    color: #666;
-    cursor: pointer;
+  color: #666;
+  cursor: pointer;
 }
 
 .modal-body-scrollable {
-    height: 450px;
-    overflow: auto;
+  height: 450px;
+  overflow: auto;
+}
+.isOnline {
+  width: 10px;
+  height: 10px;
+  background: #4da74e;
+  display: inline-block;
+  border-radius: 50%;
+  margin-left: 6px;
 }

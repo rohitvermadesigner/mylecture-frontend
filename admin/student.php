@@ -38,6 +38,8 @@
                                                         <th>Mobile No.</th>
                                                         <th>Group</th>
                                                         <th>Reg. Date</th>
+                                                        <th>Last Login At</th>
+                                                        <th></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -101,12 +103,13 @@
                     var tr = '';
                     $.each(result.result, function(key, value) {
                         tr += `<tr>
-                          <td> ${countStartAt} </td>
+                          <td> ${countStartAt} ${value.is_online ? '<span class="isOnline"></span>' : ''} </td>
                           <td> ${value.name} <span class="student-id d-none">  ${value.id} </td>
                           <td> ${value.email_id} </td>
                           <td> ${value.mobile_no} </td>
                           <td> ${value.group} </td>
                           <td> ${value.date_of_registration} </td>
+                          <td> ${value.last_login_at} </td>
                           <td class="text-center"><span class="remove-student"><i class="fa fa-trash"></i></span></td></tr>`;
                         countStartAt++;
                     });
@@ -145,7 +148,7 @@
                 }
 
                 loadQuestions(page_no, page_count);
-               
+
                 $('body').on('click', '.remove-student', function() {
                     var status = confirm("Are you sure you want to delete ?");
                     if (status == true) {
