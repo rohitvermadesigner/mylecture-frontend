@@ -126,9 +126,9 @@
                                                                     <label>*Difficulty Level </label>
                                                                     <select name="diffifulty_level" id="AddDifficultyLeval" class="form-control">
                                                                         <option value="">Select Level</option>
-                                                                        <option value="easy">Easy</option>
-                                                                        <option value="normal">Normal</option>
-                                                                        <option value="difficult">Difficult</option>
+                                                                        <option value="level1">Level 1</option>
+                                                                        <option value="level2">Level 2</option>
+                                                                        <option value="level3">Level 3</option>
                                                                     </select>
                                                                 </div>
                                                             </div>

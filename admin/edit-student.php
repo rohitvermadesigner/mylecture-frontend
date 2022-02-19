@@ -7,7 +7,7 @@
         <?php include 'include/left_menu.php' ?>
         <div id="page-wrapper" class="gray-bg dashbard-1">
             <?php include 'include/header.php' ?>
-            <h1 class="title-primary">Create Student </h1>
+            <h1 class="title-primary">Edit Student Details </h1>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="wrapper wrapper-content">
@@ -15,7 +15,7 @@
                             <div class="col-lg-12">
                                 <div class="ibox float-e-margins">
                                     <div class="ibox-content">
-                                        <form id="createstudent">
+                                        <form id="updatestudent">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -24,20 +24,6 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Email</label>
-                                                        <input type="text" class="form-control" name="email_id" />
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Mobile No.</label>
-                                                        <input type="text" class="form-control" name="mobile_no" />
-                                                    </div>
-                                                </div>
-                                               
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Group</label>
@@ -51,6 +37,7 @@
                                                     <div class="form-group">
                                                         <label>Gender</label>
                                                         <select name="gender" class="form-control">
+                                                            <option value="">Select Gender</option>
                                                             <option value="male">Male</option>
                                                             <option value="female">Female</option>
                                                         </select>
@@ -362,27 +349,57 @@
     <script>
         $(function() {
             const token = localStorage.getItem("admin_token");
+            const studentId = document.location.search.substr(4);
             if (token) {
-                let createStudnetSubmit;
                 $.ajax({
                     url: base_url + '/admin/student/group-list.php',
-                        type: 'GET',
-                        data: {token: token},
-                        dataType: 'JSON',
-                        success: function(result) {
-                            allGroup = result.result;
-                            if (allGroup && allGroup.length > 0) {
-                                allGroup.forEach(val => {
-                                    $('[name=group]').append(`<option value="${val.id}">${val.name}</option>`)
-                                })
-                            }
+                    type: 'GET',
+                    data: {
+                        token: token
+                    },
+                    dataType: 'JSON',
+                    success: function(result) {
+                        allGroup = result.result;
+                        if (allGroup && allGroup.length > 0) {
+                            allGroup.forEach(val => {
+                                $('[name=group]').append(`<option value="${val.id}">${val.name}</option>`)
+                            })
                         }
+                    }
                 });
-                $('#createstudent').validate({
+                let updateStudnetSubmit;
+
+                var getStudent = function() {
+                    const url = `${base_url}/admin/student/student-get-info.php`;
+                    $.ajax({
+                        url: url,
+                        type: 'GET',
+                        dataType: 'JSON',
+                        data: {
+                            token: token,
+                            id: studentId
+                        },
+                        success: function(result) {
+                            console.log(result);
+                            $('[name=name]').attr('id', result.id);
+                            $('[name=name]').val(result.name);
+                            $('[name=group]').val(result.group_id);
+                            $('[name=gender]').val(result.gender);
+                            $('[name=date_of_birth]').val(result.date_of_birth);
+                            $('[name=address]').val(result.address);
+                            $('[name=state]').val(result.state);
+                            $('[name=city]').val(result.city);
+                            $('[name=country]').val(result.country);
+                            $('[name=pincode]').val(result.pincode);
+                        }
+                    });
+                }
+                getStudent();
+
+             
+                $('#updatestudent').validate({
                     rules: {
                         name: 'required',
-                        email_id: 'required',
-                        mobile_no: 'required',
                         gender: 'required',
                         group: 'required',
                         date_of_birth: 'required',
@@ -393,19 +410,18 @@
                         pincode: 'required',
                     },
                     submitHandler: function() {
-                        createStudnetSubmit();
+                        updateStudnetSubmit();
                     }
                 });
 
 
-                createStudnetSubmit = function() {
+                updateStudnetSubmit = function() {
                     let update_data = {
                         "token": token,
+                        "student_id": studentId,
                         "name": $('[name=name]').val(),
-                        "email_id": $('[name=email_id]').val(),
-                        "mobile_no": $('[name=mobile_no]').val(),
                         "group_id": $('[name=group] :selected').val(),
-                        "gender": $('[name=gender] :selected').val(),   
+                        "gender": $('[name=gender] :selected').val(),
                         "date_of_birth": $('[name=date_of_birth]').val(),
                         "address": $('[name=address]').val(),
                         "state": $('[name=state]').val(),
@@ -415,7 +431,7 @@
                     }
                     console.log(update_data);
                     $.ajax({
-                        url: base_url + '/admin/student/student-add.php',
+                        url: base_url + '/admin/student/student-update.php',
                         type: 'POST',
                         data: JSON.stringify(update_data),
                         dataType: 'JSON',

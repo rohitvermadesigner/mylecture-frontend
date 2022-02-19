@@ -18,26 +18,26 @@
             <div class="row m-0 main-row">
                 <div class="col-md-4">
                     <div class="white-box">
-                        <div class="dashboard-stats">
+                        <a href="self-assessor.php" class="dashboard-stats">
                             <p>Self Assessor Test</p>
                             <span id="self_assessor_test_count">0</span>
-                        </div>
+                        </a>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="white-box">
-                        <div class="dashboard-stats">
+                        <a href="topic-simulator.php" class="dashboard-stats">
                             <p>Topic Simulator Test</p>
                             <span id="topic_simulator_test_count">0</span>
-                        </div>
+                        </a>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="white-box">
-                        <div class="dashboard-stats">
+                        <a href="my-tests.php" class="dashboard-stats">
                             <p>Admin Assign Test</p>
                             <span id="admin_assign_test_count">0</span>
-                        </div>
+                        </a>
                     </div>
                 </div>
                 <div class="col-md-8 mt-5">

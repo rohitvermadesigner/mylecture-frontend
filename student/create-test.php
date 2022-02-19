@@ -34,6 +34,7 @@
                                                     <label>*Duration (In Min.) </label>
                                                     <select name="duration" class="form-control">
                                                         <option value="">Select Duration</option>
+                                                        <option value="00:02">00:02</option>
                                                         <option value="00:30">00:30</option>
                                                         <option value="00:60">00:60</option>
                                                         <option value="00:90">00:90</option>

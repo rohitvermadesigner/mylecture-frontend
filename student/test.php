@@ -200,10 +200,34 @@
         </div>
     </section>
 
+
+    <!-- Modal -->
+    <div id="sessionTimeOutModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Session Timeout</h4>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center">Your session has been expired!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary submitTest">Submit</button>
+                    <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <?php include 'include/footer_script.php' ?>
     <script>
         const token = localStorage.getItem("studentToken");
         var queries = {};
+
         $.each(document.location.search.substr(1).split('&'), function(c, q) {
             var i = q.split('=');
             queries[i[0].toString()] = i[1].toString();
@@ -254,9 +278,10 @@
                     // ** right btn begin here ** //
                     let rightBtns = '';
                     let indexBtnCount = 1;
+                    let pageIndex = 0;
                     $.each(result.questions, function(key, value) {
                         rightBtns += `
-                        <li class="active" data-seq="1"><a class="test-ques que-not-attempted" href="javascript:void(0);" data-href="page01">${indexBtnCount++}</a></li>
+                        <li class="active" data-seq="1"><a class="test-ques que-not-attempted" href="javascript:void(0);" data-href="${pageIndex++}">${indexBtnCount++}</a></li>
                         `
                     });
                     $('.test-questions-btns-wrapper').append(rightBtns);
@@ -283,6 +308,8 @@
                         if (index > 0) {
                             index--;
                             $(".step").removeClass("active").eq(index).addClass("active");
+                            // $('.step.active').prev('.step').addClass("active");
+                            // $('.step.active').eq(1).removeClass("active");
                             $(".test-questions-btns-wrapper li").removeClass("active").eq(index).addClass("active").find('a').removeClass('que-save');
                         };
 
@@ -297,12 +324,18 @@
                         if (index < stepsCount - 1) {
                             index++;
                             $(".step").removeClass("active").eq(index).addClass("active");
+                            // $('.step.active').next('.step').addClass("active");
+                            // $('.step.active').eq(0).removeClass("active");
                             $(".test-questions-btns-wrapper li").removeClass("active").eq(index).addClass("active").prevAll().find('a').addClass('que-save');
                         };
 
                         if (index === stepsCount - 1) {
                             $(this).prop("disabled", true);
                         }
+                    });
+
+                    $('.test-ques').click(function() {
+
                     });
 
                     clearBtn.click(function() {
@@ -329,6 +362,10 @@
 
                         // Display the result in the element with id="demo"
                         $("#test_duration").text(`${twoDigit(hours)}:${twoDigit(minutes)}:${twoDigit(seconds)}`)
+
+                        if ($('#test_duration').text() == '00:01:50') {
+                            $('#sessionTimeOutModal').modal('show');
+                        }
 
                         // If the count down is finished, write some text
                         if (distance < 0) {
@@ -371,6 +408,7 @@
                     dataType: 'JSON',
                     success: function(result) {
                         toastr.success(result.status);
+                        $('#sessionTimeOutModal').modal('hide');
                         $('.test-page-section').hide();
                         $('.result-page-section').show();
                         $('.result-page-section .obtain_percentage').text(result.obtain_percentage);
@@ -395,10 +433,10 @@
                                         </div>
                                         <div class="ans-options-result">
                                             <ul>
-                                                <li><span>1)</span> <span>${value.option_1}</span></li>
-                                                <li><span>2)</span> <span>${value.option_2}</span></li>
-                                                <li><span>3)</span> <span>${value.option_3}</span></li>
-                                                <li><span>4)</span> <span>${value.option_4}</span></li>
+                                                <li><span>a)</span> <span>${value.option_1}</span></li>
+                                                <li><span>b)</span> <span>${value.option_2}</span></li>
+                                                <li><span>c)</span> <span>${value.option_3}</span></li>
+                                                <li><span>d)</span> <span>${value.option_4}</span></li>
 
                                             </ul>
                                         </div>
@@ -423,6 +461,16 @@
             $('.submitTest').click(function() {
                 submitTest();
             });
+
+            // $('body').on('click', '.pagination.test-questions-btns-wrapper li a',function() {
+            //     $('.question-wrapper-inner').find('.step').removeClass('active');
+            //     $('.step.step' + $(this).attr('data-href')).addClass('active');
+            // });
+
+            // if ($('#test_duration').text() === '00:01:50') {
+            //     $('#sessionTimeOutModal').modal('show');
+            // }
+
         } else {
             window.location.replace('/');
         }

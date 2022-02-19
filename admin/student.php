@@ -110,7 +110,13 @@
                           <td> ${value.group} </td>
                           <td> ${value.date_of_registration} </td>
                           <td> ${value.last_login_at} </td>
-                          <td class="text-center"><span class="remove-student"><i class="fa fa-trash"></i></span></td></tr>`;
+                          <td class="text-center">
+                          <ul class="action-list">
+                          <li><a href="edit-student.php?id=${value.id}" class="edit-student"><i class="fa fa-pencil"></i></a></li>
+                          <li class="remove-student"><i class="fa fa-trash"></i></li>
+                          </ul>
+                         
+                          </td></tr>`;
                         countStartAt++;
                     });
                     $(".table-loading-wrap").addClass('display-none');
