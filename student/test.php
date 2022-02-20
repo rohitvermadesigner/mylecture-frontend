@@ -227,7 +227,7 @@
     <script>
         const token = localStorage.getItem("studentToken");
         var queries = {};
-
+        var stepIndex;
         $.each(document.location.search.substr(1).split('&'), function(c, q) {
             var i = q.split('=');
             queries[i[0].toString()] = i[1].toString();
@@ -296,7 +296,7 @@
                             $(elem2).attr('name', index1);
                         });
                     });
-                    var index = $(".step.active").index(".step"),
+                        stepIndex = $(".step.active").index(".step"),
                         stepsCount = $(".step").length,
                         prevBtn = $(".prev"),
                         nextBtn = $(".next"),
@@ -305,15 +305,15 @@
                     prevBtn.click(function() {
                         nextBtn.prop("disabled", false);
 
-                        if (index > 0) {
-                            index--;
-                            $(".step").removeClass("active").eq(index).addClass("active");
+                        if (stepIndex > 0) {
+                            stepIndex--;
+                            $(".step").removeClass("active").eq(stepIndex).addClass("active");
                             // $('.step.active').prev('.step').addClass("active");
                             // $('.step.active').eq(1).removeClass("active");
-                            $(".test-questions-btns-wrapper li").removeClass("active").eq(index).addClass("active").find('a').removeClass('que-save');
+                            $(".test-questions-btns-wrapper li").removeClass("active").eq(stepIndex).addClass("active").find('a').removeClass('que-save');
                         };
 
-                        if (index === 0) {
+                        if (stepIndex === 0) {
                             $(this).prop("disabled", true);
                         }
                     });
@@ -321,15 +321,16 @@
                     nextBtn.click(function() {
                         prevBtn.prop("disabled", false);
 
-                        if (index < stepsCount - 1) {
-                            index++;
-                            $(".step").removeClass("active").eq(index).addClass("active");
+                        if (stepIndex < stepsCount - 1) {
+                            debugger;
+                            stepIndex++;
+                            $(".step").removeClass("active").eq(stepIndex).addClass("active");
                             // $('.step.active').next('.step').addClass("active");
                             // $('.step.active').eq(0).removeClass("active");
-                            $(".test-questions-btns-wrapper li").removeClass("active").eq(index).addClass("active").prevAll().find('a').addClass('que-save');
+                            $(".test-questions-btns-wrapper li").removeClass("active").eq(stepIndex).addClass("active").prevAll().find('a').addClass('que-save');
                         };
 
-                        if (index === stepsCount - 1) {
+                        if (stepIndex === stepsCount - 1) {
                             $(this).prop("disabled", true);
                         }
                     });
@@ -462,14 +463,12 @@
                 submitTest();
             });
 
-            // $('body').on('click', '.pagination.test-questions-btns-wrapper li a',function() {
-            //     $('.question-wrapper-inner').find('.step').removeClass('active');
-            //     $('.step.step' + $(this).attr('data-href')).addClass('active');
-            // });
-
-            // if ($('#test_duration').text() === '00:01:50') {
-            //     $('#sessionTimeOutModal').modal('show');
-            // }
+            $('body').on('click', '.pagination.test-questions-btns-wrapper li a',function() {
+                $('.prev').prop("disabled", false);
+                stepIndex = $(this).attr('data-href');
+                $('.question-wrapper-inner').find('.step').removeClass('active');
+                $('.step.step' + $(this).attr('data-href')).addClass('active');
+            });
 
         } else {
             window.location.replace('/');

@@ -662,7 +662,6 @@ label.error {
 .test-page-section .pagination>li>a.que-save-mark,
 .test-page-section .pagination>li>a.que-mark,
 .test-page-section .pagination>li>a.que-not-answered {
-    /* border-width: 0; */
     background-size: auto 100%;
     background-repeat: no-repeat;
     background-position: center;
@@ -717,7 +716,6 @@ label.error {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* border-bottom: 1px solid #f1f1f1; */
     box-shadow: 2px 4px 6px rgba(39, 59, 69, 0.2);
 }
 
@@ -726,20 +724,8 @@ label.error {
     padding: 6px 25px;
 }
 
-
-/* test-page ends here */
-
-
-/* result-page begin here */
-
-
-/* .test-page-section {
-    display: none;
-} */
-
 .result-page-section {
     display: none;
-    /* display: block; */
 }
 
 .result-page-section .result-status-box {
