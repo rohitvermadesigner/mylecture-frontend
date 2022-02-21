@@ -263,10 +263,10 @@
                                     </div>
                                     <div class="ans-options">
                                         <ul>
-                                            <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;" type="radio" data-id="${value.id}" value="1"><span style="margin-right:5px;">a)</span> <span>${value.option_1}</span></label></li>
-                                            <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;"type="radio" data-id="${value.id}" value="2"><span style="margin-right:5px;">b)</span> <span>${value.option_2}</span></label></li>
-                                            <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;" type="radio" data-id="${value.id}" value="3"><span style="margin-right:5px;">c)</span> <span>${value.option_3}</span></label></li>
-                                            <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;" type="radio" data-id="${value.id}" value="4"><span style="margin-right:5px;">d)</span> <span>${value.option_4}</span></label></li>
+                                            <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;" type="radio" data-id="${value.id}" value="a"><span style="margin-right:5px;">a)</span> <span>${value.option_1}</span></label></li>
+                                            <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;"type="radio" data-id="${value.id}" value="b"><span style="margin-right:5px;">b)</span> <span>${value.option_2}</span></label></li>
+                                            <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;" type="radio" data-id="${value.id}" value="c"><span style="margin-right:5px;">c)</span> <span>${value.option_3}</span></label></li>
+                                            <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;" type="radio" data-id="${value.id}" value="d"><span style="margin-right:5px;">d)</span> <span>${value.option_4}</span></label></li>
                                         </ul>
                                    </div>
                         </div>
@@ -444,7 +444,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <p>Attempt Answer : <b class="attempt_answer">${value.attempt_answer}</b> </p>
-                                        <p class="text-success">Correct Answer : <b class="correct_answer">${value.correct_answer}</b></p>
+                                        <p class="text-success">Correct Answer : <b class="correct_answer">${value.correct_answer}  </b></p>
                                     </div>
 
                                 </div>
