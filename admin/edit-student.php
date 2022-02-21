@@ -54,7 +54,7 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>Address</label>
-                                                        <textarea name="" id="" cols="10" rows="2" class="form-control"></textarea>
+                                                        <textarea name="" id="" cols="10" rows="2" name="address" class="form-control"></textarea>
                                                     </div>
                                                 </div>
 
@@ -396,7 +396,7 @@
                 }
                 getStudent();
 
-             
+
                 $('#updatestudent').validate({
                     rules: {
                         name: 'required',

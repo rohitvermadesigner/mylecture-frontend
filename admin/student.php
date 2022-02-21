@@ -112,8 +112,8 @@
                           <td> ${value.last_login_at} </td>
                           <td class="text-center">
                           <ul class="action-list">
-                          <li><a href="edit-student.php?id=${value.id}" class="edit-student"><i class="fa fa-pencil"></i></a></li>
-                          <li class="remove-student"><i class="fa fa-trash"></i></li>
+                          <li style=" font-size: 20px;"><a href="edit-student.php?id=${value.id}" class="edit-student"><i class="fa fa-pencil"></i></a></li>
+                          <li class="remove-student" style=" font-size: 20px; margin-left: 10px;"><i class="fa fa-trash"></i></li>
                           </ul>
                          
                           </td></tr>`;
