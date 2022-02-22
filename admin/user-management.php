@@ -35,6 +35,7 @@
                                                     <th>Name</th>
                                                     <th>Email</th>
                                                     <th>Mobile Number</th>
+                                                    <th>Subject</th>
                                                     <th>Created At</th>
                                                     <th>Last Login At</th>
                                                     <th>Action</th>
@@ -89,6 +90,14 @@
                                     <input type="text" class="form-control" name="mobile_no" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="10">
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Select Subject</label>
+                                    <select class="form-control" id="subject">
+                                        <option value="">-- Select Subject --</option>
+                                    </select>
+                                </div>
+                            </div>
                             <!-- <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Password</label>
@@ -124,11 +133,13 @@
                     var index = 1;
                     var trHTML = '';
                     $.each(result.result, function(key, value) {
+                        subject = value.subject ? value.subject : '-'
                         trHTML +=
                             '<tr><td>' + index++ +
                             '</td><td>' + value.name + '<span class="user-id d-none">' + value.id +
                             '</td><td>' + value.email_id +
                             '</td><td>' + value.mobile_no +
+                            '</td><td>' + subject +
                             '</td><td>' + value.created_at +
                             '</td><td>' + value.last_login_at +
                             '</td><td class="text-center"><span class="remove-faculty" title="Remove Faculty"><i class="fa fa-trash" aria-hidden="true"></i></span></td></tr>';
@@ -205,6 +216,28 @@
                     }
                 });
             }
+
+            var getAllSubjects = function() {
+                const url = `${base_url}/admin/subject/list.php`;
+                const paramsData = {
+                    token: token
+                }
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    dataType: 'JSON',
+                    data: paramsData,
+                    success: function(result) {
+                        if (result && result.length > 0) {
+                            result.forEach(val => {
+                                $('#subject').append(`<option value="${val.id}">${val.name}</option>`)
+                            })
+                        }
+                        $('#subject').append('<option value="addSubject" class="boldItalic">Add Subject</option>');
+                    }
+                });
+            }
+            getAllSubjects();
 
         });
     </script>

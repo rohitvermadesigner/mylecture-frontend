@@ -52,6 +52,7 @@
                             <div class="clearfix"></div>
                             <button class="prev btn btn-primary" disabled="disabled">Prev</button>
                             <button class="next btn btn-primary">Next</button>
+                            <button class="next btn btn-warning">Skip</button>
                             <button class="next btn btn-success">Save & Next</button>
                             <button class="btn btn-secondary" id="clear">Clear</button>
                             <hr />
@@ -176,6 +177,10 @@
                         <td><span class="correct_questions"></span></td>
                     </tr>
                     <tr>
+                        <td>Incorrect Questions</td>
+                        <td><span class="incorrect_questions"></span></td>
+                    </tr>
+                    <tr>
                         <td>Obtain Marks</td>
                         <td><span class="obtain_marks"></span></td>
                     </tr>
@@ -263,10 +268,10 @@
                                     </div>
                                     <div class="ans-options">
                                         <ul>
-                                            <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;" type="radio" data-id="${value.id}" value="1"><span style="margin-right:5px;">a)</span> <span>${value.option_1}</span></label></li>
-                                            <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;"type="radio" data-id="${value.id}" value="2"><span style="margin-right:5px;">b)</span> <span>${value.option_2}</span></label></li>
-                                            <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;" type="radio" data-id="${value.id}" value="3"><span style="margin-right:5px;">c)</span> <span>${value.option_3}</span></label></li>
-                                            <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;" type="radio" data-id="${value.id}" value="4"><span style="margin-right:5px;">d)</span> <span>${value.option_4}</span></label></li>
+                                            <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;" type="radio" class="select-option" data-id="${value.id}" value="1"><span style="margin-right:5px;">a)</span> <span>${value.option_1}</span></label></li>
+                                            <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;"type="radio" class="select-option" data-id="${value.id}" value="2"><span style="margin-right:5px;">b)</span> <span>${value.option_2}</span></label></li>
+                                            <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;" type="radio" class="select-option" data-id="${value.id}" value="3"><span style="margin-right:5px;">c)</span> <span>${value.option_3}</span></label></li>
+                                            <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;" type="radio" class="select-option" data-id="${value.id}" value="4"><span style="margin-right:5px;">d)</span> <span>${value.option_4}</span></label></li>
                                         </ul>
                                    </div>
                         </div>
@@ -281,7 +286,7 @@
                     let pageIndex = 0;
                     $.each(result.questions, function(key, value) {
                         rightBtns += `
-                        <li class="active" data-seq="1"><a class="test-ques que-not-attempted" href="javascript:void(0);" data-href="${pageIndex++}">${indexBtnCount++}</a></li>
+                        <li class="active" data-seq="1"><a class="test-ques que-not-attempted" style="cursor:pointer" href="javascript:void(0);" data-href="${pageIndex++}">${indexBtnCount++}</a></li>
                         `
                     });
                     $('.test-questions-btns-wrapper').append(rightBtns);
@@ -296,7 +301,7 @@
                             $(elem2).attr('name', index1);
                         });
                     });
-                        stepIndex = $(".step.active").index(".step"),
+                    stepIndex = $(".step.active").index(".step"),
                         stepsCount = $(".step").length,
                         prevBtn = $(".prev"),
                         nextBtn = $(".next"),
@@ -322,7 +327,6 @@
                         prevBtn.prop("disabled", false);
 
                         if (stepIndex < stepsCount - 1) {
-                            debugger;
                             stepIndex++;
                             $(".step").removeClass("active").eq(stepIndex).addClass("active");
                             // $('.step.active').next('.step').addClass("active");
@@ -354,12 +358,12 @@
                         var now = new Date().getTime();
 
                         // Find the distance between now and the count down date
-                        var distance = countDownDate - now;
+                        var time = countDownDate - now;
 
                         // Time calculations for days, hours, minutes and seconds
-                        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                        var hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        var minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+                        var seconds = Math.floor((time % (1000 * 60)) / 1000);
 
                         // Display the result in the element with id="demo"
                         $("#test_duration").text(`${twoDigit(hours)}:${twoDigit(minutes)}:${twoDigit(seconds)}`)
@@ -369,9 +373,10 @@
                         }
 
                         // If the count down is finished, write some text
-                        if (distance < 0) {
+                        if (time <= 0) {
                             clearInterval(x);
                             submitTest();
+                            $("#test_duration").text();
                         }
                     }, 1000);
 
@@ -392,7 +397,7 @@
                 $(".question-wrapper-inner .step").each(function(v) {
                     var questionObj = {
                         id: $(this).find('li input').attr('data-id'),
-                        answer: $(this).find('li input[type=radio]:checked').val()
+                        answer: $(this).find('li input[type=radio]:checked').val() || ''
                     }
                     questionsList.push(questionObj);
                 });
@@ -409,12 +414,14 @@
                     dataType: 'JSON',
                     success: function(result) {
                         toastr.success(result.status);
+                        let incorrect_question = result.total_questions - result.correct_questions;
                         $('#sessionTimeOutModal').modal('hide');
                         $('.test-page-section').hide();
                         $('.result-page-section').show();
                         $('.result-page-section .obtain_percentage').text(result.obtain_percentage);
                         $('.result-page-section .attempt_questions').text(result.attempt_questions);
                         $('.result-page-section .correct_questions').text(result.correct_questions);
+                        $('.result-page-section .incorrect_questions').text(incorrect_question);
                         $('.result-page-section .obtain_marks').text(result.obtain_marks);
                         $('.result-page-section .total_marks').text(result.total_marks);
                         $('.result-page-section .total_questions').text(result.total_questions);
@@ -463,7 +470,7 @@
                 submitTest();
             });
 
-            $('body').on('click', '.pagination.test-questions-btns-wrapper li a',function() {
+            $('body').on('click', '.pagination.test-questions-btns-wrapper li a', function() {
                 $('.prev').prop("disabled", false);
                 stepIndex = $(this).attr('data-href');
                 $('.question-wrapper-inner').find('.step').removeClass('active');
