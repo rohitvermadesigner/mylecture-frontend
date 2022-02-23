@@ -241,15 +241,21 @@
         var testType = queries.type;
         if (token) {
             let test_duration;
+            let getTestQuestionUrl = `${base_url}/student/test/get-test-questions.php`
+            let getTestQuestionParams = {
+                token: token,
+                test_id: testID,
+                type: testType
+            }
+            if (testType == 'admin-assign-test') {
+                getTestQuestionUrl = `${base_url}/student/test/get-admin-assign-test-questions.php`
+                delete getTestQuestionParams.type;
+            }
             $.ajax({
-                url: `${base_url}/student/test/get-test-questions.php`,
+                url: getTestQuestionUrl,
                 type: 'GET',
                 dataType: 'JSON',
-                data: {
-                    token: token,
-                    test_id: testID,
-                    type: testType
-                },
+                data: getTestQuestionParams,
                 success: function(result) {
                     $("#student_name").text(result.student_name);
                     $("#test_name").text(result.test_name);
@@ -268,10 +274,10 @@
                                     </div>
                                     <div class="ans-options">
                                         <ul>
-                                            <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;" type="radio" data-id="${value.id}" value="a"><span style="margin-right:5px;">a)</span> <span>${value.option_1}</span></label></li>
-                                            <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;"type="radio" data-id="${value.id}" value="b"><span style="margin-right:5px;">b)</span> <span>${value.option_2}</span></label></li>
-                                            <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;" type="radio" data-id="${value.id}" value="c"><span style="margin-right:5px;">c)</span> <span>${value.option_3}</span></label></li>
-                                            <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;" type="radio" data-id="${value.id}" value="d"><span style="margin-right:5px;">d)</span> <span>${value.option_4}</span></label></li>
+                                            <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;" type="radio" data-id="${value.id}" value="1"><span style="margin-right:5px;">a)</span> <span>${value.option_1}</span></label></li>
+                                            <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;"type="radio" data-id="${value.id}" value="2"><span style="margin-right:5px;">b)</span> <span>${value.option_2}</span></label></li>
+                                            <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;" type="radio" data-id="${value.id}" value="3"><span style="margin-right:5px;">c)</span> <span>${value.option_3}</span></label></li>
+                                            <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;" type="radio" data-id="${value.id}" value="4"><span style="margin-right:5px;">d)</span> <span>${value.option_4}</span></label></li>
                                         </ul>
                                    </div>
                         </div>
@@ -407,13 +413,17 @@
                     type: testType,
                     questions: questionsList
                 }
+                let submitTestUrl = base_url + '/student/submit-test/self-declared-test.php';
+                if (testType == 'admin-assign-test') {
+                    submitTestUrl = base_url + '/student/submit-test/admin-declared-test.php';
+                }
                 $.ajax({
-                    url: base_url + '/student/submit-test/self-declared-test.php',
+                    url: submitTestUrl,
                     type: 'POST',
                     data: JSON.stringify(post_questions),
                     dataType: 'JSON',
                     success: function(result) {
-                        toastr.success(result.status);
+                        toastr.success("Test Successfully submitted");
                         let incorrect_question = result.total_questions - result.correct_questions;
                         $('#sessionTimeOutModal').modal('hide');
                         $('.test-page-section').hide();
@@ -429,6 +439,13 @@
                         let questionListTrCount = 1;
                         let questionListTr = '';
                         $.each(result.questions, function(key, value) {
+                            const answerMap = {
+                                "1": "a",
+                                "2": "b",
+                                "3": "c",
+                                "4": "d",
+                                "5": "e",
+                            }
                             questionListTr += `
                             <tr>
                             <td>
@@ -450,8 +467,8 @@
                                         </div>
                                     </div>
                                     <div class="col-md-3">
-                                        <p>Attempt Answer : <b class="attempt_answer">${value.attempt_answer}</b> </p>
-                                        <p class="text-success">Correct Answer : <b class="correct_answer">${value.correct_answer}  </b></p>
+                                        <p>Attempt Answer : <b class="attempt_answer">${value.attempt_answer ? answerMap[value.attempt_answer] : ''}</b> </p>
+                                        <p class="text-success">Correct Answer : <b class="correct_answer">${answerMap[value.correct_answer]}  </b></p>
                                     </div>
 
                                 </div>

@@ -44,6 +44,7 @@
                         data: JSON.stringify(post_data),
                         success: function(result) {
                             localStorage.setItem("admin_token", result.token);
+                            localStorage.setItem("account_type", result.account_type);
                             toastr.success(result.message);
                             setTimeout(function() {
                                 window.location.replace('dashboard.php');
@@ -55,7 +56,8 @@
                     });
                 }
             } else {
-                window.location.replace('dashboard.php');                
+                debugger;
+                window.location.replace('dashboard.php');
             }
         });
     </script>

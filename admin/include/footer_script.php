@@ -15,6 +15,25 @@
     <script src="assets/js/jquery.validate.min.js"></script>
     <script src="assets/js/toastr.min.js"></script>
     <!-- <script src="assets/js/jquery.richtext.js"></script> -->
-     <!-- Tags Input -->
+    <!-- Tags Input -->
 
     <script src="assets/js/custom.js"></script>
+
+    <script>
+        $(function() {
+            const token = localStorage.getItem("admin_token");
+            if (token) {
+                const account_type = localStorage.getItem("account_type");
+                if (account_type) {
+                    if (account_type == 'WU1tRlpSdGs3RGd4RHhJWVF5VXlXQT09') {
+                        $("#admin-faculty-name").text("Faculty")
+                        $(".subject-management").remove();
+                        $(".group-management").remove();
+                        $(".user-management").remove();
+                    } else {
+                        $("#admin-faculty-name").text("Admin")
+                    }
+                }
+            }
+        });
+    </script>

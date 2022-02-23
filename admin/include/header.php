@@ -16,7 +16,9 @@
 
             <ul class="nav navbar-top-links">
                 <li class="dropdown">
-                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">Admin <i class="fa fa-chevron-down"></i> </a>
+                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                        <span id="admin-faculty-name"></span>
+                        <i class="fa fa-chevron-down"></i> </a>
                     <ul class="dropdown-menu">
                         <li><a href="#" onclick="logout();">Log out</a></li>
                     </ul>
@@ -30,6 +32,7 @@
 <script>
     function logout() {
         localStorage.removeItem('admin_token');
+        localStorage.removeItem('account_type');
         toastr.success('Logout Successfully');
         setTimeout(function() {
             window.location.replace('index.php');
