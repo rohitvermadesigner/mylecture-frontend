@@ -56,7 +56,6 @@
                     });
                 }
             } else {
-                debugger;
                 window.location.replace('dashboard.php');
             }
         });

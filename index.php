@@ -836,7 +836,6 @@
             });
 
             var otpFormSubmit = function() {
-                debugger;
                 let tempToken = localStorage.getItem("tempToken", token);
                 let post_data = {
                     token: tempToken,
