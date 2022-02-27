@@ -11,7 +11,7 @@
         <div id="page-wrapper" class="gray-bg dashbard-1">
 
             <?php include 'include/header.php' ?>
-            <h1 class="title-primary">Report</h1>
+            <h1 class="title-primary">Result</h1>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="wrapper wrapper-content">
@@ -19,6 +19,7 @@
                             <div class="col-lg-12">
                                 <div class="ibox float-e-margins">
                                     <div class="ibox-title">
+                                        <h5><b>Test Name</b> : <span class="test-name"></span></h5>
                                         <h5><b>Total</b> : <span class="total-students"></span></h5>
                                     </div>
                                     <div class="ibox-content">
@@ -26,11 +27,13 @@
                                             <thead>
                                                 <tr>
                                                     <th>S.No.</th>
-                                                    <th>Test Name</th>
-                                                    <th>Duration</th>
-                                                    <th>Category</th>
-                                                    <th>Student Group</th>
+                                                    <th>Student Name</th>
                                                     <th>Total Questions</th>
+                                                    <th>Attempt Questions</th>
+                                                    <th>Correct Questions</th>
+                                                    <th>Total Marks</th>
+                                                    <th>Obtain Marks</th>
+                                                    <th>Obtain Percentage</th>
                                                     <th>Created at</th>
                                                 </tr>
                                             </thead>
@@ -53,29 +56,35 @@
     <script>
         $(function() {
             const token = localStorage.getItem("admin_token");
+            let test_id = window.location.search.substr(9);
             $.ajax({
-                url: base_url + '/admin/result/get-admin-assigned-performed-test.php',
+                url: base_url + '/admin/result/get-result-list.php',
                 type: 'GET',
                 data: {
-                    token: token
+                    token: token,
+                    test_id: test_id
                 },
                 dataType: 'JSON',
                 success: function(result) {
+                    console.log(result);
                     var index = 1;
                     var trHTML = '';
                     $.each(result.result, function(key, value) {
                         subject = value.subject ? value.subject : '-'
                         trHTML +=
                             '<tr><td>' + index++ +
-                            '</td><td><a class="font-weight-bold" href="report-result.php?test_id='+ value.id +'">' + value.name + 
-                            '</a></td><td>' + value.duration +
-                            '</td><td>' + value.category +
-                            '</td><td>' + value.student_group +
-                            '</td><td>' + value.total_questions +
+                            '</td><td><a class="font-weight-bold" href="report-result-detail.php?result_id='+  value.id +'">' + value.student +
+                            '</a></td><td>' + value.total_questions +
+                            '</td><td>' + value.attempt_questions +
+                            '</td><td>' + value.correct_questions +
+                            '</td><td>' + value.total_marks +
+                            '</td><td>' + value.obtain_marks +
+                            '</td><td>' + value.obtain_percentage +
                             '</td><td>' + value.created_at + '</td></tr>'
                     });
                     $('#reportData').append(trHTML);
                     $('.total-students').text(result.total_results);
+                    $('.test-name').text(result.test_name);
                 }
             });
         });

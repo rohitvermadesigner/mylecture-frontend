@@ -764,3 +764,63 @@ label.error {
 .table>thead>tr>th {
     vertical-align: middle;
 }
+
+.report-tab {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ccc;
+    color: #000;
+    font-size: 20px;
+    transition: all 0.45s;
+}
+
+.report-tab.bg-warning,
+.report-tab.bg-warning:hover {
+    background: #ffeed0 !important;
+}
+
+.report-tab.bg-danger,
+.report-tab.bg-danger:hover {
+    background: #fee1d9 !important;
+}
+
+.report-tab.bg-info,
+.report-tab.bg-info:hover {
+    background: #cef0fa !important;
+}
+
+.report-tab:hover {
+    text-decoration: none;
+    color: #000;
+    transform: scale(1.05);
+}
+
+.ibox-title {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e3e3e3;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+#resultDetailModal .modal-body {
+    height: 450px;
+    overflow: auto;
+}
+
+#resultDetailModal .modal-title {
+    display: inline;
+}
+
+#resultDetailModal .result-page-section {
+    display: block;
+}
+
+#resultDetailModal .result-page-section .result-status-box {
+    width: 50%;
+}

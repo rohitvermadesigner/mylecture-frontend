@@ -41,7 +41,7 @@
                 </a>
             </li>-->
             <li>
-                <a href="#">
+                <a href="report.php">
                     <img src="assets/images/leftnav-icon4.png" alt="">
                     <span>Report</span>
                 </a>
