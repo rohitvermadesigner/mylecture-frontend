@@ -28,7 +28,7 @@
                                         </ul>
                                     </div>
                                     <div class="ibox-content">
-                                        <table class="table mt-4" id="facultyData">
+                                        <table class="table" id="facultyData">
                                             <thead>
                                                 <tr>
                                                     <th>S.No.</th>

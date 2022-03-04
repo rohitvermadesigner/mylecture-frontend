@@ -20,21 +20,21 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Full Name</label>
-                                                        <input type="text" class="form-control" name="name" />
+                                                        <input type="text" class="form-control" name="name" onkeydown="return /[a-z]/i.test(event.key)" />
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Email</label>
-                                                        <input type="text" class="form-control" name="email_id" />
+                                                        <input type="email" class="form-control" name="email_id" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" />
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Mobile No.</label>
-                                                        <input type="text" class="form-control" name="mobile_no" />
+                                                        <input type="text" class="form-control" name="mobile_no" maxlength="10"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  />
                                                     </div>
                                                 </div>
                                                

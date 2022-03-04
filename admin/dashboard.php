@@ -213,6 +213,7 @@
                             '</td><td>' + value.created_at +
                             '</td><td>' + value.last_login_at +
                             '</td></tr>';
+                            if (index === 11){return false}
                     });
                     $('#facultyData').append(trHTML);
                     $('.total-faculty').text(result.total_results);
