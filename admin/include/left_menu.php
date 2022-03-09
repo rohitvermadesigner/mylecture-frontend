@@ -5,7 +5,7 @@
                 <div class="dropdown profile-element">
                     <a href="#">
                         <span>
-                            <img alt="logo" src="assets/img/logo.png" class="logo" />
+                            <img alt="logo" src="assets/img/gems-next-logo.jpg" style="width: 190px;" class="logo" />
                         </span>
                     </a>
                 </div>

@@ -47,8 +47,8 @@
                     success: function(result) {
                         console.log(result);
                         var col4 = '';
-                        var testStartBtn = `<a class="btn btn-primary text-right" disabled>Start Test</a>`;
                         $.each(result.result, function(key, value) {
+                            var testStartBtn = `<a class="btn btn-primary text-right" disabled>Start Test</a>`;
                             if (value.is_start_test_button_active) {
                                 testStartBtn = `<a href="test.php?test_id=${value.id}&type=admin-assign-test" class="btn btn-primary text-right">Start Test</a>`;
                             }

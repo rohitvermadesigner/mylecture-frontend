@@ -123,6 +123,8 @@
                         data: paramsData,
                         success: function(result) {
                             let countStartAt = ((page_no - 1) * page_count) + 1;
+                            totalResults = 24761;
+                            $(".total-results-count").text(totalResults);
                             insertQuestionsIntoTable(result, countStartAt);
                             checkNextPreviousButton();
                         }

@@ -811,6 +811,7 @@
                     }
                     if (testId) {
                         post_data.test_id = testId;
+                        debugger;
                         $.ajax({
                             url: base_url + '/admin/test/step-1/update.php',
                             type: 'POST',

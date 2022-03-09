@@ -407,6 +407,7 @@
                             if (val.id == chapter) {
                                 $('#topic-filter').html('');
                                 $('#topic-filter').append(`<option value="">-- Select Topic --</option>`);
+                                debugger;
                                 val.topic.forEach(topic => {
                                     $('#topic-filter').append(`<option value="${topic.id}">${topic.name}</option>`)
                                 })
@@ -560,6 +561,7 @@
 
                 $('body').on('click', '.update-chapter', function() {
                     if (!$('[name=chapter_name]').val() == '') {
+                        debugger;
                         let update_data = {
                             "token": token,
                             "id": selectedChapter,

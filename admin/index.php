@@ -8,7 +8,7 @@
         <div>
             <div class="ibox-content">
                 <h3>Admin Login</h3>
-                <img src="assets/img/logo-login.png" alt="" class="logo-login" />
+                <img src="assets/img/gems-next-logo.jpg" alt="" style="width: 140px;" class="logo-login" />
                 <form class="m-t" action="post" id="loginForm">
                     <div class="form-group">
                         <input type="email" class="form-control" placeholder="Username" required name="username">
@@ -56,6 +56,7 @@
                     });
                 }
             } else {
+                debugger;
                 window.location.replace('dashboard.php');
             }
         });

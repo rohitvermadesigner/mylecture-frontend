@@ -308,7 +308,7 @@
                         "option_4": $('[name=option_4]').val(),
                         "option_5": $('[name=option_5]').val(),
                         "answer": $('[name=answer]:checked').val(),
-                        "subject_id": $('#subject-filter').val(),
+                        "subject_id":  $('#subject-filter').val(),
                         "chapter_id": $('#chapter-filter').val(),
                         "description": $('[name=description]').val(),
                         "difficulty_level": $('[name=difficulty_level]').val(),
@@ -572,6 +572,7 @@
 
                 $('body').on('click', '.update-chapter', function() {
                     if (!$('[name=chapter_name]').val() == '') {
+                        debugger;
                         let update_data = {
                             "token": token,
                             "id": selectedChapter,
