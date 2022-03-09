@@ -230,7 +230,7 @@
 
 
                 $('body').on('click', '.remove-test', function() {
-                    var status = confirm("Are you sure you want to delete ?");
+                    var status = confirm("Are you sure to delete it?");
                     if (status == true) {
                         var testId = $(this).parents('tr').find('.test-id').text();
                         let removeTest = {
@@ -279,7 +279,7 @@
                 });
 
                 $('body').on('click', '.remove-all-test', function() {
-                    var status = confirm("Are you sure you want to delete ?");
+                    var status = confirm("Are you sure to delete it?");
                     if (status == true) {
                         var test_ids = [];
                         $.each($("input[name=child-check]:checked"), function() {

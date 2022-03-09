@@ -2,10 +2,10 @@
     <div class="sidebar-collapse">
         <ul class="nav metismenu" id="side-menu">
             <li class="nav-header">
-                <div class="dropdown profile-element">
+                <div class="dropdown profile-element text-center">
                     <a href="#">
                         <span>
-                            <img alt="logo" src="assets/img/gems-next-logo.jpg" style="width: 190px;" class="logo" />
+                            <img alt="logo" src="assets/img/gems-next-logo.png" style="width: 125px;" class="logo" />
                         </span>
                     </a>
                 </div>
@@ -64,7 +64,7 @@
                 <a href="report.php"><i class="fa fa-pie-chart"></i> <span class="nav-label">Report</span></a>
             </li>
             <li class="user-management">
-                <a href="user-management.php"><i class="fa fa-male"></i> <span class="nav-label">User Management (Admin / Faculty)</span></a>
+                <a href="user-management.php"><i class="fa fa-male"></i> <span class="nav-label">User Management (Faculty)</span></a>
             </li>
 
         </ul>

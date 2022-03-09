@@ -54,7 +54,7 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>Address</label>
-                                                        <textarea name="" id="" cols="10" rows="2" name="address" class="form-control"></textarea>
+                                                        <textarea name="address" id="" cols="10" rows="2" name="address" class="form-control"></textarea>
                                                     </div>
                                                 </div>
 

@@ -47,7 +47,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <?php include 'include/footer.php' ?>
@@ -75,7 +74,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Name</label>
-                                    <input type="text" class="form-control" name="name">
+                                    <input type="text" class="form-control" name="name" onkeydown="return /[a-z]/i.test(event.key)" />
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -93,7 +92,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Select Subject</label>
-                                    <select class="form-control" id="subject">
+                                    <select class="form-control" id="subject" name="subject">
                                         <option value="">-- Select Subject --</option>
                                     </select>
                                 </div>
@@ -122,35 +121,44 @@
     <script>
         $(function() {
             const token = localStorage.getItem("admin_token");
-            $.ajax({
-                url: base_url + '/admin/faculty/list.php?token',
-                type: 'GET',
-                data: {
-                    token: token
-                },
-                dataType: 'JSON',
-                success: function(result) {
-                    var index = 1;
-                    var trHTML = '';
-                    $.each(result.result, function(key, value) {
-                        subject = value.subject ? value.subject : '-'
-                        trHTML +=
-                            '<tr><td>' + index++ +
-                            '</td><td>' + value.name + '<span class="user-id d-none">' + value.id +
-                            '</td><td>' + value.email_id +
-                            '</td><td>' + value.mobile_no +
-                            '</td><td>' + subject +
-                            '</td><td>' + value.created_at +
-                            '</td><td>' + value.last_login_at +
-                            '</td><td class="text-center"><span class="remove-faculty" title="Remove Faculty"><i class="fa fa-trash" aria-hidden="true"></i></span></td></tr>';
-                    });
-                    $('#facultyData').append(trHTML);
-                    $('.total-students').text(result.total_results);
-                }
+            $('[data-target=#addFacultyModal]').click(function(){
+                $('[name=name]').val('');
+                $('[name=email_id]').val('');
+                $('[name=mobile_no]').val('');
+                $('#subject').val('');
             });
+            const allFaculty = function() {
+                $.ajax({
+                    url: base_url + '/admin/faculty/list.php?token',
+                    type: 'GET',
+                    data: {
+                        token: token
+                    },
+                    dataType: 'JSON',
+                    success: function(result) {
+                        var index = 1;
+                        var trHTML = '';
+                        $.each(result.result, function(key, value) {
+                            subject = value.subject ? value.subject : '-'
+                            trHTML +=
+                                '<tr><td>' + index++ +
+                                '</td><td>' + value.name + '<span class="user-id d-none">' + value.id +
+                                '</td><td>' + value.email_id +
+                                '</td><td>' + value.mobile_no +
+                                '</td><td>' + subject +
+                                '</td><td>' + value.created_at +
+                                '</td><td>' + value.last_login_at +
+                                '</td><td class="text-center"><span class="remove-faculty" title="Remove Faculty"><i class="fa fa-trash" aria-hidden="true"></i></span></td></tr>';
+                        });
+                        $('#facultyData').append(trHTML);
+                        $('.total-students').text(result.total_results);
+                    }
+                });
+            }
+            allFaculty();
 
             $('body').on('click', '.remove-faculty', function() {
-                var status = confirm("Are you sure you want to delete ?");
+                var status = confirm("Are you sure to delete it?");
                 if (status == true) {
                     var userId = $(this).parents('tr').find('td span.user-id').text();
                     let removeUser = {
@@ -165,9 +173,8 @@
                         success: function(response) {
                             message = response.message;
                             toastr.success(message);
-                            setTimeout(function() {
-                                location.reload();
-                            }, 1000);
+                            $('#facultyData').html('');
+                            allFaculty();
                         },
                         error: function(error) {
                             toastr.error(message);
@@ -181,6 +188,7 @@
                     name: 'required',
                     email_id: 'required',
                     mobile_no: 'required',
+                    subject: 'required',
                 },
                 submitHandler: function(form) {
                     bankInfoSubmit();
@@ -207,9 +215,9 @@
                         console.log(result);
                         message = result.message;
                         toastr.success(message);
-                        setTimeout(function() {
-                            location.reload();
-                        }, 1000)
+                        $('#addFacultyModal').modal('hide');
+                        $('#facultyData').html('');
+                        allFaculty();
                     },
                     error: function(error) {
                         toastr.error(error.responseJSON.message);

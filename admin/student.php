@@ -156,7 +156,7 @@
                 loadQuestions(page_no, page_count);
 
                 $('body').on('click', '.remove-student', function() {
-                    var status = confirm("Are you sure you want to delete ?");
+                    var status = confirm("Are you sure to delete it?");
                     if (status == true) {
                         var userId = $(this).parents('tr').find('td span.student-id').text();
                         let removeUser = {

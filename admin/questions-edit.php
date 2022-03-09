@@ -249,6 +249,52 @@
     </div>
     <!-- Chapter Modal End-->
 
+     <!-- Topic Modal Start-->
+     <div id="addTopicModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add Topic</h4>
+                </div>
+                <div class="modal-body modal-body-scrollable">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Topic Name</label>
+                                <input type="text" class="form-control" name="topic_name" data-id="" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="table-responsive">
+                                <table class="table table-bordered mb-0" id="topicData">
+                                    <thead>
+                                        <tr>
+                                            <th width="4%">S.No.</th>
+                                            <th width="40%" class="">Topic Name</th>
+                                            <th width="4%" colspan="3">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary add-topic">Save</button>
+                    <button type="button" class="btn btn-primary update-topic d-custom-none">Update</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Topic Modal End-->
+
     <script>
         $(function() {
             const token = localStorage.getItem("admin_token");
@@ -377,15 +423,16 @@
                         allSubjects.forEach(val => {
                             chapterList = val.chapter;
                             if (val.id == subject) {
+                                chapterArray = val.chapter;
                                 $('#chapter-filter').html('');
                                 $('#chapter-filter').append(`<option value="">-- Select Chapter --</option>`);
                                 val.chapter.forEach(chapter => {
                                     $('#chapter-filter').append(`<option value="${chapter.id}">${chapter.name}</option>`)
                                 })
-                                $('#chapterData tbody').html('');
-                                val.chapter.forEach(chapter => {
-                                    trHTML +=
-                                        `<tr id="${chapter.id}">
+                        $('#chapterData tbody').html('');
+                            val.chapter.forEach(chapter => {
+                              trHTML +=
+                               `<tr id="${chapter.id}">
                                 <td>${index++}</td>
                                 <td>${chapter.name}</td>
                                 <td class="text-center">
@@ -413,17 +460,34 @@
                 });
 
                 $('#chapter-filter').change(function(val) {
+                    let selectedChapter = $('#chapter-filter').val();
+                    var index = 1;
+                    var trHTML = '';
                     chapter = $('#chapter-filter').val();
                     if (chapter) {
-                        allChapters.forEach(val => {
+                        chapterArray.forEach(val => {
                             if (val.id == chapter) {
                                 $('#topic-filter').html('');
                                 $('#topic-filter').append(`<option value="">-- Select Topic --</option>`);
                                 val.topic.forEach(topic => {
                                     $('#topic-filter').append(`<option value="${topic.id}">${topic.name}</option>`)
-                                })
+                                });
+                            $('#topicData tbody').html('');
+                            val.topic.forEach(topic => {
+                              trHTML +=
+                               `<tr id="${topic.id}">
+                                <td>${index++}</td>
+                                <td>${topic.name}</td>
+                                <td class="text-center">
+                                    <ul class="action-list">
+                                    <li class="update-topic-icon"><i class="fa fa-pencil"></i></li>
+                                    <li class="remove-topic"><i class="fa fa-trash-o"></i></li>
+                                    </ul>
+                                </td>
+                                </tr>`;
+                                });
+                                $('#topicData tbody').append(trHTML);
                             }
-
                         })
                         $('#topic-filter').append('<option value="addTopic" class="boldItalic">Add Topic</option>');
                     }
@@ -437,6 +501,16 @@
                     }
                 });
 
+                $('#topic-filter').change(function(val) {
+                    if ($(this).val() == 'addTopic') {
+                        $('#addTopicModal').modal('show');
+                        $(this).val('');
+                        selectedChapter = undefined;
+                        $('#addTopicModal [name=topic_name]').val("");
+                        $('#addTopicModal button.add-topic').show();
+                        $('#addTopicModal button.update-topic').hide();
+                    }
+                });
 
                 // ***********************
                 // subject section
@@ -636,6 +710,111 @@
                 });
                 // ***********************
                 // chapter section
+                // ***********************
+
+                // ***********************
+                // topic section
+                // ***********************
+                $('body').on('click', '.remove-topic', function() {
+                    var status = confirm("Are you sure to delete this Topic ?");
+                    if (status == true) {
+                        let chapterId = $(this).parents('tr').attr('id');
+                        let deleteFile = {
+                            'token': token,
+                            'id': chapterId,
+                            "is_chapter": 0,
+                            "is_topic": 1
+                        }
+                        $.ajax({
+                            url: base_url + '/admin/chapter/delete.php',
+                            type: 'POST',
+                            dataType: 'JSON',
+                            data: JSON.stringify(deleteFile),
+                            success: function(response) {
+                                toastr.success(response.message);
+                                location.reload();
+                            },
+                            error: function(error) {
+                                toastr.error(error.responseJSON.message);
+                            }
+                        });
+                    }
+                });
+
+                $('body').on('click', '.update-topic-icon', function() {
+                    selectedChapter = $(this).parents('tr').attr('id');
+                    const selectedChapterData = chapterList.filter(v => v.id == selectedChapter)[0];
+                    $('#addTopicModal [name=topic_name]').val($(this).parents('tr').find('td').eq(1).text()).focus();
+                    $('#addTopicModal button.add-topic').hide();
+                    $('#addTopicModal button.update-topic').show();
+                });
+
+                $('body').on('click', '.update-topic', function() {
+                    if (!$('[name=topic_name]').val() == '') {
+                        debugger;
+                        let update_data = {
+                            "token": token,
+                            "id": selectedChapter,
+                            "name": $('#addTopicModal [name="topic_name"]').val(),
+                            "subject_id": $('#subject-filter').find('option:selected').val(),
+                            "chapter_id": $('#chapter-filter').find('option:selected').val(),
+                            "is_chapter": 0,
+                            "is_topic": 1,
+                        }
+                        $.ajax({
+                            url: base_url + '/admin/chapter/update.php',
+                            type: 'POST',
+                            data: JSON.stringify(update_data),
+                            dataType: 'JSON',
+                            success: function(result) {
+                                toastr.success(result.message);
+                                $('#addTopicModal [name=chapter_name]').val("");
+                                $('#addTopicModal button.add-chapter').show();
+                                $('#addTopicModal button.update-chapter').hide();
+                                location.reload();
+                            },
+                            error: function(error) {
+                                toastr.error(error.responseJSON.message);
+                            }
+                        });
+                    } else {
+                        toastr.error('Please Enter Chapter Name');
+                        $('[name=chapter_name]').focus();
+                    }
+                });
+
+                $('body').on('click', '.add-topic', function() {
+                    if (!$('[name=topic_name]').val() == '') {
+                        let post_data = {
+                            "token": token,
+                            "name": $('[name=topic_name]').val(),
+                            "subject_id": $('#subject-filter').find('option:selected').val(),
+                            "chapter_id": $('#chapter-filter').find('option:selected').val(),
+                            "is_chapter": 0,
+                            "is_topic": 1
+                        }
+                        $.ajax({
+                            url: base_url + '/admin/chapter/add.php',
+                            type: 'POST',
+                            data: JSON.stringify(post_data),
+                            dataType: 'JSON',
+                            success: function(result) {
+                                toastr.success(result.message);
+                                $('#addTopicModal').modal('hide');
+                                getAllSubjects();
+                            },
+                            error: function(error) {
+                                toastr.error(error.responseJSON.message);
+                            }
+                        });
+
+                    } else {
+                        toastr.error('Please Enter Topic Name');
+                        $('#addTopicModal [name=topic_name]').focus();
+                    }
+                });
+                // ***********************
+                // topic section
                 // ***********************
 
 

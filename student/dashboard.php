@@ -94,19 +94,19 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>State</label>
-                                            <input type="text" class="form-control" name="state" />
+                                            <input type="text" class="form-control" name="state" onkeydown="return /[a-z]/i.test(event.key)" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>City</label>
-                                            <input type="text" class="form-control" name="city" />
+                                            <input type="text" class="form-control" name="city" onkeydown="return /[a-z]/i.test(event.key)"  />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Country</label>
-                                            <input type="text" class="form-control" name="country" />
+                                            <input type="text" class="form-control" name="country" onkeydown="return /[a-z]/i.test(event.key)" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">

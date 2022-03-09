@@ -127,29 +127,32 @@
         $(function() {
             const token = localStorage.getItem("admin_token");
             let groupID = '';
-            $.ajax({
-                url: base_url + '/admin/student/group-list.php?token',
-                type: 'GET',
-                data: {
-                    token: token
-                },
-                dataType: 'JSON',
-                success: function(result) {
-                    var index = 1;
-                    var trHTML = '';
-                    $.each(result.result, function(key, value) {
-                        trHTML +=
-                            `<tr>
+            const groupList = function() {
+                $.ajax({
+                    url: base_url + '/admin/student/group-list.php?token',
+                    type: 'GET',
+                    data: {
+                        token: token
+                    },
+                    dataType: 'JSON',
+                    success: function(result) {
+                        var index = 1;
+                        var trHTML = '';
+                        $.each(result.result, function(key, value) {
+                            trHTML +=
+                                `<tr>
                             <td>${index++}</td>
                             <td><span class="groupName">${value.name}</span><span class="group-id d-none">${value.id}</span></td>
                             <td><span class="groupDes">${value.description}</span></td>
                             <td>${value.no_of_students}</td>
                             <td><span class="remove-group" title="Remove Group"><i class="fa fa-trash"></i></span><span class="edit-group ml-3"><i class="fa fa-pencil"></i></span></td></tr>`
-                    });
-                    $('#groupData').append(trHTML);
-                    $('#groupData').find('tr').eq(1).find('td').eq(4).html('');
-                }
-            });
+                        });
+                        $('#groupData').append(trHTML);
+                        $('#groupData').find('tr').eq(1).find('td').eq(4).html('');
+                    }
+                });
+            }
+            groupList();
 
             $('#addGroupForm').validate({
                 rules: {
@@ -180,9 +183,9 @@
                         console.log(result);
                         message = result.message;
                         toastr.success(message);
-                        setTimeout(function() {
-                            location.reload();
-                        }, 1000)
+                        $('#addGroupModal').modal('hide');
+                        $('#groupData').html('');
+                        groupList();
                     },
                     error: function(error) {
                         toastr.error(error.responseJSON.message);
@@ -191,7 +194,7 @@
             }
 
             $('body').on('click', '.remove-group', function() {
-                var status = confirm("Are you sure you want to delete ?");
+                var status = confirm("Are you sure to delete it?");
                 if (status == true) {
                     var userId = $(this).parents('tr').find('td span.group-id').text();
                     let removeUser = {
@@ -206,9 +209,8 @@
                         success: function(response) {
                             message = response.message;
                             toastr.success(message);
-                            setTimeout(function() {
-                                location.reload();
-                            }, 1000);
+                            $('#groupData').html('');
+                            groupList();
                         },
                         error: function(error) {
                             toastr.error(error.responseJSON.message);
@@ -254,9 +256,9 @@
                         console.log(result);
                         message = result.message;
                         toastr.success(message);
-                        setTimeout(function() {
-                            location.reload();
-                        }, 1000)
+                        $('#editGroupModal').modal('hide');
+                        $('#groupData').html('');
+                        groupList();
                     },
                     error: function(error) {
                         toastr.error(error.responseJSON.message);

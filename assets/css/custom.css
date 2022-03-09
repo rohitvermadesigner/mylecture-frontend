@@ -122,7 +122,7 @@ header {
 }
 
 .top-second-stripe .row {
-    padding: 20px 0px;
+    padding: 8px 0px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1293,4 +1293,8 @@ label.error {
     border: 0px;
     color: #007bff;
     font-weight: bold;
+}
+
+.text-center {
+    text-align: center;
 }
