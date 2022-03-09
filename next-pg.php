@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MY LECTURE</title>
+    <title>GEMS Next</title>
 
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
@@ -138,16 +138,11 @@
                             <h3 class="footer-title">Follow us on</h3>
                             <div class="social-icons">
                                 <ul>
-                                    <li><a href="#" target="_blank"><i
-                                                class="fab fa-facebook-f"></i> </a></li>
-                                    <li><a href="#" target="_blank"><i
-                                                class="fab fa-youtube"></i></a></li>
-                                    <li><a href="#" target="_blank"><i
-                                                class="fab fa-instagram"></i></a></li>
-                                    <li><a href="#" target="_blank"><i
-                                                class="fab fa-linkedin-in"></i></a></li>
-                                    <li><a href="#" target="_blank"><i
-                                                class="fab fa-telegram-plane"></i> </a></li>
+                                    <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i> </a></li>
+                                    <li><a href="#" target="_blank"><i class="fab fa-youtube"></i></a></li>
+                                    <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+                                    <li><a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+                                    <li><a href="#" target="_blank"><i class="fab fa-telegram-plane"></i> </a></li>
                                 </ul>
                             </div>
                         </div>
@@ -172,7 +167,7 @@
                     <div class="col-md-12">
                         <div class="copyright-text">
                             <p>
-                                © Copyright 2021. All rights reserved by My Lecture.
+                                © Copyright 2021. All rights reserved by GEMS Next.
                             </p>
                         </div>
                     </div>
@@ -192,8 +187,7 @@
             <div class="modal-content">
                 <div class="modal-body p-0">
                     <div class="btn-close-parent">
-                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><i
-                                class="fa fa-times"></i></button>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
                     </div>
                     <div class="row m-0">
                         <div class="col-md-6 p-0">
@@ -272,8 +266,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class=""><input type="radio" name="termCondition" required> I agree to the
-                                                    My Lecture <a href="#" target="_blank">Privacy Policy</a> &amp; <a
-                                                        href="#" target="_blank">Terms &amp; Conditions</a>.</label>
+                                                    GEMS Next <a href="#" target="_blank">Privacy Policy</a> &amp; <a href="#" target="_blank">Terms &amp; Conditions</a>.</label>
                                             </div>
                                             <div class="form-group custom-form-group">
                                                 <button type="submit" class="btn btn-primary btn-block" id="btnRegister">Register</button>

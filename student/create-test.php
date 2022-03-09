@@ -34,7 +34,6 @@
                                                     <label>*Duration (In Min.) </label>
                                                     <select name="duration" class="form-control">
                                                         <option value="">Select Duration</option>
-                                                        <option value="00:02">00:02</option>
                                                         <option value="00:30">00:30</option>
                                                         <option value="00:60">00:60</option>
                                                         <option value="00:90">00:90</option>
@@ -49,14 +48,6 @@
                                                     <label>Questions should be random order </label><br>
                                                     <label><input type="radio" name="is_question_random_order" value="1" /> Yes</label> &nbsp;
                                                     <label><input type="radio" name="is_question_random_order" value="0" checked /> No</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Mandatory to attempt all question </label><br>
-                                                    <label><input type="radio" name="is_mandatory_all_question" value="1" /> Yes</label> &nbsp;
-                                                    <label><input type="radio" name="is_mandatory_all_question" value="0" checked /> No</label>
                                                 </div>
                                             </div>
 
@@ -143,7 +134,7 @@
                         "test_name": $('[name=test_name]').val(),
                         "duration": $('[name=duration]').val(),
                         "is_question_random_order": $('[name=is_question_random_order]').val(),
-                        "is_mandatory_all_question": $('[name=is_mandatory_all_question]').val(),
+                        "is_mandatory_all_question": 0,
                         "subject_id": $('[name=subject_id]').val(),
                         "chapter_id": $('[name=chapter_id]').val(),
                         "total_questions": $('[name=total_questions]').val(),
@@ -196,6 +187,7 @@
 
                 $("#subject-filter").change(function() {
                     let selectedSubject = $('[name=subject_id]').val();
+                    $('#chapter-filter').html(`<option value="">-- Select Chapter --</option>`)
                     subjectArray.forEach(val => {
                         if (val.id == selectedSubject) {
                             chapterArray = val.chapter;

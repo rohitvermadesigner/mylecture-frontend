@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MY LECTURE</title>
+    <title>GEMS Next</title>
 
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
@@ -132,7 +132,7 @@
                                 <div class="step active">
                                     <div class="que">
                                         <p><b>Question 1:</b>
-                                            <span>Spontaneous arrest of bleeding is called:                                            </span>
+                                            <span>Spontaneous arrest of bleeding is called: </span>
                                         </p>
                                     </div>
                                     <div class="ans-options">
@@ -148,19 +148,19 @@
                                 <div class="step">
                                     <div class="que">
                                         <p><b>Question 2:</b>
-                                            <span>Clotting factor present in both plasma and serum is :                                            </span>
+                                            <span>Clotting factor present in both plasma and serum is : </span>
                                         </p>
                                     </div>
                                     <div class="ans-options">
                                         <ul>
                                             <li><input type="radio"><span>a)</span> <span>Thrombin
-                                            </span></li>
+                                                </span></li>
                                             <li><input type="radio"><span>b)</span> <span>Factor VIII
-                                            </span></li>
+                                                </span></li>
                                             <li><input type="radio"><span>c)</span> <span>Factor V
-                                            </span></li>
+                                                </span></li>
                                             <li><input type="radio"><span>d)</span> <span>Factor Vll
-                                            </span></li>
+                                                </span></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -175,13 +175,13 @@
                                     <div class="ans-options">
                                         <ul>
                                             <li><input type="radio"><span>a)</span> <span>Polimerization of plasma prothrombin molecule
-                                            </span></li>
+                                                </span></li>
                                             <li><input type="radio"><span>b)</span> <span>Blood coagulation
-                                            </span></li>
+                                                </span></li>
                                             <li><input type="radio"><span>c)</span> <span>Vascular spasm
-                                            </span></li>
+                                                </span></li>
                                             <li><input type="radio"><span>d)</span> <span>Formation of a platelet plug
-                                            </span></li>
+                                                </span></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -196,13 +196,13 @@
                                     <div class="ans-options">
                                         <ul>
                                             <li><input type="radio"><span>a)</span> <span>Vasoconstriction
-                                            </span></li>
+                                                </span></li>
                                             <li><input type="radio"><span>b)</span> <span>formation of fibrin threads
-                                            </span></li>
+                                                </span></li>
                                             <li><input type="radio"><span>c)</span> <span>Platelet plug
-                                            </span></li>
+                                                </span></li>
                                             <li><input type="radio"><span>d)</span> <span>Inhibition of basal myogenic tone
-                                            </span></li>
+                                                </span></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -217,13 +217,13 @@
                                     <div class="ans-options">
                                         <ul>
                                             <li><input type="radio"><span>a)</span> <span>Blood coagulation
-                                            </span></li>
+                                                </span></li>
                                             <li><input type="radio"><span>b)</span> <span>formation of platelet haemostatic plug
-                                            </span></li>
+                                                </span></li>
                                             <li><input type="radio"><span>c)</span> <span>Vascular spasm
-                                            </span></li>
+                                                </span></li>
                                             <li><input type="radio"><span>d)</span> <span>Formation of thromboplastin
-                                            </span></li>
+                                                </span></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -238,13 +238,13 @@
                                     <div class="ans-options">
                                         <ul>
                                             <li><input type="radio"><span>a)</span> <span>Amplification
-                                            </span></li>
+                                                </span></li>
                                             <li><input type="radio"><span>b)</span> <span>Activated enzymes in turn activate other inactive enzymes
-                                            </span></li>
+                                                </span></li>
                                             <li><input type="radio"><span>c)</span> <span>Negative feedback regulation
-                                            </span></li>
+                                                </span></li>
                                             <li><input type="radio"><span>d)</span> <span>Counter regulation
-                                            </span></li>
+                                                </span></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -259,13 +259,13 @@
                                     <div class="ans-options">
                                         <ul>
                                             <li><input type="radio"><span>a)</span> <span>Factor lll
-                                            </span></li>
+                                                </span></li>
                                             <li><input type="radio"><span>b)</span> <span>Factor Xlll
-                                            </span></li>
+                                                </span></li>
                                             <li><input type="radio"><span>c)</span> <span>Calcium
-                                            </span></li>
+                                                </span></li>
                                             <li><input type="radio"><span>d)</span> <span>Factor ll
-                                            </span></li>
+                                                </span></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -280,13 +280,13 @@
                                     <div class="ans-options">
                                         <ul>
                                             <li><input type="radio"><span>a)</span> <span>Sodium
-                                            </span></li>
+                                                </span></li>
                                             <li><input type="radio"><span>b)</span> <span>Magnesium
-                                            </span></li>
+                                                </span></li>
                                             <li><input type="radio"><span>c)</span> <span>Calcium
-                                            </span></li>
+                                                </span></li>
                                             <li><input type="radio"><span>d)</span> <span>Cobalt
-                                            </span></li>
+                                                </span></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -301,13 +301,13 @@
                                     <div class="ans-options">
                                         <ul>
                                             <li><input type="radio"><span>a)</span> <span>Prothrombin
-                                            </span></li>
+                                                </span></li>
                                             <li><input type="radio"><span>b)</span> <span>Thrombin
-                                            </span></li>
+                                                </span></li>
                                             <li><input type="radio"><span>c)</span> <span>Thromboplastin
-                                            </span></li>
+                                                </span></li>
                                             <li><input type="radio"><span>d)</span> <span>Platelets
-                                            </span></li>
+                                                </span></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -322,13 +322,13 @@
                                     <div class="ans-options">
                                         <ul>
                                             <li><input type="radio"><span>a)</span> <span>Factors VII, X, V and Ca2+
-                                            </span></li>
+                                                </span></li>
                                             <li><input type="radio"><span>b)</span> <span>Factors X, V and Ca2+
-                                            </span></li>
+                                                </span></li>
                                             <li><input type="radio"><span>c)</span> <span>Factors X and V
-                                            </span></li>
+                                                </span></li>
                                             <li><input type="radio"><span>d)</span> <span>Ca2+ only
-                                            </span></li>
+                                                </span></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -885,7 +885,7 @@
                     <div class="col-md-12">
                         <div class="copyright-text">
                             <p>
-                                © Copyright 2021. All rights reserved by My Lecture.
+                                © Copyright 2021. All rights reserved by GEMS Next.
                             </p>
                         </div>
                     </div>
@@ -905,8 +905,7 @@
             <div class="modal-content">
                 <div class="modal-body p-0">
                     <div class="btn-close-parent">
-                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><i
-                                class="fa fa-times"></i></button>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times"></i></button>
                     </div>
                     <div class="row m-0">
                         <div class="col-md-6 p-0">
@@ -985,8 +984,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class=""><input type="radio" name="termCondition"> I agree to the
-                                                    My Lecture <a href="#" target="_blank">Privacy Policy</a> &amp; <a
-                                                        href="#" target="_blank">Terms &amp; Conditions</a>.</label>
+                                                    GEMS Next <a href="#" target="_blank">Privacy Policy</a> &amp; <a href="#" target="_blank">Terms &amp; Conditions</a>.</label>
                                             </div>
                                             <div class="form-group custom-form-group">
                                                 <button type="button" class="btn btn-primary btn-block" id="btnRegister">Register</button>

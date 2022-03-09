@@ -1,1 +1,1 @@
-const base_url = 'https://mylecture.co.in/api';
+const base_url = 'https://gemsnext.com/api';

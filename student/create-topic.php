@@ -211,6 +211,8 @@
 
                 $("#subject-filter").change(function() {
                     let selectedSubject = $('[name=subject_id]').val();
+                    $('#chapter-filter').html(`<option value="">-- Select Chapter --</option>`)
+                    $('#topic-filter').html(`<option value="">-- Select Topic --</option>`)
                     subjectArray.forEach(val => {
                         if (val.id == selectedSubject) {
                             chapterArray = val.chapter;

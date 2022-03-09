@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MY LECTURE</title>
+    <title>GEMS Next</title>
 
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
@@ -40,7 +40,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
-                        <a href="index.php" class="logo"><img src="assets/images/logo.png" alt=""></a>
+                        <a href="index.php" class="logo"><img src="assets/images/gems-next-logo.jpg" style="width: 90px;" alt=""></a>
                         <div class="nav-toggle-btn">
                             <i class="fa fa-bars"></i>
                         </div>
@@ -339,7 +339,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="title-primary text-center">Why <span>My Lecture</span> Mock Test?</h2>
+                    <h2 class="title-primary text-center">Why <span>GEMS Next</span> Mock Test?</h2>
                 </div>
                 <div class="col-md-6">
                     <div class="career-box career-box-1">
@@ -513,7 +513,7 @@
                 </div>
                 <div class="col-md-8">
                     <h2 class="title-primary">Learn <span>Anytime, Anywhere</span> </h2>
-                    <p>Get My Lecture Digital well-curated<br> study material in you pocket</p>
+                    <p>Get GEMS Next Digital well-curated<br> study material in you pocket</p>
                     <div class="pt-4 pb-5">
                         <img src="assets/images/get-it-on-google-play.png" alt="">
                     </div>
@@ -601,7 +601,7 @@
                     <div class="col-md-12">
                         <div class="copyright-text">
                             <p>
-                                © Copyright 2021. All rights reserved by My Lecture.
+                                © Copyright 2021. All rights reserved by GEMS Next.
                             </p>
                         </div>
                     </div>
@@ -696,7 +696,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class=""><input type="radio" name="termCondition" required> I agree to the
-                                                    My Lecture <a href="#" target="_blank">Privacy Policy</a> &amp; <a href="#" target="_blank">Terms &amp; Conditions</a>.</label>
+                                                    GEMS Next <a href="#" target="_blank">Privacy Policy</a> &amp; <a href="#" target="_blank">Terms &amp; Conditions</a>.</label>
                                             </div>
                                             <div class="form-group custom-form-group">
                                                 <button type="submit" class="btn btn-primary btn-block">Register</button>
@@ -836,6 +836,7 @@
             });
 
             var otpFormSubmit = function() {
+                debugger;
                 let tempToken = localStorage.getItem("tempToken", token);
                 let post_data = {
                     token: tempToken,

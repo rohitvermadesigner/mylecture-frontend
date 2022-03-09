@@ -1,6 +1,6 @@
 <div class="dashboard-leftbar">
     <a href="#" class="logo">
-        <img src="assets/images/logo.png" alt="">
+        <img src="assets/images/gems-next-logo.jpg" alt="">
     </a>
     <div class="left-nav">
         <ul>

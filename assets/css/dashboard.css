@@ -213,17 +213,14 @@ body {
     width: 60px;
 }
 
-.student-detail-box .table {
-    table-layout: fixed;
-}
-
 .student-detail-box .table tr td {
     padding: 5px 0px;
     border: 0px;
 }
 
 .student-detail-box .table tr td:nth-child(2) {
-    width: 100px;
+    width: 30px;
+    text-align: center;
 }
 
 .text-analysis-box {
