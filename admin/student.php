@@ -33,7 +33,8 @@
                                                 <thead>
                                                     <tr>
                                                         <th>S.No.</th>
-                                                        <th>Candidate Name</th>
+                                                        <th>Unique Code</th>
+                                                        <th>Student Name</th>
                                                         <th>E-mail</th>
                                                         <th>Mobile No.</th>
                                                         <th>Group</th>
@@ -104,7 +105,8 @@
                     $.each(result.result, function(key, value) {
                         tr += `<tr>
                           <td> ${countStartAt} ${value.is_online ? '<span class="isOnline"></span>' : ''} </td>
-                          <td> ${value.name} <span class="student-id d-none">  ${value.id} </td>
+                          <td> ${value.student_unique_code}</td>
+                          <td> ${value.name} <span class="student-id d-none">  ${value.id} </span> </td>
                           <td> ${value.email_id} </td>
                           <td> ${value.mobile_no} </td>
                           <td> ${value.group} </td>

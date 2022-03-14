@@ -94,6 +94,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th>S.No.</th>
+                                                        <th>Unique Code</th>
                                                         <th>Student Name</th>
                                                         <th>E-mail</th>
                                                         <th>Mobile No.</th>
@@ -182,6 +183,7 @@
                         trHTML +=
                             `<tr>
                             <td>${index++} ${value.is_online ? '<span class="isOnline"></span>' : ''}</td>
+                            <td> ${value.student_unique_code}</td>
                             <td>${value.name}</td>
                             <td>${value.email_id}</td>
                             <td>${value.mobile_no}</td>
@@ -213,7 +215,9 @@
                             '</td><td>' + value.created_at +
                             '</td><td>' + value.last_login_at +
                             '</td></tr>';
-                            if (index === 11){return false}
+                        if (index === 11) {
+                            return false
+                        }
                     });
                     $('#facultyData').append(trHTML);
                     $('.total-faculty').text(result.total_results);
