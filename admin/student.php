@@ -20,7 +20,22 @@
                             <div class="col-lg-12">
                                 <div class="ibox float-e-margins">
                                     <div class="ibox-title">
-                                        <h5><b>Total</b> : <span class="total-students"></span></h5>
+                                        <!-- <h5><b>Total</b> : <span class="total-students"></span></h5> -->
+                                        <ul class="filter-list">
+                                            <li>
+                                                <input type="search" class="form-control" id="student-filter" placeholder="Type Student Name..">
+                                            </li>
+                                            <li>
+                                                <select class="form-control" id="group-filter">
+                                                    <option value="">-- Select Group --</option>
+                                                </select>
+                                            </li>
+                                            <li>
+                                                <button class="btn btn-primary" id="search-btn">Search</button>
+                                                <button class="btn btn-danger display-none" id="reset-btn">Reset</button>
+                                            </li>
+                                        </ul>
+
                                         <ul class="top-right-btn-list">
                                             <li>
                                                 <a href="create-student.php" class="btn btn-primary"><i class="fa fa-plus"></i> Add </a>
@@ -75,11 +90,16 @@
                 let page_no = 1;
                 let page_count = 10;
                 let totalResults = 0;
+                let student_name = "";
+                let group_id = "";
                 let loadQuestions = function(page_no, page_count) {
+                    // group_id = $("#group-filter").val();
                     let paramsData = {
                         token: token,
                         page_count: page_count,
-                        page_no: page_no
+                        page_no: page_no,
+                        name: student_name,
+                        group: group_id
                     }
                     let url = `${base_url}/admin/student/student-list.php`;
                     $('#questionData tbody').html('');
@@ -155,7 +175,58 @@
                     }
                 }
 
-                loadQuestions(page_no, page_count);
+                $("#search-btn").click(function() {
+                    student_name = $('#student-filter').val();
+                    group_id = $('#group-filter').val();
+                    page_no = 1;
+                    loadQuestions(page_no, page_count);
+                    if (group_id || student_name) {
+                        $("#reset-btn").removeClass('display-none');
+                    }
+                });
+
+                $('#student-filter').keypress(function(e) {
+                    if (e.which == 13) {
+                        if (e.target.value) {
+                            $("#search-btn").click();
+                        }
+                    }
+                })
+
+                $("#reset-btn").click(function() {
+                    $('#group-filter').val('');
+                    $('#student-filter').val("");
+                    group_id = "";
+                    student_name = ""
+                    page_no = 1;
+                    loadQuestions(page_no, page_count);
+                    $("#reset-btn").addClass('display-none');
+                    window.history.pushState('', '', 'student.php');
+                })
+
+
+                var getAllGroups = function() {
+                    $.ajax({
+                        url: base_url + '/admin/student/group-list.php',
+                        type: 'GET',
+                        data: {
+                            token: token
+                        },
+                        dataType: 'JSON',
+                        success: function(result) {
+                            allGroup = result.result;
+                            const urlParams = new URLSearchParams(window.location.search);
+                            const group_id = urlParams.get('group_id');
+                            if (allGroup && allGroup.length > 0) {
+                                allGroup.forEach(val => {
+                                    $('#group-filter').append(`<option value="${val.id}" ${val.id == group_id ? 'selected' : ''}>${val.name}</option>`)
+                                })
+                            }
+                            $("#search-btn").click();
+                        }
+                    });
+                }
+                getAllGroups();
 
                 $('body').on('click', '.remove-student', function() {
                     var status = confirm("Are you sure to delete it?");

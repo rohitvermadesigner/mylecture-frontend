@@ -132,7 +132,7 @@
                     url: base_url + '/admin/student/group-list.php?token',
                     type: 'GET',
                     data: {
-                        token: token
+                        token
                     },
                     dataType: 'JSON',
                     success: function(result) {
@@ -144,7 +144,9 @@
                             <td>${index++}</td>
                             <td><span class="groupName">${value.name}</span><span class="group-id d-none">${value.id}</span></td>
                             <td><span class="groupDes">${value.description}</span></td>
-                            <td>${value.no_of_students}</td>
+                            <td>
+                            ${value.no_of_students != 0 ? '<a href="student.php?group_id='+value.id+'">'+value.no_of_students+'</a>' : value.no_of_students}
+                            </td>
                             <td><span class="remove-group" title="Remove Group"><i class="fa fa-trash"></i></span><span class="edit-group ml-3"><i class="fa fa-pencil"></i></span></td></tr>`
                         });
                         $('#groupData').append(trHTML);

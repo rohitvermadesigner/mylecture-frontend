@@ -349,7 +349,8 @@
     <script>
         $(function() {
             const token = localStorage.getItem("admin_token");
-            const studentId = document.location.search.substr(4);
+            const urlParams = new URLSearchParams(window.location.search);
+            const studentId = urlParams.get('id');
             if (token) {
                 $.ajax({
                     url: base_url + '/admin/student/group-list.php',
@@ -380,7 +381,6 @@
                             id: studentId
                         },
                         success: function(result) {
-                            console.log(result);
                             $('[name=name]').attr('id', result.id);
                             $('[name=name]').val(result.name);
                             $('[name=group]').val(result.group_id);
@@ -402,12 +402,6 @@
                         name: 'required',
                         gender: 'required',
                         group: 'required',
-                        date_of_birth: 'required',
-                        address: 'required',
-                        state: 'required',
-                        city: 'required',
-                        country: 'required',
-                        pincode: 'required',
                     },
                     submitHandler: function() {
                         updateStudnetSubmit();
