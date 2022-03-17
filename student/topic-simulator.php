@@ -48,7 +48,7 @@
                                             <tr>
                                                 <th class="text-center">S.No.</th>
                                                 <th width="100">Name</th>
-                                                <th>Duration<br />Total Questions</th>
+                                                <th>Test Duration<br />Total Questions</th>
                                                 <th>Subject<br />Chapter</th>
                                                 <th>Topic</th>
                                                 <th width="100">No of Attemps</th>
@@ -148,7 +148,7 @@
                         countStartAt++;
                     });
                     $(".table-loading-wrap").addClass('display-none');
-                    $('#testData tbody').append(tr);    
+                    $('#testData tbody').append(tr);
                 }
 
 

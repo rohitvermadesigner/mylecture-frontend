@@ -249,8 +249,8 @@
     </div>
     <!-- Chapter Modal End-->
 
-     <!-- Topic Modal Start-->
-     <div id="addTopicModal" class="modal fade" role="dialog">
+    <!-- Topic Modal Start-->
+    <div id="addTopicModal" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
 
             <!-- Modal content-->
@@ -354,7 +354,7 @@
                         "option_4": $('[name=option_4]').val(),
                         "option_5": $('[name=option_5]').val(),
                         "answer": $('[name=answer]:checked').val(),
-                        "subject_id":  $('#subject-filter').val(),
+                        "subject_id": $('#subject-filter').val(),
                         "chapter_id": $('#chapter-filter').val(),
                         "description": $('[name=description]').val(),
                         "difficulty_level": $('[name=difficulty_level]').val(),
@@ -429,10 +429,10 @@
                                 val.chapter.forEach(chapter => {
                                     $('#chapter-filter').append(`<option value="${chapter.id}">${chapter.name}</option>`)
                                 })
-                        $('#chapterData tbody').html('');
-                            val.chapter.forEach(chapter => {
-                              trHTML +=
-                               `<tr id="${chapter.id}">
+                                $('#chapterData tbody').html('');
+                                val.chapter.forEach(chapter => {
+                                    trHTML +=
+                                        `<tr id="${chapter.id}">
                                 <td>${index++}</td>
                                 <td>${chapter.name}</td>
                                 <td class="text-center">
@@ -472,10 +472,10 @@
                                 val.topic.forEach(topic => {
                                     $('#topic-filter').append(`<option value="${topic.id}">${topic.name}</option>`)
                                 });
-                            $('#topicData tbody').html('');
-                            val.topic.forEach(topic => {
-                              trHTML +=
-                               `<tr id="${topic.id}">
+                                $('#topicData tbody').html('');
+                                val.topic.forEach(topic => {
+                                    trHTML +=
+                                        `<tr id="${topic.id}">
                                 <td>${index++}</td>
                                 <td>${topic.name}</td>
                                 <td class="text-center">
@@ -646,7 +646,6 @@
 
                 $('body').on('click', '.update-chapter', function() {
                     if (!$('[name=chapter_name]').val() == '') {
-                        debugger;
                         let update_data = {
                             "token": token,
                             "id": selectedChapter,
@@ -751,7 +750,6 @@
 
                 $('body').on('click', '.update-topic', function() {
                     if (!$('[name=topic_name]').val() == '') {
-                        debugger;
                         let update_data = {
                             "token": token,
                             "id": selectedChapter,

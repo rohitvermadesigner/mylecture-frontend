@@ -20,7 +20,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Full Name</label>
-                                                        <input type="text" class="form-control" name="name" onkeydown="return /[a-z]/i.test(event.key)" />
+                                                        <input type="text" class="form-control" name="name" />
                                                     </div>
                                                 </div>
 
@@ -34,10 +34,10 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Mobile No.</label>
-                                                        <input type="text" class="form-control" name="mobile_no" maxlength="10"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  />
+                                                        <input type="text" class="form-control" name="mobile_no" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
                                                     </div>
                                                 </div>
-                                               
+
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Group</label>
@@ -366,17 +366,19 @@
                 let createStudnetSubmit;
                 $.ajax({
                     url: base_url + '/admin/student/group-list.php',
-                        type: 'GET',
-                        data: {token: token},
-                        dataType: 'JSON',
-                        success: function(result) {
-                            allGroup = result.result;
-                            if (allGroup && allGroup.length > 0) {
-                                allGroup.forEach(val => {
-                                    $('[name=group]').append(`<option value="${val.id}">${val.name}</option>`)
-                                })
-                            }
+                    type: 'GET',
+                    data: {
+                        token: token
+                    },
+                    dataType: 'JSON',
+                    success: function(result) {
+                        allGroup = result.result;
+                        if (allGroup && allGroup.length > 0) {
+                            allGroup.forEach(val => {
+                                $('[name=group]').append(`<option value="${val.id}">${val.name}</option>`)
+                            })
                         }
+                    }
                 });
                 $('#createstudent').validate({
                     rules: {
@@ -385,12 +387,6 @@
                         mobile_no: 'required',
                         gender: 'required',
                         group: 'required',
-                        date_of_birth: 'required',
-                        address: 'required',
-                        state: 'required',
-                        city: 'required',
-                        country: 'required',
-                        pincode: 'required',
                     },
                     submitHandler: function() {
                         createStudnetSubmit();
@@ -405,7 +401,7 @@
                         "email_id": $('[name=email_id]').val(),
                         "mobile_no": $('[name=mobile_no]').val(),
                         "group_id": $('[name=group] :selected').val(),
-                        "gender": $('[name=gender] :selected').val(),   
+                        "gender": $('[name=gender] :selected').val(),
                         "date_of_birth": $('[name=date_of_birth]').val(),
                         "address": $('[name=address]').val(),
                         "state": $('[name=state]').val(),

@@ -32,6 +32,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>S.No.</th>
+                                                    <th>Unique Code</th>
                                                     <th>Name</th>
                                                     <th>Email</th>
                                                     <th>Mobile Number</th>
@@ -74,7 +75,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Name</label>
-                                    <input type="text" class="form-control" name="name" onkeydown="return /[a-z]/i.test(event.key)" />
+                                    <input type="text" class="form-control" name="name" />
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -121,12 +122,13 @@
     <script>
         $(function() {
             const token = localStorage.getItem("admin_token");
-            $('[data-target=#addFacultyModal]').click(function(){
+            $('[data-target=#addFacultyModal]').click(function() {
                 $('[name=name]').val('');
                 $('[name=email_id]').val('');
                 $('[name=mobile_no]').val('');
                 $('#subject').val('');
             });
+
             const allFaculty = function() {
                 $.ajax({
                     url: base_url + '/admin/faculty/list.php?token',
@@ -142,7 +144,8 @@
                             subject = value.subject ? value.subject : '-'
                             trHTML +=
                                 '<tr><td>' + index++ +
-                                '</td><td>' + value.name + '<span class="user-id d-none">' + value.id +
+                                '</td><td>' + value.unique_code +
+                                '</td><td>' + value.name + '<span class="user-id d-none">' + value.id + '</span>' +
                                 '</td><td>' + value.email_id +
                                 '</td><td>' + value.mobile_no +
                                 '</td><td>' + subject +
@@ -150,7 +153,8 @@
                                 '</td><td>' + value.last_login_at +
                                 '</td><td class="text-center"><span class="remove-faculty" title="Remove Faculty"><i class="fa fa-trash" aria-hidden="true"></i></span></td></tr>';
                         });
-                        $('#facultyData').append(trHTML);
+                        $('#facultyData tbody').html('');
+                        $('#facultyData tbody').append(trHTML);
                         $('.total-students').text(result.total_results);
                     }
                 });
@@ -173,7 +177,6 @@
                         success: function(response) {
                             message = response.message;
                             toastr.success(message);
-                            $('#facultyData').html('');
                             allFaculty();
                         },
                         error: function(error) {
@@ -201,11 +204,8 @@
                     "name": $('[name=name]').val(),
                     "email_id": $('[name=email_id]').val(),
                     "mobile_no": $('[name=mobile_no]').val(),
+                    "subject_id": $('[name=subject]').val(),
                 }
-                FacultyAjex(post_data);
-            }
-
-            const FacultyAjex = function(post_data) {
                 $.ajax({
                     url: base_url + '/admin/faculty/add.php',
                     type: 'POST',

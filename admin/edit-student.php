@@ -23,6 +23,18 @@
                                                         <input type="text" class="form-control" name="name" />
                                                     </div>
                                                 </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Email Id</label>
+                                                        <input type="text" class="form-control" disabled name="email_id" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Mobile Number</label>
+                                                        <input type="text" class="form-control" disabled name="mobile_number" />
+                                                    </div>
+                                                </div>
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
@@ -383,6 +395,8 @@
                         success: function(result) {
                             $('[name=name]').attr('id', result.id);
                             $('[name=name]').val(result.name);
+                            $('[name=email_id]').val(result.email_id);
+                            $('[name=mobile_number]').val(result.mobile_no);
                             $('[name=group]').val(result.group_id);
                             $('[name=gender]').val(result.gender);
                             $('[name=date_of_birth]').val(result.date_of_birth);

@@ -249,9 +249,9 @@
         </div>
     </div>
     <!-- Chapter Modal End-->
-    
-     <!-- Topic Modal Start-->
-     <div id="addTopicModal" class="modal fade" role="dialog">
+
+    <!-- Topic Modal Start-->
+    <div id="addTopicModal" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
 
             <!-- Modal content-->
@@ -414,10 +414,10 @@
                                 val.chapter.forEach(chapter => {
                                     $('#chapter-filter').append(`<option value="${chapter.id}">${chapter.name}</option>`)
                                 })
-                        $('#chapterData tbody').html('');
-                            val.chapter.forEach(chapter => {
-                              trHTML +=
-                               `<tr id="${chapter.id}">
+                                $('#chapterData tbody').html('');
+                                val.chapter.forEach(chapter => {
+                                    trHTML +=
+                                        `<tr id="${chapter.id}">
                                 <td>${index++}</td>
                                 <td>${chapter.name}</td>
                                 <td class="text-center">
@@ -457,10 +457,10 @@
                                 val.topic.forEach(topic => {
                                     $('#topic-filter').append(`<option value="${topic.id}">${topic.name}</option>`)
                                 });
-                            $('#topicData tbody').html('');
-                            val.topic.forEach(topic => {
-                              trHTML +=
-                               `<tr id="${topic.id}">
+                                $('#topicData tbody').html('');
+                                val.topic.forEach(topic => {
+                                    trHTML +=
+                                        `<tr id="${topic.id}">
                                 <td>${index++}</td>
                                 <td>${topic.name}</td>
                                 <td class="text-center">
@@ -697,7 +697,7 @@
                 // chapter section
                 // ***********************
 
-                                // ***********************
+                // ***********************
                 // topic section
                 // ***********************
                 $('body').on('click', '.remove-topic', function() {
@@ -736,7 +736,6 @@
 
                 $('body').on('click', '.update-topic', function() {
                     if (!$('[name=topic_name]').val() == '') {
-                        debugger;
                         let update_data = {
                             "token": token,
                             "id": selectedChapter,

@@ -127,6 +127,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>S.No.</th>
+                                                    <th>Unique Code</th>
                                                     <th>Name</th>
                                                     <th>Email</th>
                                                     <th>Mobile Number</th>
@@ -197,7 +198,7 @@
             });
 
             $.ajax({
-                url: base_url + '/admin/faculty/list.php?token',
+                url: base_url + '/admin/faculty/list.php',
                 type: 'GET',
                 data: {
                     token: token
@@ -209,7 +210,8 @@
                     $.each(result.result, function(key, value) {
                         trHTML +=
                             '<tr><td>' + index++ +
-                            '</td><td>' + value.name + '<span class="user-id d-none">' + value.id +
+                            '</td><td>' + value.unique_code +
+                            '</td><td>' + value.name + '<span class="user-id d-none">' + value.id + '</span>' +
                             '</td><td>' + value.email_id +
                             '</td><td>' + value.mobile_no +
                             '</td><td>' + value.created_at +

@@ -129,7 +129,7 @@
             let groupID = '';
             const groupList = function() {
                 $.ajax({
-                    url: base_url + '/admin/student/group-list.php?token',
+                    url: base_url + '/admin/student/group-list.php',
                     type: 'GET',
                     data: {
                         token
@@ -147,10 +147,18 @@
                             <td>
                             ${value.no_of_students != 0 ? '<a href="student.php?group_id='+value.id+'">'+value.no_of_students+'</a>' : value.no_of_students}
                             </td>
-                            <td><span class="remove-group" title="Remove Group"><i class="fa fa-trash"></i></span><span class="edit-group ml-3"><i class="fa fa-pencil"></i></span></td></tr>`
+                            <td>
+                                ${value.id !== 1 ? 
+                                `<span class="remove-group" title="Remove Group">
+                                    <i class="fa fa-trash"></i>
+                                </span>
+                                <span class="edit-group ml-3">
+                                    <i class="fa fa-pencil"></i>
+                                </span>` : ``}
+                            </td></tr>`
                         });
-                        $('#groupData').append(trHTML);
-                        $('#groupData').find('tr').eq(1).find('td').eq(4).html('');
+                        $('#groupData tbody').html('');
+                        $('#groupData tbody').append(trHTML);
                     }
                 });
             }
@@ -186,8 +194,9 @@
                         message = result.message;
                         toastr.success(message);
                         $('#addGroupModal').modal('hide');
-                        $('#groupData').html('');
-                        groupList();
+                        $('#addGroupModal [name=name]').val("");
+                        $('#addGroupModal [name=description]').val(""),
+                            groupList();
                     },
                     error: function(error) {
                         toastr.error(error.responseJSON.message);
@@ -211,7 +220,6 @@
                         success: function(response) {
                             message = response.message;
                             toastr.success(message);
-                            $('#groupData').html('');
                             groupList();
                         },
                         error: function(error) {
@@ -259,7 +267,6 @@
                         message = result.message;
                         toastr.success(message);
                         $('#editGroupModal').modal('hide');
-                        $('#groupData').html('');
                         groupList();
                     },
                     error: function(error) {
