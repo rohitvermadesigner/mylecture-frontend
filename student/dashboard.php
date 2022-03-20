@@ -100,7 +100,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>City</label>
-                                            <input type="text" class="form-control" name="city" onkeydown="return /[a-z]/i.test(event.key)"  />
+                                            <input type="text" class="form-control" name="city" onkeydown="return /[a-z]/i.test(event.key)" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -129,37 +129,39 @@
                 </div>
                 <div class="col-md-4 mt-5">
                     <div class="white-box">
-                        <div class="student-detail-box">
-                            <h4>Change Password</h4>
-                            <hr>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Current Password</label>
-                                        <input type="text" class="form-control" />
+                        <form id="changePassword">
+                            <div class="student-detail-box">
+                                <h4>Change Password</h4>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Current Password</label>
+                                            <input type="text" class="form-control" name="old_password" />
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>New Password</label>
-                                        <input type="text" class="form-control" />
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>New Password</label>
+                                            <input type="text" class="form-control" name="new_password" id="new_password" />
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Confirm Password</label>
-                                        <input type="text" class="form-control" />
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Confirm Password</label>
+                                            <input type="text" class="form-control" name="confirm_password" />
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <button class="btn btn-primary float-right">Update</button>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary float-right">Update</button>
+                                        </div>
                                     </div>
-                                </div>
 
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
 
@@ -322,6 +324,42 @@
                     success: function(result) {
                         console.log(result);
                         toastr.success(result.message);
+                    },
+                    error: function(error) {
+                        toastr.error(error.responseJSON.message);
+                    }
+                });
+            }
+
+            $('#changePassword').validate({
+                rules: {
+                    old_password: "required",
+                    new_password: "required",
+                    confirm_password: {
+                        equalTo : "#new_password"
+                    },
+                },
+                submitHandler: function(form) {
+                    changePasswordSubmit();
+                }
+            });
+
+            const changePasswordSubmit = function() {
+                let post_data = {
+                    token: token,
+                    old_password: $('[name=old_password]').val(),
+                    new_password: $('[name=new_password]').val(),
+                }
+                $.ajax({
+                    url: base_url + '/student/change-password.php',
+                    type: 'POST',
+                    data: JSON.stringify(post_data),
+                    dataType: 'JSON',
+                    success: function(result) {
+                        toastr.success(result.message);
+                        $('[name=old_password]').val('');
+                        $('[name=new_password]').val('');
+                        $('[name=confirm_password]').val('');
                     },
                     error: function(error) {
                         toastr.error(error.responseJSON.message);

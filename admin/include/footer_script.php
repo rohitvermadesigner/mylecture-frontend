@@ -34,6 +34,44 @@
                         $("#admin-faculty-name").text("Admin")
                     }
                 }
+
+                $('#changePassword').validate({
+            rules: {
+                old_password: "required",
+                new_password: "required",
+                confirm_password: {
+                    equalTo: "#new_password"
+                },
+            },
+            submitHandler: function(form) {
+                changePasswordSubmit();
+            }
+        });
+
+        const changePasswordSubmit = function() {
+            let post_data = {
+                token: token,
+                old_password: $('[name=old_password]').val(),
+                new_password: $('[name=new_password]').val(),
+            }
+            $.ajax({
+                url: base_url + '/admin/change-password.php',
+                type: 'POST',
+                data: JSON.stringify(post_data),
+                dataType: 'JSON',
+                success: function(result) {
+                    toastr.success(result.message);
+                    $('[name=old_password]').val('');
+                    $('[name=new_password]').val('');
+                    $('[name=confirm_password]').val('');
+                    $('#changePasswordModal').modal('hide');
+                },
+                error: function(error) {
+                    toastr.error(error.responseJSON.message);
+                }
+            });
+        }
+
             }
         });
     </script>
