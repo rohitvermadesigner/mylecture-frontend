@@ -4619,12 +4619,16 @@ img.circle-border {
 
 .breadcrumb {
     background-color: #ffffff;
-    padding: 0;
+    padding: 4px;
     margin-bottom: 0;
+    margin-left: -15px;
+    padding-left: 15px;
 }
 
 .breadcrumb>li a {
     color: inherit;
+    font-weight: 600;
+    color: #007bff;
 }
 
 .breadcrumb>.active {

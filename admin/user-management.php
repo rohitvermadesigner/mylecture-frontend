@@ -216,7 +216,7 @@
                         message = result.message;
                         toastr.success(message);
                         $('#addFacultyModal').modal('hide');
-                        $('#facultyData').html('');
+                        $('#facultyData tbody').html('');
                         allFaculty();
                     },
                     error: function(error) {

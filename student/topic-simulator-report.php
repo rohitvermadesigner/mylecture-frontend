@@ -15,6 +15,12 @@
                 </div>
             </div>
 
+            <ul class="breadcrumb">
+                <li><a href="dashboard.php">Dashboard</a></li>
+                <li><a href="report.php">Report</a></li>
+                <li>Topic Simulator Report</li>
+            </ul>
+
             <div class="row m-0 main-row">
                 <div class="col-md-12">
                     <div class="white-box">

@@ -9,6 +9,10 @@
         <div id="page-wrapper" class="gray-bg dashbard-1">
             <?php include 'include/header.php' ?>
             <h1 class="title-primary">Create Test</h1>
+            <ul class="breadcrumb">
+                <li><a href="dashboard.php">Dashboard</a></li>
+                <li>Create Test</li>
+            </ul>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="wrapper wrapper-content">
@@ -233,7 +237,7 @@
                                                                     <label><input type="radio" name="is_publish" value="1" /> Yes</label> &nbsp;
                                                                     <label><input type="radio" name="is_publish" value="0" checked /> No</label>
                                                                 </div>
-                                                                <div class="row">
+                                                                <div class="row publish-group display-none">
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label>Start Date</label><br>
@@ -949,10 +953,14 @@
 
                 //  test step5 begin here
                 $('#step5Form').click(function() {
+                    var group_id_checked = [];
+                    $('input[name=group_id]:checked').each(function(){
+                        group_id_checked.push(parseInt($(this).val()));
+                    });
                     let post_data5 = {
                         "token": token,
                         "test_id": testId,
-                        "group_id": $('[name=group_id]:checked').val(),
+                        "group_id": group_id_checked,
                     }
                     if ($('[name=group_id]:checked').val()) {
                         $.ajax({
@@ -988,7 +996,7 @@
                         var trHTML = '';
                         $.each(result.result, function(key, value) {
                             trHTML +=
-                                '<tr><td><input type="radio" name="group_id" value="' + value.id + '" />' +
+                                '<tr><td><input type="checkbox" name="group_id" value="' + value.id + '" />' +
                                 '</td><td>' + index++ +
                                 '</td><td>' + value.name +
                                 '</td><td>' + value.no_of_students + '</td></tr>';
@@ -1221,6 +1229,15 @@
                 // ********************************
                 // Question Modal
                 // ********************************
+
+                $('[name=is_publish]').click(function(){
+                    if($(this).val() == '1'){
+                    $('.publish-group').show();
+                }
+                else{
+                    $('.publish-group').hide();
+                }
+                });
 
             } else {
                 window.location.replace('index.php');

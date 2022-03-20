@@ -800,6 +800,7 @@
                                 toastr.success(result.message);
                                 $('#addTopicModal').modal('hide');
                                 getAllSubjects();
+                                location.reload();
                             },
                             error: function(error) {
                                 toastr.error(error.responseJSON.message);
