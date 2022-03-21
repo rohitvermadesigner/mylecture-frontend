@@ -10,6 +10,7 @@
             <h1 class="title-primary">Create Question </h1>
             <ul class="breadcrumb">
                 <li><a href="dashboard.php">Dashboard</a></li>
+                <li><a href="questions.php">Question Bank</a></li>
                 <li>Create Question</li>
             </ul>
             <div class="row">

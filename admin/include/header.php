@@ -44,15 +44,15 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Current Password</label>
-                        <input type="text" class="form-control" name="old_password" />
+                        <input type="password" class="form-control" name="old_password" />
                     </div>
                     <div class="form-group">
                         <label>New Password</label>
-                        <input type="text" class="form-control" name="new_password" id="new_password" />
+                        <input type="password" class="form-control" name="new_password" id="new_password" />
                     </div>
                     <div class="form-group mb-0">
                         <label>Confirm Password</label>
-                        <input type="text" class="form-control" name="confirm_password" />
+                        <input type="password" class="form-control" name="confirm_password" />
                     </div>
                 </div>
                 <div class="modal-footer">

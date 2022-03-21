@@ -328,15 +328,15 @@
                             $('[name=option_3]').val(result.option_3);
                             $('[name=option_4]').val(result.option_4);
                             $('[name=option_5]').val(result.option_5);
+                            $('#subject-filter').val(result.subject_id);
+                            $('#chapter-filter').val(result.chapter_id);
+                            $('[name=description]').val(result.description);
+                            $('[name=difficulty_level]').val(result.difficulty_level);
                             $('[name=answer]').each(function() {
                                 if ($(this).val() == result.answer) {
                                     $(this).prop('checked', true);
                                 }
                             });
-                            $('#subject-filter').val(result.subject_id);
-                            $('#chapter-filter').val(result.chapter_id);
-                            $('[name=description]').val(result.description);
-                            $('[name=difficulty_level]').val(result.difficulty_level);
                             // $('[name=tags]').val(result.tags);
                         }
                     });

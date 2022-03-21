@@ -13,6 +13,11 @@
             <?php include 'include/header.php' ?>
             <h1 class="title-primary">Subject Management</h1>
 
+            <ul class="breadcrumb">
+                <li><a href="dashboard.php">Dashboard</a></li>
+                <li>Subject Management</li>
+            </ul>
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="wrapper wrapper-content">

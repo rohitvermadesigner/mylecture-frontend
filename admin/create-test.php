@@ -11,6 +11,7 @@
             <h1 class="title-primary">Create Test</h1>
             <ul class="breadcrumb">
                 <li><a href="dashboard.php">Dashboard</a></li>
+                <li><a href="test-management-module.php">Test Management</a></li>
                 <li>Create Test</li>
             </ul>
             <div class="row">
@@ -278,7 +279,7 @@
                                                         <table class="table" id="groupData">
                                                             <thead>
                                                                 <tr>
-                                                                    <th width="30px">&nbsp;</th>
+                                                                    <th width="30px"> <input type="checkbox" id="checkAll" /></th>
                                                                     <th width="50px">S.No.</th>
                                                                     <th>Group Name</th>
                                                                     <th>Candidates</th>
@@ -954,7 +955,7 @@
                 //  test step5 begin here
                 $('#step5Form').click(function() {
                     var group_id_checked = [];
-                    $('input[name=group_id]:checked').each(function(){
+                    $('input[name=group_id]:checked').each(function() {
                         group_id_checked.push(parseInt($(this).val()));
                     });
                     let post_data5 = {
@@ -963,21 +964,22 @@
                         "group_id": group_id_checked,
                     }
                     if ($('[name=group_id]:checked').val()) {
-                        $.ajax({
-                            url: base_url + '/admin/test/step-5/add.php',
-                            type: 'POST',
-                            data: JSON.stringify(post_data5),
-                            dataType: 'JSON',
-                            success: function(result) {
-                                toastr.success(result.message);
-                                setTimeout(function() {
-                                    window.location.replace('test-management-module.php');
-                                }, 1000);
-                            },
-                            error: function(error) {
-                                // toastr.error(error.responseJSON.message);
-                            }
-                        });
+                        console.log(post_data5);
+                        // $.ajax({
+                        //     url: base_url + '/admin/test/step-5/add.php',
+                        //     type: 'POST',
+                        //     data: JSON.stringify(post_data5),
+                        //     dataType: 'JSON',
+                        //     success: function(result) {
+                        //         toastr.success(result.message);
+                        //         setTimeout(function() {
+                        //             window.location.replace('test-management-module.php');
+                        //         }, 1000);
+                        //     },
+                        //     error: function(error) {
+                        //         // toastr.error(error.responseJSON.message);
+                        //     }
+                        // });
                     } else {
                         toastr.error('Please select Group');
                     }
@@ -1003,6 +1005,10 @@
                         });
                         $('#groupData').append(trHTML);
                     }
+                });
+
+                $('#checkAll').click(function() {
+                    $('#groupData').find('input:checkbox').prop('checked', this.checked);
                 });
 
                 // ********************************
@@ -1230,13 +1236,12 @@
                 // Question Modal
                 // ********************************
 
-                $('[name=is_publish]').click(function(){
-                    if($(this).val() == '1'){
-                    $('.publish-group').show();
-                }
-                else{
-                    $('.publish-group').hide();
-                }
+                $('[name=is_publish]').click(function() {
+                    if ($(this).val() == '1') {
+                        $('.publish-group').show();
+                    } else {
+                        $('.publish-group').hide();
+                    }
                 });
 
             } else {

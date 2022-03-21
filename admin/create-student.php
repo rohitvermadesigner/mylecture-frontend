@@ -11,6 +11,7 @@
 
             <ul class="breadcrumb">
                 <li><a href="dashboard.php">Dashboard</a></li>
+                <li><a href="student.php">Students Management</a></li>
                 <li>Create Student</li>
             </ul>
 

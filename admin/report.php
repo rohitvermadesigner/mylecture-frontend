@@ -12,6 +12,12 @@
 
             <?php include 'include/header.php' ?>
             <h1 class="title-primary">Report</h1>
+
+            <ul class="breadcrumb">
+                <li><a href="dashboard.php">Dashboard</a></li>
+                <li>Report</li>
+            </ul>
+
             <div class="row">
                 <div class="col-lg-12">
                     <div class="wrapper wrapper-content">
