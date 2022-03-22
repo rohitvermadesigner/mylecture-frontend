@@ -9,11 +9,6 @@
         <div id="page-wrapper" class="gray-bg dashbard-1">
             <?php include 'include/header.php' ?>
             <h1 class="title-primary">Create Test</h1>
-            <ul class="breadcrumb">
-                <li><a href="dashboard.php">Dashboard</a></li>
-                <li><a href="test-management-module.php">Test Management</a></li>
-                <li>Create Test</li>
-            </ul>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="wrapper wrapper-content">
@@ -129,7 +124,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label>*Difficulty Level </label>
-                                                                    <select name="diffifulty_level" id="AddDifficultyLeval" class="form-control">
+                                                                    <select name="difficulty_level" id="AddDifficultyLeval" class="form-control">
                                                                         <option value="">Select Level</option>
                                                                         <option value="level1">Level 1</option>
                                                                         <option value="level2">Level 2</option>
@@ -238,7 +233,7 @@
                                                                     <label><input type="radio" name="is_publish" value="1" /> Yes</label> &nbsp;
                                                                     <label><input type="radio" name="is_publish" value="0" checked /> No</label>
                                                                 </div>
-                                                                <div class="row publish-group display-none">
+                                                                <div class="row">
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label>Start Date</label><br>
@@ -279,7 +274,7 @@
                                                         <table class="table" id="groupData">
                                                             <thead>
                                                                 <tr>
-                                                                    <th width="30px"> <input type="checkbox" id="checkAll" /></th>
+                                                                    <th width="30px">&nbsp;</th>
                                                                     <th width="50px">S.No.</th>
                                                                     <th>Group Name</th>
                                                                     <th>Candidates</th>
@@ -482,7 +477,7 @@
             const token = localStorage.getItem("admin_token");
             if (token) {
 
-                var testId;
+                var testId = window.location.search.substr('9');
                 var categoryList;
                 var selectedCategory;
                 var instructionList;
@@ -490,6 +485,29 @@
                 var selectedQuestions = [];
                 var questionList = [];
                 var selectedQuestionsData = [];
+
+                $.ajax({
+                    url: base_url + '/admin/test/get-info.php',
+                    type: 'GET',
+                    data: {
+                        token: token,
+                        test_id: testId
+                    },
+                    dataType: 'JSON',
+                    success: function(result) {
+                        console.log(result);
+                        $('[name=test_name]').val(result.name);
+                        // $('[name=test_name]').val(result.test_name),
+                        $('[name=category_id]').val(result.category.id),
+                        // $('[name=instruction_id]').val(result.instruction_id),
+                        $('[name=duration]').val(result.duration),
+                        $('[name=difficulty_level]').val(result.difficulty_level),
+                        $('[name=total_questions]').val(result.total_questions)
+                    },
+                    error: function(error) {
+                        toastr.error(error.responseJSON.message);
+                    }
+                });
 
                 // ***********************
                 // category section
@@ -796,7 +814,7 @@
                         category_id: "required",
                         instruction_id: "required",
                         duration: "required",
-                        diffifulty_level: "required",
+                        difficulty_level: "required",
                         total_questions: "required"
                     },
                     submitHandler: function(form) {
@@ -808,43 +826,28 @@
                     let post_data = {
                         token: token,
                         test_name: $('#step1Form [name=test_name]').val(),
+                        test_id : testId,
                         category_id: $('#step1Form [name=category_id]').val(),
                         instruction_id: $('#step1Form [name=instruction_id]').val(),
                         duration: $('#step1Form [name=duration]').val(),
-                        diffifulty_level: $('#step1Form [name=diffifulty_level]').val(),
+                        diffifulty_level: $('#step1Form [name=difficulty_level]').val(),
                         total_questions: $('#step1Form [name=total_questions]').val()
                     }
-                    if (testId) {
-                        post_data.test_id = testId;
-                        $.ajax({
-                            url: base_url + '/admin/test/step-1/update.php',
-                            type: 'POST',
-                            data: JSON.stringify(post_data),
-                            dataType: 'JSON',
-                            success: function(result) {
-                                toastr.success(result.message);
-                                $('.nav-tabs a[href="#step2"]').tab('show');
-                            },
-                            error: function(error) {
-                                toastr.error(error.responseJSON.message);
-                            }
-                        });
-                    } else {
-                        $.ajax({
-                            url: base_url + '/admin/test/step-1/add.php',
-                            type: 'POST',
-                            data: JSON.stringify(post_data),
-                            dataType: 'JSON',
-                            success: function(result) {
-                                toastr.success(result.message);
-                                testId = result.id;
-                                $('.nav-tabs a[href="#step2"]').tab('show');
-                            },
-                            error: function(error) {
-                                toastr.error(error.responseJSON.message);
-                            }
-                        });
-                    }
+
+                    $.ajax({
+                        url: base_url + '/admin/test/step-1/update.php',
+                        type: 'POST',
+                        data: JSON.stringify(post_data),
+                        dataType: 'JSON',
+                        success: function(result) {
+                            toastr.success(result.message);
+                            $('.nav-tabs a[href="#step2"]').tab('show');
+                        },
+                        error: function(error) {
+                            toastr.error(error.responseJSON.message);
+                        }
+                    });
+
                 }
 
                 //  test step2 begin here
@@ -954,17 +957,12 @@
 
                 //  test step5 begin here
                 $('#step5Form').click(function() {
-                    var group_id_checked = [];
-                    $('input[name=group_id]:checked').each(function() {
-                        group_id_checked.push(parseInt($(this).val()));
-                    });
                     let post_data5 = {
                         "token": token,
                         "test_id": testId,
-                        "group_id": group_id_checked,
+                        "group_id": $('[name=group_id]:checked').val(),
                     }
                     if ($('[name=group_id]:checked').val()) {
-                        // console.log(post_data5);
                         $.ajax({
                             url: base_url + '/admin/test/step-5/add.php',
                             type: 'POST',
@@ -998,17 +996,13 @@
                         var trHTML = '';
                         $.each(result.result, function(key, value) {
                             trHTML +=
-                                '<tr><td><input type="checkbox" name="group_id" value="' + value.id + '" />' +
+                                '<tr><td><input type="radio" name="group_id" value="' + value.id + '" />' +
                                 '</td><td>' + index++ +
                                 '</td><td>' + value.name +
                                 '</td><td>' + value.no_of_students + '</td></tr>';
                         });
                         $('#groupData').append(trHTML);
                     }
-                });
-
-                $('#checkAll').click(function() {
-                    $('#groupData').find('input:checkbox').prop('checked', this.checked);
                 });
 
                 // ********************************
@@ -1235,14 +1229,6 @@
                 // ********************************
                 // Question Modal
                 // ********************************
-
-                $('[name=is_publish]').click(function() {
-                    if ($(this).val() == '1') {
-                        $('.publish-group').show();
-                    } else {
-                        $('.publish-group').hide();
-                    }
-                });
 
             } else {
                 window.location.replace('index.php');

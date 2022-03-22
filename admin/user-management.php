@@ -51,6 +51,10 @@
                                             <tbody>
                                             </tbody>
                                         </table>
+                                        <div class="text-center">
+                                            <button class="btn btn-primary prevPage" disabled>Prev</button>
+                                            <button class="btn btn-primary nextPage" disabled>Next</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -135,36 +139,90 @@
                 $('#subject').val('');
             });
 
-            const allFaculty = function() {
+            let page_no = 1;
+            let page_count = 10;
+            let name = '';
+            let unique_code = '';
+            let email_id = '';
+            let mobile_number = '';
+            let subject_id = '';
+
+            const allFaculty = function(page_no, page_count) {
                 $.ajax({
                     url: base_url + '/admin/faculty/list.php?token',
                     type: 'GET',
                     data: {
-                        token: token
+                        token: token,
+                        page_count: page_count,
+                        page_no: page_no,
+                        name: name,
+                        unique_code: unique_code,
+                        email_id: email_id,
+                        mobile_number: mobile_number,
+                        subject_id: subject_id
                     },
                     dataType: 'JSON',
                     success: function(result) {
-                        var index = 1;
-                        var trHTML = '';
-                        $.each(result.result, function(key, value) {
-                            subject = value.subject ? value.subject : '-'
-                            trHTML +=
-                                '<tr><td>' + index++ +
-                                '</td><td>' + value.unique_code +
-                                '</td><td>' + value.name + '<span class="user-id d-none">' + value.id + '</span>' +
-                                '</td><td>' + value.email_id +
-                                '</td><td>' + value.mobile_no +
-                                '</td><td>' + subject +
-                                '</td><td>' + value.created_at +
-                                '</td><td>' + value.last_login_at +
-                                '</td><td class="text-center"><span class="remove-faculty" title="Remove Faculty"><i class="fa fa-trash" aria-hidden="true"></i></span></td></tr>';
-                        });
-                        $('#facultyData tbody').html('');
-                        $('#facultyData tbody').append(trHTML);
-                        $('.total-students').text(result.total_results);
+                        let countStartAt = ((page_no - 1) * page_count) + 1;
+                        totalResults = result.total_results;
+                        userManagementIntoTable(result, countStartAt);
+                        checkNextPreviousButton();
                     }
                 });
             }
+
+            let userManagementIntoTable = function(result, countStartAt) {
+                // var index = 1;
+                var trHTML = '';
+                $.each(result.result, function(key, value) {
+                    subject = value.subject ? value.subject : '-'
+                    trHTML +=
+                        '<tr><td>' + countStartAt +
+                        '</td><td>' + value.unique_code +
+                        '</td><td>' + value.name + '<span class="user-id d-none">' + value.id + '</span>' +
+                        '</td><td>' + value.email_id +
+                        '</td><td>' + value.mobile_no +
+                        '</td><td>' + subject +
+                        '</td><td>' + value.created_at +
+                        '</td><td>' + value.last_login_at +
+                        '</td><td class="text-center"><span class="remove-faculty" title="Remove Faculty"><i class="fa fa-trash" aria-hidden="true"></i></span></td></tr>';
+                    countStartAt++;
+                });
+                $('#facultyData tbody').html('');
+                $('#facultyData tbody').append(trHTML);
+                $('.total-students').text(result.total_results);
+            }
+
+            $('.nextPage').click(function() {
+                    page_no = page_no + 1;
+                    allFaculty(page_no, page_count);
+                    checkNextPreviousButton();
+                    $('.prevPage').attr('disabled', true);
+                    $('.nextPage').attr('disabled', true);
+                });
+
+                $('.prevPage').click(function() {
+                    page_no = page_no - 1;
+                    allFaculty(page_no, page_count);
+                    checkNextPreviousButton();
+                    $('.prevPage').attr('disabled', true);
+                    $('.nextPage').attr('disabled', true);
+                });
+
+                var checkNextPreviousButton = function() {
+                    if (page_no == 1) {
+                        $('.prevPage').attr('disabled', true);
+                    } else {
+                        $('.prevPage').removeAttr('disabled');
+                    }
+                    if (page_no * page_count >= totalResults) {
+                        $('.nextPage').attr('disabled', true);
+                    } else {
+                        $('.nextPage').removeAttr('disabled');
+                    }
+                }
+
+
             allFaculty();
 
             $('body').on('click', '.remove-faculty', function() {
