@@ -184,16 +184,16 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div id="step3" class="tab-pane fade">
+                                                <div id="step3" class="tab-pane">
                                                     <div class="row">
                                                         <div class="col-md-12">
-                                                            <div class="add-question-box-in-test mb-4">
+                                                            <div class="add-question-box-in-test mb-4 display-none">
                                                                 <i class="fa fa-check-square-o fa-5x" aria-hidden="true"></i>
                                                                 <p>Directly add questions from the question bank.</p>
                                                                 <p>The selected set of questions will be associated to the test</p>
                                                                 <button class="btn btn-primary select-question-btn">Select Question</button>
                                                             </div>
-                                                            <div class="question-table-in-test display-none">
+                                                            <div class="question-table-in-test">
                                                                 <div style="display: flex; justify-content: end;">
                                                                     <button class="btn btn-primary select-question-btn">Select Question</button>
                                                                 </div>
@@ -233,7 +233,7 @@
                                                                     <label><input type="radio" name="is_publish" value="1" /> Yes</label> &nbsp;
                                                                     <label><input type="radio" name="is_publish" value="0" checked /> No</label>
                                                                 </div>
-                                                                <div class="row">
+                                                                <div class="row publish-group display-none">
                                                                     <div class="col-md-6">
                                                                         <div class="form-group">
                                                                             <label>Start Date</label><br>
@@ -274,7 +274,7 @@
                                                         <table class="table" id="groupData">
                                                             <thead>
                                                                 <tr>
-                                                                    <th width="30px">&nbsp;</th>
+                                                                    <th width="30px"> <input type="checkbox" id="checkAll" /></th>
                                                                     <th width="50px">S.No.</th>
                                                                     <th>Group Name</th>
                                                                     <th>Candidates</th>
@@ -495,14 +495,50 @@
                     },
                     dataType: 'JSON',
                     success: function(result) {
-                        console.log(result);
+                        console.log(result.questions);
+                        $('.add-question-box-in-test').hide();
                         $('[name=test_name]').val(result.name);
-                        // $('[name=test_name]').val(result.test_name),
                         $('[name=category_id]').val(result.category.id),
-                        // $('[name=instruction_id]').val(result.instruction_id),
-                        $('[name=duration]').val(result.duration),
-                        $('[name=difficulty_level]').val(result.difficulty_level),
-                        $('[name=total_questions]').val(result.total_questions)
+                            // $('[name=instruction_id]').val(result.instruction_id),
+                            $('[name=duration]').val(result.duration);
+                        $('[name=difficulty_level]').val(result.difficulty_level);
+                        $('[name=total_questions]').val(result.total_questions);
+                        $('[name=is_question_random_order]').each(function() {
+                            if ($(this).val() == result.is_question_random_order) {
+                                $(this).prop('checked', true);
+                            }
+                        });
+                        $('[name=is_report_show]').each(function() {
+                            if ($(this).val() == result.is_report_show) {
+                                $(this).prop('checked', true);
+                            }
+                        });
+                        $('[name=is_mandatory_all_question]').each(function() {
+                            if ($(this).val() == result.is_mandatory_all_question) {
+                                $(this).prop('checked', true);
+                            }
+                        });
+                        $('[name=test_timing_pattern]').each(function() {
+                            if ($(this).val() == result.test_timing_pattern) {
+                                $(this).prop('checked', true);
+                            }
+                        });
+
+                        let tr = "";
+                        let count = 1;
+                        $("#testQuestionDataTable tbody").html("");
+                        $.each(result.questions, function(key, val){
+                            tr += `<tr data-id="${val.id}">
+                            <td>${count++}</td>
+                            <td>${val.question}</td>
+                            <td>${val.subject}</td>
+                            <td>${val.chapter}</td>
+                            <td>${val.difficulty_level}</td>
+                            <td class="marks-input-wrap"><input type="number" min="0" class="form-control"/></td>
+                            <td style="vertical-align: middle; cursor:pointer;"><i class="fa fa-times remove-question-item"></i></td>
+                            </tr>`;
+                        })
+                        $("#testQuestionDataTable tbody").append(tr);
                     },
                     error: function(error) {
                         toastr.error(error.responseJSON.message);
@@ -528,7 +564,7 @@
                             let categoryOptions = '';
                             categoryOptions = '';
                             $('#categoryData tbody').html('');
-                            $('#testCategoryList').html('<option value="">Select Category</option>');
+                            $('#testCategoryList').html('<option>Select Category</option>');
                             $.each(result.result, function(key, value) {
                                 trHTML +=
                                     `<tr id="${value.id}">
@@ -826,7 +862,7 @@
                     let post_data = {
                         token: token,
                         test_name: $('#step1Form [name=test_name]').val(),
-                        test_id : testId,
+                        test_id: testId,
                         category_id: $('#step1Form [name=category_id]').val(),
                         instruction_id: $('#step1Form [name=instruction_id]').val(),
                         duration: $('#step1Form [name=duration]').val(),
@@ -957,10 +993,14 @@
 
                 //  test step5 begin here
                 $('#step5Form').click(function() {
+                    var group_id_checked = [];
+                    $('input[name=group_id]:checked').each(function() {
+                        group_id_checked.push(parseInt($(this).val()));
+                    });
                     let post_data5 = {
                         "token": token,
                         "test_id": testId,
-                        "group_id": $('[name=group_id]:checked').val(),
+                        "group_id": group_id_checked,
                     }
                     if ($('[name=group_id]:checked').val()) {
                         $.ajax({
@@ -996,13 +1036,17 @@
                         var trHTML = '';
                         $.each(result.result, function(key, value) {
                             trHTML +=
-                                '<tr><td><input type="radio" name="group_id" value="' + value.id + '" />' +
+                                '<tr><td><input type="checkbox" name="group_id" value="' + value.id + '" />' +
                                 '</td><td>' + index++ +
                                 '</td><td>' + value.name +
                                 '</td><td>' + value.no_of_students + '</td></tr>';
                         });
                         $('#groupData').append(trHTML);
                     }
+                });
+
+                $('#checkAll').click(function() {
+                    $('#groupData').find('input:checkbox').prop('checked', this.checked);
                 });
 
                 // ********************************
@@ -1229,6 +1273,14 @@
                 // ********************************
                 // Question Modal
                 // ********************************
+
+                $('[name=is_publish]').click(function() {
+                    if ($(this).val() == '1') {
+                        $('.publish-group').show();
+                    } else {
+                        $('.publish-group').hide();
+                    }
+                });
 
             } else {
                 window.location.replace('index.php');

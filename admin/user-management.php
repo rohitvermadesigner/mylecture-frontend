@@ -27,6 +27,15 @@
                                 <div class="ibox float-e-margins">
                                     <div class="ibox-title">
                                         <h5><b>Total</b> : <span class="total-students"></span></h5>
+                                        <!-- <ul class="filter-list">
+                                            <li>
+                                                <input type="search" class="form-control" id="user-filter" placeholder="Type User Name..">
+                                            </li>
+                                            <li>
+                                                <button class="btn btn-primary" id="search-btn">Search</button>
+                                                <button class="btn btn-danger display-none" id="reset-btn">Reset</button>
+                                            </li>
+                                        </ul> -->
                                         <ul class="top-right-btn-list">
                                             <li>
                                                 <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#addFacultyModal">Add Faculty</button>
@@ -165,6 +174,7 @@
                     success: function(result) {
                         let countStartAt = ((page_no - 1) * page_count) + 1;
                         totalResults = result.total_results;
+                        $('.total-students').text(totalResults);
                         userManagementIntoTable(result, countStartAt);
                         checkNextPreviousButton();
                     }
@@ -190,7 +200,6 @@
                 });
                 $('#facultyData tbody').html('');
                 $('#facultyData tbody').append(trHTML);
-                $('.total-students').text(result.total_results);
             }
 
             $('.nextPage').click(function() {
@@ -222,8 +231,33 @@
                     }
                 }
 
+                // $("#search-btn").click(function() {
+                //     name = $('#user-filter').val();
+                //     page_no = 1;
+                //     allFaculty(page_no, page_count);
+                //     if (name) {
+                //         $("#reset-btn").removeClass('display-none');
+                //     }
+                // });
 
-            allFaculty();
+                // $('#user-filter').keypress(function(e) {
+                //     if (e.which == 13) {
+                //         if (e.target.value) {
+                //             $("#search-btn").click();
+                //         }
+                //     }
+                // });
+
+                // $("#reset-btn").click(function() {
+                //     $('#user-filter').val("");
+                //     name = ""
+                //     page_no = 1;
+                //     allFaculty(page_no, page_count);
+                //     $("#reset-btn").addClass('display-none');
+                //     window.history.pushState('', '', 'user-management.php');
+                // });
+
+                allFaculty(page_no, page_count);
 
             $('body').on('click', '.remove-faculty', function() {
                 var status = confirm("Are you sure to delete it?");
@@ -241,7 +275,7 @@
                         success: function(response) {
                             message = response.message;
                             toastr.success(message);
-                            allFaculty();
+                            allFaculty(page_no, page_count);
                         },
                         error: function(error) {
                             toastr.error(message);
@@ -281,7 +315,7 @@
                         toastr.success(message);
                         $('#addFacultyModal').modal('hide');
                         $('#facultyData tbody').html('');
-                        allFaculty();
+                        allFaculty(page_no, page_count);
                     },
                     error: function(error) {
                         toastr.error(error.responseJSON.message);

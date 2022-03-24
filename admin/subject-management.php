@@ -95,27 +95,28 @@
                 },
                 dataType: 'JSON',
                 success: function(result) {
+                    console.log(result);
                     if (result && result.length > 0) {
-                        result.forEach((subject, sub_key) => {
+                        result.forEach((phase, sub_key) => {
                             $("#subjectData tbody").append(`<tr>
-                                                                <td>${sub_key + 1}</td>
+                                                                <td> ${sub_key + 1}</td>
                                                                 <td>
                                                                     <div class="sbjectnametabl">
                                                                         <span class="treeplus subjecticn"></span>
-                                                                        ${subject.name}
+                                                                        ${phase.name}
                                                                     </div>
                                                                     <div class="topiclist" id="topic_list_${sub_key}">
                                                                         
                                                                     </div>
                                                                 </td>
                                                             </tr>`);
-                            if (subject.chapter && subject.chapter.length > 0) {
+                            if (phase.subject && phase.subject.length > 0) {
                                 $(`#subjectData tbody #topic_list_${sub_key}`).append(`<ul id="ul_${sub_key}"></ul>`);
-                                subject.chapter.forEach((chapter, chap_key) => {
-                                    $(`#subjectData tbody #topic_list_${sub_key} ul#ul_${sub_key}`).append(`<li id="chapter_list_${sub_key}_${chap_key}"><span><span class="inner-subjection treeplus treeminus"></span>${chapter.name}</span></li>`);
-                                    if (chapter.topic && chapter.topic.length > 0) {
+                                phase.subject.forEach((subject, chap_key) => {
+                                    $(`#subjectData tbody #topic_list_${sub_key} ul#ul_${sub_key}`).append(`<li id="chapter_list_${sub_key}_${chap_key}"><span><span class="inner-subjection treeplus treeminus"></span>${subject.name}</span></li>`);
+                                    if (subject.topic && subject.topic.length > 0) {
                                         $(`#subjectData tbody #topic_list_${sub_key} ul#ul_${sub_key} li#chapter_list_${sub_key}_${chap_key}`).append(`<ul id="ul_${sub_key}_${chap_key}"></ul>`);
-                                        chapter.topic.forEach((topic, topic_key) => {
+                                        subject.topic.forEach((topic, topic_key) => {
                                             $(`#subjectData tbody #topic_list_${sub_key} ul#ul_${sub_key} li#chapter_list_${sub_key}_${chap_key} ul#ul_${sub_key}_${chap_key}`).append(`<li id="topic_list_${sub_key}_${chap_key}_${topic_key}"><span>
                                             <span class="inner-subjection treeplus treeminus"></span>
                                             ${topic.name}

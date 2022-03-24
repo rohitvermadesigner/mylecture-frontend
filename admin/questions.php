@@ -198,6 +198,7 @@
                         dataType: 'JSON',
                         data: paramsData,
                         success: function(result) {
+                            // console.log(result[0].subject[0].name);
                             allSubjects = result;
                             if (allSubjects && allSubjects.length > 0) {
                                 allSubjects.forEach(val => {
