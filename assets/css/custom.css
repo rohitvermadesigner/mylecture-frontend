@@ -93,7 +93,7 @@ header {
 
 .top-stripe {
     background: rgba(0, 157, 223, 0.2);
-    padding: 10px 0px;
+    padding: 8px 0px;
     padding-bottom: 8px;
     border-bottom: 3px solid #009de2;
 }
@@ -101,6 +101,7 @@ header {
 .top-stripe p {
     margin-bottom: 0px;
     color: #000;
+    font-size: 13px;
 }
 
 .top-stripe ul {
@@ -114,6 +115,7 @@ header {
     float: left;
     margin: 0 10px;
     color: #000;
+    font-size: 13px;
 }
 
 .top-stripe ul li svg {
@@ -132,6 +134,7 @@ nav {
     background: #fff;
     width: 100%;
     height: 45px;
+    border-top: 1px solid #f1f1f1;
 }
 
 .top-second-stripe .login-list ul {
@@ -558,7 +561,7 @@ nav ul {
     margin: 0;
     /* border-bottom: 1px solid #1f1d1d; */
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 nav .container {
@@ -573,7 +576,7 @@ nav ul li {
 }
 
 nav>.container>ul>li {
-    margin: 0px 12px;
+    margin: 0px 20px;
 }
 
 nav ul li a {
@@ -581,11 +584,11 @@ nav ul li a {
     display: block;
     padding: 0px 0px;
     line-height: 45px;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: bold;
     transition: all .25s ease-in-out;
     color: #000;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 
 
@@ -1061,7 +1064,7 @@ nav li .submenu .nav .nav-item .nav-link.active {
 .social-icons ul li {
     list-style: none;
     float: left;
-    margin: 0px 15px;
+    margin: 0px 10px;
 }
 
 .social-icons ul li a {
@@ -1070,12 +1073,12 @@ nav li .submenu .nav .nav-item .nav-link.active {
 
 .social-icons ul li a svg {
     color: #FFFFFF;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 footer .social-icons ul li {
-    width: 50px;
-    height: 50px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     border: 1px solid #FFFFFF;
     display: flex;
@@ -1241,7 +1244,7 @@ footer .social-icons ul li {
 .video {
     width: 100%;
     margin: auto;
-    margin-top: 15px;
+    margin-top: 0px;
     box-sizing: border-box;
     box-shadow: 2px 4px 10px rgba(39, 59, 69, 0.5);
 }
@@ -1297,4 +1300,9 @@ label.error {
 
 .demo-classes .form-group {
     margin-bottom: 25px;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 300px;
 }

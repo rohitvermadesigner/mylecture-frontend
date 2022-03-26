@@ -22,13 +22,13 @@
             <!-- The slideshow -->
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="assets/images/slide1.jpg">
+                    <img src="assets/images/slide1.jpg" />
                 </div>
                 <div class="carousel-item">
-                    <img src="assets/images/slide1.jpg">
+                    <img src="assets/images/slide2.jpg" />
                 </div>
                 <div class="carousel-item">
-                    <img src="assets/images/slide1.jpg">
+                    <img src="assets/images/slide3.jpg" />
                 </div>
             </div>
 
@@ -282,7 +282,7 @@
                             <div class="col-md-6">
                                 <ul>
                                     <li>
-                                        Designed by Top IIT/Medical Experts
+                                        Designed by Top Medical Experts
                                     </li>
                                     <li>
                                         Mockup Test just like Real Exam
@@ -445,14 +445,14 @@
                 </div>
                 <div class="col-md-8">
                     <h2 class="title-primary">Learn <span>Anytime, Anywhere</span> </h2>
-                    <p>Get GEMS Next Digital well-curated<br> study material in you pocket</p>
+                    <p>Get GEMS Next Digital well-curated study material in you pocket</p>
                     <div class="pt-4 pb-5">
                         <img src="assets/images/get-it-on-google-play.png" alt="">
                     </div>
                     <h2 class="title-primary">Get SMS <span>with link to download App</span> </h2>
                     <div class="row mt-5">
                         <div class="col-md-8">
-                            <input type="text" class="form-control form-control-lg" placeholder="Enter your mobile number">
+                            <input type="text" class="form-control" placeholder="Enter your mobile number">
                         </div>
                         <div class="col-md-4">
                             <a href="#" class="btn btn-primary btn-lg">GET APP LINK</a>
