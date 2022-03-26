@@ -20,12 +20,12 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
-                        <a href="index.php" class="logo"><img src="assets/images/gems-next-logo.jpg" style="width: 90px;" alt=""></a>
+                        <a href="index.php" class="logo"><img src="assets/images/logo.png" alt="" /></a>
                         <div class="nav-toggle-btn">
                             <i class="fa fa-bars"></i>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-7">
                         <!-- Nav Began Here -->
                         <nav>
                             <div class="container">
@@ -36,12 +36,13 @@
                                     <li><a href="next-pg.php">NEXT PG</a></li>
                                     <li><a href="live-lectures.php">Live Lectures</a></li>
                                     <li><a href="mock-test.php">Mock Test</a></li>
+                                    <li><a href="book-demo-class.php">Book Demo Class</a></li>
                                 </ul>
                             </div>
                         </nav>
                         <!-- Nav End Here -->
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="login-list">
                             <ul>
                                 <li><a href="#" class="btn btn-purple login-btn">Login</a></li>
