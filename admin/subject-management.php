@@ -65,7 +65,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th width="4%">S.No.</th>
-                                                        <th width="92%">Subject Name</th>
+                                                        <th width="92%">Phase / Subject / Topic</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -113,12 +113,12 @@
                             if (phase.subject && phase.subject.length > 0) {
                                 $(`#subjectData tbody #topic_list_${sub_key}`).append(`<ul id="ul_${sub_key}"></ul>`);
                                 phase.subject.forEach((subject, chap_key) => {
-                                    $(`#subjectData tbody #topic_list_${sub_key} ul#ul_${sub_key}`).append(`<li id="chapter_list_${sub_key}_${chap_key}"><span><span class="inner-subjection treeplus treeminus"></span>${subject.name}</span></li>`);
+                                    $(`#subjectData tbody #topic_list_${sub_key} ul#ul_${sub_key}`).append(`<li id="chapter_list_${sub_key}_${chap_key}"><span><span class="inner-subjection treeplus"></span>${subject.name}</span></li>`);
                                     if (subject.topic && subject.topic.length > 0) {
                                         $(`#subjectData tbody #topic_list_${sub_key} ul#ul_${sub_key} li#chapter_list_${sub_key}_${chap_key}`).append(`<ul id="ul_${sub_key}_${chap_key}"></ul>`);
                                         subject.topic.forEach((topic, topic_key) => {
                                             $(`#subjectData tbody #topic_list_${sub_key} ul#ul_${sub_key} li#chapter_list_${sub_key}_${chap_key} ul#ul_${sub_key}_${chap_key}`).append(`<li id="topic_list_${sub_key}_${chap_key}_${topic_key}"><span>
-                                            <span class="inner-subjection treeplus treeminus"></span>
+                                            <span class="inner-subjection"></span>
                                             ${topic.name}
                                             </span></li>`);
                                             if (topic.subtopic && topic.subtopic.length > 0) {
