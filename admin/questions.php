@@ -29,7 +29,7 @@
                                             </li>
                                             <li>
                                                 <select class="form-control" id="chapter-filter">
-                                                    <option value="">-- Select Chapter --</option>
+                                                    <option value="">-- Select Topic --</option>
                                                 </select>
                                             </li>
                                             <li>
@@ -52,6 +52,12 @@
                                         </div>
                                     </div>
                                     <div class="ibox-content">
+                                        <select>
+                                            <option value="10">10</option>
+                                            <option value="20">20</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select>
                                         <div class="table-responsive mt-3">
                                             <table class="table" id="questionData">
                                                 <thead>
@@ -199,7 +205,13 @@
                         data: paramsData,
                         success: function(result) {
                             // console.log(result[0].subject[0].name);
-                            allSubjects = result;
+                            // console.log(result[0].subject);
+                            const sub1 = result[0].subject;
+                            const sub2 = result[1].subject;
+                            const sub3 = result[2].subject;
+                            const subjectResult = sub1.concat(sub2,sub3);
+
+                            allSubjects = subjectResult;
                             if (allSubjects && allSubjects.length > 0) {
                                 allSubjects.forEach(val => {
                                     $('#subject-filter').append(`<option value="${val.id}">${val.name}</option>`)
@@ -216,8 +228,8 @@
                             if (val.id == subject) {
                                 $('#chapter-filter').html('');
                                 $('#chapter-filter').append(`<option value="">-- Select Chapter --</option>`);
-                                val.chapter.forEach(chapter => {
-                                    $('#chapter-filter').append(`<option value="${chapter.id}">${chapter.name}</option>`)
+                                val.topic.forEach(topic => {
+                                    $('#chapter-filter').append(`<option value="${topic.id}">${topic.name}</option>`)
                                 })
                             }
 
