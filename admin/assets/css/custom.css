@@ -459,3 +459,7 @@ table i {
 .result-question-box .table td .row .ans-options-result ul li {
     list-style: none;
 }
+
+.topiclist-inner {
+    display: none;
+}
