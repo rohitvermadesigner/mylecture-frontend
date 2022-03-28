@@ -52,17 +52,21 @@
                                         </div>
                                     </div>
                                     <div class="ibox-content">
-                                        <select>
-                                            <option value="10">10</option>
-                                            <option value="20">20</option>
-                                            <option value="50">50</option>
-                                            <option value="100">100</option>
-                                        </select>
+                                        <div class="row">
+                                            <div class="col-md-2 float-right" style="width: 100px;">
+                                                <select class="form-control">
+                                                    <option value="10">10</option>
+                                                    <option value="20">20</option>
+                                                    <option value="50">50</option>
+                                                    <option value="100">100</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                         <div class="table-responsive mt-3">
                                             <table class="table" id="questionData">
                                                 <thead>
                                                     <tr>
-                                                        <!-- <th><input type="checkbox"></th> -->
+                                                        <th><input type="checkbox"></th>
                                                         <th width="5%">S.No.</th>
                                                         <th width="55%">Questions Details</th>
                                                         <th width="15%">Subject</th>
@@ -148,6 +152,7 @@
                     var tr = '';
                     $.each(result.result, function(key, value) {
                         tr += `<tr>
+                            <td> <input type="checkbox" /> </td>
                             <td> ${countStartAt} </td>
                             <td> ${value.question} </td>
                             <td> ${value.subject} </td>
@@ -206,10 +211,11 @@
                         success: function(result) {
                             // console.log(result[0].subject[0].name);
                             // console.log(result[0].subject);
+
                             const sub1 = result[0].subject;
                             const sub2 = result[1].subject;
                             const sub3 = result[2].subject;
-                            const subjectResult = sub1.concat(sub2,sub3);
+                            const subjectResult = sub1.concat(sub2, sub3);
 
                             allSubjects = subjectResult;
                             if (allSubjects && allSubjects.length > 0) {
@@ -227,7 +233,7 @@
                         allSubjects.forEach(val => {
                             if (val.id == subject) {
                                 $('#chapter-filter').html('');
-                                $('#chapter-filter').append(`<option value="">-- Select Chapter --</option>`);
+                                $('#chapter-filter').append(`<option value="">-- Select Topic --</option>`);
                                 val.topic.forEach(topic => {
                                     $('#chapter-filter').append(`<option value="${topic.id}">${topic.name}</option>`)
                                 })
@@ -250,7 +256,7 @@
 
                 $("#reset-btn").click(function() {
                     $('#chapter-filter').html('');
-                    $('#chapter-filter').append(`<option value="">-- Select Chapter --</option>`);
+                    $('#chapter-filter').append(`<option value="">-- Select Topic --</option>`);
                     $('#subject-filter').val("");
                     $('#chapter-filter').val("");
                     $('#question-filter').val("");
