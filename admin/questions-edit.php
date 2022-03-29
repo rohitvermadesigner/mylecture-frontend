@@ -21,17 +21,17 @@
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Select Subject</label>
-                                                    <select class="form-control" id="subject-filter">
-                                                        <option value="">-- Select Subject --</option>
+                                                    <label>Select Phase</label>
+                                                    <select class="form-control" id="phase-filter">
+                                                        <option value="">-- Select Phase --</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Select Chapter</label>
-                                                    <select class="form-control" id="chapter-filter">
-                                                        <option value="">-- Select Chapter --</option>
+                                                    <label>Select Subject</label>
+                                                    <select class="form-control" id="subject-filter">
+                                                        <option value="">-- Select Subject --</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -328,8 +328,9 @@
                             $('[name=option_3]').val(result.option_3);
                             $('[name=option_4]').val(result.option_4);
                             $('[name=option_5]').val(result.option_5);
-                            $('#subject-filter').val(result.subject_id);
-                            $('#chapter-filter').val(result.chapter_id);
+                            // $('#phase-filter').val(result.phase.id);
+                            $('#subject-filter').val(result.subject.id);
+                            $('#topic-filter').val(result.topic.id);
                             $('[name=description]').val(result.description);
                             $('[name=difficulty_level]').val(result.difficulty_level);
                             $('[name=answer]').each(function() {
@@ -355,7 +356,7 @@
                         "option_5": $('[name=option_5]').val(),
                         "answer": $('[name=answer]:checked').val(),
                         "subject_id": $('#subject-filter').val(),
-                        "chapter_id": $('#chapter-filter').val(),
+                        "topic_id": $('#chapter-filter').val(),
                         "description": $('[name=description]').val(),
                         "difficulty_level": $('[name=difficulty_level]').val(),
                         // "tags": ["AIEEE", "IIT"]
@@ -386,21 +387,49 @@
                         dataType: 'JSON',
                         data: paramsData,
                         success: function(result) {
-                            subjectList = result;
-                            allSubjects = result;
+
+                            // for(var i = 0; i < result.length; i++){
+                            //     subjectResult.push(...result[i].subject);                             
+                            // }
+                            // subjectResult.sort((a, b) => a.name < b.name ? -1 : 1);
+
+                            phaseList = result;
+                            allPhase = result;
                             var index = 1;
                             var trHTML = '';
-                            if (allSubjects && allSubjects.length > 0) {
-                                allSubjects.forEach(val => {
-                                    $('#subject-filter').append(`<option value="${val.id}">${val.name}</option>`)
+                            if (allPhase && allPhase.length > 0) {
+                                allPhase.forEach(val => {
+                                    $('#phase-filter').append(`<option value="${val.id}">${val.name}</option>`)
                                 })
                             }
-                            $('#subject-filter').append('<option value="addSubject" class="boldItalic">Add Subject</option>');
-                            $.each(result, function(key, value) {
-                                trHTML +=
-                                    `<tr id="${value.id}">
+
+                        }
+                    });
+                }
+                getAllSubjects();
+
+                var subjectArray = [];
+                $('#phase-filter').change(function(val) {
+                    phase = $('#phase-filter').val();
+                    var index = 1;
+                    var trHTML = '';
+                    if (phase) {
+                        allPhase.forEach(val => {
+                            if (val.id == phase) {
+                                subjectArray = val.subject;
+                                $('#subject-filter').html('');
+                                $('#subject-filter').append(`<option value="">-- Select Subject --</option>`);
+                                val.subject.forEach(subject => {
+                                    $('#subject-filter').append(`<option value="${subject.id}">${subject.name}</option>`)
+                                })
+
+                                $('#subject-filter').append('<option value="addSubject" class="boldItalic">Add Subject</option>');
+                                $('#subjectData tbody').html('');
+                                val.subject.forEach(subject => {
+                                    trHTML +=
+                                        `<tr id="${subject.id}">
                                 <td>${index++}</td>
-                                <td>${value.name}</td>
+                                <td><span subjectName="${subject.name}">${subject.name}</span></td>
                                 <td class="text-center">
                                     <ul class="action-list">
                                     <li class="update-subject-icon"><i class="fa fa-pencil"></i></li>
@@ -408,65 +437,23 @@
                                     </ul>
                                 </td>
                                 </tr>`;
-                            });
-                            $('#subjectData tbody').append(trHTML);
-                        }
-                    });
-                }
-                getAllSubjects();
-
-                $('#subject-filter').change(function(val) {
-                    subject = $('#subject-filter').val();
-                    var index = 1;
-                    var trHTML = '';
-                    if (subject) {
-                        allSubjects.forEach(val => {
-                            chapterList = val.chapter;
-                            if (val.id == subject) {
-                                chapterArray = val.chapter;
-                                $('#chapter-filter').html('');
-                                $('#chapter-filter').append(`<option value="">-- Select Chapter --</option>`);
-                                val.chapter.forEach(chapter => {
-                                    $('#chapter-filter').append(`<option value="${chapter.id}">${chapter.name}</option>`)
-                                })
-                                $('#chapterData tbody').html('');
-                                val.chapter.forEach(chapter => {
-                                    trHTML +=
-                                        `<tr id="${chapter.id}">
-                                <td>${index++}</td>
-                                <td>${chapter.name}</td>
-                                <td class="text-center">
-                                    <ul class="action-list">
-                                    <li class="update-chapter-icon"><i class="fa fa-pencil"></i></li>
-                                    <li class="remove-chapter"><i class="fa fa-trash-o"></i></li>
-                                    </ul>
-                                </td>
-                                </tr>`;
                                 });
-                                $('#chapterData tbody').append(trHTML);
-                            }
-                        })
-                        $('#chapter-filter').append('<option value="addChapter" class="boldItalic">Add Chapter</option>');
-                    }
+                                $('#subjectData tbody').append(trHTML);
 
-                    if ($(this).val() == 'addSubject') {
-                        $('#addSubjectModal').modal('show');
-                        $(this).val('');
-                        selectedSubject = undefined;
-                        $('#addSubjectModal [name=subject_name]').val("");
-                        $('#addSubjectModal button.add-subject').show();
-                        $('#addSubjectModal button.update-subject').hide();
+                            }
+
+                        });
                     }
                 });
 
-                $('#chapter-filter').change(function(val) {
-                    let selectedChapter = $('#chapter-filter').val();
+                $('#subject-filter').change(function(val) {
+                    let selectedChapter = $('#subject-filter').val();
                     var index = 1;
                     var trHTML = '';
-                    chapter = $('#chapter-filter').val();
-                    if (chapter) {
-                        chapterArray.forEach(val => {
-                            if (val.id == chapter) {
+                    subject = $('#subject-filter').val();
+                    if (subject) {
+                        subjectArray.forEach(val => {
+                            if (val.id == subject) {
                                 $('#topic-filter').html('');
                                 $('#topic-filter').append(`<option value="">-- Select Topic --</option>`);
                                 val.topic.forEach(topic => {
@@ -477,7 +464,7 @@
                                     trHTML +=
                                         `<tr id="${topic.id}">
                                 <td>${index++}</td>
-                                <td>${topic.name}</td>
+                                <td><span topicName="${topic.name}">${topic.name}</span></td>
                                 <td class="text-center">
                                     <ul class="action-list">
                                     <li class="update-topic-icon"><i class="fa fa-pencil"></i></li>
@@ -501,16 +488,6 @@
                     }
                 });
 
-                $('#topic-filter').change(function(val) {
-                    if ($(this).val() == 'addTopic') {
-                        $('#addTopicModal').modal('show');
-                        $(this).val('');
-                        selectedChapter = undefined;
-                        $('#addTopicModal [name=topic_name]').val("");
-                        $('#addTopicModal button.add-topic').show();
-                        $('#addTopicModal button.update-topic').hide();
-                    }
-                });
 
                 // ***********************
                 // subject section

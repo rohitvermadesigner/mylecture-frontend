@@ -23,12 +23,12 @@
                                     <div class="ibox-title">
                                         <ul class="filter-list">
                                             <li>
-                                                <select class="form-control" id="subject-filter">
+                                                <select class="form-control subject-filter">
                                                     <option value="">-- Select Subject --</option>
                                                 </select>
                                             </li>
                                             <li>
-                                                <select class="form-control" id="chapter-filter">
+                                                <select class="form-control chapter-filter">
                                                     <option value="">-- Select Topic --</option>
                                                 </select>
                                             </li>
@@ -69,11 +69,11 @@
                                             <table class="table" id="questionData">
                                                 <thead>
                                                     <tr>
-                                                        <th><input type="checkbox"></th>
+                                                        <th><input type="checkbox" id="checkAll"></th>
                                                         <th width="5%">S.No.</th>
                                                         <th width="55%">Questions Details</th>
                                                         <th width="15%">Subject</th>
-                                                        <th width="20%">Chapter</th>
+                                                        <th width="20%">Topic</th>
                                                         <th width="5%">Level</th>
                                                         <th>Action</th>
                                                     </tr>
@@ -118,17 +118,17 @@
                 <div class="modal-body">
                     <ul class="filter-list">
                         <li>
-                            <select class="form-control" id="subject-filter">
+                            <select class="form-control subject-filter">
                                 <option value="">-- Select Subject --</option>
                             </select>
                         </li>
                         <li>
-                            <select class="form-control" id="chapter-filter">
+                            <select class="form-control chapter-filter">
                                 <option value="">-- Select Topic --</option>
                             </select>
                         </li>
                         <li>
-                            <button class="btn btn-primary" id="search-btn">Move</button>
+                            <button class="btn btn-primary" id="">Move</button>
                         </li>
                     </ul>
                 </div>
@@ -177,6 +177,7 @@
                         dataType: 'JSON',
                         data: paramsData,
                         success: function(result) {
+                            console.log(result);
                             let countStartAt = ((page_no - 1) * page_count) + 1;
                             totalResults = 24761;
                             $(".total-results-count").text(totalResults);
@@ -229,11 +230,11 @@
                     var tr = '';
                     $.each(result.result, function(key, value) {
                         tr += `<tr>
-                            <td> <input type="checkbox" class="checkQuestion" /> </td>
-                            <td> ${countStartAt} </td>
+                            <td> <input type="checkbox" val="${value.id}" /> </td>
+                            <td> ${countStartAt} ${value.is_modified ? '<span class="isModified"></span>': '<span class="isNotModified"></span>'} </td>
                             <td> ${value.question} </td>
                             <td> ${value.subject} </td>
-                            <td> ${value.chapter} </td>
+                            <td> ${value.topic} </td>
                             <td> ${value.difficulty_level} </td>
                             <td class="text-center">
                             <a href="questions-edit.php?id=${value.id}" class="update-question"><i class="fa fa-pencil"></i></a> &nbsp; 
@@ -246,8 +247,8 @@
                     $('#questionData tbody').append(tr);
                 }
 
-                $('body').on('click', '.checkQuestion', function() {
-                    if ($(this).is(':checked')) {
+                $('body').on('click', '#questionData input', function() {
+                    if ($("#questionData input:checkbox:checked").length > 0) {
                         $('#moveBtn').show();
                     } else {
                         $('#moveBtn').hide();
@@ -298,33 +299,32 @@
                         dataType: 'JSON',
                         data: paramsData,
                         success: function(result) {
-                            // console.log(result[0].subject[0].name);
-                            // console.log(result[0].subject);
+                            const subjectResult = [];
+                            for(var i = 0; i < result.length; i++){
+                                subjectResult.push(...result[i].subject);                             
+                            }
+                            subjectResult.sort((a, b) => a.name < b.name ? -1 : 1);
 
-                            const sub1 = result[0].subject;
-                            const sub2 = result[1].subject;
-                            const sub3 = result[2].subject;
-                            const subjectResult = sub1.concat(sub2, sub3);
-
+                            console.log(subjectResult);
                             allSubjects = subjectResult;
                             if (allSubjects && allSubjects.length > 0) {
                                 allSubjects.forEach(val => {
-                                    $('#subject-filter').append(`<option value="${val.id}">${val.name}</option>`)
+                                    $('.subject-filter').append(`<option value="${val.id}">${val.name}</option>`)
                                 })
                             }
                         }
                     });
                 }
 
-                $('#subject-filter').change(function(val) {
-                    subject = $('#subject-filter').val();
+                $('.subject-filter').change(function(val) {
+                    subject = $('.subject-filter').val();
                     if (subject) {
                         allSubjects.forEach(val => {
                             if (val.id == subject) {
-                                $('#chapter-filter').html('');
-                                $('#chapter-filter').append(`<option value="">-- Select Topic --</option>`);
+                                $('.chapter-filter').html('');
+                                $('.chapter-filter').append(`<option value="">-- Select Topic --</option>`);
                                 val.topic.forEach(topic => {
-                                    $('#chapter-filter').append(`<option value="${topic.id}">${topic.name}</option>`)
+                                    $('.chapter-filter').append(`<option value="${topic.id}">${topic.name}</option>`)
                                 })
                             }
 
@@ -333,8 +333,8 @@
                 });
 
                 $("#search-btn").click(function() {
-                    subject = $('#subject-filter').val();
-                    chapter = $('#chapter-filter').val();
+                    subject = $('.subject-filter').val();
+                    chapter = $('.chapter-filter').val();
                     question = $('#question-filter').val();
                     page_no = 1;
                     loadQuestions(page_no, page_count);
@@ -344,10 +344,10 @@
                 });
 
                 $("#reset-btn").click(function() {
-                    $('#chapter-filter').html('');
-                    $('#chapter-filter').append(`<option value="">-- Select Topic --</option>`);
-                    $('#subject-filter').val("");
-                    $('#chapter-filter').val("");
+                    $('.chapter-filter').html('');
+                    $('.chapter-filter').append(`<option value="">-- Select Topic --</option>`);
+                    $('.subject-filter').val("");
+                    $('.chapter-filter').val("");
                     $('#question-filter').val("");
                     subject = "";
                     chapter = ""
@@ -387,6 +387,11 @@
                         });
                     }
                 });
+
+                $('#checkAll').click(function() {
+                    $('#questionData').find('input:checkbox').prop('checked', this.checked);
+                });
+
             } else {
                 window.location.replace('index.php');
             }

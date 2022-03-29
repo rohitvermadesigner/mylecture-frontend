@@ -429,6 +429,22 @@ table i {
     border-radius: 50%;
     margin-left: 6px;
 }
+.isModified {
+    width: 10px;
+    height: 10px;
+    background: #4da74e;
+    display: inline-block;
+    border-radius: 50%;
+    margin-left: 6px;
+}
+.isNotModified {
+    width: 10px;
+    height: 10px;
+    background: #f0ad4e;
+    display: inline-block;
+    border-radius: 50%;
+    margin-left: 6px;
+}
 
 .result-page-section .result-status-box {
     padding: 25px;
