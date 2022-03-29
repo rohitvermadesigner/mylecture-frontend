@@ -53,8 +53,11 @@
                                     </div>
                                     <div class="ibox-content">
                                         <div class="row">
-                                            <div class="col-md-2 float-right" style="width: 100px;">
-                                                <select class="form-control">
+                                            <div class="col-md-10">
+                                                <button class="btn btn-primary display-none" id="moveBtn">Move</button>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <select class="form-control float-right" id="rowSorting" style="width: 65px;">
                                                     <option value="10">10</option>
                                                     <option value="20">20</option>
                                                     <option value="50">50</option>
@@ -101,6 +104,42 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div id="moveModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Move Questions</h4>
+                </div>
+                <div class="modal-body">
+                    <ul class="filter-list">
+                        <li>
+                            <select class="form-control" id="subject-filter">
+                                <option value="">-- Select Subject --</option>
+                            </select>
+                        </li>
+                        <li>
+                            <select class="form-control" id="chapter-filter">
+                                <option value="">-- Select Topic --</option>
+                            </select>
+                        </li>
+                        <li>
+                            <button class="btn btn-primary" id="search-btn">Move</button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <?php include 'include/footer_script.php' ?>
     <script>
         $(function() {
@@ -147,12 +186,50 @@
                     });
                 }
 
+                $('#rowSorting').on('change', function() {
+                    page_count = $(this).val();
+                    let loadQuestions = function(page_no, page_count) {
+                        let paramsData = {
+                            token: token,
+                            page_count: page_count,
+                            page_no: page_no
+                        }
+                        if (subject) {
+                            paramsData.subject = subject
+                        }
+                        if (chapter) {
+                            paramsData.chapter = chapter
+                        }
+                        if (question) {
+                            paramsData.question = question
+                        }
+
+                        let url = `${base_url}/admin/question/list.php`;
+                        $('#questionData tbody').html('');
+                        $(".table-loading-wrap").removeClass('display-none');
+                        $.ajax({
+                            url: url,
+                            type: 'GET',
+                            dataType: 'JSON',
+                            data: paramsData,
+                            success: function(result) {
+                                let countStartAt = ((page_no - 1) * page_count) + 1;
+                                totalResults = 24761;
+                                $(".total-results-count").text(totalResults);
+                                insertQuestionsIntoTable(result, countStartAt);
+                                checkNextPreviousButton();
+                            }
+                        });
+                    }
+                    loadQuestions(page_no, page_count);
+                });
+
                 let insertQuestionsIntoTable = function(result, countStartAt) {
 
                     var tr = '';
                     $.each(result.result, function(key, value) {
                         tr += `<tr>
-                            <td> <input type="checkbox" /> </td>
+                            <td> <input type="checkbox" class="checkQuestion" /> </td>
                             <td> ${countStartAt} </td>
                             <td> ${value.question} </td>
                             <td> ${value.subject} </td>
@@ -168,6 +245,18 @@
                     $(".table-loading-wrap").addClass('display-none');
                     $('#questionData tbody').append(tr);
                 }
+
+                $('body').on('click', '.checkQuestion', function() {
+                    if ($(this).is(':checked')) {
+                        $('#moveBtn').show();
+                    } else {
+                        $('#moveBtn').hide();
+                    }
+                });
+
+                $('#moveBtn').click(function() {
+                    $('#moveModal').modal('show');
+                });
 
                 $('.nextPage').click(function() {
                     page_no = page_no + 1;
