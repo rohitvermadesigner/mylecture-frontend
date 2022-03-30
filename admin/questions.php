@@ -43,6 +43,9 @@
                                         <div>
                                             <ul class="top-right-btn-list">
                                                 <li>
+                                                    <button class="btn btn-primary display-none" id="moveBtn">Move</button>
+                                                </li>
+                                                <li>
                                                     <a href="create-question.php" class="btn btn-primary"><i class="fa fa-plus"></i> Add </a>
                                                 </li>
                                                 <!-- <li>
@@ -52,19 +55,6 @@
                                         </div>
                                     </div>
                                     <div class="ibox-content">
-                                        <div class="row">
-                                            <div class="col-md-10">
-                                                <button class="btn btn-primary display-none" id="moveBtn">Move</button>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <select class="form-control float-right" id="rowSorting" style="width: 65px;">
-                                                    <option value="10">10</option>
-                                                    <option value="20">20</option>
-                                                    <option value="50">50</option>
-                                                    <option value="100">100</option>
-                                                </select>
-                                            </div>
-                                        </div>
                                         <div class="table-responsive mt-3">
                                             <table class="table" id="questionData">
                                                 <thead>
@@ -81,17 +71,25 @@
                                                 <tbody>
                                                 </tbody>
                                             </table>
-                                            <!-- <div class="table-loading-wrap">
+                                            <div class="table-loading-wrap">
                                                 <div class="loading-img">
                                                     <img src="./assets/img/loader.gif" alt="loader">
                                                 </div>
                                                 <div class="loading-text">
                                                     Loading...
                                                 </div>
-                                            </div> -->
-                                            <div class="text-center">
-                                                <button class="btn btn-primary prevPage" disabled>Prev</button>
-                                                <button class="btn btn-primary nextPage" disabled>Next</button>
+                                            </div>
+                                            <div class="table-bottom" style="position: relative;">
+                                                <div class="text-center">
+                                                    <button class="btn btn-primary prevPage" disabled>Prev</button>
+                                                    <button class="btn btn-primary nextPage" disabled>Next</button>
+                                                </div>
+                                                <select class="form-control float-right" id="rowSorting" style="width: 75px; position: absolute; right: 0; top: 0;">
+                                                    <option value="10">10</option>
+                                                    <option value="20">20</option>
+                                                    <option value="50">50</option>
+                                                    <option value="100">100</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -149,7 +147,7 @@
                 let page_count = 10;
                 let totalResults = 0;
                 let subject = '';
-                let chapter = '';
+                let topic = '';
                 let question = '';
                 let allSubjects = [];
                 let loadQuestions = function(page_no, page_count) {
@@ -161,8 +159,8 @@
                     if (subject) {
                         paramsData.subject = subject
                     }
-                    if (chapter) {
-                        paramsData.chapter = chapter
+                    if (topic) {
+                        paramsData.topic = topic
                     }
                     if (question) {
                         paramsData.question = question
@@ -177,10 +175,7 @@
                         dataType: 'JSON',
                         data: paramsData,
                         success: function(result) {
-                            console.log(result);
                             let countStartAt = ((page_no - 1) * page_count) + 1;
-                            totalResults = 24761;
-                            $(".total-results-count").text(totalResults);
                             insertQuestionsIntoTable(result, countStartAt);
                             checkNextPreviousButton();
                         }
@@ -189,44 +184,10 @@
 
                 $('#rowSorting').on('change', function() {
                     page_count = $(this).val();
-                    let loadQuestions = function(page_no, page_count) {
-                        let paramsData = {
-                            token: token,
-                            page_count: page_count,
-                            page_no: page_no
-                        }
-                        if (subject) {
-                            paramsData.subject = subject
-                        }
-                        if (chapter) {
-                            paramsData.chapter = chapter
-                        }
-                        if (question) {
-                            paramsData.question = question
-                        }
-
-                        let url = `${base_url}/admin/question/list.php`;
-                        $('#questionData tbody').html('');
-                        $(".table-loading-wrap").removeClass('display-none');
-                        $.ajax({
-                            url: url,
-                            type: 'GET',
-                            dataType: 'JSON',
-                            data: paramsData,
-                            success: function(result) {
-                                let countStartAt = ((page_no - 1) * page_count) + 1;
-                                totalResults = 24761;
-                                $(".total-results-count").text(totalResults);
-                                insertQuestionsIntoTable(result, countStartAt);
-                                checkNextPreviousButton();
-                            }
-                        });
-                    }
-                    loadQuestions(page_no, page_count);
+                    loadQuestions(1, page_count);
                 });
 
                 let insertQuestionsIntoTable = function(result, countStartAt) {
-
                     var tr = '';
                     $.each(result.result, function(key, value) {
                         tr += `<tr>
@@ -299,14 +260,10 @@
                         dataType: 'JSON',
                         data: paramsData,
                         success: function(result) {
-                            const subjectResult = [];
-                            for(var i = 0; i < result.length; i++){
-                                subjectResult.push(...result[i].subject);                             
+                            for (var i = 0; i < result.length; i++) {
+                                allSubjects.push(...result[i].subject);
                             }
-                            subjectResult.sort((a, b) => a.name < b.name ? -1 : 1);
-
-                            console.log(subjectResult);
-                            allSubjects = subjectResult;
+                            allSubjects.sort((a, b) => a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1);
                             if (allSubjects && allSubjects.length > 0) {
                                 allSubjects.forEach(val => {
                                     $('.subject-filter').append(`<option value="${val.id}">${val.name}</option>`)
@@ -334,7 +291,7 @@
 
                 $("#search-btn").click(function() {
                     subject = $('.subject-filter').val();
-                    chapter = $('.chapter-filter').val();
+                    topic = $('.chapter-filter').val();
                     question = $('#question-filter').val();
                     page_no = 1;
                     loadQuestions(page_no, page_count);
@@ -350,7 +307,7 @@
                     $('.chapter-filter').val("");
                     $('#question-filter').val("");
                     subject = "";
-                    chapter = ""
+                    topic = ""
                     question = ""
                     page_no = 1;
                     loadQuestions(page_no, page_count);

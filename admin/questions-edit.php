@@ -308,6 +308,7 @@
                 var selectedSubject;
                 var subjectList;
                 var chapterList;
+                var questionData;
 
                 var getQuestion = function() {
                     const url = `${base_url}/admin/question/get-detail.php`;
@@ -320,7 +321,7 @@
                             id: questionID
                         },
                         success: function(result) {
-                            console.log(result);
+                            questionData = result;
                             $('[name=question]').attr('id', result.id);
                             $('[name=question]').val(result.question);
                             $('[name=option_1]').val(result.option_1);
@@ -329,8 +330,8 @@
                             $('[name=option_4]').val(result.option_4);
                             $('[name=option_5]').val(result.option_5);
                             // $('#phase-filter').val(result.phase.id);
-                            $('#subject-filter').val(result.subject.id);
-                            $('#topic-filter').val(result.topic.id);
+                            // $('#subject-filter').val(result.subject.id);
+                            // $('#topic-filter').val(result.topic.id);
                             $('[name=description]').val(result.description);
                             $('[name=difficulty_level]').val(result.difficulty_level);
                             $('[name=answer]').each(function() {
@@ -338,7 +339,7 @@
                                     $(this).prop('checked', true);
                                 }
                             });
-                            // $('[name=tags]').val(result.tags);
+                            getAllSubjects();
                         }
                     });
                 }
@@ -387,26 +388,46 @@
                         dataType: 'JSON',
                         data: paramsData,
                         success: function(result) {
-
-                            // for(var i = 0; i < result.length; i++){
-                            //     subjectResult.push(...result[i].subject);                             
-                            // }
-                            // subjectResult.sort((a, b) => a.name < b.name ? -1 : 1);
-
-                            phaseList = result;
                             allPhase = result;
-                            var index = 1;
-                            var trHTML = '';
                             if (allPhase && allPhase.length > 0) {
-                                allPhase.forEach(val => {
-                                    $('#phase-filter').append(`<option value="${val.id}">${val.name}</option>`)
+                                let selectedPhaseId;
+                                allPhase.forEach(phase => {
+                                    if (phase.subject && phase.subject.length > 0) {
+                                        phase.subject.forEach(subject => {
+                                            if (questionData.subject.id == subject.id) {
+                                                selectedPhaseId = phase.id;
+                                            }
+                                        })
+                                    }
+                                })
+                                $('#phase-filter').html('<option value="">-- Select Phase --</option>');
+                                $('#subject-filter').html('<option value="">-- Select Subject --</option>');
+                                $('#topic-filter').html('<option value="">-- Select Topic --</option>');
+                                allPhase.forEach(phase => {
+                                    $('#phase-filter').append(`<option value="${phase.id}">${phase.name}</option>`);
+                                    if (phase.id == selectedPhaseId) {
+                                        if (phase.subject && phase.subject.length > 0) {
+                                            phase.subject.forEach(subject => {
+                                                $('#subject-filter').append(`<option value="${subject.id}">${subject.name}</option>`);
+                                                $("#phase-filter").val(phase.id);
+                                                $("#subject-filter").val(questionData.subject?.id);
+                                                if (questionData.subject?.id && subject.id == questionData.subject?.id) {
+                                                    subject.topic.forEach(topic => {
+                                                        $('#topic-filter').append(`<option value="${topic.id}">${topic.name}</option>`);
+                                                    });
+                                                    $('#topic-filter').append(`<option value="addTopic" class="boldItalic">Add Topic</option>`);
+                                                    $("#topic-filter").val(questionData.topic?.id);
+                                                }
+                                            })
+                                        }
+                                        $('#subject-filter').append(`<option value="addSubject" class="boldItalic">Add Subject</option>`);
+                                    }
                                 })
                             }
-
                         }
                     });
                 }
-                getAllSubjects();
+
 
                 var subjectArray = [];
                 $('#phase-filter').change(function(val) {

@@ -30,8 +30,8 @@
                 $("#loginForm").submit(function(e) {
                     e.preventDefault();
                     let post_data = {
-                        email_id: $('#loginForm [name=username]').val(),
-                        password: $('#loginForm [name=password]').val(),
+                        email_id: $('#loginForm input[name=username]').val(),
+                        password: $('#loginForm input[name=password]').val(),
                     }
                     loginAjaxCall(post_data);
                 });
