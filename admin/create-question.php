@@ -259,9 +259,8 @@
         $(function() {
             const token = localStorage.getItem("admin_token");
             if (token) {
-                var selectedSubject;
                 var phaseList;
-                var chapterList;
+                var selectedSubject;
 
                 $('#createQuestion').validate({
                     rules: {

@@ -157,8 +157,8 @@
     </div>
     <?php include 'include/footer_script.php' ?>
 
-    <!-- Subject Modal Start-->
-    <div id="addSubjectModal" class="modal fade" role="dialog">
+ <!-- Subject Modal Start-->
+ <div id="addSubjectModal" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
 
             <!-- Modal content-->
@@ -202,52 +202,6 @@
         </div>
     </div>
     <!-- Subject Modal End-->
-
-    <!-- Chapter Modal Start-->
-    <div id="addChapterModal" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-lg">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add Chapter</h4>
-                </div>
-                <div class="modal-body modal-body-scrollable">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Chapter Name</label>
-                                <input type="text" class="form-control" name="chapter_name" data-id="" />
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="table-responsive">
-                                <table class="table table-bordered mb-0" id="chapterData">
-                                    <thead>
-                                        <tr>
-                                            <th width="4%">S.No.</th>
-                                            <th width="40%" class="">Chapter Name</th>
-                                            <th width="4%" colspan="3">Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary add-chapter">Save</button>
-                    <button type="button" class="btn btn-primary update-chapter d-custom-none">Update</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <!-- Chapter Modal End-->
 
     <!-- Topic Modal Start-->
     <div id="addTopicModal" class="modal fade" role="dialog">
@@ -302,12 +256,9 @@
                 const questionID = document.location.search.substr(4);
 
                 let subjectID = '';
-                let chapterId = '';
-
-                let allChapters = [];
+                let chapterId = '';                
+                var phaseList;
                 var selectedSubject;
-                var subjectList;
-                var chapterList;
                 var questionData;
 
                 var getQuestion = function() {
@@ -339,7 +290,7 @@
                                     $(this).prop('checked', true);
                                 }
                             });
-                            getAllSubjects();
+                            // getAllSubjects();
                         }
                     });
                 }
@@ -357,7 +308,7 @@
                         "option_5": $('[name=option_5]').val(),
                         "answer": $('[name=answer]:checked').val(),
                         "subject_id": $('#subject-filter').val(),
-                        "topic_id": $('#chapter-filter').val(),
+                        "topic_id": $('#topic-filter').val(),
                         "description": $('[name=description]').val(),
                         "difficulty_level": $('[name=difficulty_level]').val(),
                         // "tags": ["AIEEE", "IIT"]
@@ -377,6 +328,7 @@
                     });
                 });
 
+                const subjectResult = [];
                 var getAllSubjects = function() {
                     const url = `${base_url}/admin/subject/list.php`;
                     const paramsData = {
@@ -427,6 +379,7 @@
                         }
                     });
                 }
+                getAllSubjects();
 
 
                 var subjectArray = [];
@@ -467,7 +420,7 @@
                     }
                 });
 
-                $('#subject-filter').change(function(val) {
+                $('body').on('change', '#subject-filter', function(val) {
                     let selectedChapter = $('#subject-filter').val();
                     var index = 1;
                     var trHTML = '';
@@ -499,15 +452,28 @@
                         })
                         $('#topic-filter').append('<option value="addTopic" class="boldItalic">Add Topic</option>');
                     }
-                    if ($(this).val() == 'addChapter') {
-                        $('#addChapterModal').modal('show');
+                    if ($(this).val() == 'addSubject') {
+                        $('#addSubjectModal').modal('show');
                         $(this).val('');
                         selectedChapter = undefined;
-                        $('#addChapterModal [name=chapter_name]').val("");
-                        $('#addChapterModal button.add-chapter').show();
-                        $('#addChapterModal button.update-chapter').hide();
+                        $('#addSubjectModal [name=topic_name]').val("");
+                        $('#addSubjectModal button.add-topic').show();
+                        $('#addSubjectModal button.update-topic').hide();
                     }
                 });
+
+                
+                $('body').on('change', '#topic-filter', function(val) {
+                    if ($(this).val() == 'addTopic') {
+                        $('#addTopicModal').modal('show');
+                        $(this).val('');
+                        selectedChapter = undefined;
+                        $('#addTopicModal [name=topic_name]').val("");
+                        $('#addTopicModal button.add-topic').show();
+                        $('#addTopicModal button.update-topic').hide();
+                    }
+                });
+
 
 
                 // ***********************
@@ -604,110 +570,6 @@
                 // subject section
                 // ***********************
 
-
-                // ***********************
-                // chapter section
-                // ***********************
-                $('body').on('click', '.remove-chapter', function() {
-                    var status = confirm("Are you sure to delete this chapter ?");
-                    if (status == true) {
-                        let chapterId = $(this).parents('tr').attr('id');
-                        let deleteFile = {
-                            'token': token,
-                            'id': chapterId,
-                            "is_chapter": 1,
-                            "is_topic": 0
-                        }
-                        $.ajax({
-                            url: base_url + '/admin/chapter/delete.php',
-                            type: 'POST',
-                            dataType: 'JSON',
-                            data: JSON.stringify(deleteFile),
-                            success: function(response) {
-                                toastr.success(response.message);
-                                location.reload();
-                            },
-                            error: function(error) {
-                                toastr.error(error.responseJSON.message);
-                            }
-                        });
-                    }
-                });
-
-                $('body').on('click', '.update-chapter-icon', function() {
-                    selectedChapter = $(this).parents('tr').attr('id');
-                    const selectedChapterData = chapterList.filter(v => v.id == selectedChapter)[0];
-                    $('#addChapterModal [name=chapter_name]').val($(this).parents('tr').find('td').eq(1).text()).focus();
-                    $('#addChapterModal button.add-chapter').hide();
-                    $('#addChapterModal button.update-chapter').show();
-                });
-
-                $('body').on('click', '.update-chapter', function() {
-                    if (!$('[name=chapter_name]').val() == '') {
-                        let update_data = {
-                            "token": token,
-                            "id": selectedChapter,
-                            "name": $('#addChapterModal [name="chapter_name"]').val(),
-                            "subject_id": $('#subject-filter').find('option:selected').val(),
-                            "chapter_id": 0,
-                            "is_chapter": 1,
-                            "is_topic": 0,
-                        }
-                        $.ajax({
-                            url: base_url + '/admin/chapter/update.php',
-                            type: 'POST',
-                            data: JSON.stringify(update_data),
-                            dataType: 'JSON',
-                            success: function(result) {
-                                toastr.success(result.message);
-                                $('#addChapterModal [name=chapter_name]').val("");
-                                $('#addChapterModal button.add-chapter').show();
-                                $('#addChapterModal button.update-chapter').hide();
-                                location.reload();
-                            },
-                            error: function(error) {
-                                toastr.error(error.responseJSON.message);
-                            }
-                        });
-                    } else {
-                        toastr.error('Please Enter Chapter Name');
-                        $('[name=chapter_name]').focus();
-                    }
-                });
-
-                $('body').on('click', '.add-chapter', function() {
-                    if (!$('[name=chapter_name]').val() == '') {
-                        let post_data = {
-                            "token": token,
-                            "name": $('[name=chapter_name]').val(),
-                            "subject_id": $('#subject-filter').find('option:selected').val(),
-                            "chapter_id": 0,
-                            "is_chapter": 1,
-                            "is_topic": 0
-                        }
-                        $.ajax({
-                            url: base_url + '/admin/chapter/add.php',
-                            type: 'POST',
-                            data: JSON.stringify(post_data),
-                            dataType: 'JSON',
-                            success: function(result) {
-                                toastr.success(result.message);
-                                $('#addChapterModal').modal('hide');
-                                getAllSubjects();
-                            },
-                            error: function(error) {
-                                toastr.error(error.responseJSON.message);
-                            }
-                        });
-
-                    } else {
-                        toastr.error('Please Enter Chapter Name');
-                        $('#addChapterModal [name=chapter_name]').focus();
-                    }
-                });
-                // ***********************
-                // chapter section
-                // ***********************
 
                 // ***********************
                 // topic section
