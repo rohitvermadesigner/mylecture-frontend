@@ -103,12 +103,12 @@
                                                     <input type="number" class="form-control" name="marks_for_correct_question" value="5" />
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <!-- <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>*Marks for incorrect question </label>
                                                     <input type="number" class="form-control" name="marks_for_incorrect_question" value="-1" />
                                                 </div>
-                                            </div>
+                                            </div> -->
 
                                         </div>
                                         <div class="row m-0">
@@ -149,7 +149,7 @@
                         topic_id: 'required',
                         total_questions: 'required',
                         marks_for_correct_question: 'required',
-                        marks_for_incorrect_question: 'required'
+                        // marks_for_incorrect_question: 'required'
                     },
                     submitHandler: function() {
                         createTopicSubmit();
@@ -168,7 +168,7 @@
                         "topic_id": $('[name=topic_id]').val(),
                         "total_questions": $('[name=total_questions]').val(),
                         "marks_for_correct_question": $('[name=marks_for_correct_question]').val(),
-                        "marks_for_incorrect_question": $('[name=marks_for_incorrect_question]').val()
+                        // "marks_for_incorrect_question": $('[name=marks_for_incorrect_question]').val()
                     }
                     console.log(update_data);
                     $.ajax({

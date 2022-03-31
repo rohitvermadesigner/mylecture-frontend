@@ -8,6 +8,11 @@
         <div id="page-wrapper" class="gray-bg dashbard-1">
             <?php include 'include/header.php' ?>
             <h1 class="title-primary">Questions </h1>
+            <ul class="breadcrumb">
+                <li><a href="dashboard.php">Dashboard</a></li>
+                <li><a href="questions.php">Question Bank</a></li>
+                <li>Edit Question</li>
+            </ul>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="wrapper wrapper-content">

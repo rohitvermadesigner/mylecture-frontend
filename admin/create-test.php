@@ -209,7 +209,7 @@
                                                                                 <th width="20px">S.No</th>
                                                                                 <th>Questions</th>
                                                                                 <th>Subject</th>
-                                                                                <th>Chapter</th>
+                                                                                <th>Topic</th>
                                                                                 <th>Difficulty Level</th>
                                                                                 <th width="8%">Marks</th>
                                                                                 <th width="3%"></th>
@@ -420,13 +420,18 @@
                 <div class="modal-body">
                     <ul class="filter-list">
                         <li>
+                            <select class="form-control" id="phase-filter">
+                                <option value="">-- Select Phase --</option>
+                            </select>
+                        </li>
+                        <li>
                             <select class="form-control" id="subject-filter">
                                 <option value="">-- Select Subject --</option>
                             </select>
                         </li>
                         <li>
-                            <select class="form-control" id="chapter-filter">
-                                <option value="">-- Select Chapter --</option>
+                            <select class="form-control" id="topic-filter">
+                                <option value="">-- Select Topic --</option>
                             </select>
                         </li>
                         <li>
@@ -446,7 +451,7 @@
                                     <th width="5%">S.No.</th>
                                     <th width="55%">Questions Details</th>
                                     <th width="15%">Subject</th>
-                                    <th width="20%">Chapter</th>
+                                    <th width="20%">Topic</th>
                                     <th width="5%">Level</th>
                                 </tr>
                             </thead>
@@ -1018,7 +1023,7 @@
                 let page_count = 10;
                 let totalResults = 0;
                 let subject = '';
-                let chapter = '';
+                let topic = '';
                 let question = '';
                 let allSubjects = [];
                 let loadQuestions = function(page_no, page_count) {
@@ -1030,8 +1035,8 @@
                     if (subject) {
                         paramsData.subject = subject
                     }
-                    if (chapter) {
-                        paramsData.chapter = chapter
+                    if (topic) {
+                        paramsData.topic = topic
                     }
                     if (question) {
                         paramsData.question = question
@@ -1065,7 +1070,7 @@
                             <td> ${countStartAt} </td>
                             <td> ${value.question} </td>
                             <td> ${value.subject} </td>
-                            <td> ${value.chapter} </td>
+                            <td> ${value.topic} </td>
                             <td> ${value.difficulty_level} </td></tr>`;
                         countStartAt++;
                     });
@@ -1113,52 +1118,76 @@
                         dataType: 'JSON',
                         data: paramsData,
                         success: function(result) {
-                            allSubjects = result;
-                            if (allSubjects && allSubjects.length > 0) {
-                                allSubjects.forEach(val => {
-                                    $('#subject-filter').append(`<option value="${val.id}">${val.name}</option>`)
+                            phaseList = result;
+                            allPhase = result;
+                            var index = 1;
+                            var trHTML = '';
+                            if (allPhase && allPhase.length > 0) {
+                                allPhase.forEach(val => {
+                                    $('#phase-filter').append(`<option value="${val.id}">${val.name}</option>`)
                                 })
                             }
+
                         }
                     });
                 }
 
-                $('#subject-filter').change(function(val) {
-                    subject = $('#subject-filter').val();
-                    if (subject) {
-                        allSubjects.forEach(val => {
-                            if (val.id == subject) {
-                                $('#chapter-filter').html('');
-                                $('#chapter-filter').append(`<option value="">-- Select Chapter --</option>`);
-                                val.chapter.forEach(chapter => {
-                                    $('#chapter-filter').append(`<option value="${chapter.id}">${chapter.name}</option>`)
+                var subjectArray = [];
+                $('#phase-filter').change(function(val) {
+                    $this = $(this);
+                    phase = $(this).val();
+                    if (phase) {
+                        allPhase.forEach(val => {
+                            if (val.id == phase) {
+                                subjectArray = val.subject;
+                                $this.parents('ul').find('#topic-filter').html('');
+                                $this.parents('ul').find('#topic-filter').append(`<option value="">-- Select Topic --</option>`);
+                                $this.parents('ul').find('#subject-filter').html('');
+                                $this.parents('ul').find('#subject-filter').append(`<option value="">-- Select Subject --</option>`);
+                                val.subject.forEach(subject => {
+                                    $this.parents('ul').find('#subject-filter').append(`<option value="${subject.id}">${subject.name}</option>`)
                                 })
                             }
+                        });
+                    }
+                });
 
+                $('body').on('change', '#subject-filter', function(val) {
+                    $this = $(this);
+                    subject = $(this).val();
+                    if (subject) {
+                        subjectArray.forEach(val => {
+                            if (val.id == subject) {
+                                $this.parents('ul').find('#topic-filter').html('');
+                                $this.parents('ul').find('#topic-filter').append(`<option value="">-- Select Topic --</option>`);
+                                val.topic.forEach(topic => {
+                                    $this.parents('ul').find('#topic-filter').append(`<option value="${topic.id}">${topic.name}</option>`)
+                                });
+
+                            }
                         })
                     }
-
                 });
 
                 $("#search-btn").click(function() {
                     subject = $('#subject-filter').val();
-                    chapter = $('#chapter-filter').val();
+                    topic = $('#topic-filter').val();
                     question = $('#question-filter').val();
                     page_no = 1;
                     loadQuestions(page_no, page_count);
-                    if (subject || chapter || question) {
+                    if (subject || topic || question) {
                         $("#reset-btn").removeClass('display-none');
                     }
                 });
 
                 $("#reset-btn").click(function() {
-                    $('#chapter-filter').html('');
-                    $('#chapter-filter').append(`<option value="">-- Select Chapter --</option>`);
+                    $('#topic-filter').html('');
+                    $('#topic-filter').append(`<option value="">-- Select Topic --</option>`);
                     $('#subject-filter').val("");
-                    $('#chapter-filter').val("");
+                    $('#topic-filter').val("");
                     $('#question-filter').val("");
                     subject = "";
-                    chapter = ""
+                    topic = ""
                     question = ""
                     page_no = 1;
                     loadQuestions(page_no, page_count);
@@ -1193,7 +1222,7 @@
                             <td>${count++}</td>
                             <td>${val.question}</td>
                             <td>${val.subject}</td>
-                            <td>${val.chapter}</td>
+                            <td>${val.topic}</td>
                             <td>${val.difficulty_level}</td>
                             <td class="marks-input-wrap"><input type="number" min="0" class="form-control"/></td>
                             <td style="vertical-align: middle; cursor:pointer;"><i class="fa fa-times remove-question-item"></i></td>

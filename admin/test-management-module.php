@@ -32,10 +32,10 @@
                                             </li>
                                             <li>
                                                 <select class="form-control" id="difficulty-filter">
-                                                    <option value="">Select Difficulty Level</option>
-                                                    <option value="easy">Easy</option>
-                                                    <option value="normal">Normal</option>
-                                                    <option value="difficult">Difficult</option>
+                                                    <option value="">Select Level</option>
+                                                    <option value="level1">Level 1</option>
+                                                    <option value="level2">Level 2</option>
+                                                    <option value="level3">Level 3</option>
                                                 </select>
                                             </li>
                                             <li>

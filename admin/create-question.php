@@ -357,6 +357,8 @@
                         allPhase.forEach(val => {
                             if (val.id == phase) {
                                 subjectArray = val.subject;
+                                $('#topic-filter').html('');
+                                $('#topic-filter').append(`<option value="">-- Select Topic --</option>`);
                                 $('#subject-filter').html('');
                                 $('#subject-filter').append(`<option value="">-- Select Subject --</option>`);
                                 val.subject.forEach(subject => {
