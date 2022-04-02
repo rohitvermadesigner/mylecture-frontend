@@ -4,6 +4,11 @@
 <?php include 'include/head.php' ?>
 
 <body>
+    <style>
+        .create-text-page .nav-tabs {
+            pointer-events: all;
+        }
+    </style>
     <div id="wrapper">
         <?php include 'include/left_menu.php' ?>
         <div id="page-wrapper" class="gray-bg dashbard-1">
@@ -174,13 +179,13 @@
                                                                 <label><input type="radio" name="is_mandatory_all_question" value="0" checked /> No</label>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6">
+                                                        <!-- <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>Test Timing </label><br>
                                                                 <label><input type="radio" name="test_timing_pattern" value="1" /> hh:mm:ss</label> &nbsp;
                                                                 <label><input type="radio" name="test_timing_pattern" value="0" checked /> mm:ss</label>
                                                             </div>
-                                                        </div>
+                                                        </div> -->
                                                     </div>
                                                     <div class="row m-0">
                                                         <div class="float-right">
@@ -419,7 +424,7 @@
                 </div>
                 <div class="modal-body">
                     <ul class="filter-list">
-                    <li>
+                        <li>
                             <select class="form-control" id="phase-filter">
                                 <option value="">-- Select Phase --</option>
                             </select>
@@ -505,11 +510,11 @@
                     },
                     dataType: 'JSON',
                     success: function(result) {
-                        console.log(result.questions);
+                        console.log(result);
                         $('.add-question-box-in-test').hide();
                         $('[name=test_name]').val(result.name);
                         $('[name=category_id]').val(result.category.id),
-                            // $('[name=instruction_id]').val(result.instruction_id),
+                            $('[name=instruction_id]').val(result.instruction_id),
                             $('[name=duration]').val(result.duration);
                         $('[name=difficulty_level]').val(result.difficulty_level);
                         $('[name=total_questions]').val(result.total_questions);
@@ -528,10 +533,13 @@
                                 $(this).prop('checked', true);
                             }
                         });
-                        $('[name=test_timing_pattern]').each(function() {
-                            if ($(this).val() == result.test_timing_pattern) {
-                                $(this).prop('checked', true);
-                            }
+                        $('[name=group_id]').each(function() {
+                            $this = $(this);
+                            result.student_group.forEach(val =>{
+                                if ($this.val() === val.id) {
+                                    $this.prop('checked', true);
+                                }
+                            });
                         });
 
                         let tr = "";
@@ -1297,6 +1305,7 @@
 
                 $(".select-question-btn").click(function() {
                     $("#addQuestionsModal").modal('show');
+                    debugger;
                     loadQuestions(page_no, page_count);
                     var questionSelectText = `${selectedQuestions.length} Question${selectedQuestions.length > 1 ? 's' : ''} Selected`
                     $(".question-selected-text").text(questionSelectText);

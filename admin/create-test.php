@@ -174,13 +174,13 @@
                                                                 <label><input type="radio" name="is_mandatory_all_question" value="0" checked /> No</label>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6">
+                                                        <!-- <div class="col-md-6">
                                                             <div class="form-group">
                                                                 <label>Test Timing </label><br>
                                                                 <label><input type="radio" name="test_timing_pattern" value="1" /> hh:mm:ss</label> &nbsp;
                                                                 <label><input type="radio" name="test_timing_pattern" value="0" checked /> mm:ss</label>
                                                             </div>
-                                                        </div>
+                                                        </div> -->
                                                     </div>
                                                     <div class="row m-0">
                                                         <div class="float-right">
@@ -1140,15 +1140,21 @@
                         allPhase.forEach(val => {
                             if (val.id == phase) {
                                 subjectArray = val.subject;
-                                $this.parents('ul').find('#topic-filter').html('');
-                                $this.parents('ul').find('#topic-filter').append(`<option value="">-- Select Topic --</option>`);
-                                $this.parents('ul').find('#subject-filter').html('');
-                                $this.parents('ul').find('#subject-filter').append(`<option value="">-- Select Subject --</option>`);
+                                $('#topic-filter').html('');
+                                $('#topic-filter').append(`<option value="">-- Select Topic --</option>`);
+                                $('#subject-filter').html('');
+                                $('#subject-filter').append(`<option value="">-- Select Subject --</option>`);
                                 val.subject.forEach(subject => {
-                                    $this.parents('ul').find('#subject-filter').append(`<option value="${subject.id}">${subject.name}</option>`)
+                                    $('#subject-filter').append(`<option value="${subject.id}">${subject.name}</option>`)
                                 })
                             }
                         });
+                    }
+                    else {
+                        $('#subject-filter').html('');
+                        $('#subject-filter').append(`<option value="">-- Select Subject --</option>`);
+                        $('#topic-filter').html('');
+                        $('#topic-filter').append(`<option value="">-- Select Topic --</option>`);
                     }
                 });
 
@@ -1158,14 +1164,18 @@
                     if (subject) {
                         subjectArray.forEach(val => {
                             if (val.id == subject) {
-                                $this.parents('ul').find('#topic-filter').html('');
-                                $this.parents('ul').find('#topic-filter').append(`<option value="">-- Select Topic --</option>`);
+                                $('#topic-filter').html('');
+                                $('#topic-filter').append(`<option value="">-- Select Topic --</option>`);
                                 val.topic.forEach(topic => {
-                                    $this.parents('ul').find('#topic-filter').append(`<option value="${topic.id}">${topic.name}</option>`)
+                                    $('#topic-filter').append(`<option value="${topic.id}">${topic.name}</option>`)
                                 });
 
                             }
                         })
+                    }
+                    else{
+                         $('#topic-filter').html('');
+                         $('#topic-filter').append(`<option value="">-- Select Topic --</option>`);
                     }
                 });
 
@@ -1272,7 +1282,6 @@
                         $('.publish-group').hide();
                     }
                 });
-
             } else {
                 window.location.replace('index.php');
             }
