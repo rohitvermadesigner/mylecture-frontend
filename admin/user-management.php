@@ -80,7 +80,7 @@
 
     <!-- Modal -->
     <div id="addFacultyModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
 
             <!-- Modal content-->
             <div class="modal-content">
@@ -91,22 +91,30 @@
                     </div>
                     <div class="modal-body">
                         <div class="row mt-4">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Name</label>
                                     <input type="text" class="form-control" name="name" />
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Email Id</label>
                                     <input type="text" class="form-control" name="email_id">
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Mobile Number</label>
                                     <input type="text" class="form-control" name="mobile_no" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="10">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Select Phase</label>
+                                    <select class="form-control" id="phase" name="subject">
+                                        <option value="">-- Select Phase --</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -145,6 +153,7 @@
                 $('[name=name]').val('');
                 $('[name=email_id]').val('');
                 $('[name=mobile_no]').val('');
+                $('#phase').val('');
                 $('#subject').val('');
             });
 
@@ -334,15 +343,38 @@
                     dataType: 'JSON',
                     data: paramsData,
                     success: function(result) {
+                        allPhase = result;
                         if (result && result.length > 0) {
                             result.forEach(val => {
-                                $('#subject').append(`<option value="${val.id}">${val.name}</option>`)
+                                $('#phase').append(`<option value="${val.id}">${val.name}</option>`)
                             })
                         }
-                        $('#subject').append('<option value="addSubject" class="boldItalic">Add Subject</option>');
                     }
                 });
             }
+
+            var subjectArray = [];
+                $('#phase').change(function(val) {
+                    phase = $('#phase').val();
+                    var index = 1;
+                    var trHTML = '';
+                    if (phase) {
+                        allPhase.forEach(val => {
+                            if (val.id == phase) {
+                                subjectArray = val.subject;
+                                $('#subject').html('');
+                                $('#subject').append(`<option value="">-- Select Subject --</option>`);
+                                val.subject.forEach(subject => {
+                                    $('#subject').append(`<option value="${subject.id}">${subject.name}</option>`)
+                                });
+                            }
+                        });
+                    } else {
+                        $('#subject').html('');
+                        $('#subject').append(`<option value="">-- Select Subject --</option>`);
+                    }
+                });
+
             getAllSubjects();
 
         });
