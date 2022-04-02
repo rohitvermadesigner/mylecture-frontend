@@ -271,7 +271,7 @@
                         option_4: 'required',
                         description: 'required',
                         subject_id: 'required',
-                        chapter_id: 'required',
+                        topic_id: 'required',
                         difficulty_level: 'required',
                     },
                     submitHandler: function() {
@@ -294,7 +294,6 @@
                         "option_5": $('[name=option_5]').val(),
                         "answer": $('[name=answer]:checked').val(),
                         "subject_id": $('#subject-filter').val(),
-                        "chapter_id": $('#chapter-filter').val(),
                         "topic_id": $('#topic-filter').val(),
                         "description": $('[name=description]').val(),
                         "difficulty_level": $('[name=difficulty_level]').val(),
@@ -316,7 +315,7 @@
                 };
 
                 const subjectResult = [];
-                var getAllSubjects = function() {
+                const getAllSubjects = function() {
                     const url = `${base_url}/admin/subject/list.php`;
                     const paramsData = {
                         token: token
@@ -346,7 +345,6 @@
                         }
                     });
                 }
-                getAllSubjects();
 
                 var subjectArray = [];
                 $('#phase-filter').change(function(val) {
@@ -381,15 +379,18 @@
                                 </tr>`;
                                 });
                                 $('#subjectData tbody').append(trHTML);
-
                             }
-
                         });
+                    } else {
+                        $('#subject-filter').html('');
+                        $('#subject-filter').append(`<option value="">-- Select Subject --</option>`);
+                        $('#topic-filter').html('');
+                        $('#topic-filter').append(`<option value="">-- Select Topic --</option>`);
                     }
                 });
 
                 $('body').on('change', '#subject-filter', function(val) {
-                    let selectedChapter = $('#subject-filter').val();
+                    // let selectedChapter = $('#subject-filter').val();
                     var index = 1;
                     var trHTML = '';
                     subject = $('#subject-filter').val();
@@ -417,32 +418,145 @@
                                 });
                                 $('#topicData tbody').append(trHTML);
                             }
+
                         })
                         $('#topic-filter').append('<option value="addTopic" class="boldItalic">Add Topic</option>');
+                    } else {
+                        $('#topic-filter').html('');
+                        $('#topic-filter').append(`<option value="">-- Select Topic --</option>`);
                     }
                     if ($(this).val() == 'addSubject') {
                         $('#addSubjectModal').modal('show');
                         $(this).val('');
-                        selectedChapter = undefined;
+                        // selectedChapter = undefined;
                         $('#addSubjectModal [name=topic_name]').val("");
                         $('#addSubjectModal button.add-topic').show();
                         $('#addSubjectModal button.update-topic').hide();
                     }
                 });
 
-
-
                 $('body').on('change', '#topic-filter', function(val) {
                     if ($(this).val() == 'addTopic') {
                         $('#addTopicModal').modal('show');
                         $(this).val('');
-                        selectedChapter = undefined;
+                        // selectedChapter = undefined;
                         $('#addTopicModal [name=topic_name]').val("");
                         $('#addTopicModal button.add-topic').show();
                         $('#addTopicModal button.update-topic').hide();
                     }
                 });
 
+                const allUpdateSubjects = function() {
+                    const url = `${base_url}/admin/subject/list.php`;
+                    const paramsData = {
+                        token: token
+                    }
+                    $.ajax({
+                        url: url,
+                        type: 'GET',
+                        dataType: 'JSON',
+                        data: paramsData,
+                        success: function(result) {
+                            allPhase = result;
+                            phase = $('#phase-filter').val();
+                            var index = 1;
+                            var trHTML = '';
+                            if (phase) {
+                                allPhase.forEach(val => {
+                                    if (val.id == phase) {
+                                        subjectArray = val.subject;
+                                        $('#topic-filter').html('');
+                                        $('#topic-filter').append(`<option value="">-- Select Topic --</option>`);
+                                        $('#subject-filter').html('');
+                                        $('#subject-filter').append(`<option value="">-- Select Subject --</option>`);
+                                        val.subject.forEach(subject => {
+                                            $('#subject-filter').append(`<option value="${subject.id}">${subject.name}</option>`)
+                                        })
+
+                                        $('#subjectData tbody').html('');
+                                        val.subject.forEach(subject => {
+                                            trHTML +=
+                                                `<tr id="${subject.id}">
+                                <td>${index++}</td>
+                                <td><span subjectName="${subject.name}">${subject.name}</span></td>
+                                <td class="text-center">
+                                    <ul class="action-list">
+                                    <li class="update-subject-icon"><i class="fa fa-pencil"></i></li>
+                                    <li class="remove-subject"><i class="fa fa-trash-o"></i></li>
+                                    </ul>
+                                </td>
+                                </tr>`;
+                                        });
+                                        $('#subjectData tbody').append(trHTML);
+                                    }
+                                });
+                            } else {
+                                $('#subject-filter').html('');
+                                $('#subject-filter').append(`<option value="">-- Select Subject --</option>`);
+                                $('#topic-filter').html('');
+                                $('#topic-filter').append(`<option value="">-- Select Topic --</option>`);
+                            }
+
+                        }
+                    });
+                }
+
+                const allUpdateTopics = function() {
+                    const url = `${base_url}/admin/subject/list.php`;
+                    const paramsData = {
+                        token: token
+                    }
+                    $.ajax({
+                        url: url,
+                        type: 'GET',
+                        dataType: 'JSON',
+                        data: paramsData,
+                        success: function(result) {
+                            allPhase = result;
+                            phase = $('#phase-filter').val();
+                            var index = 1;
+                            var trHTML = '';
+                            subject = $('#subject-filter').val();
+
+                            allPhase.forEach(val => {
+                                if (val.id == phase) {
+                                    subjectArray = val.subject;
+                                    if (subject) {
+                                        subjectArray.forEach(val => {
+                                            if (val.id == subject) {
+                                                $('#topic-filter').html('');
+                                                $('#topic-filter').append(`<option value="">-- Select Topic --</option>`);
+                                                val.topic.forEach(topic => {
+                                                    $('#topic-filter').append(`<option value="${topic.id}">${topic.name}</option>`)
+                                                });
+                                                $('#topicData tbody').html('');
+                                                val.topic.forEach(topic => {
+                                                    trHTML +=
+                                                        `<tr id="${topic.id}">
+                                <td>${index++}</td>
+                                <td><span topicName="${topic.name}">${topic.name}</span></td>
+                                <td class="text-center">
+                                    <ul class="action-list">
+                                    <li class="update-topic-icon"><i class="fa fa-pencil"></i></li>
+                                    <li class="remove-topic"><i class="fa fa-trash-o"></i></li>
+                                    </ul>
+                                </td>
+                                </tr>`;
+                                                });
+                                                $('#topicData tbody').append(trHTML);
+                                            }
+
+                                        })
+                                    } else {
+                                        $('#topic-filter').html('');
+                                        $('#topic-filter').append(`<option value="">-- Select Topic --</option>`);
+                                    }
+                                }
+                            });
+
+                        }
+                    });
+                }
 
                 // ***********************
                 // subject section
@@ -462,8 +576,7 @@
                             data: JSON.stringify(deleteFile),
                             success: function(response) {
                                 toastr.success(response.message);
-                                getAllSubjects();
-                                location.reload();
+                                allUpdateSubjects();
                             },
                             error: function(error) {
                                 toastr.error(error.responseJSON.message);
@@ -474,7 +587,6 @@
 
                 $('body').on('click', '.update-subject-icon', function() {
                     selectedSubject = $(this).parents('tr').attr('id');
-                    // const selectedSubjectData = phaseList.filter(v => v.id == selectedSubject)[0];
                     $('#addSubjectModal [name=subject_name]').val($(this).parents('tr').find('span').attr('subjectName')).focus();
                     $('#addSubjectModal button.add-subject').hide();
                     $('#addSubjectModal button.update-subject').show();
@@ -498,8 +610,7 @@
                                 $('#addSubjectModal [name=subject_name]').val("");
                                 $('#addSubjectModal button.add-subject').show();
                                 $('#addSubjectModal button.update-subject').hide();
-                                getAllSubjects();
-                                location.reload();
+                                allUpdateSubjects();
                             },
                             error: function(error) {
                                 toastr.error(error.responseJSON.message);
@@ -525,10 +636,8 @@
                             dataType: 'JSON',
                             success: function(result) {
                                 toastr.success(result.message);
-                                $('#addSubjectModal').modal('hide');
-                                $('#phase-filter').html('');
-                                getAllSubjects();
-                                location.reload();
+                                allUpdateSubjects();
+
                             },
                             error: function(error) {
                                 toastr.error(error.responseJSON.message);
@@ -562,7 +671,7 @@
                             data: JSON.stringify(deleteFile),
                             success: function(response) {
                                 toastr.success(response.message);
-                                location.reload();
+                                allUpdateTopics();
                             },
                             error: function(error) {
                                 toastr.error(error.responseJSON.message);
@@ -573,7 +682,6 @@
 
                 $('body').on('click', '.update-topic-icon', function() {
                     selectedTopic = $(this).parents('tr').attr('id');
-                    // const selectedSubjectData = phaseList.filter(v => v.id == selectedSubject)[0];
                     $('#addTopicModal [name=topic_name]').val($(this).parents('tr').find('span').attr('topicName')).focus();
                     $('#addTopicModal button.add-topic').hide();
                     $('#addTopicModal button.update-topic').show();
@@ -585,10 +693,6 @@
                             "token": token,
                             "id": selectedTopic,
                             "name": $('#addTopicModal [name="topic_name"]').val(),
-                            "subject_id": $('#subject-filter').find('option:selected').val(),
-                            "chapter_id": $('#chapter-filter').find('option:selected').val(),
-                            "is_chapter": 0,
-                            "is_topic": 1,
                         }
                         $.ajax({
                             url: base_url + '/admin/topic/update.php',
@@ -597,18 +701,18 @@
                             dataType: 'JSON',
                             success: function(result) {
                                 toastr.success(result.message);
-                                $('#addTopicModal [name=chapter_name]').val("");
-                                $('#addTopicModal button.add-chapter').show();
-                                $('#addTopicModal button.update-chapter').hide();
-                                location.reload();
+                                $('#addTopicModal [name=topic_name]').val("");
+                                $('#addTopicModal button.add-topic').show();
+                                $('#addTopicModal button.update-topic').hide();
+                                allUpdateTopics();
                             },
                             error: function(error) {
                                 toastr.error(error.responseJSON.message);
                             }
                         });
                     } else {
-                        toastr.error('Please Enter Chapter Name');
-                        $('[name=chapter_name]').focus();
+                        toastr.error('Please Enter Topic Name');
+                        $('[name=topic_name]').focus();
                     }
                 });
 
@@ -616,8 +720,8 @@
                     if (!$('[name=topic_name]').val() == '') {
                         let post_data = {
                             "token": token,
-                            "name": $('[name=topic_name]').val(),
                             "subject_id": $('#subject-filter').find('option:selected').val(),
+                            "name": $('[name=topic_name]').val(),
                         }
                         $.ajax({
                             url: base_url + '/admin/topic/add.php',
@@ -626,9 +730,7 @@
                             dataType: 'JSON',
                             success: function(result) {
                                 toastr.success(result.message);
-                                $('#addTopicModal').modal('hide');
-                                // getAllSubjects();
-                                location.reload();
+                                allUpdateTopics();
                             },
                             error: function(error) {
                                 toastr.error(error.responseJSON.message);
@@ -644,7 +746,7 @@
                 // topic section
                 // ***********************
 
-
+                getAllSubjects();
 
             } else {
                 window.location.replace('index.php');

@@ -349,6 +349,12 @@
                             }
                         });
                     }
+                    else {
+                        $this.parents('ul').find('.subject-filter').html('');
+                        $this.parents('ul').find('.subject-filter').append(`<option value="">-- Select Subject --</option>`);
+                        $this.parents('ul').find('.topic-filter').html('');
+                        $this.parents('ul').find('.topic-filter').append(`<option value="">-- Select Topic --</option>`);
+                    }
                 });
 
                 $('body').on('change', '.subject-filter', function(val) {
@@ -365,6 +371,10 @@
 
                             }
                         })
+                    }
+                    else{
+                         $this.parents('ul').find('.topic-filter').html('');
+                         $this.parents('ul').find('.topic-filter').append(`<option value="">-- Select Topic --</option>`);
                     }
                 });
 
