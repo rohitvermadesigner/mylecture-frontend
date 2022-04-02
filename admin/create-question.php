@@ -472,7 +472,7 @@
                                         val.subject.forEach(subject => {
                                             $('#subject-filter').append(`<option value="${subject.id}">${subject.name}</option>`)
                                         })
-
+                                        $('#subject-filter').append('<option value="addSubject" class="boldItalic">Add Subject</option>');
                                         $('#subjectData tbody').html('');
                                         val.subject.forEach(subject => {
                                             trHTML +=
@@ -546,7 +546,8 @@
                                                 $('#topicData tbody').append(trHTML);
                                             }
 
-                                        })
+                                        });
+                                        $('#topic-filter').append('<option value="addTopic" class="boldItalic">Add Topic</option>');
                                     } else {
                                         $('#topic-filter').html('');
                                         $('#topic-filter').append(`<option value="">-- Select Topic --</option>`);
@@ -611,6 +612,7 @@
                                 $('#addSubjectModal button.add-subject').show();
                                 $('#addSubjectModal button.update-subject').hide();
                                 allUpdateSubjects();
+                                $('#addSubjectModal').modal('hide');
                             },
                             error: function(error) {
                                 toastr.error(error.responseJSON.message);
@@ -637,6 +639,7 @@
                             success: function(result) {
                                 toastr.success(result.message);
                                 allUpdateSubjects();
+                                $('#addSubjectModal').modal('hide');
 
                             },
                             error: function(error) {
@@ -705,6 +708,7 @@
                                 $('#addTopicModal button.add-topic').show();
                                 $('#addTopicModal button.update-topic').hide();
                                 allUpdateTopics();
+                                $('#addTopicModal').modal('hide');
                             },
                             error: function(error) {
                                 toastr.error(error.responseJSON.message);
@@ -731,6 +735,7 @@
                             success: function(result) {
                                 toastr.success(result.message);
                                 allUpdateTopics();
+                                $('#addTopicModal').modal('hide');
                             },
                             error: function(error) {
                                 toastr.error(error.responseJSON.message);

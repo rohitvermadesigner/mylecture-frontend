@@ -394,6 +394,7 @@
                         mobile_no: 'required',
                         gender: 'required',
                         group: 'required',
+                        date_of_birth: 'required',
                     },
                     submitHandler: function() {
                         createStudnetSubmit();

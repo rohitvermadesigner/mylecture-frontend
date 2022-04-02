@@ -132,7 +132,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Select Lavel</label>
+                                                    <label>Select Level</label>
                                                     <select name="difficulty_level" class="form-control">
                                                         <option value="">Select Level</option>
                                                         <option value="easy">Easy</option>
@@ -162,8 +162,8 @@
     </div>
     <?php include 'include/footer_script.php' ?>
 
- <!-- Subject Modal Start-->
- <div id="addSubjectModal" class="modal fade" role="dialog">
+    <!-- Subject Modal Start-->
+    <div id="addSubjectModal" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
 
             <!-- Modal content-->
@@ -261,7 +261,7 @@
                 const questionID = document.location.search.substr(4);
 
                 let subjectID = '';
-                let topicId = '';                
+                let topicId = '';
                 var phaseList;
                 var selectedSubject;
                 var questionData;
@@ -295,7 +295,7 @@
                                     $(this).prop('checked', true);
                                 }
                             });
-                            // getAllSubjects();
+                            getAllSubjects();
                         }
                     });
                 }
@@ -384,8 +384,6 @@
                         }
                     });
                 }
-                getAllSubjects();
-
 
                 var subjectArray = [];
                 $('#phase-filter').change(function(val) {
@@ -515,7 +513,7 @@
                                         val.subject.forEach(subject => {
                                             $('#subject-filter').append(`<option value="${subject.id}">${subject.name}</option>`)
                                         })
-
+                                        $('#subject-filter').append('<option value="addSubject" class="boldItalic">Add Subject</option>');
                                         $('#subjectData tbody').html('');
                                         val.subject.forEach(subject => {
                                             trHTML +=
@@ -589,7 +587,8 @@
                                                 $('#topicData tbody').append(trHTML);
                                             }
 
-                                        })
+                                        });
+                                        $('#topic-filter').append('<option value="addTopic" class="boldItalic">Add Topic</option>');
                                     } else {
                                         $('#topic-filter').html('');
                                         $('#topic-filter').append(`<option value="">-- Select Topic --</option>`);
@@ -654,6 +653,7 @@
                                 $('#addSubjectModal button.add-subject').show();
                                 $('#addSubjectModal button.update-subject').hide();
                                 allUpdateSubjects();
+                                $('#addSubjectModal').modal('hide');
                             },
                             error: function(error) {
                                 toastr.error(error.responseJSON.message);
@@ -680,7 +680,7 @@
                             success: function(result) {
                                 toastr.success(result.message);
                                 allUpdateSubjects();
-
+                                $('#addSubjectModal').modal('hide');
                             },
                             error: function(error) {
                                 toastr.error(error.responseJSON.message);
@@ -748,6 +748,7 @@
                                 $('#addTopicModal button.add-topic').show();
                                 $('#addTopicModal button.update-topic').hide();
                                 allUpdateTopics();
+                                $('#addTopicModal').modal('hide');
                             },
                             error: function(error) {
                                 toastr.error(error.responseJSON.message);
@@ -774,6 +775,7 @@
                             success: function(result) {
                                 toastr.success(result.message);
                                 allUpdateTopics();
+                                $('#addTopicModal').modal('hide');
                             },
                             error: function(error) {
                                 toastr.error(error.responseJSON.message);

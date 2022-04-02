@@ -112,7 +112,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Select Phase</label>
-                                    <select class="form-control" id="phase" name="subject">
+                                    <select class="form-control" id="phase" name="phase">
                                         <option value="">-- Select Phase --</option>
                                     </select>
                                 </div>
@@ -212,61 +212,61 @@
             }
 
             $('.nextPage').click(function() {
-                    page_no = page_no + 1;
-                    allFaculty(page_no, page_count);
-                    checkNextPreviousButton();
-                    $('.prevPage').attr('disabled', true);
-                    $('.nextPage').attr('disabled', true);
-                });
-
-                $('.prevPage').click(function() {
-                    page_no = page_no - 1;
-                    allFaculty(page_no, page_count);
-                    checkNextPreviousButton();
-                    $('.prevPage').attr('disabled', true);
-                    $('.nextPage').attr('disabled', true);
-                });
-
-                var checkNextPreviousButton = function() {
-                    if (page_no == 1) {
-                        $('.prevPage').attr('disabled', true);
-                    } else {
-                        $('.prevPage').removeAttr('disabled');
-                    }
-                    if (page_no * page_count >= totalResults) {
-                        $('.nextPage').attr('disabled', true);
-                    } else {
-                        $('.nextPage').removeAttr('disabled');
-                    }
-                }
-
-                // $("#search-btn").click(function() {
-                //     name = $('#user-filter').val();
-                //     page_no = 1;
-                //     allFaculty(page_no, page_count);
-                //     if (name) {
-                //         $("#reset-btn").removeClass('display-none');
-                //     }
-                // });
-
-                // $('#user-filter').keypress(function(e) {
-                //     if (e.which == 13) {
-                //         if (e.target.value) {
-                //             $("#search-btn").click();
-                //         }
-                //     }
-                // });
-
-                // $("#reset-btn").click(function() {
-                //     $('#user-filter').val("");
-                //     name = ""
-                //     page_no = 1;
-                //     allFaculty(page_no, page_count);
-                //     $("#reset-btn").addClass('display-none');
-                //     window.history.pushState('', '', 'user-management.php');
-                // });
-
+                page_no = page_no + 1;
                 allFaculty(page_no, page_count);
+                checkNextPreviousButton();
+                $('.prevPage').attr('disabled', true);
+                $('.nextPage').attr('disabled', true);
+            });
+
+            $('.prevPage').click(function() {
+                page_no = page_no - 1;
+                allFaculty(page_no, page_count);
+                checkNextPreviousButton();
+                $('.prevPage').attr('disabled', true);
+                $('.nextPage').attr('disabled', true);
+            });
+
+            var checkNextPreviousButton = function() {
+                if (page_no == 1) {
+                    $('.prevPage').attr('disabled', true);
+                } else {
+                    $('.prevPage').removeAttr('disabled');
+                }
+                if (page_no * page_count >= totalResults) {
+                    $('.nextPage').attr('disabled', true);
+                } else {
+                    $('.nextPage').removeAttr('disabled');
+                }
+            }
+
+            // $("#search-btn").click(function() {
+            //     name = $('#user-filter').val();
+            //     page_no = 1;
+            //     allFaculty(page_no, page_count);
+            //     if (name) {
+            //         $("#reset-btn").removeClass('display-none');
+            //     }
+            // });
+
+            // $('#user-filter').keypress(function(e) {
+            //     if (e.which == 13) {
+            //         if (e.target.value) {
+            //             $("#search-btn").click();
+            //         }
+            //     }
+            // });
+
+            // $("#reset-btn").click(function() {
+            //     $('#user-filter').val("");
+            //     name = ""
+            //     page_no = 1;
+            //     allFaculty(page_no, page_count);
+            //     $("#reset-btn").addClass('display-none');
+            //     window.history.pushState('', '', 'user-management.php');
+            // });
+
+            allFaculty(page_no, page_count);
 
             $('body').on('click', '.remove-faculty', function() {
                 var status = confirm("Are you sure to delete it?");
@@ -324,6 +324,8 @@
                         toastr.success(message);
                         $('#addFacultyModal').modal('hide');
                         $('#facultyData tbody').html('');
+                        $('#subject').html('');
+                        $('#subject').append(`<option value="">-- Select Subject --</option>`);
                         allFaculty(page_no, page_count);
                     },
                     error: function(error) {
@@ -354,26 +356,26 @@
             }
 
             var subjectArray = [];
-                $('#phase').change(function(val) {
-                    phase = $('#phase').val();
-                    var index = 1;
-                    var trHTML = '';
-                    if (phase) {
-                        allPhase.forEach(val => {
-                            if (val.id == phase) {
-                                subjectArray = val.subject;
-                                $('#subject').html('');
-                                $('#subject').append(`<option value="">-- Select Subject --</option>`);
-                                val.subject.forEach(subject => {
-                                    $('#subject').append(`<option value="${subject.id}">${subject.name}</option>`)
-                                });
-                            }
-                        });
-                    } else {
-                        $('#subject').html('');
-                        $('#subject').append(`<option value="">-- Select Subject --</option>`);
-                    }
-                });
+            $('#phase').change(function(val) {
+                phase = $('#phase').val();
+                var index = 1;
+                var trHTML = '';
+                if (phase) {
+                    allPhase.forEach(val => {
+                        if (val.id == phase) {
+                            subjectArray = val.subject;
+                            $('#subject').html('');
+                            $('#subject').append(`<option value="">-- Select Subject --</option>`);
+                            val.subject.forEach(subject => {
+                                $('#subject').append(`<option value="${subject.id}">${subject.name}</option>`)
+                            });
+                        }
+                    });
+                } else {
+                    $('#subject').html('');
+                    $('#subject').append(`<option value="">-- Select Subject --</option>`);
+                }
+            });
 
             getAllSubjects();
 
