@@ -1235,7 +1235,7 @@
                             <td>${val.subject}</td>
                             <td>${val.topic}</td>
                             <td>${val.difficulty_level}</td>
-                            <td class="marks-input-wrap"><input type="number" min="0" class="form-control"/></td>
+                            <td class="marks-input-wrap"><input type="number" min="0" class="form-control" pattern="[0-9]" onkeypress="return !(event.charCode == 45)" /></td>
                             <td style="vertical-align: middle; cursor:pointer;"><i class="fa fa-times remove-question-item"></i></td>
                             </tr>`;
                         })

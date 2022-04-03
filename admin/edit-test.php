@@ -546,7 +546,7 @@
                             <td>${count++}</td>
                             <td>${val.question}</td>
                             <td>${val.subject}</td>
-                            <td class="marks-input-wrap"><input type="number" min="0" class="form-control" value=${val.marks} /></td>
+                            <td class="marks-input-wrap"><input type="number" min="0" class="form-control" value="${val.marks}" pattern="[0-9]" onkeypress="return !(event.charCode == 45)" /></td>
                             <td style="vertical-align: middle; cursor:pointer;"><i class="fa fa-times remove-question-item"></i></td>
                             </tr>`;
                         });
