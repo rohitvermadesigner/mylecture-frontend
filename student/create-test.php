@@ -59,21 +59,21 @@
 
                                             <div class="col-md-6">
                                                 <div class="form-group">
+                                                    <label>Select Phase</label>
+                                                    <select class="form-control" id="phase-filter" name="phase_id">
+                                                        <option value="">-- Select Phase --</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
                                                     <label>Select Subject</label>
                                                     <select class="form-control" id="subject-filter" name="subject_id">
                                                         <option value="">-- Select Subject --</option>
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Select Chapter</label>
-                                                    <select class="form-control" id="chapter-filter" name="chapter_id">
-                                                        <option value="">-- Select Chapter --</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
+                                         
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>*Total Questions </label>
@@ -116,6 +116,7 @@
         $(function() {
             const token = localStorage.getItem("studentToken");
             if (token) {
+                let phaseArray = [];
                 let subjectArray = [];
                 $('#selfAssessorForm').validate({
                     rules: {
@@ -171,7 +172,7 @@
                             token: token
                         },
                         success: function(result) {
-                            subjectArray = result;
+                            phaseArray = result;
                             mapSubjectDropdown();
                         },
                         error: function(error) {
@@ -183,27 +184,33 @@
 
                 var mapSubjectDropdown = function() {
                     var trHTML = '';
-                    if (subjectArray && subjectArray.length > 0) {
-                        $('#subject-filter').html(`<option value="">-- Select Subject --</option>`)
-                        subjectArray.forEach(val => {
-                            $('#subject-filter').append(`<option value="${val.id}">${val.name}</option>`)
+                    if (phaseArray && phaseArray.length > 0) {
+                        $('#phase-filter').html(`<option value="">-- Phase Phase --</option>`)
+                        phaseArray.forEach(val => {
+                            $('#phase-filter').append(`<option value="${val.id}">${val.name}</option>`)
                         })
                     }
                 }
 
-                $("#subject-filter").change(function() {
-                    let selectedSubject = $('[name=subject_id]').val();
-                    $('#chapter-filter').html(`<option value="">-- Select Chapter --</option>`)
-                    subjectArray.forEach(val => {
-                        if (val.id == selectedSubject) {
-                            chapterArray = val.chapter;
+                $("#phase-filter").change(function() {
+                    let selectedPhase = $('[name=phase_id]').val();
+                    $('#subject-filter').html(`<option value="">-- Select Subject --</option>`)
+                    $('#topic-filter').html(`<option value="">-- Select Topic --</option>`)
+                    phaseArray.forEach(val => {
+                        if (val.id == selectedPhase) {
+                            subjectArray = val.subject;
                         }
                     });
-                    if (chapterArray && chapterArray.length > 0) {
-                        $('#chapter-filter').html(`<option value="">-- Select Chapter --</option>`)
-                        chapterArray.forEach(val => {
-                            $('#chapter-filter').append(`<option value="${val.id}">${val.name}</option>`)
-                        })
+                    if (selectedPhase) {
+                        if (subjectArray && subjectArray.length > 0) {
+                            $('#subject-filter').html(`<option value="">-- Select Subject --</option>`)
+                            subjectArray.forEach(val => {
+                                $('#subject-filter').append(`<option value="${val.id}">${val.name}</option>`)
+                            })
+                        }
+                    } else {
+                        $('#subject-filter').html('');
+                        $('#subject-filter').append(`<option value="">-- Select Subject --</option>`);
                     }
                 });
             } else {

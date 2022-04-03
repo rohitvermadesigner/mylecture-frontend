@@ -68,17 +68,17 @@
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Select Subject</label>
-                                                    <select class="form-control" id="subject-filter" name="subject_id">
-                                                        <option value="">-- Select Subject --</option>
+                                                    <label>Select Phase</label>
+                                                    <select class="form-control" id="phase-filter" name="phase_id">
+                                                        <option value="">-- Select Phase --</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Select Chapter</label>
-                                                    <select class="form-control" id="chapter-filter" name="chapter_id">
-                                                        <option value="">-- Select Chapter --</option>
+                                                    <label>Select Subject</label>
+                                                    <select class="form-control" id="subject-filter" name="subject_id">
+                                                        <option value="">-- Select Subject --</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -136,14 +136,15 @@
         $(function() {
             const token = localStorage.getItem("studentToken");
             if (token) {
+                let phaseArray = [];
                 let subjectArray = [];
-                let chapterArray = [];
                 $('#topicForm').validate({
                     rules: {
                         test_name: 'required',
                         duration: 'required',
                         is_question_random_order: 'required',
                         is_mandatory_all_question: 'required',
+                        phase_id: 'required',
                         subject_id: 'required',
                         chapter_id: 'required',
                         topic_id: 'required',
@@ -164,11 +165,9 @@
                         "is_question_random_order": $('[name=is_question_random_order]').val(),
                         "is_mandatory_all_question": $('[name=is_mandatory_all_question]').val(),
                         "subject_id": $('[name=subject_id]').val(),
-                        "chapter_id": $('[name=chapter_id]').val(),
                         "topic_id": $('[name=topic_id]').val(),
                         "total_questions": $('[name=total_questions]').val(),
                         "marks_for_correct_question": $('[name=marks_for_correct_question]').val(),
-                        // "marks_for_incorrect_question": $('[name=marks_for_incorrect_question]').val()
                     }
                     console.log(update_data);
                     $.ajax({
@@ -195,7 +194,7 @@
                             token: token
                         },
                         success: function(result) {
-                            subjectArray = result;
+                            phaseArray = result;
                             mapSubjectDropdown();
                         },
                         error: function(error) {
@@ -207,44 +206,54 @@
 
                 var mapSubjectDropdown = function() {
                     var trHTML = '';
-                    if (subjectArray && subjectArray.length > 0) {
-                        $('#subject-filter').html(`<option value="">-- Select Subject --</option>`)
-                        subjectArray.forEach(val => {
-                            $('#subject-filter').append(`<option value="${val.id}">${val.name}</option>`)
+                    if (phaseArray && phaseArray.length > 0) {
+                        $('#phase-filter').html(`<option value="">-- Phase Phase --</option>`)
+                        phaseArray.forEach(val => {
+                            $('#phase-filter').append(`<option value="${val.id}">${val.name}</option>`)
                         })
                     }
                 }
 
-                $("#subject-filter").change(function() {
-                    let selectedSubject = $('[name=subject_id]').val();
-                    $('#chapter-filter').html(`<option value="">-- Select Chapter --</option>`)
+                $("#phase-filter").change(function() {
+                    let selectedPhase = $('[name=phase_id]').val();
+                    $('#subject-filter').html(`<option value="">-- Select Subject --</option>`)
                     $('#topic-filter').html(`<option value="">-- Select Topic --</option>`)
-                    subjectArray.forEach(val => {
-                        if (val.id == selectedSubject) {
-                            chapterArray = val.chapter;
+                    phaseArray.forEach(val => {
+                        if (val.id == selectedPhase) {
+                            subjectArray = val.subject;
                         }
                     });
-                    if (chapterArray && chapterArray.length > 0) {
-                        $('#chapter-filter').html(`<option value="">-- Select Chapter --</option>`)
-                        chapterArray.forEach(val => {
-                            $('#chapter-filter').append(`<option value="${val.id}">${val.name}</option>`)
-                        })
+                    if (selectedPhase) {
+                        if (subjectArray && subjectArray.length > 0) {
+                            $('#subject-filter').html(`<option value="">-- Select Subject --</option>`)
+                            subjectArray.forEach(val => {
+                                $('#subject-filter').append(`<option value="${val.id}">${val.name}</option>`)
+                            })
+                        }
+                    } else {
+                        $('#subject-filter').html('');
+                        $('#subject-filter').append(`<option value="">-- Select Subject --</option>`);
                     }
-                })
+                });
 
-                $("#chapter-filter").change(function() {
-                    let selectedChapter = $('[name=chapter_id]').val();
+                $("#subject-filter").change(function() {
+                    let selectedSubject = $('[name=subject_id]').val();
                     let topicArray = [];
-                    chapterArray.forEach(val => {
-                        if (val.id == selectedChapter) {
+                    subjectArray.forEach(val => {
+                        if (val.id == selectedSubject) {
                             topicArray = val.topic;
                         }
                     });
-                    if (topicArray && topicArray.length > 0) {
-                        $('#topic-filter').html(`<option value="">-- Select Topic --</option>`)
-                        topicArray.forEach(val => {
-                            $('#topic-filter').append(`<option value="${val.id}">${val.name}</option>`)
-                        })
+                    if (selectedSubject) {
+                        if (topicArray && topicArray.length > 0) {
+                            $('#topic-filter').html(`<option value="">-- Select Topic --</option>`)
+                            topicArray.forEach(val => {
+                                $('#topic-filter').append(`<option value="${val.id}">${val.name}</option>`)
+                            })
+                        }
+                    } else {
+                        $('#topic-filter').html('');
+                        $('#topic-filter').append(`<option value="">-- Select Topic --</option>`);
                     }
                 });
 

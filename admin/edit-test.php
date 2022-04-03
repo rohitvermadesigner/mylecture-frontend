@@ -86,9 +86,8 @@
                                                             </div>
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
-                                                                    <label>*Select Category </label>
+                                                                    <label>*Select Category</label>
                                                                     <select id="testCategoryList" name="category_id" class="form-control valid">
-
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -96,7 +95,6 @@
                                                                 <div class="form-group">
                                                                     <label>*Test Instructions</label>
                                                                     <select id="selectInstructionList" name="instruction_id" class="form-control">
-                                                                        <option selected="selected" value="">Select Instruction</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -211,13 +209,11 @@
                                                                     <table class="table" id="testQuestionDataTable">
                                                                         <thead>
                                                                             <tr>
-                                                                                <th width="20px">S.No</th>
-                                                                                <th>Questions</th>
+                                                                                <th width="36px">S.No</th>
+                                                                                <th width="65%">Questions</th>
                                                                                 <th>Subject</th>
-                                                                                <th>Topic</th>
-                                                                                <th>Difficulty Level</th>
-                                                                                <th width="8%">Marks</th>
-                                                                                <th width="3%"></th>
+                                                                                <th width="10%">Marks</th>
+                                                                                <th width="5%"></th>
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
@@ -514,8 +510,8 @@
                         $('.add-question-box-in-test').hide();
                         $('[name=test_name]').val(result.name);
                         $('[name=category_id]').val(result.category.id),
-                            $('[name=instruction_id]').val(result.instruction_id),
-                            $('[name=duration]').val(result.duration);
+                        $('[name=instruction_id]').val(result.instruction.id),
+                        $('[name=duration]').val(result.duration);
                         $('[name=difficulty_level]').val(result.difficulty_level);
                         $('[name=total_questions]').val(result.total_questions);
                         $('[name=is_question_random_order]').each(function() {
@@ -550,13 +546,13 @@
                             <td>${count++}</td>
                             <td>${val.question}</td>
                             <td>${val.subject}</td>
-                            <td>${val.topic}</td>
-                            <td>${val.difficulty_level}</td>
-                            <td class="marks-input-wrap"><input type="number" min="0" class="form-control"/></td>
+                            <td class="marks-input-wrap"><input type="number" min="0" class="form-control" value=${val.marks} /></td>
                             <td style="vertical-align: middle; cursor:pointer;"><i class="fa fa-times remove-question-item"></i></td>
                             </tr>`;
-                        })
+                        });
                         $("#testQuestionDataTable tbody").append(tr);
+
+                        getCategoryList();
                     },
                     error: function(error) {
                         toastr.error(error.responseJSON.message);
@@ -581,8 +577,8 @@
                             var trHTML = '';
                             let categoryOptions = '';
                             categoryOptions = '';
-                            $('#categoryData tbody').html('');
                             $('#testCategoryList').html('<option>Select Category</option>');
+                            $('#categoryData tbody').html('');
                             $.each(result.result, function(key, value) {
                                 trHTML +=
                                     `<tr id="${value.id}">
@@ -604,7 +600,7 @@
                     });
                 }
 
-                getCategoryList();
+                
 
                 $('body').on('click', '.remove-category', function() {
                     var status = confirm("Are you sure to delete this test category ?");
@@ -726,7 +722,7 @@
                             var index = 1;
                             var trHTML = '';
                             var testInstructionList = '';
-                            $('#selectInstructionList').html('<option value="">Select Instruction</option>');
+                            $('#selectInstructionList').html('<option>Select Instruction</option>');
                             $('#instructionData tbody').html('');
                             $.each(instructionList, function(key, value) {
                                 trHTML +=
@@ -862,7 +858,7 @@
                 // ***************************
                 //  Test Form Submit Section
                 // ***************************
-                $('#p1Form').validate({
+                $('#step1Form').validate({
                     rules: {
                         test_name: "required",
                         category_id: "required",
@@ -1273,8 +1269,6 @@
                             <td>${count++}</td>
                             <td>${val.question}</td>
                             <td>${val.subject}</td>
-                            <td>${val.topic}</td>
-                            <td>${val.difficulty_level}</td>
                             <td class="marks-input-wrap"><input type="number" min="0" class="form-control"/></td>
                             <td style="vertical-align: middle; cursor:pointer;"><i class="fa fa-times remove-question-item"></i></td>
                             </tr>`;
@@ -1287,6 +1281,7 @@
                 });
 
                 $('#testQuestionDataTable').on('click', '.remove-question-item', function() {
+                    debugger;
                     var question_id = parseInt($(this).parents('tr').attr('data-id'));
                     if (selectedQuestions.indexOf(question_id) > -1) {
                         const indexNo = selectedQuestions.indexOf(question_id);
@@ -1305,7 +1300,6 @@
 
                 $(".select-question-btn").click(function() {
                     $("#addQuestionsModal").modal('show');
-                    debugger;
                     loadQuestions(page_no, page_count);
                     var questionSelectText = `${selectedQuestions.length} Question${selectedQuestions.length > 1 ? 's' : ''} Selected`
                     $(".question-selected-text").text(questionSelectText);
