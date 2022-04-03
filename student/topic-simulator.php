@@ -54,7 +54,7 @@
                                                 <th class="text-center">S.No.</th>
                                                 <th width="100">Name</th>
                                                 <th>Test Duration<br />Total Questions</th>
-                                                <th>Subject<br />Chapter</th>
+                                                <th>Subject<br />Topic</th>
                                                 <th>Topic</th>
                                                 <th width="100">No of Attemps</th>
                                                 <th>Successfully<br> Submitted</th>
@@ -140,7 +140,7 @@
                             <td class="text-center"> ${countStartAt} </td>
                             <td> ${value.name}</td>
                             <td> ${value.duration}<br/>${value.total_questions}</td>
-                            <td> ${value.subject}<br/>${value.chapter} </td>
+                            <td> ${value.subject}<br/>${value.topic} </td>
                             <td> ${value.topic} </td>
                             <td> ${value.no_of_attemps} </td>
                             <td> ${value.successfully_submitted} </td>

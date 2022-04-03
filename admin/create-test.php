@@ -140,7 +140,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
                                                                     <label>*Total Question </label>
-                                                                    <input type="text" class="form-control" name="total_questions" />
+                                                                    <input type="text" class="form-control" name="total_questions" pattern="[0-9]" onkeypress="return !(event.charCode == 46)" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -589,6 +589,7 @@
                                 $('#addCategoryModal button.add-category').show();
                                 $('#addCategoryModal button.update-category').hide();
                                 getCategoryList();
+                                $('#addCategoryModal').modal('hide');
                             },
                             error: function(error) {
                                 toastr.error(error.responseJSON.message);
