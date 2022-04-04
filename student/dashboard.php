@@ -16,7 +16,7 @@
             </div>
 
             <div class="row m-0 main-row">
-                <div class="col-md-4">
+                <div class="col-md-4 col-xs-4">
                     <div class="white-box">
                         <a href="self-assessor.php" class="dashboard-stats">
                             <p>Self Assessor Test</p>
@@ -24,7 +24,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 col-xs-4">
                     <div class="white-box">
                         <a href="topic-simulator.php" class="dashboard-stats">
                             <p>Topic Simulator Test</p>
@@ -32,7 +32,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 col-xs-4">
                     <div class="white-box">
                         <a href="my-tests.php" class="dashboard-stats">
                             <p>Admin Assign Test</p>
@@ -40,7 +40,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-md-8 mt-5">
+                <div class="col-md-8 col-xs-12 mt-5">
                     <div class="white-box">
                         <form id="manageProfile">
                             <div class="student-detail-box">
@@ -127,7 +127,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-md-4 mt-5">
+                <div class="col-md-4 col-xs-12 mt-5">
                     <div class="white-box">
                         <form id="changePassword">
                             <div class="student-detail-box">

@@ -838,3 +838,7 @@ a:hover {
 #resultDetailModal .result-page-section .result-status-box {
   width: 50%;
 }
+
+.mobile-header {
+  display: none;
+}
