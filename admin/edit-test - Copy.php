@@ -425,7 +425,7 @@
                             </select>
                         </li>
                         <li>
-                            <input type="search" class="form-control" id="question-filter" placeholder="Type Question..">
+                            <input type="search" class="form-control" id="question-filter" placeholder="Keywords">
                         </li>
                         <li>
                             <button class="btn btn-primary" id="search-btn">Search</button>
@@ -485,7 +485,7 @@
                 var selectedQuestions = [];
                 var questionList = [];
                 var selectedQuestionsData = [];
-                
+
                 $.ajax({
                     url: base_url + '/admin/test/get-info.php',
                     type: 'GET',
@@ -499,10 +499,10 @@
                         $('[name=test_name]').val(result.name);
                         // $('[name=test_name]').val(result.test_name),
                         $('[name=category_id]').val(result.category.id),
-                        // $('[name=instruction_id]').val(result.instruction_id),
-                        $('[name=duration]').val(result.duration),
-                        $('[name=difficulty_level]').val(result.difficulty_level),
-                        $('[name=total_questions]').val(result.total_questions)
+                            // $('[name=instruction_id]').val(result.instruction_id),
+                            $('[name=duration]').val(result.duration),
+                            $('[name=difficulty_level]').val(result.difficulty_level),
+                            $('[name=total_questions]').val(result.total_questions)
                     },
                     error: function(error) {
                         debugger;
@@ -829,7 +829,7 @@
                     let post_data = {
                         token: token,
                         test_name: $('#step1Form [name=test_name]').val(),
-                        test_id : testId,
+                        test_id: testId,
                         category_id: $('#step1Form [name=category_id]').val(),
                         instruction_id: $('#step1Form [name=instruction_id]').val(),
                         duration: $('#step1Form [name=duration]').val(),

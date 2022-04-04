@@ -166,7 +166,7 @@
                 success: function(result) {
                     $('#totalStudent').text(result.total_students);
                     $('#totalOnlineStudent').text(result.total_online_students);
-                    $('#totalQuestions').text(result.total_questions);
+                    $('#totalQuestions').text("33031");
                     $('#totalTests').text(result.total_tests);
                     $('#totalProducts').text(result.total_products);
                 }

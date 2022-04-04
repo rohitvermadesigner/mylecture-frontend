@@ -436,7 +436,7 @@
                             </select>
                         </li>
                         <li>
-                            <input type="search" class="form-control" id="question-filter" placeholder="Type Question..">
+                            <input type="search" class="form-control" id="question-filter" placeholder="Keywords">
                         </li>
                         <li>
                             <button class="btn btn-primary" id="search-btn">Search</button>
@@ -496,6 +496,7 @@
                 var selectedQuestions = [];
                 var questionList = [];
                 var selectedQuestionsData = [];
+                let testInfo;
 
                 $.ajax({
                     url: base_url + '/admin/test/get-info.php',
@@ -506,12 +507,12 @@
                     },
                     dataType: 'JSON',
                     success: function(result) {
-                        console.log(result);
+                        testInfo = result;
                         $('.add-question-box-in-test').hide();
                         $('[name=test_name]').val(result.name);
                         $('[name=category_id]').val(result.category.id),
-                        $('[name=instruction_id]').val(result.instruction.id),
-                        $('[name=duration]').val(result.duration);
+                            $('[name=instruction_id]').val(result.instruction.id),
+                            $('[name=duration]').val(result.duration);
                         $('[name=difficulty_level]').val(result.difficulty_level);
                         $('[name=total_questions]').val(result.total_questions);
                         $('[name=is_question_random_order]').each(function() {
@@ -531,7 +532,7 @@
                         });
                         $('[name=group_id]').each(function() {
                             $this = $(this);
-                            result.student_group.forEach(val =>{
+                            result.student_group.forEach(val => {
                                 if ($this.val() === val.id) {
                                     $this.prop('checked', true);
                                 }
@@ -595,12 +596,14 @@
                             });
                             $('#categoryData tbody').append(trHTML);
                             $('#testCategoryList').append(categoryOptions + '<option value="addCategory" class="boldItalic">Add Category</option>');
-
+                            if (testInfo) {
+                                $('#testCategoryList').val(testInfo.category.id)
+                            }
                         }
                     });
                 }
 
-                
+
 
                 $('body').on('click', '.remove-category', function() {
                     var status = confirm("Are you sure to delete this test category ?");
@@ -618,6 +621,7 @@
                             success: function(response) {
                                 toastr.success(response.message);
                                 getCategoryList();
+                                debugger;
                             },
                             error: function(error) {
                                 toastr.error(error.responseJSON.message);
@@ -740,6 +744,9 @@
                             });
                             $('#instructionData tbody').append(trHTML);
                             $('#selectInstructionList').append(testInstructionList + '<option value="addInstruction" class="boldItalic">Add Instruction</option>');
+                            if (testInfo) {
+                                $('#selectInstructionList').val(testInfo.instruction.id)
+                            }
                         }
                     });
                 }
@@ -1056,6 +1063,18 @@
                                 '</td><td>' + value.no_of_students + '</td></tr>';
                         });
                         $('#groupData').append(trHTML);
+
+                        if (testInfo) {
+                            debugger;
+                            $('[name=group_id]').each(function() {
+                                $this = $(this);
+                                testInfo.student_group.forEach(val => {
+                                    if ($this.val() === val.id) {
+                                        $this.prop('checked', true);
+                                    }
+                                });
+                            });
+                        }
                     }
                 });
 

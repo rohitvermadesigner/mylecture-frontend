@@ -38,7 +38,7 @@
                                                 </select>
                                             </li>
                                             <li>
-                                                <input type="search" class="form-control" id="question-filter" placeholder="Type Question..">
+                                                <input type="search" class="form-control" id="question-filter" placeholder="Keywords">
                                             </li>
                                             <li>
                                                 <button class="btn btn-primary" id="search-btn">Search</button>
@@ -311,12 +311,6 @@
                         dataType: 'JSON',
                         data: paramsData,
                         success: function(result) {
-
-                            // for(var i = 0; i < result.length; i++){
-                            //     subjectResult.push(...result[i].subject);                             
-                            // }
-                            // subjectResult.sort((a, b) => a.name < b.name ? -1 : 1);
-
                             phaseList = result;
                             allPhase = result;
                             var index = 1;
@@ -347,8 +341,7 @@
                                 })
                             }
                         });
-                    }
-                    else {
+                    } else {
                         $this.parents('ul').find('.subject-filter').html('');
                         $this.parents('ul').find('.subject-filter').append(`<option value="">-- Select Subject --</option>`);
                         $this.parents('ul').find('.topic-filter').html('');
@@ -358,10 +351,10 @@
 
                 $('body').on('change', '.subject-filter', function(val) {
                     $this = $(this);
-                    subject = $(this).val();
-                    if (subject) {
+                    subject_id = $(this).val();
+                    if (subject_id) {
                         subjectArray.forEach(val => {
-                            if (val.id == subject) {
+                            if (val.id == subject_id) {
                                 $this.parents('ul').find('.topic-filter').html('');
                                 $this.parents('ul').find('.topic-filter').append(`<option value="">-- Select Topic --</option>`);
                                 val.topic.forEach(topic => {
@@ -370,10 +363,9 @@
 
                             }
                         })
-                    }
-                    else{
-                         $this.parents('ul').find('.topic-filter').html('');
-                         $this.parents('ul').find('.topic-filter').append(`<option value="">-- Select Topic --</option>`);
+                    } else {
+                        $this.parents('ul').find('.topic-filter').html('');
+                        $this.parents('ul').find('.topic-filter').append(`<option value="">-- Select Topic --</option>`);
                     }
                 });
 
