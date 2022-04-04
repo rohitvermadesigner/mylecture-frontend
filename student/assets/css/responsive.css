@@ -1,4 +1,32 @@
-@media screen and (max-width: 767px) {}
+@media screen and (max-width: 767px) {
+    .dashboard-leftbar {
+        display: none;
+    }
+    .user-dashboard .dashboard-container {
+        width: 100%;
+    }
+    .top-stripe {
+        display: none;
+    }
+    .mobile-header {
+        display: block;
+        background: #f8f8f8;
+        box-shadow: 2px 4px 10px rgba(29, 39, 69, 0.4);
+        padding: 10px;
+    }
+    .logo img {
+        width: 150px;
+    }
+    .dashboard-stats {
+        padding: 0px;
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+    .dashboard-stats p {
+        margin-bottom: 0px;
+        font-size: 14px;
+    }
+}
 
 @media screen and (min-width: 768px) and (max-width: 991px) {}
 
