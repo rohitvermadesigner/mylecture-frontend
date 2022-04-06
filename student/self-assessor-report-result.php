@@ -22,6 +22,7 @@
                             <h5><b>Test Name</b> : <span class="test-name"></span></h5>
                             <h5><b>Total</b> : <span class="total-students"></span></h5>
                         </div>
+                        <div class="table-responsive">
                         <table class="table mt-4" id="reportData">
                             <thead>
                                 <tr>
@@ -39,6 +40,7 @@
                             <tbody>
                             </tbody>
                         </table>
+                        </div>
                     </div>
                 </div>
             </div>

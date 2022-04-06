@@ -447,7 +447,7 @@
                     <h2 class="title-primary">Learn <span>Anytime, Anywhere</span> </h2>
                     <p>Get GEMS Next Digital well-curated study material in you pocket</p>
                     <div class="pt-4 pb-5">
-                        <img src="assets/images/get-it-on-google-play.png" alt="">
+                        <img src="assets/images/get-it-on-google-play.png" class="img-fluid" alt="">
                     </div>
                     <h2 class="title-primary">Get SMS <span>with link to download App</span> </h2>
                     <div class="row mt-5">

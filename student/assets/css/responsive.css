@@ -4,6 +4,8 @@
     }
     .user-dashboard .dashboard-container {
         width: 100%;
+        background: #e9ecee;
+        min-height: 100vh;
     }
     .top-stripe {
         display: none;
@@ -41,6 +43,16 @@
     }
     .breadcrumb {
         font-size: 11px;
+    }
+    .btn {
+        padding: 6px 15px;
+    }
+    .filter-list li:last-child {
+        width: 180px;
+    }
+    .report-tab {
+        height: 100px;
+        margin-bottom: 15px;
     }
 }
 
