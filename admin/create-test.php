@@ -435,7 +435,7 @@
                             </select>
                         </li>
                         <li>
-                            <input type="search" class="form-control" id="question-filter" placeholder="Type Question..">
+                            <input type="search" class="form-control" id="question-filter" placeholder="Keywords">
                         </li>
                         <li>
                             <button class="btn btn-primary" id="search-btn">Search</button>
@@ -1150,8 +1150,7 @@
                                 })
                             }
                         });
-                    }
-                    else {
+                    } else {
                         $('#subject-filter').html('');
                         $('#subject-filter').append(`<option value="">-- Select Subject --</option>`);
                         $('#topic-filter').html('');
@@ -1173,10 +1172,9 @@
 
                             }
                         })
-                    }
-                    else{
-                         $('#topic-filter').html('');
-                         $('#topic-filter').append(`<option value="">-- Select Topic --</option>`);
+                    } else {
+                        $('#topic-filter').html('');
+                        $('#topic-filter').append(`<option value="">-- Select Topic --</option>`);
                     }
                 });
 

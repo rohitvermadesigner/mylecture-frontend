@@ -70,9 +70,10 @@
                                                         <th>S.No.</th>
                                                         <th>Test Name</th>
                                                         <th>Total Questions</th>
-                                                        <th>Difficulty Level</th>
                                                         <th>Test Category</th>
                                                         <th>Student Group</th>
+                                                        <th>Publish</th>
+                                                        <th>Created at</th>
                                                         <th class="text-center">Action</th>
                                                     </tr>
                                                 </thead>
@@ -167,9 +168,10 @@
                             <td> ${countStartAt} </td>
                             <td> <a class="font-weight-bold" href="test-info.php?test_id=${value.id}">${value.name}</a></td>
                             <td> ${value.total_questions} </td>
-                            <td> ${value.difficulty_level} </td>
                             <td> ${value.category} </td>
                             <td> ${value.student_group} </td>
+                            <td> ${value.is_publish ? "Yes" : "No"} </td>
+                            <td> ${value.created_at} </td>
                             <td class="text-center">
                             <a href="edit-test.php?test_id=${value.id}" class="ml-3"><i class="fa fa-pencil"></i></a>
                             </td>

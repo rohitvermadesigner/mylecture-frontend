@@ -73,34 +73,18 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label>Select Topic</label>
-                                                    <select class="form-control" id="topic-filter" name="topic_id">
-                                                        <option value="">-- Select Topic --</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>*Total Questions </label>
                                                     <input type="number" class="form-control" name="total_questions" value="30" />
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>*Marks for each correct question </label>
                                                     <input type="number" class="form-control" name="marks_for_correct_question" value="5" />
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>*Marks for incorrect question </label>
-                                                    <input type="number" class="form-control" name="marks_for_incorrect_question" value="-1" />
-                                                </div>
-                                            </div>
-
                                         </div>
                                         <div class="row m-0">
                                             <div class="float-right">
@@ -149,9 +133,7 @@
                         "is_question_random_order": $('[name=is_question_random_order]').val(),
                         "is_mandatory_all_question": 0,
                         "subject_id": $('[name=subject_id]').val(),
-                        "topic_id": $('[name=topic_id]').val(),
                         "total_questions": $('[name=total_questions]').val(),
-                        "marks_for_correct_question": $('[name=marks_for_correct_question]').val(),
                     }
                     $.ajax({
                         url: base_url + '/student/self-assessor/add.php',
@@ -216,27 +198,6 @@
                     } else {
                         $('#subject-filter').html('');
                         $('#subject-filter').append(`<option value="">-- Select Subject --</option>`);
-                    }
-                });
-
-                $("#subject-filter").change(function() {
-                    let selectedSubject = $('[name=subject_id]').val();
-                    let topicArray = [];
-                    subjectArray.forEach(val => {
-                        if (val.id == selectedSubject) {
-                            topicArray = val.topic;
-                        }
-                    });
-                    if (selectedSubject) {
-                        if (topicArray && topicArray.length > 0) {
-                            $('#topic-filter').html(`<option value="">-- Select Topic --</option>`)
-                            topicArray.forEach(val => {
-                                $('#topic-filter').append(`<option value="${val.id}">${val.name}</option>`)
-                            })
-                        }
-                    } else {
-                        $('#topic-filter').html('');
-                        $('#topic-filter').append(`<option value="">-- Select Topic --</option>`);
                     }
                 });
 

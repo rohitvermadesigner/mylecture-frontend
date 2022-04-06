@@ -559,12 +559,31 @@ label.error {
 
 /* test-page begin here */
 
-.step {
+.question-item {
     display: none;
 }
 
-.step.active {
+.question-item.active {
     display: block;
+}
+
+.step-btn.btn {
+    border-radius: 5px;
+    padding: 6px 15px;
+    font-weight: bold !important;
+    background: #ddd;
+    margin-right: 6px;
+    border: 2px solid #c5c3c3;
+}
+
+.step-btn.btn.selected {
+    background: #a7d8fa;
+    border: 2px solid #8bb4cf;
+}
+
+.step-btn.btn.answer-filled {
+    background: #5cb85b;
+    border: 2px solid #109110;
 }
 
 .ans-options ul {
@@ -673,7 +692,8 @@ label.error {
     display: inline;
 }
 
-.que-not-answered {
+
+/* .que-not-answered {
     background: url(../images/Logo2.png);
     color: #fff !important;
 }
@@ -691,7 +711,7 @@ label.error {
 .que-mark {
     background: url(../images/Logo4.png);
     color: #fff !important;
-}
+} */
 
 .test-ques-stats {
     padding: 8px 13px;
@@ -712,7 +732,7 @@ label.error {
 }
 
 .test-header {
-    padding: 20px;
+    padding: 5px 20px;
     display: flex;
     align-items: center;
     justify-content: center;

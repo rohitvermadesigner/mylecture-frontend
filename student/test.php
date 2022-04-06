@@ -6,8 +6,17 @@
 <body>
 
 
-    <header class="test-header">
-        <img src="assets/images/logo.png" alt="" />
+    <header class="test-header" style="justify-content: space-between;">
+        <div class="left-wrap">
+            <a href="dashboard.php">
+                <img src="assets/images/gems-next-logo.jpg" alt="" style="width: 78px;" />
+            </a>
+        </div>
+        <div class="right-wrap">
+            <a href="dashboard.php">
+                <button class="btn btn-primary">Back to Dashboard</button>
+            </a>
+        </div>
     </header>
 
     <section class="test-page-section">
@@ -50,11 +59,10 @@
                             </div>
 
                             <div class="clearfix"></div>
-                            <button class="prev btn btn-primary" disabled="disabled">Prev</button>
-                            <button class="next btn btn-primary">Next</button>
-                            <button class="next btn btn-warning">Skip</button>
-                            <button class="next btn btn-success">Save & Next</button>
-                            <button class="btn btn-secondary" id="clear">Clear</button>
+                            <button class="prev-btn btn btn-primary" disabled="disabled">Prev</button>
+                            <button class="skip-btn btn btn-warning">Skip</button>
+                            <button class="save-next-btn btn btn-success">Save & Next</button>
+                            <button class="btn btn-secondary clear-btn" id="clear">Clear</button>
                             <hr />
                             <button class="btn btn-success float-right submitTest">Submit</button>
 
@@ -231,16 +239,20 @@
     <?php include 'include/footer_script.php' ?>
     <script>
         const token = localStorage.getItem("studentToken");
-        var queries = {};
-        var stepIndex;
-        $.each(document.location.search.substr(1).split('&'), function(c, q) {
-            var i = q.split('=');
-            queries[i[0].toString()] = i[1].toString();
-        });
-        var testID = queries.test_id;
-        var testType = queries.type;
+
+        function getParameterByName(name, url = window.location.href) {
+            name = name.replace(/[\[\]]/g, '\\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+        var testID = getParameterByName('test_id');
+        var testType = getParameterByName('type');
         if (token) {
-            let test_duration;
+            let totalQuestionCount = 0;
+            let intervalCounter;
             let getTestQuestionUrl = `${base_url}/student/test/get-test-questions.php`
             let getTestQuestionParams = {
                 token: token,
@@ -261,136 +273,175 @@
                     $("#test_name").text(result.test_name);
                     $("#total_marks").text(result.total_marks);
                     $("#total_questions").text(result.total_questions);
-                    test_duration = result.test_duration;
-                    let question = '';
                     let indexCount = 1;
+                    totalQuestionCount = result.questions.length;
                     $.each(result.questions, function(key, value) {
-                        question += `
-                        <div class="step">
-                                    <div class="que">
-                                        <p><b>${indexCount++}.</b>
-                                            <span>${value.question}</span>
-                                        </p>
-                                    </div>
-                                    <div class="ans-options">
-                                        <ul>
-                                            <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;" type="radio" data-id="${value.id}" value="1"><span style="margin-right:5px;">a)</span> <span>${value.option_1}</span></label></li>
-                                            <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;"type="radio" data-id="${value.id}" value="2"><span style="margin-right:5px;">b)</span> <span>${value.option_2}</span></label></li>
-                                            <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;" type="radio" data-id="${value.id}" value="3"><span style="margin-right:5px;">c)</span> <span>${value.option_3}</span></label></li>
-                                            <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;" type="radio" data-id="${value.id}" value="4"><span style="margin-right:5px;">d)</span> <span>${value.option_4}</span></label></li>
-                                        </ul>
-                                   </div>
+                        let question = `
+                        <div class="question-item ${key == 0 ? 'active' : ''}" data-id="${value.id}" question-count="${key}">
+                            <div class="que">
+                                <p><b>${indexCount++}.</b>
+                                    <span>${value.question}</span>
+                                </p>
+                            </div>
+                            <div class="ans-options">
+                                <ul>
+                                    <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;" type="radio" name="select-option-${value.id}" value="1"><span style="margin-right:5px;">a)</span> <span>${value.option_1}</span></label></li>
+                                    <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;" type="radio" name="select-option-${value.id}" value="2"><span style="margin-right:5px;">b)</span> <span>${value.option_2}</span></label></li>
+                                    <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;" type="radio" name="select-option-${value.id}" value="3"><span style="margin-right:5px;">c)</span> <span>${value.option_3}</span></label></li>
+                                    <li><label style="display: flex;margin-bottom: 0;"><input style="margin-right:10px;" type="radio" name="select-option-${value.id}" value="4"><span style="margin-right:5px;">d)</span> <span>${value.option_4}</span></label></li>
+                                </ul>
+                            </div>
                         </div>
                         `
-                    });
-                    $('.question-wrapper-inner').append(question);
-                    $('.question-wrapper-inner').find('.step').eq(0).addClass('active');
+                        $('.question-wrapper-inner').append(question);
 
-                    // ** right btn begin here ** //
-                    let rightBtns = '';
-                    let indexBtnCount = 1;
-                    let pageIndex = 0;
-                    $.each(result.questions, function(key, value) {
-                        rightBtns += `
-                        <li class="active" data-seq="1"><a class="test-ques que-not-attempted" style="cursor:pointer" href="javascript:void(0);" data-href="${pageIndex++}">${indexBtnCount++}</a></li>
-                        `
-                    });
-                    $('.test-questions-btns-wrapper').append(rightBtns);
-
-                    // ** customJs begin here ** //
-
-                    $('.question-wrapper-inner').find('.ans-options').each(function(index1, elem1) {
-                        $(elem1).parents('.step').each(function(index0, elem0) {
-                            $(elem0).addClass('step' + index1);
-                        });
-                        $(elem1).children('ul').find('li input').each(function(index2, elem2) {
-                            $(elem2).attr('name', index1);
-                        });
-                    });
-                    stepIndex = $(".step.active").index(".step"),
-                        stepsCount = $(".step").length,
-                        prevBtn = $(".prev"),
-                        nextBtn = $(".next"),
-                        clearBtn = $('#clear')
-
-                    prevBtn.click(function() {
-                        nextBtn.prop("disabled", false);
-
-                        if (stepIndex > 0) {
-                            stepIndex--;
-                            $(".step").removeClass("active").eq(stepIndex).addClass("active");
-                            // $('.step.active').prev('.step').addClass("active");
-                            // $('.step.active').eq(1).removeClass("active");
-                            $(".test-questions-btns-wrapper li").removeClass("active").eq(stepIndex).addClass("active").find('a').removeClass('que-save');
-                        };
-
-                        if (stepIndex === 0) {
-                            $(this).prop("disabled", true);
-                        }
+                        // ** right btn begin here ** //
+                        let stepBtn = `
+                            <li class="btn step-btn ${key == 0 ? 'selected' : ''}" data-id="${value.id}" step-count="${key}">
+                                ${key + 1}
+                            </li>
+                        `;
+                        $('.test-questions-btns-wrapper').append(stepBtn);
                     });
 
-                    nextBtn.click(function() {
-                        prevBtn.prop("disabled", false);
-
-                        if (stepIndex < stepsCount - 1) {
-                            stepIndex++;
-                            $(".step").removeClass("active").eq(stepIndex).addClass("active");
-                            // $('.step.active').next('.step').addClass("active");
-                            // $('.step.active').eq(0).removeClass("active");
-                            $(".test-questions-btns-wrapper li").removeClass("active").eq(stepIndex).addClass("active").prevAll().find('a').addClass('que-save');
-                        };
-
-                        if (stepIndex === stepsCount - 1) {
-                            $(this).prop("disabled", true);
-                        }
-                    });
-
-                    $('.test-ques').click(function() {
-
-                    });
-
-                    clearBtn.click(function() {
-                        $(".step.active").find('input').each(function() {
-                            $(this).prop('checked', false);
-                        });
-                    });
-                    // ** customJs ends here ** //
-
-                    let count = test_duration.split(":")[1]
-                    let countDownDate = addMinutes(new Date(), count)
-                    var x = setInterval(function() {
-
-                        // Get today's date and time
-                        var now = new Date().getTime();
-
-                        // Find the distance between now and the count down date
-                        var time = countDownDate - now;
-
-                        // Time calculations for days, hours, minutes and seconds
-                        var hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                        var minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
-                        var seconds = Math.floor((time % (1000 * 60)) / 1000);
-
-                        // Display the result in the element with id="demo"
-                        $("#test_duration").text(`${twoDigit(hours)}:${twoDigit(minutes)}:${twoDigit(seconds)}`)
-
-                        if ($('#test_duration').text() == '00:01:50') {
-                            $('#sessionTimeOutModal').modal('show');
-                        }
-
-                        // If the count down is finished, write some text
-                        if (time <= 0) {
-                            clearInterval(x);
-                            submitTest();
-                            $("#test_duration").text();
-                        }
-                    }, 1000);
-
+                    startCoundown(result.test_duration);
                 }
             });
 
+            $(".test-page-section").on('click', '.step-btn', function() {
+                var $this = $(this);
+                var question_id = $this.attr('data-id');
+                $(".question-item").removeClass("active");
+                $(".question-item[data-id=" + question_id + "]").addClass('active');
+                $(".step-btn").removeClass("selected");
+                $(".step-btn[data-id=" + question_id + "]").addClass('selected');
+                markStepColor();
+                checkNextPrevButton();
+            });
+
+            $(".clear-btn").click(function() {
+                $(".question-item.active .ans-options li input").each(function() {
+                    $(this).prop('checked', false);
+                })
+            });
+
+            $(".prev-btn").click(function() {
+                var sequenceCount = $(".question-item.active").attr('question-count');
+                $(".question-item").removeClass("active");
+                let newSequenceCount = parseInt(sequenceCount) - 1;
+                $(".question-item[question-count=" + newSequenceCount + "]").addClass('active');
+                $(".step-btn").removeClass("selected");
+                $(".step-btn[step-count=" + newSequenceCount + "]").addClass('selected');
+                $(".save-next-btn").prop('disabled', false);
+                $(".skip-btn").prop('disabled', false);
+                if (newSequenceCount == 0) {
+                    $(".prev-btn").prop('disabled', true);
+                }
+                markStepColor();
+            })
+
+            $(".save-next-btn").click(function() {
+                var sequenceCount = $(".question-item.active").attr('question-count');
+                $(".question-item").removeClass("active");
+                let newSequenceCount = parseInt(sequenceCount) + 1;
+                $(".question-item[question-count=" + newSequenceCount + "]").addClass('active');
+                $(".step-btn").removeClass("selected");
+                $(".step-btn[step-count=" + newSequenceCount + "]").addClass('selected');
+                $(".prev-btn").prop('disabled', false);
+                if (totalQuestionCount - 1 == newSequenceCount) {
+                    $(".save-next-btn").prop('disabled', true);
+                    $(".skip-btn").prop('disabled', true);
+                }
+                markStepColor();
+            })
+
+            $(".skip-btn").click(function() {
+                $(".question-item.active .ans-options li input").each(function() {
+                    $(this).prop('checked', false);
+                })
+
+                var sequenceCount = $(".question-item.active").attr('question-count');
+                $(".question-item").removeClass("active");
+                let newSequenceCount = parseInt(sequenceCount) + 1;
+                $(".question-item[question-count=" + newSequenceCount + "]").addClass('active');
+                $(".step-btn").removeClass("selected");
+                $(".step-btn[step-count=" + newSequenceCount + "]").addClass('selected');
+                $(".prev-btn").prop('disabled', false);
+                if (totalQuestionCount - 1 == newSequenceCount) {
+                    $(".save-next-btn").prop('disabled', true);
+                    $(".skip-btn").prop('disabled', true);
+                }
+                markStepColor();
+            });
+
+            function markStepColor() {
+                let markQuestionArray = [];
+                $(".question-item").each(function() {
+                    var $this = $(this)
+                    selectedValue = $this.find('input:checked').val();
+                    if (selectedValue) {
+                        markQuestionArray.push($this.attr('data-id'));
+                    }
+                });
+
+                $('.test-questions-btns-wrapper .step-btn').each(function() {
+                    $(this).removeClass('answer-filled')
+                    if (markQuestionArray.indexOf($(this).attr('data-id')) > -1) {
+                        $(this).addClass('answer-filled')
+                    }
+                })
+            }
+
+            function checkNextPrevButton() {
+                var sequenceCount = $(".question-item.active").attr('question-count');
+                if (totalQuestionCount - 1 == sequenceCount) {
+                    $(".save-next-btn").prop('disabled', true);
+                    $(".skip-btn").prop('disabled', true);
+                } else {
+                    $(".save-next-btn").prop('disabled', false);
+                    $(".skip-btn").prop('disabled', false)
+                }
+                if (sequenceCount == 0) {
+                    $(".prev-btn").prop('disabled', true);
+                } else {
+                    $(".prev-btn").prop('disabled', false);
+                }
+            }
+
+            function startCoundown(test_duration) {
+                let count = test_duration.split(":")[1]
+                let countDownDate = addMinutes(new Date(), count)
+                intervalCounter = setInterval(function() {
+
+                    // Get today's date and time
+                    var now = new Date().getTime();
+
+                    // Find the distance between now and the count down date
+                    var time = countDownDate - now;
+
+                    // Time calculations for days, hours, minutes and seconds
+                    var hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    var minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((time % (1000 * 60)) / 1000);
+
+                    // Display the result in the element with id="demo"
+                    $("#test_duration").text(`${twoDigit(hours)}:${twoDigit(minutes)}:${twoDigit(seconds)}`)
+
+                    if ($('#test_duration').text() == '00:01:50') {
+                        $('#sessionTimeOutModal').modal('show');
+                    }
+
+                    // If the count down is finished, write some text
+                    if (time <= 0) {
+                        clearInterval(intervalCounter);
+                        submitTest();
+                        $("#test_duration").text();
+                    }
+                }, 1000);
+            }
+
             function twoDigit(num) {
-                return num > 10 ? num : `0${num}`;
+                return num >= 9 ? num : `0${num}`;
             }
 
             function addMinutes(date, minutes) {
@@ -400,9 +451,9 @@
 
             const submitTest = function() {
                 let questionsList = [];
-                $(".question-wrapper-inner .step").each(function(v) {
+                $(".question-wrapper-inner .question-item").each(function(v) {
                     var questionObj = {
-                        id: $(this).find('li input').attr('data-id'),
+                        id: $(this).attr('data-id'),
                         answer: $(this).find('li input[type=radio]:checked').val() || ''
                     }
                     questionsList.push(questionObj);
@@ -413,6 +464,7 @@
                     type: testType,
                     questions: questionsList
                 }
+                debugger;
                 let submitTestUrl = base_url + '/student/submit-test/self-declared-test.php';
                 if (testType == 'admin-assign-test') {
                     submitTestUrl = base_url + '/student/submit-test/admin-declared-test.php';
@@ -423,6 +475,7 @@
                     data: JSON.stringify(post_questions),
                     dataType: 'JSON',
                     success: function(result) {
+                        clearInterval(intervalCounter);
                         toastr.success("Test Successfully submitted");
                         let incorrect_question = result.total_questions - result.correct_questions;
                         $('#sessionTimeOutModal').modal('hide');
