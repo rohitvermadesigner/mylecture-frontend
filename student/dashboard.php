@@ -15,7 +15,7 @@
                 </div>
             </div>
 
-            <div class="row m-0 main-row">
+            <div class="row main-row">
                 <div class="col-md-4 col-xs-4">
                     <div class="white-box">
                         <a href="self-assessor.php" class="dashboard-stats">

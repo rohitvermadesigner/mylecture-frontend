@@ -5,3 +5,23 @@
 <script src="assets/js/awesome.min.js"></script>
 <script src="assets/js/toastr.min.js"></script>
 <script src="assets/js/custom.js"></script>
+
+<script>
+    const token = localStorage.getItem("studentToken");
+    if (token) {
+        $.ajax({
+            url: `${base_url}/student/get-info.php`,
+            type: 'GET',
+            dataType: 'JSON',
+            data: {
+                token: token
+            },
+            success: function(result) {
+                $('#loginUserName').text(result.name);
+            }
+        });
+
+    } else {
+        window.location.replace('/');
+    }
+</script>

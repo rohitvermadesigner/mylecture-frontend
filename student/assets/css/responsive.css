@@ -26,6 +26,22 @@
         margin-bottom: 0px;
         font-size: 14px;
     }
+    /* .row.main-row {
+        margin-right: -15px;
+        margin-left: -15px;
+    } */
+    .dashboard-title {
+        display: none;
+    }
+    .main-row {
+        padding: 12px 10px !important;
+    }
+    .mobile-menu ul:last-child li a {
+        padding-left: 25px;
+    }
+    .breadcrumb {
+        font-size: 11px;
+    }
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px) {}
