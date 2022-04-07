@@ -4,7 +4,7 @@
 <script src="assets/js/config.js"></script>
 <script src="assets/js/awesome.min.js"></script>
 <script src="assets/js/toastr.min.js"></script>
-<script src="assets/js/custom.js"></script>
+<script src="assets/js/custom.js?nocache=<?php echo rand(0, 99999); ?>"></script>
 
 <script>
     const token = localStorage.getItem("studentToken");

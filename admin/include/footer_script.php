@@ -17,7 +17,7 @@
     <!-- <script src="assets/js/jquery.richtext.js"></script> -->
     <!-- Tags Input -->
 
-    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/custom.js?nocache=<?php echo rand(0, 99999); ?>"></script>
 
     <script>
         $(function() {

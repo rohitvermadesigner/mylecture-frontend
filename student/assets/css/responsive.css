@@ -54,6 +54,21 @@
         height: 100px;
         margin-bottom: 15px;
     }
+    .table-responsive {
+        padding-bottom: 15px;
+    }
+    .table-responsive>.table {
+        font-size: 12px;
+    }
+    .white-box {
+        padding: 12px;
+    }
+    .table-responsive {
+        margin-bottom: 5px;
+    }
+    .test-list-box {
+        padding: 15px;
+    }
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px) {}
