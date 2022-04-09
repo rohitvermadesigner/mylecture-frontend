@@ -433,18 +433,24 @@
                     var index = 1;
                     var trHTML = '';
                     subject = $('#subject-filter').val();
-                    if (subject) {
-                        subjectArray.forEach(val => {
-                            if (val.id == subject) {
-                                $('#topic-filter').html('');
-                                $('#topic-filter').append(`<option value="">-- Select Topic --</option>`);
-                                val.topic.forEach(topic => {
-                                    $('#topic-filter').append(`<option value="${topic.id}">${topic.name}</option>`)
-                                });
-                                $('#topicData tbody').html('');
-                                val.topic.forEach(topic => {
-                                    trHTML +=
-                                        `<tr id="${topic.id}">
+                    phase = $('#phase-filter').val();
+
+                    if (phase) {
+                        allPhase.forEach(val => {
+                            if (val.id == phase) {
+                                subjectArray = val.subject;
+                                if (subject) {
+                                    subjectArray.forEach(val => {
+                                        if (val.id == subject) {
+                                            $('#topic-filter').html('');
+                                            $('#topic-filter').append(`<option value="">-- Select Topic --</option>`);
+                                            val.topic.forEach(topic => {
+                                                $('#topic-filter').append(`<option value="${topic.id}">${topic.name}</option>`)
+                                            });
+                                            $('#topicData tbody').html('');
+                                            val.topic.forEach(topic => {
+                                                trHTML +=
+                                                    `<tr id="${topic.id}">
                                 <td>${index++}</td>
                                 <td><span topicName="${topic.name}">${topic.name}</span></td>
                                 <td class="text-center">
@@ -454,24 +460,30 @@
                                     </ul>
                                 </td>
                                 </tr>`;
-                                });
-                                $('#topicData tbody').append(trHTML);
-                            }
+                                            });
+                                            $('#topicData tbody').append(trHTML);
+                                        }
 
-                        })
-                        $('#topic-filter').append('<option value="addTopic" class="boldItalic">Add Topic</option>');
-                    } else {
-                        $('#topic-filter').html('');
-                        $('#topic-filter').append(`<option value="">-- Select Topic --</option>`);
+                                    })
+                                    $('#topic-filter').append('<option value="addTopic" class="boldItalic">Add Topic</option>');
+                                } else {
+                                    $('#topic-filter').html('');
+                                    $('#topic-filter').append(`<option value="">-- Select Topic --</option>`);
+                                }
+                                if ($(this).val() == 'addSubject') {
+                                    $('#addSubjectModal').modal('show');
+                                    $(this).val('');
+                                    // selectedChapter = undefined;
+                                    $('#addSubjectModal [name=topic_name]').val("");
+                                    $('#addSubjectModal button.add-topic').show();
+                                    $('#addSubjectModal button.update-topic').hide();
+                                }
+
+                            }
+                        });
                     }
-                    if ($(this).val() == 'addSubject') {
-                        $('#addSubjectModal').modal('show');
-                        $(this).val('');
-                        // selectedChapter = undefined;
-                        $('#addSubjectModal [name=topic_name]').val("");
-                        $('#addSubjectModal button.add-topic').show();
-                        $('#addSubjectModal button.update-topic').hide();
-                    }
+
+
                 });
 
                 $('body').on('change', '#topic-filter', function(val) {
