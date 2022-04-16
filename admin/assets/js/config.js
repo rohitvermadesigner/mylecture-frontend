@@ -1,1 +1,1 @@
-    const base_url = 'https://dev.gemsnext.com/api/v1';
+const base_url = "http://localhost/esteps/mylecture/v1";

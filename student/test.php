@@ -73,7 +73,7 @@
 
                             <div class="panel panel-default mt-3">
                                 <div class="panel-body" style="height:300px;overflow-y:scroll;">
-                                    <ul class="pagination test-questions-btns-wrapper">
+                                    <ul class="test-questions-btns-wrapper">
 
                                     </ul>
                                 </div>
