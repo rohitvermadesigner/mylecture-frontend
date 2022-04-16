@@ -7,6 +7,6 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/bootstrap-utilities.min.css">
     <link rel="stylesheet" href="assets/css/toastr.min.css">
-    <link rel="stylesheet" href="assets/css/student.css">
-    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/student.css?nocache=<?php echo rand(0, 99999); ?>">
+    <link rel="stylesheet" href="assets/css/responsive.css?nocache=<?php echo rand(0, 99999); ?>">
 </head>

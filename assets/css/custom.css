@@ -1306,3 +1306,7 @@ label.error {
     width: 100%;
     height: 300px;
 }
+
+nav .login-list {
+    display: none;
+}

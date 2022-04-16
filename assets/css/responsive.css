@@ -14,9 +14,9 @@
     .top-line {
         display: none;
     }
-    .top-stripe ul li:nth-child(2) {
+    /* .top-stripe ul li:nth-child(2) {
         display: none;
-    }
+    } */
     .top-second-stripe .row {
         padding: 10px 0px;
     }
@@ -29,13 +29,21 @@
     .login-list {
         display: none;
     }
+    nav .login-list {
+        display: inline-block;
+        margin: 15px 0px 5px 10px;
+    }
+    nav .login-list ul {
+        flex-direction: row;
+        gap: 12px;
+    }
     .search-bar-main {
         display: none;
     }
     .nav-toggle-btn {
         display: inline-block;
         float: right;
-        margin-top: 10px;
+        margin-top: 25px;
         margin-right: 10px;
     }
     .nav-toggle-btn svg {
@@ -198,7 +206,7 @@
         margin-bottom: 30px;
     }
     .logo img {
-        max-width: 248px;
+        max-width: 180px;
         margin-top: 5px;
     }
     nav li .submenu {
@@ -214,6 +222,13 @@
         float: right;
         margin-right: 20px;
         margin-top: 15px;
+    }
+    #loginModal img {
+        display: none;
+    }
+    #loginModal .login-right-body {
+        padding: 25px;
+        padding-right: 0px;
     }
 }
 

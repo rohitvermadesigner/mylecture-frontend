@@ -4,6 +4,8 @@
     }
     .user-dashboard .dashboard-container {
         width: 100%;
+        background: #e9ecee;
+        min-height: 100vh;
     }
     .top-stripe {
         display: none;
@@ -25,6 +27,47 @@
     .dashboard-stats p {
         margin-bottom: 0px;
         font-size: 14px;
+    }
+    /* .row.main-row {
+        margin-right: -15px;
+        margin-left: -15px;
+    } */
+    .dashboard-title {
+        display: none;
+    }
+    .main-row {
+        padding: 12px 10px !important;
+    }
+    .mobile-menu ul:last-child li a {
+        padding-left: 25px;
+    }
+    .breadcrumb {
+        font-size: 11px;
+    }
+    .btn {
+        padding: 6px 15px;
+    }
+    .filter-list li:last-child {
+        width: 180px;
+    }
+    .report-tab {
+        height: 100px;
+        margin-bottom: 15px;
+    }
+    .table-responsive {
+        padding-bottom: 15px;
+    }
+    .table-responsive>.table {
+        font-size: 12px;
+    }
+    .white-box {
+        padding: 12px;
+    }
+    .table-responsive {
+        margin-bottom: 5px;
+    }
+    .test-list-box {
+        padding: 15px;
     }
 }
 

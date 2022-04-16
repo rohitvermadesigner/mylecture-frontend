@@ -43,6 +43,12 @@
     <!-- Nav Began Here -->
     <nav>
         <div class="container">
+            <div class="login-list">
+                <ul>
+                    <li><a href="#" class="btn btn-purple login-btn">Login</a></li>
+                    <li><a href="#" class="btn btn-purple register-btn">Register</a></li>
+                </ul>
+            </div>
             <span class="nav-toggle-close-btn"><i class="fa fa-times"></i></span>
             <div class="clearfix"></div>
             <ul>

@@ -238,7 +238,7 @@
 
     <?php include 'include/footer_script.php' ?>
     <script>
-        const token = localStorage.getItem("studentToken");
+        let token = localStorage.getItem("studentToken");
 
         function getParameterByName(name, url = window.location.href) {
             name = name.replace(/[\[\]]/g, '\\$&');

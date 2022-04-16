@@ -14,7 +14,7 @@
 
 
     <!-- Gritter -->
-    <link href="assets/css/style.css" rel="stylesheet">
-    <link href="assets/css/custom.css" rel="stylesheet">
+    <link href="assets/css/style.css?nocache=<?php echo rand(0, 99999); ?>" rel="stylesheet">
+    <link href="assets/css/custom.css?nocache=<?php echo rand(0, 99999); ?>" rel="stylesheet">
 
 </head>
