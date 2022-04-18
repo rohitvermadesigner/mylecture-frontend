@@ -114,8 +114,6 @@
                     rules: {
                         test_name: 'required',
                         duration: 'required',
-                        is_question_random_order: 'required',
-                        is_mandatory_all_question: 'required',
                         phase_id: 'required',
                         total_questions: 'required',
                         marks_for_correct_question: 'required',
@@ -131,9 +129,9 @@
                         "test_name": $('[name=test_name]').val(),
                         "duration": $('[name=duration]').val(),
                         "is_question_random_order": $('[name=is_question_random_order]').val(),
-                        "is_mandatory_all_question": 0,
                         "subject_id": $('[name=subject_id]').val(),
                         "total_questions": $('[name=total_questions]').val(),
+                        "marks_for_correct_question": $('[name=marks_for_correct_question]').val(),
                     }
                     $.ajax({
                         url: base_url + '/student/self-assessor/add.php',

@@ -73,7 +73,7 @@
 
                             <div class="panel panel-default mt-3">
                                 <div class="panel-body" style="height:300px;overflow-y:scroll;">
-                                    <ul class="pagination test-questions-btns-wrapper">
+                                    <ul class="test-questions-btns-wrapper">
 
                                     </ul>
                                 </div>
@@ -238,7 +238,7 @@
 
     <?php include 'include/footer_script.php' ?>
     <script>
-        const token = localStorage.getItem("studentToken");
+        let token = localStorage.getItem("studentToken");
 
         function getParameterByName(name, url = window.location.href) {
             name = name.replace(/[\[\]]/g, '\\$&');

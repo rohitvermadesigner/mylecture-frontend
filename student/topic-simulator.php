@@ -55,7 +55,6 @@
                                                 <th width="100">Name</th>
                                                 <th>Test Duration<br />Total Questions</th>
                                                 <th>Subject<br />Topic</th>
-                                                <th>Topic</th>
                                                 <th width="100">No of Attemps</th>
                                                 <th>Successfully<br> Submitted</th>
                                                 <th>Created at<br />Last attempt at</th>
@@ -141,7 +140,6 @@
                             <td> ${value.name}</td>
                             <td> ${value.duration}<br/>${value.total_questions}</td>
                             <td> ${value.subject}<br/>${value.topic} </td>
-                            <td> ${value.topic} </td>
                             <td> ${value.no_of_attemps} </td>
                             <td> ${value.successfully_submitted} </td>
                             <td> ${value.created_at}<br/>${value.last_attempt_at || '-'} </td>

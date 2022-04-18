@@ -36,7 +36,7 @@
                                     <th>Duration</th>
                                     <th>Total Questions</th>
                                     <th>Subject</th>
-                                    <th>Chapter</th>
+                                    <th>Topic</th>
                                     <th>No of Attemps</th>
                                     <th>Successfully Submitted</th>
                                     <th>Created at</th>
@@ -64,7 +64,7 @@
                 type: 'GET',
                 data: {
                     token: token,
-                    type:'self-assessor'
+                    type: 'self-assessor'
                 },
                 dataType: 'JSON',
                 success: function(result) {
@@ -79,7 +79,7 @@
                             '</a></td><td>' + value.duration +
                             '</td><td>' + value.total_questions +
                             '</td><td>' + value.subject +
-                            '</td><td>' + value.chapter +
+                            '</td><td>' + value.topic +
                             '</td><td>' + value.no_of_attemps +
                             '</td><td>' + value.successfully_submitted +
                             '</td><td>' + value.created_at +
