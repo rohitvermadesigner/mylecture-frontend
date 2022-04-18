@@ -271,6 +271,7 @@
                     token: token
                 },
                 success: function(result) {
+                    console.log(result)
                     $('[name=name]').val(result.name);
                     $('[name=email_id]').val(result.email_id);
                     $('[name=mobile_no]').val(result.mobile_no);
