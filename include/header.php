@@ -55,9 +55,9 @@
                 <li><a href="index.php">Home</a></li>
                 <li><a href="about.php">About</a></li>
                 <li><a href="why-gems.php">Why GEMS</a></li>
-                <li><a href="next-pg.php">NEXT PG</a></li>
+                <!-- <li><a href="next-pg.php">NEXT PG</a></li> -->
                 <li><a href="courses.php">Courses</a></li>
-                <li><a href="live-lectures.php">Live Lectures</a></li>
+                <!-- <li><a href="live-lectures.php">Live Lectures</a></li> -->
                 <li><a href="mock-test.php">Mock Test</a></li>
                 <li><a href="book-demo-class.php">Book Demo Class</a></li>
                 <li><a href="contact.php">Contact</a></li>

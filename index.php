@@ -228,10 +228,13 @@
         <form>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8 offset-md-2">
+                    <div class="col-md-6">
+                        <img src="assets/images/talk-to-expert.jpg" alt="" class="img-thumbnail" />
+                    </div>
+                    <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-12 mb-4">
-                                <h2 class="title-primary text-center">Talk To <span>Our Expert</span></h2>
+                                <h2 class="title-primary text-center mt-5">Talk To <span>Our Expert</span></h2>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -271,7 +274,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="title-primary text-center">Why <span>GEMS Next</span> Mock Test?</h2>
+                    <h2 class="title-primary text-center">Why <span>GEMS ?</span></h2>
                 </div>
                 <div class="col-md-6">
                     <div class="career-box career-box-1">
@@ -419,11 +422,11 @@
                 <div class="col-md-2">
                     <h2>Online Exam</h2>
                     <ul>
-                        <li>Point One</li>
-                        <li>Point two</li>
-                        <li>Point three</li>
-                        <li>Point four</li>
-                        <li>Point five</li>
+                        <li>75,000+ Questions</li>
+                        <li>Topic Wise Exams</li>
+                        <li>Self Assessment</li>
+                        <li>Pattern based Mock Tests</li>
+                        <li>Subject wise Tests</li>
                     </ul>
                 </div>
                 <div class="col-md-5">

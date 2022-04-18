@@ -1069,11 +1069,20 @@ nav li .submenu .nav .nav-item .nav-link.active {
 
 .social-icons ul li a {
     color: #FFFFFF;
+    transition: all 45s;
+}
+
+.social-icons ul li:hover {
+    background: #fff;
 }
 
 .social-icons ul li a svg {
     color: #FFFFFF;
     font-size: 16px;
+}
+
+.social-icons ul li:hover svg {
+    color: #700068;
 }
 
 footer .social-icons ul li {
