@@ -7,14 +7,14 @@
 <script src="assets/js/custom.js?nocache=<?php echo rand(0, 99999); ?>"></script>
 
 <script>
-    const token = localStorage.getItem("studentToken");
-    if (token) {
+    const studentTokenFooter = localStorage.getItem("studentToken");
+    if (studentTokenFooter) {
         $.ajax({
             url: `${base_url}/student/get-info.php`,
             type: 'GET',
             dataType: 'JSON',
             data: {
-                token: token
+                token: studentTokenFooter
             },
             success: function(result) {
                 $('#loginUserName').text(result.name);

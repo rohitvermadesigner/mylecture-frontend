@@ -64,7 +64,9 @@
                             <button class="save-next-btn btn btn-success">Save & Next</button>
                             <button class="btn btn-secondary clear-btn" id="clear">Clear</button>
                             <hr />
-                            <button class="btn btn-success float-right submitTest">Submit</button>
+                            <div style="display: flex;justify-content: flex-end;">
+                                <button class="btn btn-success submitTest">Submit</button>
+                            </div>
 
                         </div>
                     </div>
