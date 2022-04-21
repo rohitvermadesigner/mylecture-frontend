@@ -23,23 +23,23 @@
                             <h5><b>Total</b> : <span class="total-students"></span></h5>
                         </div>
                         <div class="table-responsive">
-                        <table class="table mt-4" id="reportData">
-                            <thead>
-                                <tr>
-                                    <th>S.No.</th>
-                                    <th>Total Questions</th>
-                                    <th>Attempt Questions</th>
-                                    <th>Correct Questions</th>
-                                    <th>Total Marks</th>
-                                    <th>Obtain Marks</th>
-                                    <th>Obtain Percentage</th>
-                                    <th>Created at</th>
-                                    <th>View Detail</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
+                            <table class="table mt-4" id="reportData">
+                                <thead>
+                                    <tr>
+                                        <th>S.No.</th>
+                                        <th>Total Questions</th>
+                                        <th>Attempt Questions</th>
+                                        <th>Correct Questions</th>
+                                        <th>Total Marks</th>
+                                        <th>Obtain Marks</th>
+                                        <th>Obtain Percentage</th>
+                                        <th>Created at</th>
+                                        <th>View Detail</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
 
     <!-- The Modal -->
     <div class="modal" id="resultDetailModal">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog" style="width:80vw">
             <div class="modal-content">
 
                 <!-- Modal Header -->
@@ -157,40 +157,40 @@
             $('body').on('click', '#resultDetail', function() {
                 let result_id = $(this).attr('data-id');
                 $.ajax({
-                url: base_url + '/student/result/get-result.php',
-                type: 'GET',
-                data: {
-                    token: token,
-                    result_id: result_id,
-                    type: testType
-                },
-                dataType: 'JSON',
-                success: function(result) {
-                    console.log(result);
-                    $('#resultDetailModal').modal('show');
-                    let incorrect_question = result.total_questions - result.correct_questions;
-                    $('#sessionTimeOutModal').modal('hide');
-                    $('.test-page-section').hide();
-                    $('.result-page-section').show();
-                    $('.result-page-section .obtain_percentage').text(result.obtain_percentage);
-                    $('.result-page-section .attempt_questions').text(result.attempt_questions);
-                    $('.result-page-section .correct_questions').text(result.correct_questions);
-                    $('.result-page-section .incorrect_questions').text(incorrect_question);
-                    $('.result-page-section .obtain_marks').text(result.obtain_marks);
-                    $('.result-page-section .total_marks').text(result.total_marks);
-                    $('.result-page-section .total_questions').text(result.total_questions);
+                    url: base_url + '/student/result/get-result.php',
+                    type: 'GET',
+                    data: {
+                        token: token,
+                        result_id: result_id,
+                        type: testType
+                    },
+                    dataType: 'JSON',
+                    success: function(result) {
+                        console.log(result);
+                        $('#resultDetailModal').modal('show');
+                        let incorrect_question = result.total_questions - result.correct_questions;
+                        $('#sessionTimeOutModal').modal('hide');
+                        $('.test-page-section').hide();
+                        $('.result-page-section').show();
+                        $('.result-page-section .obtain_percentage').text(result.obtain_percentage);
+                        $('.result-page-section .attempt_questions').text(result.attempt_questions);
+                        $('.result-page-section .correct_questions').text(result.correct_questions);
+                        $('.result-page-section .incorrect_questions').text(incorrect_question);
+                        $('.result-page-section .obtain_marks').text(result.obtain_marks);
+                        $('.result-page-section .total_marks').text(result.total_marks);
+                        $('.result-page-section .total_questions').text(result.total_questions);
 
-                    let questionListTrCount = 1;
-                    let questionListTr = '';
-                    $.each(result.questions, function(key, value) {
-                        const answerMap = {
-                            "1": "a",
-                            "2": "b",
-                            "3": "c",
-                            "4": "d",
-                            "5": "e",
-                        }
-                        questionListTr += `
+                        let questionListTrCount = 1;
+                        let questionListTr = '';
+                        $.each(result.questions, function(key, value) {
+                            const answerMap = {
+                                "1": "a",
+                                "2": "b",
+                                "3": "c",
+                                "4": "d",
+                                "5": "e",
+                            }
+                            questionListTr += `
                             <tr>
                             <td>
                                 <div class="row">
@@ -216,19 +216,26 @@
                                     </div>
 
                                 </div>
+                                ${value.description ? 
+                                `<fieldset style="background: #bbe4b3;border: 1px solid #78b96c;min-width: inherit;padding: .35em .625em .75em;margin: 0 2px;">
+                                    <legend style="background: #a5ce9e;padding: 3px 11px;display: initial;width: initial;margin-bottom: initial;font-size: initial;line-height: initial;border: initial;font-weight: bold;">Description:</legend>
+                                    <div>
+                                    ${value.description}
+                                    </div>
+                                </fieldset>` : ''}
                             </td>
                         </tr>
                         `
-                    });
-                    $('.result-question-box table tbody').append(questionListTr);
-                },
-                error: function(error) {
-                    toastr.error(error.responseJSON.message);
-                }
-            });
+                        });
+                        $('.result-question-box table tbody').append(questionListTr);
+                    },
+                    error: function(error) {
+                        toastr.error(error.responseJSON.message);
+                    }
+                });
             });
 
-            
+
         } else {
             window.location.replace('/');
         }

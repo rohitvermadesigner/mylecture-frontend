@@ -135,6 +135,13 @@
                                     </div>
 
                                 </div>
+                                ${value.description ? 
+                                `<fieldset style="background: #bbe4b3;border: 1px solid #78b96c;min-width: inherit;padding: .35em .625em .75em;margin: 0 2px;">
+                                    <legend style="background: #a5ce9e;padding: 3px 11px;display: initial;width: initial;margin-bottom: initial;font-size: initial;line-height: initial;border: initial;font-weight: bold;">Description:</legend>
+                                    <div>
+                                    ${value.description}
+                                    </div>
+                                </fieldset>` : ''}
                             </td>
                         </tr>
                         `

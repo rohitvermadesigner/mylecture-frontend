@@ -90,6 +90,12 @@
                                                     </select>
                                                 </div>
                                             </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Keyword </label>
+                                                    <input type="text" class="form-control" name="keyword" />
+                                                </div>
+                                            </div>
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
@@ -166,6 +172,7 @@
                         "is_mandatory_all_question": $('[name=is_mandatory_all_question]').val(),
                         "subject_id": $('[name=subject_id]').val(),
                         "topic_id": $('[name=topic_id]').val(),
+                        "keyword": $('[name=keyword]').val(),
                         "total_questions": $('[name=total_questions]').val(),
                         "marks_for_correct_question": $('[name=marks_for_correct_question]').val(),
                     }

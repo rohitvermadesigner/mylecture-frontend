@@ -65,12 +65,18 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Select Subject</label>
                                                     <select class="form-control" id="subject-filter" name="subject_id">
                                                         <option value="">-- Select Subject --</option>
                                                     </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Keyword </label>
+                                                    <input type="text" class="form-control" name="keyword" />
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
@@ -130,6 +136,7 @@
                         "duration": $('[name=duration]').val(),
                         "is_question_random_order": $('[name=is_question_random_order]').val(),
                         "subject_id": $('[name=subject_id]').val(),
+                        "keyword": $('[name=keyword]').val(),
                         "total_questions": $('[name=total_questions]').val(),
                         "marks_for_correct_question": $('[name=marks_for_correct_question]').val(),
                     }

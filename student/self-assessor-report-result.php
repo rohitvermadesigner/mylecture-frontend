@@ -23,23 +23,23 @@
                             <h5><b>Total</b> : <span class="total-students"></span></h5>
                         </div>
                         <div class="table-responsive">
-                        <table class="table mt-4" id="reportData">
-                            <thead>
-                                <tr>
-                                    <th>S.No.</th>
-                                    <th>Total Questions</th>
-                                    <th>Attempt Questions</th>
-                                    <th>Correct Questions</th>
-                                    <th>Total Marks</th>
-                                    <th>Obtain Marks</th>
-                                    <th>Obtain Percentage</th>
-                                    <th>Created at</th>
-                                    <th>View Detail</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
+                            <table class="table mt-4" id="reportData">
+                                <thead>
+                                    <tr>
+                                        <th>S.No.</th>
+                                        <th>Total Questions</th>
+                                        <th>Attempt Questions</th>
+                                        <th>Correct Questions</th>
+                                        <th>Total Marks</th>
+                                        <th>Obtain Marks</th>
+                                        <th>Obtain Percentage</th>
+                                        <th>Created at</th>
+                                        <th>View Detail</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -50,7 +50,7 @@
 
     <!-- The Modal -->
     <div class="modal" id="resultDetailModal">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog" style="width:80vw">
             <div class="modal-content">
 
                 <!-- Modal Header -->
@@ -215,8 +215,14 @@
                                         <p>Attempt Answer : <b class="attempt_answer">${value.attempt_answer ? answerMap[value.attempt_answer] : ''}</b> </p>
                                         <p class="text-success">Correct Answer : <b class="correct_answer">${answerMap[value.correct_answer]}  </b></p>
                                     </div>
-
                                 </div>
+                                ${value.description ? 
+                                `<fieldset style="background: #bbe4b3;border: 1px solid #78b96c;min-width: inherit;padding: .35em .625em .75em;margin: 0 2px;">
+                                    <legend style="background: #a5ce9e;padding: 3px 11px;display: initial;width: initial;margin-bottom: initial;font-size: initial;line-height: initial;border: initial;font-weight: bold;">Description:</legend>
+                                    <div>
+                                    ${value.description}
+                                    </div>
+                                </fieldset>` : ''}
                             </td>
                         </tr>
                         `
