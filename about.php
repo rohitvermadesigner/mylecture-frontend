@@ -14,7 +14,7 @@
                     <h2 class="title-primary">About <span>Us</span> </h2>
                 </div>
                 <div class="col-md-6">
-                    <img src="assets/images/next-pg.jpg" alt="" class="img-thumbnail" />
+                    <img src="assets/images/about1.jpg" alt="" class="img-thumbnail" />
                 </div>
                 <div class="col-md-6">
                     <p>
@@ -51,7 +51,7 @@
                     </p>
                 </div>
                 <div class="col-md-6">
-                    <img src="assets/images/next-pg.jpg" alt="" class="img-thumbnail" />
+                    <img src="assets/images/about2.jpg" alt="" class="img-thumbnail" />
                 </div>
                 <div class="col-md-12 mt-4">
                     <p>
