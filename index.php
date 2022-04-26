@@ -22,9 +22,6 @@
             <!-- The slideshow -->
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="assets/images/slide1.jpg" />
-                </div>
-                <div class="carousel-item">
                     <img src="assets/images/slide2.jpg" />
                 </div>
                 <div class="carousel-item">
