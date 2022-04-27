@@ -5,21 +5,19 @@
 
 <body>
 
-   <?php include 'include/header.php' ?>
+    <?php include 'include/header.php' ?>
 
 
     <!-- slide-section begin here -->
-    <section class="slide-section">
+    <!-- <section class="slide-section">
         <div id="mainSlide" class="carousel slide" data-ride="carousel">
 
-            <!-- Indicators -->
             <ul class="carousel-indicators">
                 <li data-target="#mainSlide" data-slide-to="0" class="active"></li>
                 <li data-target="#mainSlide" data-slide-to="1"></li>
                 <li data-target="#mainSlide" data-slide-to="2"></li>
             </ul>
 
-            <!-- The slideshow -->
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="assets/images/slide2.jpg" />
@@ -29,7 +27,6 @@
                 </div>
             </div>
 
-            <!-- Left and right controls -->
             <a class="carousel-control-prev" href="#mainSlide" data-slide="prev">
                 <span class="carousel-control-prev-icon"></span>
             </a>
@@ -38,7 +35,7 @@
             </a>
 
         </div>
-    </section>
+    </section> -->
     <!-- slide-section ends here -->
 
     <!-- welcome-section begin here -->
@@ -46,15 +43,53 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <h2 class="title-primary">Crash Course <br> <span>for NEXT 2022</span></h2>
+                    <h2 class="title-primary">Crash Course <br> <span>for NEXT 2023</span></h2>
                     <p>
                         Improve your chances to <b> Crack <br>
                             NEXT & Become a Doctor</b>
                     </p>
                     <a href="#" class="btn btn-primary">Book a Free Demo</a>
                 </div>
-                <div class="col-md-6 ">
+                <div class="col-md-5">
                     <img src="assets/images/welcome-img.png" class="img-fluid" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- welcome-section ends here -->
+    <!-- welcome-section begin here -->
+    <section class="welcome-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <img src="assets/images/welcome-img2.png" class="img-fluid" alt="">
+                </div>
+                <div class="col-md-5 offset-md-2">
+                    <h2 class="title-primary">Free <br> <span>Webinar</span></h2>
+                    <ul class="common-list">
+                        <li>How to Assure sucess preparing for NEXT</li>
+                        <li>Clear your Doubts NEXT preparation</li>
+                        <li>Boost your NEXT preparation</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary mt-3">Register</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- welcome-section ends here -->
+    <!-- welcome-section begin here -->
+    <section class="welcome-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="title-primary">Self Assement <br> <span>Mock Test Simulation</span></h2>
+                    <p>
+                        Improve your chances to <b> Crack <br>
+                            NEXT & Become a Doctor</b>
+                    </p>
+                </div>
+                <div class="col-md-5">
+                    <img src="assets/images/welcome-img3.png" class="img-fluid" alt="">
                 </div>
             </div>
         </div>
@@ -363,7 +398,7 @@
                     <div class="product-box">
                         <img src="assets/images/test1.jpg" class="img-fluid" alt="">
                         <div class="product-body">
-                            <h4>Full Syllabus Test Series for NEXT 2022</h4>
+                            <h4>Full Syllabus Test Series for NEXT 2023</h4>
                             <p>
                                 Valid Upto Jan 30 2022
                             </p>
@@ -376,7 +411,7 @@
                     <div class="product-box">
                         <img src="assets/images/test2.jpg" class="img-fluid" alt="">
                         <div class="product-body">
-                            <h4>Full Syllabus Test Series for NEXT 2022</h4>
+                            <h4>Full Syllabus Test Series for NEXT 2023</h4>
                             <p>
                                 Valid Upto Jan 30 2022
                             </p>
