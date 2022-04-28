@@ -71,7 +71,7 @@
                 <div class="col-md-12">
                     <div class="copyright-text">
                         <p>
-                            © Copyright 2021. All rights reserved by GEMS Next.
+                            © Copyright 2021. All rights reserved by GEMS Next. Designed By <a href="https://esteps.in/" target="_blank"> <b>Esteps Solutions</b></a>
                         </p>
                     </div>
                 </div>
