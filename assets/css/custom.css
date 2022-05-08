@@ -4,6 +4,10 @@
     padding: 0px;
 }
 
+html {
+    scroll-behavior: smooth !important;
+}
+
 body {
     color: #333;
     font-family: 'Poppins', sans-serif;
@@ -19,7 +23,7 @@ header {
 }
 
 .logo img {
-    width: 240px;
+    width: 197px;
 }
 
 .btn {
@@ -109,6 +113,11 @@ header {
     padding: 8px 0px;
     padding-bottom: 8px;
     /* border-bottom: 3px solid #009de2; */
+}
+
+.top-stripe a {
+    text-decoration: none;
+    color: #000;
 }
 
 .top-stripe p {
@@ -1340,4 +1349,8 @@ ul.common-list {
 ul.common-list li {
     list-style: circle;
     margin-left: 25px;
+}
+
+.welcome-section-banner {
+    background: #d5eaf3;
 }

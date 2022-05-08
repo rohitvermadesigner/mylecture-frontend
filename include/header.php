@@ -8,8 +8,8 @@
                 <div class="col-md-6">
                     <div>
                         <ul>
-                            <li><i class="fa fa-phone-alt"></i>9876543210</li>
-                            <li> <img src="assets/images/expert.png" alt=""> Talk to Expert</li>
+                            <li><i class="fa fa-phone-alt"></i>9289633644</li>
+                            <li> <a href="#talktoexpert"><img src="assets/images/expert.png" alt=""> Talk to Expert</a> </li>
                         </ul>
                     </div>
                 </div>
@@ -55,6 +55,7 @@
                 <li><a href="index.php">Home</a></li>
                 <li><a href="about.php">About</a></li>
                 <li><a href="why-gems.php">Why GEMS</a></li>
+                <li><a href="next.php">NEXT</a></li>
                 <!-- <li><a href="next-pg.php">NEXT PG</a></li> -->
                 <li><a href="courses.php">Courses</a></li>
                 <!-- <li><a href="live-lectures.php">Live Lectures</a></li> -->

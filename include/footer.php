@@ -60,8 +60,8 @@
                             <ul class="footer-list address-content">
                                 <li>Delhi, India</li>
                                 <li><a href="#">E-mail: info@ </a></li>
-                                <li>Tel: +9876543210</li>
-                                <li>Fax: +9876543210</li>
+                                <li>Tel: +9289633644</li>
+                                <li>Fax: +9289633644</li>
                             </ul>
                         </div>
                     </div>

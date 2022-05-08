@@ -6,9 +6,17 @@
 <script src="assets/js//jquery.validate.min.js"></script>
 <script src="assets/js/toastr.min.js"></script>
 <script src="assets/js/wow.min.js"></script>
+<script src="assets/js/typeit.min.js"></script>
+<script type="text/javascript" src="//ajax.aspnetcdn.com/ajax/4.0/1/MicrosoftAjax.js"></script>
+
 <script src="assets/js/custom.js?nocache=<?php echo rand(0, 99999); ?>"></script>
 <script src="assets/js/config.js"></script>
 <script>
+    new TypeIt('#typeItContianer', {
+        strings: "Improve your chances to Crack NEXT & Become a Doctor",
+    });
+    new TypeIt('#typeItContianer').go();
+
     new WOW().init();
 </script>
 <script>
