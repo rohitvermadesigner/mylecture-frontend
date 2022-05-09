@@ -9,7 +9,7 @@
                         <h3 class="footer-title">About us</h3>
                         <div class="mt-3">
                             <p>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.
+                            GEMS next ( Global education of medical sciences) believes in providing qualitative as well as quantitative solutions to NEXT aspirants in order to enhance their preparation for the examination.
                             </p>
                         </div>
                     </div>

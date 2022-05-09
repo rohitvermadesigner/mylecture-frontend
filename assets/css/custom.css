@@ -23,7 +23,7 @@ header {
 }
 
 .logo img {
-    width: 197px;
+    width: 294px;
 }
 
 .btn {
@@ -266,6 +266,31 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.welcome-section-banner .row {
+    justify-content: flex-start;
+    min-height: 400px;
+}
+
+.welcome-section-banner .row .title-primary {
+    font-size: 50px;
+    /* text-shadow: 2px 4px 10px rgba(39, 59, 69, 0.5); */
+    color: #fff !important;
+}
+
+.welcome-section-banner .row .title-primary span {
+    color: #fff !important;
+    font-size: 100px;
+}
+
+.welcome-section-banner .row p {
+    color: #fff !important;
+}
+
+.welcome-section-banner .row .btn {
+    background: #fff !important;
+    color: #007bff;
 }
 
 .welcome-section p {
@@ -1352,5 +1377,7 @@ ul.common-list li {
 }
 
 .welcome-section-banner {
-    background: #d5eaf3;
+    background: url(../images/slide-banner.jpg) no-repeat;
+    background-size: cover;
+    /* background: #d5eaf3; */
 }
