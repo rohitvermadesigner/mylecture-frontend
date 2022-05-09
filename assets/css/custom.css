@@ -270,7 +270,7 @@ nav {
 
 .welcome-section-banner .row {
     justify-content: flex-start;
-    min-height: 400px;
+    min-height: 350px;
 }
 
 .welcome-section-banner .row .title-primary {
@@ -291,6 +291,11 @@ nav {
 .welcome-section-banner .row .btn {
     background: #fff !important;
     color: #007bff;
+}
+
+.welcome-section-banner .row .btn:hover {
+    background: #007bff !important;
+    color: #fff;
 }
 
 .welcome-section p {
