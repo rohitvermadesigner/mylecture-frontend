@@ -262,6 +262,28 @@
                 var phaseList;
                 var selectedSubject;
 
+                function tinyMceConfig(selector, height = 200) {
+                    return {
+                        selector,
+                        plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
+                        editimage_cors_hosts: ['picsum.photos'],
+                        menubar: '',
+                        toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+                        height
+                    }
+                }
+
+                // ------------------------------RTE STARTS-------------------------------------
+                tinymce.init(tinyMceConfig('#enter_question', 300));
+                tinymce.init(tinyMceConfig('#option_one'));
+                tinymce.init(tinyMceConfig('#option_two'));
+                tinymce.init(tinyMceConfig('#option_three'));
+                tinymce.init(tinyMceConfig('#option_four'));
+                tinymce.init(tinyMceConfig('#option_five'));
+                tinymce.init(tinyMceConfig('#description', 300));
+                // ----------------------------RTE ENDS---------------------------------------
+
+
                 $('#createQuestion').validate({
                     rules: {
                         question: 'required',
@@ -275,96 +297,29 @@
                         difficulty_level: 'required',
                     },
                     submitHandler: function() {
-                        createStudnetSubmit();
+                        addNewQuestionSubmit();
                     }
-                })
-                
-                // ------------------------------RTE STARTS-------------------------------------
-                tinymce.init({
-                    selector: '#enter_question',
-                    plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
-                    editimage_cors_hosts: ['picsum.photos'],
-                    menubar: 'file edit view insert format tools table help',
-                    toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
-                    height: 300
                 });
 
-                tinymce.init({
-                    selector: '#option_one',
-                    plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
-                    editimage_cors_hosts: ['picsum.photos'],
-                    menubar: 'file edit view insert format tools table help',
-                    toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
-                    height: 200
-                });
 
-                tinymce.init({
-                    selector: '#option_two',
-                    plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
-                    editimage_cors_hosts: ['picsum.photos'],
-                    menubar: 'file edit view insert format tools table help',
-                    toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
-                    height: 200
-                });
-
-                tinymce.init({
-                    selector: '#option_three',
-                    plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
-                    editimage_cors_hosts: ['picsum.photos'],
-                    menubar: 'file edit view insert format tools table help',
-                    toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
-                    height: 200
-                });
-
-                tinymce.init({
-                    selector: '#option_four',
-                    plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
-                    editimage_cors_hosts: ['picsum.photos'],
-                    menubar: 'file edit view insert format tools table help',
-                    toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
-                    height: 200
-                });
-
-                tinymce.init({
-                    selector: '#option_five',
-                    plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
-                    editimage_cors_hosts: ['picsum.photos'],
-                    menubar: 'file edit view insert format tools table help',
-                    toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
-                    height: 200
-                });
-
-                tinymce.init({
-                    selector: '#description',
-                    plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
-                    editimage_cors_hosts: ['picsum.photos'],
-                    menubar: 'file edit view insert format tools table help',
-                    toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
-                    height: 300,
-                });
-                // ----------------------------RTE ENDS---------------------------------------
-
-                createStudnetSubmit = function() {
-                    // tinyMCE.triggerSave();
-                    // let tags = [];
-                    // $('[name=tags]').parents('.form-group').find('span.tag').each(function(index, elem) {
-                    //     tags.push($(elem).text());
-                    // });
+                addNewQuestionSubmit = function() {
+                    tinyMCE.triggerSave();
                     let update_data = {
-                        "token": token,
-                        "question": $('#enter_question').val(),
-                        "option_1": $('#option_one').val(),
-                        "option_2": $('#option_two').val(),
-                        "option_3": $('#option_three').val(),
-                        "option_4": $('#option_four').val(),
-                        "option_5": $('#option_five').val(),
-                        "answer": $('[name=answer]:checked').val(),
-                        "subject_id": $('#subject-filter').val(),
-                        "topic_id": $('#topic-filter').val(),
-                        "description": $('#description').val(),
-                        "difficulty_level": $('[name=difficulty_level]').val(),
-                        // "tags": tags
+                        token: token,
+                        question: $('#enter_question').val(),
+                        option_1: $('#option_one').val(),
+                        option_2: $('#option_two').val(),
+                        option_3: $('#option_three').val(),
+                        option_4: $('#option_four').val(),
+                        option_5: $('#option_five').val(),
+                        answer: $('[name=answer]:checked').val(),
+                        subject_id: $('#subject-filter').val(),
+                        topic_id: $('#topic-filter').val(),
+                        description: $('#description').val(),
+                        difficulty_level: $('[name=difficulty_level]').val(),
                     }
+                    // debugger;
+
                     $.ajax({
                         url: base_url + '/admin/question/add.php',
                         type: 'POST',
