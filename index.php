@@ -5,26 +5,21 @@
 
 <body>
 
-   <?php include 'include/header.php' ?>
+    <?php include 'include/header.php' ?>
 
 
     <!-- slide-section begin here -->
-    <section class="slide-section">
+    <!-- <section class="slide-section">
         <div id="mainSlide" class="carousel slide" data-ride="carousel">
 
-            <!-- Indicators -->
             <ul class="carousel-indicators">
                 <li data-target="#mainSlide" data-slide-to="0" class="active"></li>
                 <li data-target="#mainSlide" data-slide-to="1"></li>
                 <li data-target="#mainSlide" data-slide-to="2"></li>
             </ul>
 
-            <!-- The slideshow -->
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="assets/images/slide1.jpg" />
-                </div>
-                <div class="carousel-item">
                     <img src="assets/images/slide2.jpg" />
                 </div>
                 <div class="carousel-item">
@@ -32,7 +27,6 @@
                 </div>
             </div>
 
-            <!-- Left and right controls -->
             <a class="carousel-control-prev" href="#mainSlide" data-slide="prev">
                 <span class="carousel-control-prev-icon"></span>
             </a>
@@ -41,23 +35,61 @@
             </a>
 
         </div>
-    </section>
+    </section> -->
     <!-- slide-section ends here -->
 
+    <!-- welcome-section begin here -->
+    <section class="welcome-section welcome-section-banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h2 class="title-primary">Prepare for <br> <span>NEXT 2023</span></h2>
+                    <p id="typeItContianer"></p>
+                    <p>
+                        Improve your chances to <b> Crack NEXT & Become a Doctor</b>
+                    </p>
+                    <a href="#" class="btn btn-outline-secondary">Book a Free Demo <i class="fas fa-arrow-right"></i> </a>
+                </div>
+                <!-- <div class="col-md-5 wow bounceInRight">
+                    <img src="assets/images/welcome-img.png" class="img-thumbnail" alt="">
+                </div> -->
+            </div>
+        </div>
+    </section>
+    <!-- welcome-section ends here -->
     <!-- welcome-section begin here -->
     <section class="welcome-section">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
-                    <h2 class="title-primary">Crash Course <br> <span>for NEXT 2022</span></h2>
+                <div class="col-md-5 wow bounceInLeft">
+                    <img src="assets/images/welcome-img2.png" class="img-thumbnail" alt="">
+                </div>
+                <div class="col-md-5 offset-md-2 wow bounceInRight">
+                    <h2 class="title-primary">Free <br> <span>Webinar</span></h2>
+                    <ul class="common-list">
+                        <li>How to Assure sucess preparing for NEXT</li>
+                        <li>Clear your Doubts NEXT preparation</li>
+                        <li>Boost your NEXT preparation</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline-secondary mt-3">Register <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- welcome-section ends here -->
+    <!-- welcome-section begin here -->
+    <section class="welcome-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 wow bounceInLeft">
+                    <h2 class="title-primary">Self Assement <br> <span>Mock Test Simulation</span></h2>
                     <p>
                         Improve your chances to <b> Crack <br>
                             NEXT & Become a Doctor</b>
                     </p>
-                    <a href="#" class="btn btn-primary">Book a Free Demo</a>
                 </div>
-                <div class="col-md-6 ">
-                    <img src="assets/images/welcome-img.png" class="img-fluid" alt="">
+                <div class="col-md-5 wow bounceInRight">
+                    <img src="assets/images/welcome-img3.png" class="img-thumbnail" alt="">
                 </div>
             </div>
         </div>
@@ -65,7 +97,7 @@
     <!-- welcome-section ends here -->
 
     <!-- features-section begin here -->
-    <section class="features-section">
+    <section class="features-section wow bounceInUp">
         <div class="container-fluid p-0">
             <div class="row m-0">
                 <div class="col-md-4 p-0">
@@ -75,12 +107,12 @@
                     <div class="feature-box">
                         <h2 class="title-primary"><span> Features</span></h2>
                         <ul>
-                            <li> <img src="assets/images/features-icon1.png" alt=""> Sample Test</li>
-                            <li> <img src="assets/images/features-icon2.png" alt=""> Exam Simulation</li>
-                            <li> <img src="assets/images/features-icon3.png" alt=""> Live Classes</li>
-                            <li> <img src="assets/images/features-icon4.png" alt=""> Discussion Forum</li>
+                            <li> <img src="assets/images/features-icon1.png" alt=""> Self Assessor</li>
+                            <li> <img src="assets/images/features-icon2.png" alt=""> Topic Wise Analysis</li>
+                            <li> <img src="assets/images/features-icon3.png" alt=""> Exam Simulation</li>
+                            <li> <img src="assets/images/features-icon4.png" alt=""> Live Classes</li>
                             <li> <img src="assets/images/features-icon5.png" alt=""> Live Videos</li>
-                            <li> <img src="assets/images/features-icon6.png" alt=""> Advanced Study Materials</li>
+                            <li> <img src="assets/images/features-icon6.png" alt=""> My Exam</li>
                         </ul>
                     </div>
                 </div>
@@ -90,7 +122,7 @@
     <!-- features-section ends here -->
 
     <!-- demo-classes-section begin here -->
-    <div class="demo-classes-section">
+    <div class="demo-classes-section wow bounceInRight">
         <div class="container">
             <div class="row">
                 <div class=" col-md-6">
@@ -106,7 +138,7 @@
                     <p class="pt-2">
                         Every subject in MBBS is vast. There are thick & multi-volume textbooks & MCQ books to be studied for exam. This creates huge confusion about what to study, how to study, in what depth to study, how & when to revise, how to track the performance.
                     </p>
-                    <p>
+                    <p id="talktoexpert">
                         Please feel absolutely free to contact us in case of any query. We are always happy to interact with the students and their parents. Get updates for exit test for mbbs & learn how to study for next.
                     </p>
                 </div>
@@ -258,7 +290,7 @@
                             </div>
 
                             <div class="col-md-12 text-center">
-                                <button class="btn btn-primary">
+                                <button class="btn btn-outline-secondary">
                                     Request a Call Back </button>
                             </div>
                         </div>
@@ -276,7 +308,7 @@
                 <div class="col-md-12">
                     <h2 class="title-primary text-center">Why <span>GEMS ?</span></h2>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 wow bounceInLeft">
                     <div class="career-box career-box-1">
                         <div class="row">
                             <div class="col-md-6">
@@ -295,7 +327,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 wow bounceInRight">
                     <div class="career-box career-box-2">
                         <div class="row">
                             <div class="col-md-6">
@@ -314,7 +346,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 wow bounceInLeft">
                     <div class="career-box career-box-3">
                         <div class="row">
                             <div class="col-md-6">
@@ -333,7 +365,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 wow bounceInRight">
                     <div class="career-box career-box-4">
                         <div class="row">
                             <div class="col-md-6">
@@ -358,7 +390,7 @@
     <!-- career-section begin here -->
 
     <!-- product-section begin here -->
-    <section class="product-section">
+    <section class="product-section wow bounceInUp">
         <div class="container">
             <h2 class="title-primary text-center">Mock <span>Test</span></h2>
             <div class="products-slider owl-carousel owl-theme">
@@ -366,12 +398,12 @@
                     <div class="product-box">
                         <img src="assets/images/test1.jpg" class="img-fluid" alt="">
                         <div class="product-body">
-                            <h4>Full Syllabus Test Series for NEXT 2022</h4>
+                            <h4>Full Syllabus Test Series for NEXT 2023</h4>
                             <p>
                                 Valid Upto Jan 30 2022
                             </p>
                             <div class="price"><i class="fa fa-rupee-sign"></i> 1499</div>
-                            <a href="#" class="btn btn-primary btn-block">Buy Now</a>
+                            <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#buyBox">Buy Now</a>
                         </div>
                     </div>
                 </div>
@@ -379,12 +411,12 @@
                     <div class="product-box">
                         <img src="assets/images/test2.jpg" class="img-fluid" alt="">
                         <div class="product-body">
-                            <h4>Full Syllabus Test Series for NEXT 2022</h4>
+                            <h4>Full Syllabus Test Series for NEXT 2023</h4>
                             <p>
                                 Valid Upto Jan 30 2022
                             </p>
                             <div class="price"><i class="fa fa-rupee-sign"></i> 1499</div>
-                            <a href="#" class="btn btn-primary btn-block">Buy Now</a>
+                            <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#buyBox">Buy Now</a>
                         </div>
                     </div>
                 </div>
@@ -397,7 +429,7 @@
                                 Valid Upto Jan 30 2022
                             </p>
                             <div class="price"><i class="fa fa-rupee-sign"></i> 1499</div>
-                            <a href="#" class="btn btn-primary btn-block">Buy Now</a>
+                            <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#buyBox">Buy Now</a>
                         </div>
                     </div>
                 </div>
@@ -422,7 +454,7 @@
                 <div class="col-md-2">
                     <h2>Online Exam</h2>
                     <ul>
-                        <li>75,000+ Questions</li>
+                        <li>1,50,000+ Questions</li>
                         <li>Topic Wise Exams</li>
                         <li>Self Assessment</li>
                         <li>Pattern based Mock Tests</li>
@@ -466,6 +498,32 @@
         </div>
     </section>
     <!-- get-app-section ends here -->
+
+
+    <!-- The Modal -->
+    <div class="modal" id="buyBox">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Mock Test</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Coming Soon..
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 
     <?php include 'include/footer.php' ?>

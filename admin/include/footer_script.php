@@ -17,6 +17,10 @@
     <!-- <script src="assets/js/jquery.richtext.js"></script> -->
     <!-- Tags Input -->
 
+    <!-- rich text editor script -->
+    <script src="https://cdn.tiny.cloud/1/3n14qtyv9903nuheufw4s8b0qcgpsw2z8lorr94ycjxw6kks/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <!-- rich text editor script -->
+
     <script src="assets/js/custom.js?nocache=<?php echo rand(0, 99999); ?>"></script>
 
     <script>
@@ -36,41 +40,41 @@
                 }
 
                 $('#changePassword').validate({
-            rules: {
-                old_password: "required",
-                new_password: "required",
-                confirm_password: {
-                    equalTo: "#new_password"
-                },
-            },
-            submitHandler: function(form) {
-                changePasswordSubmit();
-            }
-        });
+                    rules: {
+                        old_password: "required",
+                        new_password: "required",
+                        confirm_password: {
+                            equalTo: "#new_password"
+                        },
+                    },
+                    submitHandler: function(form) {
+                        changePasswordSubmit();
+                    }
+                });
 
-        const changePasswordSubmit = function() {
-            let post_data = {
-                token: token,
-                old_password: $('[name=old_password]').val(),
-                new_password: $('[name=new_password]').val(),
-            }
-            $.ajax({
-                url: base_url + '/admin/change-password.php',
-                type: 'POST',
-                data: JSON.stringify(post_data),
-                dataType: 'JSON',
-                success: function(result) {
-                    toastr.success(result.message);
-                    $('[name=old_password]').val('');
-                    $('[name=new_password]').val('');
-                    $('[name=confirm_password]').val('');
-                    $('#changePasswordModal').modal('hide');
-                },
-                error: function(error) {
-                    toastr.error(error.responseJSON.message);
+                const changePasswordSubmit = function() {
+                    let post_data = {
+                        token: token,
+                        old_password: $('[name=old_password]').val(),
+                        new_password: $('[name=new_password]').val(),
+                    }
+                    $.ajax({
+                        url: base_url + '/admin/change-password.php',
+                        type: 'POST',
+                        data: JSON.stringify(post_data),
+                        dataType: 'JSON',
+                        success: function(result) {
+                            toastr.success(result.message);
+                            $('[name=old_password]').val('');
+                            $('[name=new_password]').val('');
+                            $('[name=confirm_password]').val('');
+                            $('#changePasswordModal').modal('hide');
+                        },
+                        error: function(error) {
+                            toastr.error(error.responseJSON.message);
+                        }
+                    });
                 }
-            });
-        }
 
             }
         });

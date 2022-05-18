@@ -9,7 +9,7 @@
                         <h3 class="footer-title">About us</h3>
                         <div class="mt-3">
                             <p>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.
+                            GEMS next ( Global education of medical sciences) believes in providing qualitative as well as quantitative solutions to NEXT aspirants in order to enhance their preparation for the examination.
                             </p>
                         </div>
                     </div>
@@ -60,8 +60,8 @@
                             <ul class="footer-list address-content">
                                 <li>Delhi, India</li>
                                 <li><a href="#">E-mail: info@ </a></li>
-                                <li>Tel: +9876543210</li>
-                                <li>Fax: +9876543210</li>
+                                <li>Tel: +9289633644</li>
+                                <li>Fax: +9289633644</li>
                             </ul>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                 <div class="col-md-12">
                     <div class="copyright-text">
                         <p>
-                            © Copyright 2021. All rights reserved by GEMS Next.
+                            © Copyright 2021. All rights reserved by GEMS Next. Designed By <a href="https://esteps.in/" target="_blank"> <b>Esteps Solutions</b></a>
                         </p>
                     </div>
                 </div>
