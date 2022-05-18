@@ -182,6 +182,7 @@
 
                         let questionListTrCount = 1;
                         let questionListTr = '';
+                        $('.result-question-box table tbody').html('');
                         $.each(result.questions, function(key, value) {
                             const answerMap = {
                                 "1": "a",

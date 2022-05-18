@@ -28,24 +28,24 @@
                             <h5><b>Total</b> : <span class="total-students"></span></h5>
                         </div>
                         <div class="table-responsive">
-                        <table class="table mt-4" id="reportData">
-                            <thead>
-                                <tr>
-                                    <th>S.No.</th>
-                                    <th>Test Name</th>
-                                    <th>Duration</th>
-                                    <th>Total Questions</th>
-                                    <th>Subject</th>
-                                    <th>Topic</th>
-                                    <th>No of Attemps</th>
-                                    <th>Successfully Submitted</th>
-                                    <th>Created at</th>
-                                    <th>Last attempt at</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
+                            <table class="table mt-4" id="reportData">
+                                <thead>
+                                    <tr>
+                                        <th>S.No.</th>
+                                        <th>Test Name</th>
+                                        <th>Duration</th>
+                                        <th>Total Questions</th>
+                                        <th>Subject</th>
+                                        <th>Topic</th>
+                                        <th>No of Attemps</th>
+                                        <th>Successfully Submitted</th>
+                                        <th>Created at</th>
+                                        <th>Last attempt at</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -71,6 +71,7 @@
                     console.log(result);
                     var index = 1;
                     var trHTML = '';
+                    $('#reportData').html('');
                     $.each(result.result, function(key, value) {
                         subject = value.subject ? value.subject : '-'
                         trHTML +=
