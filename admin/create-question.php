@@ -49,7 +49,7 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>Enter your Question</label>
-                                                        <textarea name="question" id="" class="form-control" placeholder=""></textarea>
+                                                        <textarea name="question" id="enter_question" class="form-control" placeholder=""></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -61,7 +61,7 @@
                                                             </div>
                                                             <div class="option-group">
                                                                 <label>Option One</label>
-                                                                <input type="text" class="form-control" name="option_1" placeholder="" />
+                                                                <textarea name="option1" id="option_one" class="form-control" placeholder=""></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -75,7 +75,7 @@
                                                             </div>
                                                             <div class="option-group">
                                                                 <label>Option Two</label>
-                                                                <input type="text" class="form-control" name="option_2" placeholder="" />
+                                                                <textarea name="option1" id="option_two" class="form-control" placeholder=""></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -89,7 +89,7 @@
                                                             </div>
                                                             <div class="option-group">
                                                                 <label>Option Three</label>
-                                                                <input type="text" class="form-control" name="option_3" placeholder="" />
+                                                                <textarea name="option1" id="option_three" class="form-control" placeholder=""></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -103,7 +103,7 @@
                                                             </div>
                                                             <div class="option-group">
                                                                 <label>Option Four</label>
-                                                                <input type="text" class="form-control" name="option_4" placeholder="" />
+                                                                <textarea name="option1" id="option_four" class="form-control" placeholder=""></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -117,7 +117,7 @@
                                                             </div>
                                                             <div class="option-group">
                                                                 <label>Option Five</label>
-                                                                <input type="text" class="form-control" name="option_4" placeholder="" />
+                                                                <textarea name="option1" id="option_five" class="form-control" placeholder=""></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -125,7 +125,7 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label>Enter Description</label>
-                                                        <textarea name="description" id="" class="form-control" placeholder="Enter description"></textarea>
+                                                        <textarea name="description" id="description" class="form-control" placeholder="Enter description"></textarea>
                                                     </div>
                                                 </div>
 
@@ -278,24 +278,90 @@
                         createStudnetSubmit();
                     }
                 })
+                
+                // ------------------------------RTE STARTS-------------------------------------
+                tinymce.init({
+                    selector: '#enter_question',
+                    plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
+                    editimage_cors_hosts: ['picsum.photos'],
+                    menubar: 'file edit view insert format tools table help',
+                    toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+                    height: 300
+                });
+
+                tinymce.init({
+                    selector: '#option_one',
+                    plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
+                    editimage_cors_hosts: ['picsum.photos'],
+                    menubar: 'file edit view insert format tools table help',
+                    toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+                    height: 200
+                });
+
+                tinymce.init({
+                    selector: '#option_two',
+                    plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
+                    editimage_cors_hosts: ['picsum.photos'],
+                    menubar: 'file edit view insert format tools table help',
+                    toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+                    height: 200
+                });
+
+                tinymce.init({
+                    selector: '#option_three',
+                    plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
+                    editimage_cors_hosts: ['picsum.photos'],
+                    menubar: 'file edit view insert format tools table help',
+                    toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+                    height: 200
+                });
+
+                tinymce.init({
+                    selector: '#option_four',
+                    plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
+                    editimage_cors_hosts: ['picsum.photos'],
+                    menubar: 'file edit view insert format tools table help',
+                    toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+                    height: 200
+                });
+
+                tinymce.init({
+                    selector: '#option_five',
+                    plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
+                    editimage_cors_hosts: ['picsum.photos'],
+                    menubar: 'file edit view insert format tools table help',
+                    toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+                    height: 200
+                });
+
+                tinymce.init({
+                    selector: '#description',
+                    plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
+                    editimage_cors_hosts: ['picsum.photos'],
+                    menubar: 'file edit view insert format tools table help',
+                    toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+                    height: 300,
+                });
+                // ----------------------------RTE ENDS---------------------------------------
 
                 createStudnetSubmit = function() {
+                    // tinyMCE.triggerSave();
                     // let tags = [];
                     // $('[name=tags]').parents('.form-group').find('span.tag').each(function(index, elem) {
                     //     tags.push($(elem).text());
                     // });
                     let update_data = {
                         "token": token,
-                        "question": $('[name=question]').val(),
-                        "option_1": $('[name=option_1]').val(),
-                        "option_2": $('[name=option_2]').val(),
-                        "option_3": $('[name=option_3]').val(),
-                        "option_4": $('[name=option_4]').val(),
-                        "option_5": $('[name=option_5]').val(),
+                        "question": $('#enter_question').val(),
+                        "option_1": $('#option_one').val(),
+                        "option_2": $('#option_two').val(),
+                        "option_3": $('#option_three').val(),
+                        "option_4": $('#option_four').val(),
+                        "option_5": $('#option_five').val(),
                         "answer": $('[name=answer]:checked').val(),
                         "subject_id": $('#subject-filter').val(),
                         "topic_id": $('#topic-filter').val(),
-                        "description": $('[name=description]').val(),
+                        "description": $('#description').val(),
                         "difficulty_level": $('[name=difficulty_level]').val(),
                         // "tags": tags
                     }
@@ -345,6 +411,8 @@
                         }
                     });
                 }
+
+
 
                 var subjectArray = [];
                 $('#phase-filter').change(function(val) {
