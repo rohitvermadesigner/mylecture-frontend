@@ -24,7 +24,7 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label>Select Phase</label>
+                                                        <label>Select Phase <span style="color:red">*</span></label>
                                                         <select class="form-control" id="phase-filter">
                                                             <option value="">-- Select Phase --</option>
                                                         </select>
@@ -32,7 +32,7 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label>Select Subject</label>
+                                                        <label>Select Subject <span style="color:red">*</span></label>
                                                         <select class="form-control" id="subject-filter">
                                                             <option value="">-- Select Subject --</option>
                                                         </select>
@@ -40,7 +40,7 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label>Select Topic</label>
+                                                        <label>Select Topic <span style="color:red">*</span></label>
                                                         <select class="form-control" id="topic-filter">
                                                             <option value="">-- Select Topic --</option>
                                                         </select>
@@ -48,8 +48,8 @@
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <label>Enter your Question</label>
-                                                        <textarea name="question" id="enter_question" class="form-control" placeholder=""></textarea>
+                                                        <label>Enter your Question <span style="color:red">*</span></label>
+                                                        <textarea name="question" id="enter_question" class="form-control" placeholder="Type your question"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -60,7 +60,7 @@
                                                                 <input type="radio" name="answer" value="1" />
                                                             </div>
                                                             <div class="option-group">
-                                                                <label>Option One</label>
+                                                                <label>Option One <span style="color:red">*</span></label>
                                                                 <textarea name="option1" id="option_one" class="form-control" placeholder=""></textarea>
                                                             </div>
                                                         </div>
@@ -74,7 +74,7 @@
                                                                 <input type="radio" name="answer" value="2" />
                                                             </div>
                                                             <div class="option-group">
-                                                                <label>Option Two</label>
+                                                                <label>Option Two <span style="color:red">*</span></label>
                                                                 <textarea name="option1" id="option_two" class="form-control" placeholder=""></textarea>
                                                             </div>
                                                         </div>
@@ -147,7 +147,8 @@
                                                     </div>
                                                 </div> -->
                                                 <div class="col-md-12">
-                                                    <button type="submit" class="btn btn-primary float-right">Submit</button>
+                                                    <button type="button" id="add-new-question-submit" class="btn btn-primary float-right add-new-question-btn" data-add-more="0">Submit</button>
+                                                    <button type="button" id="add-more-question-submit" class="btn btn-primary float-right add-new-question-btn mr-4" data-add-more="1">Add More +</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -283,28 +284,11 @@
                 tinymce.init(tinyMceConfig('#description', 300));
                 // ----------------------------RTE ENDS---------------------------------------
 
-
-                $('#createQuestion').validate({
-                    rules: {
-                        question: 'required',
-                        option_1: 'required',
-                        option_2: 'required',
-                        option_3: 'required',
-                        option_4: 'required',
-                        description: 'required',
-                        subject_id: 'required',
-                        topic_id: 'required',
-                        difficulty_level: 'required',
-                    },
-                    submitHandler: function() {
-                        addNewQuestionSubmit();
-                    }
-                });
-
-
-                addNewQuestionSubmit = function() {
+                $(".add-new-question-btn").click(function(event) {
+                    event.preventDefault();
                     tinyMCE.triggerSave();
-                    let update_data = {
+                    let is_add_more = $(this).attr('data-add-more');
+                    let formData = {
                         token: token,
                         question: $('#enter_question').val(),
                         option_1: $('#option_one').val(),
@@ -318,22 +302,40 @@
                         description: $('#description').val(),
                         difficulty_level: $('[name=difficulty_level]').val(),
                     }
-                    // debugger;
-
-                    $.ajax({
-                        url: base_url + '/admin/question/add.php',
-                        type: 'POST',
-                        data: JSON.stringify(update_data),
-                        dataType: 'JSON',
-                        success: function(result) {
-                            toastr.success(result.message);
-                            window.location.replace('questions.php');
-                        },
-                        error: function(error) {
-                            toastr.error(error.responseJSON.message);
+                    if (formData.question && formData.option_1 && formData.option_2 && formData.subject_id && formData.topic_id) {
+                        if (formData.answer) {
+                            $.ajax({
+                                url: base_url + '/admin/question/add.php',
+                                type: 'POST',
+                                data: JSON.stringify(formData),
+                                dataType: 'JSON',
+                                success: function(result) {
+                                    toastr.success(result.message);
+                                    if (is_add_more == '1') {
+                                        tinymce.get("enter_question").setContent("");
+                                        tinymce.get("option_one").setContent("");
+                                        tinymce.get("option_two").setContent("");
+                                        tinymce.get("option_three").setContent("");
+                                        tinymce.get("option_four").setContent("");
+                                        tinymce.get("option_five").setContent("");
+                                        tinymce.get("description").setContent("");
+                                        $("[name=answer]").prop('checked', false);
+                                    } else {
+                                        window.location.replace('questions.php');
+                                    }
+                                },
+                                error: function(error) {
+                                    toastr.error(error.responseJSON.message);
+                                }
+                            });
+                        } else {
+                            toastr.error("Please select correct answer.");
                         }
-                    });
-                };
+                    } else {
+                        toastr.error("Please enter all mandatory fields.");
+                    }
+
+                });
 
                 const subjectResult = [];
                 const getAllSubjects = function() {
