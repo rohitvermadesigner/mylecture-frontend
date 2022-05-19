@@ -51,7 +51,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Enter your Question</label>
-                                                    <textarea name="question" id="" class="form-control"></textarea>
+                                                    <textarea name="question" id="enter_question" class="form-control"></textarea>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -63,7 +63,7 @@
                                                         </div>
                                                         <div class="option-group">
                                                             <label>Option One</label>
-                                                            <input type="text" class="form-control" name="option_1" />
+                                                            <textarea name="option1" id="option_one" class="form-control" placeholder=""></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -77,7 +77,7 @@
                                                         </div>
                                                         <div class="option-group">
                                                             <label>Option Two</label>
-                                                            <input type="text" class="form-control" name="option_2" />
+                                                            <textarea name="option1" id="option_two" class="form-control" placeholder=""></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -91,7 +91,7 @@
                                                         </div>
                                                         <div class="option-group">
                                                             <label>Option Three</label>
-                                                            <input type="text" class="form-control" name="option_3" />
+                                                            <textarea name="option1" id="option_three" class="form-control" placeholder=""></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -105,7 +105,7 @@
                                                         </div>
                                                         <div class="option-group">
                                                             <label>Option Four</label>
-                                                            <input type="text" class="form-control" name="option_4" />
+                                                            <textarea name="option1" id="option_four" class="form-control" placeholder=""></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -119,7 +119,7 @@
                                                         </div>
                                                         <div class="option-group">
                                                             <label>Option Five</label>
-                                                            <input type="text" class="form-control" name="option_5" />
+                                                            <textarea name="option1" id="option_five" class="form-control" placeholder=""></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -127,7 +127,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Enter Description</label>
-                                                    <textarea type="text" class="form-control" name="description"></textarea>
+                                                    <textarea type="text" class="form-control" id="description" name="description"></textarea>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -147,7 +147,7 @@
                                                 </div>
                                             </div> -->
                                             <div class="col-md-12">
-                                                <button id="updateQuestion" class="btn btn-primary float-right">Update</button>
+                                                <button id="updateQuestion" class="btn btn-primary float-right" data-add-more="0">Update</button>
                                             </div>
                                         </div>
                                     </div>
@@ -266,10 +266,32 @@
                 var selectedSubject;
                 var questionData;
 
+                function tinyMceConfig(selector, height = 200) {
+                    return {
+                        selector,
+                        plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
+                        editimage_cors_hosts: ['picsum.photos'],
+                        menubar: '',
+                        toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
+                        height
+                    }
+                }
+
+                // ------------------------------RTE STARTS-------------------------------------
+                tinymce.init(tinyMceConfig('#enter_question', 300));
+                tinymce.init(tinyMceConfig('#option_one'));
+                tinymce.init(tinyMceConfig('#option_two'));
+                tinymce.init(tinyMceConfig('#option_three'));
+                tinymce.init(tinyMceConfig('#option_four'));
+                tinymce.init(tinyMceConfig('#option_five'));
+                tinymce.init(tinyMceConfig('#description', 300));
+                // ----------------------------RTE ENDS---------------------------------------
+
+
                 var getQuestion = function() {
-                    const url = `${base_url}/admin/question/get-detail.php`;
+                    // const url = `${base_url}/admin/question/get-detail.php`;
                     $.ajax({
-                        url: url,
+                        url: base_url + '/admin/question/get-detail.php',
                         type: 'GET',
                         dataType: 'JSON',
                         data: {
@@ -278,17 +300,17 @@
                         },
                         success: function(result) {
                             questionData = result;
-                            $('[name=question]').attr('id', result.id);
-                            $('[name=question]').val(result.question);
-                            $('[name=option_1]').val(result.option_1);
-                            $('[name=option_2]').val(result.option_2);
-                            $('[name=option_3]').val(result.option_3);
-                            $('[name=option_4]').val(result.option_4);
-                            $('[name=option_5]').val(result.option_5);
+                            // $('#enter_question').attr('id', result.id);
+                            $('#enter_question').val(result.question);
+                            $('#option_one').val(result.option_1);
+                            $('#option_two').val(result.option_2);
+                            $('#option_three').val(result.option_3);
+                            $('#option_four').val(result.option_4);
+                            $('#option_five').val(result.option_5);
                             // $('#phase-filter').val(result.phase.id);
                             // $('#subject-filter').val(result.subject.id);
                             // $('#topic-filter').val(result.topic.id);
-                            $('[name=description]').val(result.description);
+                            $('#description').val(result.description);
                             $('[name=difficulty_level]').val(result.difficulty_level);
                             $('[name=answer]').each(function() {
                                 if ($(this).val() == result.answer) {
@@ -301,36 +323,48 @@
                 }
                 getQuestion();
 
-                $('body').on('click', '#updateQuestion', function() {
+                $('body').on('click', '#updateQuestion', function(event) {
+                    event.preventDefault();
+                    tinyMCE.triggerSave();
                     let update_data = {
                         "token": token,
                         "question_id": questionID,
-                        "question": $('[name=question]').val(),
-                        "option_1": $('[name=option_1]').val(),
-                        "option_2": $('[name=option_2]').val(),
-                        "option_3": $('[name=option_3]').val(),
-                        "option_4": $('[name=option_4]').val(),
-                        "option_5": $('[name=option_5]').val(),
+                        "question": $('#enter_question').val(),
+                        "option_1": $('#option_one').val(),
+                        "option_2": $('#option_two').val(),
+                        "option_3": $('#option_three').val(),
+                        "option_4": $('#option_four').val(),
+                        "option_5": $('#option_five').val(),
                         "answer": $('[name=answer]:checked').val(),
                         "subject_id": $('#subject-filter').val(),
                         "topic_id": $('#topic-filter').val(),
-                        "description": $('[name=description]').val(),
+                        "description": $('#description').val(),
                         "difficulty_level": $('[name=difficulty_level]').val(),
                         // "tags": ["AIEEE", "IIT"]
                     }
-                    $.ajax({
-                        url: base_url + '/admin/question/update.php',
-                        type: 'POST',
-                        data: JSON.stringify(update_data),
-                        dataType: 'JSON',
-                        success: function(result) {
-                            toastr.success(result.message);
-                            window.location.replace('questions.php');
-                        },
-                        error: function(error) {
-                            toastr.error(error.responseJSON.message);
+                    if (update_data.question && update_data.option_1 && update_data.option_2 && update_data.subject_id && update_data.topic_id) {
+                        if (update_data.answer) {
+                            $.ajax({
+                                url: base_url + '/admin/question/update.php',
+                                type: 'POST',
+                                data: JSON.stringify(update_data),
+                                dataType: 'JSON',
+                                success: function(result) {
+                                    toastr.success(result.message);
+                                    setTimeout(function() {
+                                        window.location.replace('questions.php');
+                                    }, 1000);
+                                },
+                                error: function(error) {
+                                    toastr.error(error.responseJSON.message);
+                                }
+                            });
+                        } else {
+                            toastr.error("Please select correct answer.");
                         }
-                    });
+                    } else {
+                        toastr.error("Please enter all mandatory fields.");
+                    }
                 });
 
                 const subjectResult = [];
