@@ -90,7 +90,7 @@
                                                             <input type="radio" name="answer" value="3" />
                                                         </div>
                                                         <div class="option-group">
-                                                            <label>Option Three</label>
+                                                            <label>Option Three </label>
                                                             <textarea name="option1" id="option_three" class="form-control" placeholder=""></textarea>
                                                         </div>
                                                     </div>
@@ -341,8 +341,9 @@
                         "difficulty_level": $('[name=difficulty_level]').val(),
                         // "tags": ["AIEEE", "IIT"]
                     }
-                    if (update_data.question && update_data.option_1 && update_data.option_2 && update_data.subject_id && update_data.topic_id) {
+                    if (update_data.question && update_data.option_1 && update_data.option_2 && update_data.subject_id && update_data.topic_id && update_data.difficulty_level) {
                         if (update_data.answer) {
+                            $("#updateQuestion").attr('disabled', true)
                             $.ajax({
                                 url: base_url + '/admin/question/update.php',
                                 type: 'POST',
@@ -353,9 +354,11 @@
                                     setTimeout(function() {
                                         window.location.replace('questions.php');
                                     }, 1000);
+                                    $("#updateQuestion").attr('disabled', false)
                                 },
                                 error: function(error) {
                                     toastr.error(error.responseJSON.message);
+                                    $("#updateQuestion").attr('disabled', false)
                                 }
                             });
                         } else {
@@ -390,12 +393,12 @@
                                         })
                                     }
                                 })
-                                
+
                                 $('#phase-filter').html('<option value="">-- Select Phase --</option>');
                                 $('#subject-filter').html('<option value="">-- Select Subject --</option>');
                                 $('#topic-filter').html('<option value="">-- Select Topic --</option>');
                                 allPhase.forEach(phase => {
-                                    
+
                                     $('#phase-filter').append(`<option value="${phase.id}">${phase.name}</option>`);
                                     if (phase.id == selectedPhaseId) {
                                         if (phase.subject && phase.subject.length > 0) {

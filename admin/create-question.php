@@ -88,7 +88,7 @@
                                                                 <input type="radio" name="answer" value="3" />
                                                             </div>
                                                             <div class="option-group">
-                                                                <label>Option Three <span style="color:red">*</span></label>
+                                                                <label>Option Three</label>
                                                                 <textarea name="option1" id="option_three" class="form-control" placeholder=""></textarea>
                                                             </div>
                                                         </div>
@@ -302,7 +302,7 @@
                         description: $('#description').val(),
                         difficulty_level: $('[name=difficulty_level]').val(),
                     }
-                    if (formData.question && formData.option_1 && formData.option_2 && formData.option_3 && formData.subject_id && formData.topic_id) {
+                    if (formData.question && formData.option_1 && formData.option_2 && formData.subject_id && formData.topic_id && formData.difficulty_level) {
                         if (formData.answer) {
                             $(".add-new-question-btn").attr('disabled', true);
                             $.ajax({
