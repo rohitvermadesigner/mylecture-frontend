@@ -304,6 +304,7 @@
                     }
                     if (formData.question && formData.option_1 && formData.option_2 && formData.subject_id && formData.topic_id) {
                         if (formData.answer) {
+                            $(".add-new-question-btn").attr('disabled', true);
                             $.ajax({
                                 url: base_url + '/admin/question/add.php',
                                 type: 'POST',
@@ -320,12 +321,15 @@
                                         tinymce.get("option_five").setContent("");
                                         tinymce.get("description").setContent("");
                                         $("[name=answer]").prop('checked', false);
+                                        $(".add-new-question-btn").attr('disabled', false);
                                     } else {
+                                        $(".add-new-question-btn").attr('disabled', false);
                                         window.location.replace('questions.php');
                                     }
                                 },
                                 error: function(error) {
                                     toastr.error(error.responseJSON.message);
+                                    $(".add-new-question-btn").attr('disabled', false);
                                 }
                             });
                         } else {

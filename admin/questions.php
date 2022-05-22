@@ -61,7 +61,7 @@
                                     </div>
                                     <div class="ibox-content">
                                         <div class="table-responsive mt-3">
-                                            <table class="table" id="questionData">
+                                            <table class="table question-listing-data" id="questionData">
                                                 <thead>
                                                     <tr>
                                                         <th><input type="checkbox" id="checkAll"></th>

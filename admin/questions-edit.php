@@ -266,25 +266,28 @@
                 var selectedSubject;
                 var questionData;
 
-                function tinyMceConfig(selector, height = 200) {
+                function tinyMceConfig(selector, content, height = 200) {
                     return {
                         selector,
                         plugins: 'preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons',
                         editimage_cors_hosts: ['picsum.photos'],
                         menubar: '',
                         toolbar: 'undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | pagebreak | fullscreen  preview save print | insertfile image media template link anchor codesample | ltr rtl',
-                        height
+                        height,
+                        setup: function(editor) {
+                            editor.on('init', function(e) {
+                                editor.setContent(content);
+                            });
+                        }
                     }
                 }
 
                 // ------------------------------RTE STARTS-------------------------------------
-                tinymce.init(tinyMceConfig('#enter_question', 300));
-                tinymce.init(tinyMceConfig('#option_one'));
-                tinymce.init(tinyMceConfig('#option_two'));
-                tinymce.init(tinyMceConfig('#option_three'));
-                tinymce.init(tinyMceConfig('#option_four'));
-                tinymce.init(tinyMceConfig('#option_five'));
-                tinymce.init(tinyMceConfig('#description', 300));
+
+                setTimeout(() => {
+                    // tinymce.get("enter_question").setContent("<h1>hello</h1>");
+
+                }, 1000);
                 // ----------------------------RTE ENDS---------------------------------------
 
 
@@ -300,24 +303,20 @@
                         },
                         success: function(result) {
                             questionData = result;
-                            // $('#enter_question').attr('id', result.id);
-                            $('#enter_question').val(result.question);
-                            $('#option_one').val(result.option_1);
-                            $('#option_two').val(result.option_2);
-                            $('#option_three').val(result.option_3);
-                            $('#option_four').val(result.option_4);
-                            $('#option_five').val(result.option_5);
-                            // $('#phase-filter').val(result.phase.id);
-                            // $('#subject-filter').val(result.subject.id);
-                            // $('#topic-filter').val(result.topic.id);
-                            $('#description').val(result.description);
+                            tinymce.init(tinyMceConfig('#enter_question', result.description, 300));
+                            tinymce.init(tinyMceConfig('#option_one', result.option_1));
+                            tinymce.init(tinyMceConfig('#option_two', result.option_2));
+                            tinymce.init(tinyMceConfig('#option_three', result.option_3));
+                            tinymce.init(tinyMceConfig('#option_four', result.option_4));
+                            tinymce.init(tinyMceConfig('#option_five', result.option_5));
+                            tinymce.init(tinyMceConfig('#description', result.description, 300));
                             $('[name=difficulty_level]').val(result.difficulty_level);
                             $('[name=answer]').each(function() {
                                 if ($(this).val() == result.answer) {
                                     $(this).prop('checked', true);
                                 }
                             });
-                            getAllSubjects();
+                            // getAllSubjects();
                         }
                     });
                 }
@@ -441,15 +440,15 @@
                                 val.subject.forEach(subject => {
                                     trHTML +=
                                         `<tr id="${subject.id}">
-                                <td>${index++}</td>
-                                <td><span subjectName="${subject.name}">${subject.name}</span></td>
-                                <td class="text-center">
-                                    <ul class="action-list">
-                                    <li class="update-subject-icon"><i class="fa fa-pencil"></i></li>
-                                    <li class="remove-subject"><i class="fa fa-trash-o"></i></li>
-                                    </ul>
-                                </td>
-                                </tr>`;
+                                    <td>${index++}</td>
+                                    <td><span subjectName="${subject.name}">${subject.name}</span></td>
+                                    <td class="text-center">
+                                        <ul class="action-list">
+                                        <li class="update-subject-icon"><i class="fa fa-pencil"></i></li>
+                                        <li class="remove-subject"><i class="fa fa-trash-o"></i></li>
+                                        </ul>
+                                    </td>
+                                    </tr>`;
                                 });
                                 $('#subjectData tbody').append(trHTML);
                             }
@@ -485,15 +484,15 @@
                                             val.topic.forEach(topic => {
                                                 trHTML +=
                                                     `<tr id="${topic.id}">
-                                <td>${index++}</td>
-                                <td><span topicName="${topic.name}">${topic.name}</span></td>
-                                <td class="text-center">
-                                    <ul class="action-list">
-                                    <li class="update-topic-icon"><i class="fa fa-pencil"></i></li>
-                                    <li class="remove-topic"><i class="fa fa-trash-o"></i></li>
-                                    </ul>
-                                </td>
-                                </tr>`;
+                                    <td>${index++}</td>
+                                    <td><span topicName="${topic.name}">${topic.name}</span></td>
+                                    <td class="text-center">
+                                        <ul class="action-list">
+                                        <li class="update-topic-icon"><i class="fa fa-pencil"></i></li>
+                                        <li class="remove-topic"><i class="fa fa-trash-o"></i></li>
+                                        </ul>
+                                    </td>
+                                    </tr>`;
                                             });
                                             $('#topicData tbody').append(trHTML);
                                         }
@@ -564,15 +563,15 @@
                                         val.subject.forEach(subject => {
                                             trHTML +=
                                                 `<tr id="${subject.id}">
-                                <td>${index++}</td>
-                                <td><span subjectName="${subject.name}">${subject.name}</span></td>
-                                <td class="text-center">
-                                    <ul class="action-list">
-                                    <li class="update-subject-icon"><i class="fa fa-pencil"></i></li>
-                                    <li class="remove-subject"><i class="fa fa-trash-o"></i></li>
-                                    </ul>
-                                </td>
-                                </tr>`;
+                                    <td>${index++}</td>
+                                    <td><span subjectName="${subject.name}">${subject.name}</span></td>
+                                    <td class="text-center">
+                                        <ul class="action-list">
+                                        <li class="update-subject-icon"><i class="fa fa-pencil"></i></li>
+                                        <li class="remove-subject"><i class="fa fa-trash-o"></i></li>
+                                        </ul>
+                                    </td>
+                                    </tr>`;
                                         });
                                         $('#subjectData tbody').append(trHTML);
                                     }
@@ -620,15 +619,15 @@
                                                 val.topic.forEach(topic => {
                                                     trHTML +=
                                                         `<tr id="${topic.id}">
-                                <td>${index++}</td>
-                                <td><span topicName="${topic.name}">${topic.name}</span></td>
-                                <td class="text-center">
-                                    <ul class="action-list">
-                                    <li class="update-topic-icon"><i class="fa fa-pencil"></i></li>
-                                    <li class="remove-topic"><i class="fa fa-trash-o"></i></li>
-                                    </ul>
-                                </td>
-                                </tr>`;
+                                    <td>${index++}</td>
+                                    <td><span topicName="${topic.name}">${topic.name}</span></td>
+                                    <td class="text-center">
+                                        <ul class="action-list">
+                                        <li class="update-topic-icon"><i class="fa fa-pencil"></i></li>
+                                        <li class="remove-topic"><i class="fa fa-trash-o"></i></li>
+                                        </ul>
+                                    </td>
+                                    </tr>`;
                                                 });
                                                 $('#topicData tbody').append(trHTML);
                                             }
