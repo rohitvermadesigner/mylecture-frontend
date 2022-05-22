@@ -303,7 +303,7 @@
                         },
                         success: function(result) {
                             questionData = result;
-                            tinymce.init(tinyMceConfig('#enter_question', result.description, 300));
+                            tinymce.init(tinyMceConfig('#enter_question', result.question, 300));
                             tinymce.init(tinyMceConfig('#option_one', result.option_1));
                             tinymce.init(tinyMceConfig('#option_two', result.option_2));
                             tinymce.init(tinyMceConfig('#option_three', result.option_3));
