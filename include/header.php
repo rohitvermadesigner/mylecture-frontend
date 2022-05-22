@@ -61,6 +61,7 @@
                 <!-- <li><a href="live-lectures.php">Live Lectures</a></li> -->
                 <li><a href="mock-test.php">Mock Test</a></li>
                 <li><a href="book-demo-class.php">Book Demo Class</a></li>
+                <li><a href="career.php">Career</a></li>
                 <li><a href="contact.php">Contact</a></li>
             </ul>
         </div>
