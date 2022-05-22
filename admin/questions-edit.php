@@ -26,7 +26,7 @@
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Select Phase</label>
+                                                    <label>Select Phase <span style="color:red">*</span></label>
                                                     <select class="form-control" id="phase-filter">
                                                         <option value="">-- Select Phase --</option>
                                                     </select>
@@ -34,7 +34,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Select Subject</label>
+                                                    <label>Select Subject <span style="color:red">*</span></label>
                                                     <select class="form-control" id="subject-filter">
                                                         <option value="">-- Select Subject --</option>
                                                     </select>
@@ -42,7 +42,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Select Topic</label>
+                                                    <label>Select Topic <span style="color:red">*</span></label>
                                                     <select class="form-control" id="topic-filter">
                                                         <option value="">-- Select Topic --</option>
                                                     </select>
@@ -50,7 +50,7 @@
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label>Enter your Question</label>
+                                                    <label>Enter your Question <span style="color:red">*</span></label>
                                                     <textarea name="question" id="enter_question" class="form-control"></textarea>
                                                 </div>
                                             </div>
@@ -62,7 +62,7 @@
                                                             <input type="radio" name="answer" value="1" />
                                                         </div>
                                                         <div class="option-group">
-                                                            <label>Option One</label>
+                                                            <label>Option One <span style="color:red">*</span></label>
                                                             <textarea name="option1" id="option_one" class="form-control" placeholder=""></textarea>
                                                         </div>
                                                     </div>
@@ -76,7 +76,7 @@
                                                             <input type="radio" name="answer" value="2" />
                                                         </div>
                                                         <div class="option-group">
-                                                            <label>Option Two</label>
+                                                            <label>Option Two <span style="color:red">*</span></label>
                                                             <textarea name="option1" id="option_two" class="form-control" placeholder=""></textarea>
                                                         </div>
                                                     </div>
@@ -132,7 +132,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Select Level</label>
+                                                    <label>Select Level <span style="color:red">*</span></label>
                                                     <select name="difficulty_level" class="form-control">
                                                         <option value="">Select Level</option>
                                                         <option value="easy">Easy</option>
@@ -316,7 +316,7 @@
                                     $(this).prop('checked', true);
                                 }
                             });
-                            // getAllSubjects();
+                            getAllSubjects();
                         }
                     });
                 }
@@ -390,10 +390,12 @@
                                         })
                                     }
                                 })
+                                
                                 $('#phase-filter').html('<option value="">-- Select Phase --</option>');
                                 $('#subject-filter').html('<option value="">-- Select Subject --</option>');
                                 $('#topic-filter').html('<option value="">-- Select Topic --</option>');
                                 allPhase.forEach(phase => {
+                                    
                                     $('#phase-filter').append(`<option value="${phase.id}">${phase.name}</option>`);
                                     if (phase.id == selectedPhaseId) {
                                         if (phase.subject && phase.subject.length > 0) {
