@@ -131,7 +131,7 @@
 
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label>Select Level</label>
+                                                        <label>Select Level <span style="color:red">*</span></label>
                                                         <select name="difficulty_level" class="form-control">
                                                             <option value="">Select Level</option>
                                                             <option value="easy">Easy</option>
