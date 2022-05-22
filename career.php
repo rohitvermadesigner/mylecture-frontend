@@ -16,7 +16,7 @@
                         Are you passionate about technology,constantly seeking to learn and improve skillset? We are looking for Talented;Hardworking & Result oriented candidates.
                     </p>
                     <p>
-                        You will have the advantage to upgrade your skills, work on new technologies and serve international and domestic clients.
+                        You will have the advantage to upgrade your skills, work on new technologies.
                     </p>
                     <h4>Current Positions</h4>
                     <ul class="nostyle">
