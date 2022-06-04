@@ -134,7 +134,7 @@
                         "token": token,
                         "test_name": $('[name=test_name]').val(),
                         "duration": $('[name=duration]').val(),
-                        "is_question_random_order": $('[name=is_question_random_order]').val(),
+                        "is_question_random_order": $('[name=is_question_random_order:checked]').val(),
                         "subject_id": $('[name=subject_id]').val(),
                         "keyword": $('[name=keyword]').val(),
                         "total_questions": $('[name=total_questions]').val(),
