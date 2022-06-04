@@ -627,7 +627,7 @@ nav ul li {
 }
 
 nav>.container>ul>li {
-    margin: 0px 30px;
+    margin: 0px 25px;
 }
 
 nav ul li a {
@@ -1385,4 +1385,19 @@ ul.common-list li {
     background: url(../images/slide-banner.jpg) no-repeat;
     background-size: cover;
     /* background: #d5eaf3; */
+}
+
+ul.nostyle {
+    margin: 0px;
+    padding: 0px;
+}
+
+ul.nostyle li {
+    list-style-type: none;
+    margin-bottom: 15px;
+}
+
+ul.nostyle li svg {
+    font-size: 12px;
+    margin-right: 6px;
 }
