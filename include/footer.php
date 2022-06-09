@@ -58,8 +58,8 @@
                         <h3 class="footer-title">Address</h3>
                         <div class="footer-content">
                             <ul class="footer-list address-content">
-                                <li>Delhi, India</li>
-                                <li><a href="#">E-mail: info@ </a></li>
+                                <li>Unit no 309 3rd Floor Vikas surya shopping mall Plot No 18 Mangalam Place Sector 3 Rohini Delhi 110085</li>
+                                <li><a href="#">E-mail: info@gemsnext.com </a></li>
                                 <li>Tel: +9289633644</li>
                                 <li>Fax: +9289633644</li>
                             </ul>
