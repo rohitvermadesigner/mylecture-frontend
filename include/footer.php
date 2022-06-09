@@ -42,8 +42,8 @@
                         <h3 class="footer-title">Follow us on</h3>
                         <div class="social-icons">
                             <ul>
-                                <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i> </a></li>
-                                <li><a href="#" target="_blank"><i class="fab fa-youtube"></i></a></li>
+                                <li><a href="https://www.facebook.com/Gemsnext-100540672697080" target="_blank"><i class="fab fa-facebook-f"></i> </a></li>
+                                <li><a href="https://www.youtube.com/channel/UCYea8Dt6m7TW_fPufk6vaQg" target="_blank"><i class="fab fa-youtube"></i></a></li>
                                 <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
                                 <li><a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
                                 <li><a href="#" target="_blank"><i class="fab fa-telegram-plane"></i> </a></li>

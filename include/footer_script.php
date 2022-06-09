@@ -13,12 +13,12 @@
 <script src="assets/js/custom.js?nocache=<?php echo rand(0, 99999); ?>"></script>
 <script src="assets/js/config.js"></script>
 <script>
+    new WOW().init();
     new TypeIt('#typeItContianer', {
         strings: "Improve your chances to Crack NEXT & Become a Doctor",
     });
     new TypeIt('#typeItContianer').go();
 
-    new WOW().init();
 </script>
 <script>
     $(function() {
