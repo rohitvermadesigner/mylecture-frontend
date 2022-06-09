@@ -18,7 +18,7 @@
                 </div>
                 <div class="col-md-6">
                     <p>
-                        GEMS next ( Global education of medical sciences) believes in providing qualitative as well as quantitative solutions to NEXT aspirants in order to enhance their preparation for the examination.
+                        GlobalNext Education of Medical Sciences believes in providing qualitative as well as quantitative solutions to NEXT aspirants in order to enhance their preparation for the examination.
                     </p>
                     <p>
                         The relevant & most important part of pre- & para-clinical subjects will be covered through National Exit Test: NEXT point of view.
