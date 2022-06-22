@@ -1,0 +1,15 @@
+[04-Apr-2022 12:38:20 Asia/Calcutta] PHP Warning:  mysqli_connect(): (08004/1040): Too many connections in /home1/mylecvjx/dev.gemsnext.com/api/v1/config/database.php on line 16
+[04-Apr-2022 12:38:20 Asia/Calcutta] PHP Warning:  mysqli_error() expects parameter 1 to be mysqli, bool given in /home1/mylecvjx/dev.gemsnext.com/api/v1/config/database.php on line 18
+[04-Apr-2022 12:38:20 Asia/Calcutta] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home1/mylecvjx/dev.gemsnext.com/api/v1/shared/utilities.php on line 41
+[04-Apr-2022 12:38:20 Asia/Calcutta] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home1/mylecvjx/dev.gemsnext.com/api/v1/shared/utilities.php on line 42
+[04-Apr-2022 12:38:20 Asia/Calcutta] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, null given in /home1/mylecvjx/dev.gemsnext.com/api/v1/shared/utilities.php on line 43
+[04-Apr-2022 16:25:21 Asia/Calcutta] PHP Warning:  mysqli_connect(): (HY000/1040): Too many connections in /home1/mylecvjx/dev.gemsnext.com/api/v1/config/database.php on line 16
+[04-Apr-2022 16:25:21 Asia/Calcutta] PHP Warning:  mysqli_error() expects parameter 1 to be mysqli, bool given in /home1/mylecvjx/dev.gemsnext.com/api/v1/config/database.php on line 18
+[04-Apr-2022 16:25:21 Asia/Calcutta] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home1/mylecvjx/dev.gemsnext.com/api/v1/shared/utilities.php on line 41
+[04-Apr-2022 16:25:21 Asia/Calcutta] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home1/mylecvjx/dev.gemsnext.com/api/v1/shared/utilities.php on line 42
+[04-Apr-2022 16:25:21 Asia/Calcutta] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, null given in /home1/mylecvjx/dev.gemsnext.com/api/v1/shared/utilities.php on line 43
+[04-Apr-2022 16:47:24 Asia/Calcutta] PHP Warning:  mysqli_connect(): (HY000/1040): Too many connections in /home1/mylecvjx/dev.gemsnext.com/api/v1/config/database.php on line 16
+[04-Apr-2022 16:47:24 Asia/Calcutta] PHP Warning:  mysqli_error() expects parameter 1 to be mysqli, bool given in /home1/mylecvjx/dev.gemsnext.com/api/v1/config/database.php on line 18
+[04-Apr-2022 16:47:24 Asia/Calcutta] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, bool given in /home1/mylecvjx/dev.gemsnext.com/api/v1/shared/utilities.php on line 41
+[04-Apr-2022 16:47:24 Asia/Calcutta] PHP Warning:  mysqli_fetch_assoc() expects parameter 1 to be mysqli_result, null given in /home1/mylecvjx/dev.gemsnext.com/api/v1/shared/utilities.php on line 42
+[04-Apr-2022 16:47:24 Asia/Calcutta] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, null given in /home1/mylecvjx/dev.gemsnext.com/api/v1/shared/utilities.php on line 43

@@ -1,4 +1,12 @@
 @media screen and (max-width: 767px) {
+    .top-right-btn-list .btn,
+    .filter-list .btn {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+    .top-right-btn-list {
+        margin-left: 10px;
+    }
     .dashboard-leftbar {
         display: none;
     }
@@ -48,7 +56,7 @@
         padding: 6px 15px;
     }
     .filter-list li:last-child {
-        width: 180px;
+        width: 100px;
     }
     .report-tab {
         height: 100px;

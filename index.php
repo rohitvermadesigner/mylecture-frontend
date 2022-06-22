@@ -43,16 +43,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    <h2 class="title-primary">Prepare for <br> <span>NEXT 2023</span></h2>
-                    <p id="typeItContianer"></p>
-                    <p>
-                        Improve your chances to <b> Crack NEXT & Become a Doctor</b>
-                    </p>
-                    <a href="#" class="btn btn-outline-secondary">Book a Free Demo <i class="fas fa-arrow-right"></i> </a>
+                    <div class="wow bounceInLeft">
+                        <h2 class="title-primary">Prepare for <br> <span>NEXT 2023</span></h2>
+                        <p id="typeItContianer"></p>
+                        <p>
+                            Improve your chances to <b> Crack NEXT & Become a Doctor</b>
+                        </p>
+                        <a href="#" class="btn btn-outline-secondary">Book a Free Demo <i class="fas fa-arrow-right"></i> </a>
+                    </div>
                 </div>
-                <!-- <div class="col-md-5 wow bounceInRight">
-                    <img src="assets/images/welcome-img.png" class="img-thumbnail" alt="">
-                </div> -->
             </div>
         </div>
     </section>
@@ -530,6 +529,22 @@
 
     <?php include 'include/footer_script.php' ?>
 
+    <script type="text/javascript" id="zsiqchat">
+        var $zoho = $zoho || {};
+        $zoho.salesiq = $zoho.salesiq || {
+            widgetcode: "e617fca5103c004ad223e5069ea867244f26445710a0e3129861d9e97f842145",
+            values: {},
+            ready: function() {}
+        };
+        var d = document;
+        s = d.createElement("script");
+        s.type = "text/javascript";
+        s.id = "zsiqscript";
+        s.defer = true;
+        s.src = "https://salesiq.zoho.in/widget";
+        t = d.getElementsByTagName("script")[0];
+        t.parentNode.insertBefore(s, t);
+    </script>
 
 </body>
 
