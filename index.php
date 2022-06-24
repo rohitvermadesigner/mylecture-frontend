@@ -447,9 +447,9 @@
                 </div>
             </div>
 
-            <div class="text-center mt-4">
+            <!-- <div class="text-center mt-4">
                 <a href="courses.php" class="btn btn-primary2 btn-lg">View all Courses</a>
-            </div>
+            </div> -->
 
         </div>
     </section>
