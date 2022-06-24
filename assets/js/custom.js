@@ -175,8 +175,8 @@ $(function() {
     $('.products-slider.owl-carousel').owlCarousel({
         nav: true,
         dots: false,
-        autoplay: true,
-        loop: true,
+        autoplay: false,
+        loop: false,
         nav: true,
         // navText: ['<img src="' + url + 'public/images/white-arrow-prev.png" alt="">','<img src="' + url + 'public/images/white-arrow-next.png" alt="">'],
         responsive: {
@@ -187,7 +187,7 @@ $(function() {
                 items: 2
             },
             1000: {
-                items: 3
+                items: 2
             }
         }
 

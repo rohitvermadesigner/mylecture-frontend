@@ -5,13 +5,13 @@
 
 <body>
 
-   <?php include 'include/header.php' ?>
+    <?php include 'include/header.php' ?>
 
     <section class="common-section">
         <div class="container">
-            <h2 class="title-primary">Mock <span>Test</span> </h2>
+            <h2 class="title-primary">Coming <span>Soon</span> </h2>
 
-            <h4> Course Simulators</h4>
+            <!-- <h4> Course Simulators</h4>
             <p>
                 We bring you Topic Simulator,Chapater wise simulation of mock test for your NEXT Examination to crack easily. Go step by for maximum learning.
             </p>
@@ -20,12 +20,12 @@
             <p>
                 We have divided the entire new MBBS curriculum into topics & subtopics. We will not give you everything at once & leave you so that you will watch few lectures from few topics haphazardly in the initial enthusiasm & then cool down. We will allot you the
                 topics in a structured manner so that you will not be overwhelmed by the vastness of the syllabus & at the same time you will not miss anything. Teaching & self-study are blended together in a systematic way through the series of modules.
-            </p>
+            </p> -->
         </div>
     </section>
 
     <!-- product-section begin here -->
-    <section class="product-section pt-0">
+    <!-- <section class="product-section pt-0">
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
@@ -109,13 +109,13 @@
             </div>
 
         </div>
-    </section>
+    </section> -->
     <!-- product-section ends here -->
 
 
     <?php include 'include/footer.php' ?>
 
-<?php include 'include/footer_script.php' ?>
+    <?php include 'include/footer_script.php' ?>
 
 </body>
 

@@ -69,10 +69,17 @@
                 <!-- Single Footer Start -->
 
                 <div class="col-md-12">
-                    <div class="copyright-text">
-                        <p>
-                            © Copyright 2021. All rights reserved by GEMS Next. Designed By <a href="https://esteps.in/" target="_blank"> <b>Esteps Solutions</b></a>
-                        </p>
+                    <div class="copyright-stripe">
+                        <ul class="copyright-stripe-ul">
+                            <li><a href="privacy-policy.php">Privacy Policy</a></li>
+                            <li><a href="disclaimer.php">Disclaimer </a></li>
+                            <li><a href="cancellation-policy.php">Cancellation Policy</a></li>
+                        </ul>
+                        <div class="copyright-text">
+                            <p>
+                                © Copyright 2021. All rights reserved by GEMS Next. Designed By <a href="https://esteps.in/" target="_blank"> <b>Esteps Solutions</b></a>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
