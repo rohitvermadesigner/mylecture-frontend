@@ -41,7 +41,9 @@
                                         <li>Subject wise Tests</li>
                                     </ul>
                                     <div class="price"><i class="fa fa-rupee-sign"></i> 12,500 + GST</div>
-                                    <a href="#" class="btn btn-primary btn-block">Buy Now</a>
+
+                                    <button type="button" data-toggle="modal" data-target="#halfYearCourseModal" class="btn btn-primary btn-block">Buy Now</button>
+
                                 </div>
                             </div>
                         </div>
@@ -65,7 +67,9 @@
                                         <li>Subject wise Tests</li>
                                     </ul>
                                     <div class="price"><i class="fa fa-rupee-sign"></i> 25,000 + GST</div>
-                                    <a href="#" class="btn btn-primary btn-block">Buy Now</a>
+
+                                    <button type="button" data-toggle="modal" data-target="#fullYearCourseModal" class="btn btn-primary btn-block">Buy Now</button>
+
                                 </div>
                             </div>
                         </div>
@@ -78,6 +82,60 @@
         </div>
     </section>
     <!-- product-section ends here -->
+
+
+    <!-- The halfYearCourseModal -->
+    <div class="modal" id="halfYearCourseModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">GEMS - Half Yearly</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body p-4">
+                    <form method="post" action="courses-checkout.php">
+                        <input type="text" name="CUST_CODE" required class="form-control mb-2" placeholder="Enter Student ID">
+                        <input type="tel" maxlength="10" name="CUST_MOBILE" required class="form-control mb-2" placeholder="Enter Mobile No">
+                        <input type="email" name="CUST_EMAIL" required class="form-control mb-2" placeholder="Enter Email Id">
+                        <input type="hidden" name="TXN_AMOUNT" value="12500">
+                        <button type="submit" class="btn btn-primary btn-block">Buy Now</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- The fullYearCourseModal -->
+    <div class="modal" id="fullYearCourseModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">GEMS - Yearly</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body p-4">
+                    <form method="post" action="courses-checkout.php">
+                        <input type="text" name="CUST_CODE" required class="form-control mb-2" placeholder="Enter Student ID">
+                        <input type="tel" maxlength="10" name="CUST_MOBILE" required class="form-control mb-2" placeholder="Enter Mobile No">
+                        <input type="email" name="CUST_EMAIL" required class="form-control mb-2" placeholder="Enter Email Id">
+                        <input type="hidden" name="TXN_AMOUNT" value="25000">
+                        <button type="submit" class="btn btn-primary btn-block">Buy Now</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
     <?php include 'include/footer.php' ?>
 
