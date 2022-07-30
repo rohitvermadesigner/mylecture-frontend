@@ -1,8 +1,8 @@
 <div class="top-stripe">
     <ul>
         <li>Valid Upto : 27-March-2022</li>
-        <li>Support : 9876543210</li>
-        <li><a href="#">HELP</a></li>
+        <li>Support : +91 9289633644</li>
+        <li><a href="../help.php">HELP</a></li>
         <li>
             <a href="#">
                 <span class="notification-span">

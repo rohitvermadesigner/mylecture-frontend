@@ -66,7 +66,7 @@
         padding-bottom: 15px;
     }
     .table-responsive>.table {
-        font-size: 12px;
+        font-size: 10px;
     }
     .white-box {
         padding: 12px;
@@ -76,6 +76,14 @@
     }
     .test-list-box {
         padding: 15px;
+    }
+    .table>tbody>tr>td,
+    .table>tbody>tr>th,
+    .table>tfoot>tr>td,
+    .table>tfoot>tr>th,
+    .table>thead>tr>td,
+    .table>thead>tr>th {
+        padding: 4px;
     }
 }
 

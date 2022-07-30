@@ -1439,3 +1439,8 @@ font-size: 18px;
     .inner-header img {
         width: 100%;
     }
+    
+    .help-section {
+        padding: 50px 0px;
+        text-align: center;
+    }
