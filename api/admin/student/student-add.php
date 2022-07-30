@@ -71,49 +71,35 @@ if (count($error_msgs) == 0) {
                             $student_unique_code = "STU_$student_code";
                         }
 
+                        msg91_otp_email_send("studentReg", $email_id, $name, array(
+                            "student_name" => $name,
+                            "student_unique_code" => $student_unique_code,
+                            "email_id" => $email_id,
+                            "password" => $password,
+                        ));
 
-                        // TODO: change domain in URL
-                        $email_body = "Hi $name, <br/><br/>
-                        You have been successfully registered as a student in GEMS Next. <br/>
-                        Your login credentials are given below : <br/><br/>
-                        <b>URL :</b> https://gemsnext.com/<br/>               
-                        <b>Student Code :</b> $student_unique_code<br/>               
-                        <b>Email Id :</b> $email_id<br/>               
-                        <b>Password :</b> $password<br/><br/>
-                        If you are facing any type of issue  with login, please email us at contact@gemsnext.com
-                        <br><br>
-                        Warm Regards,
-                        <br>
-                        GEMS Next Team              
-                        ";
-                        $email_subject = "GEMS Next Student Registraion";
-                        $email_send = email_send($email_id, $email_body, $email_subject);
+                        msg91_otp_email_send("studentReg", $admin_email, "Admin", array(
+                            "student_name" => $name,
+                            "student_unique_code" => $student_unique_code,
+                            "email_id" => $email_id,
+                            "password" => $password,
+                        ));
 
-                        $admin_email_subject = "GEMS Next Student Registraion | $name";
-                        email_send($admin_email, $email_body, $admin_email_subject);
-
-                        if ($email_send) {
-                            $encrpted_password = md5($password);
-
-
-
-                            $query = "INSERT INTO student_info 
+                        $encrpted_password = md5($password);
+                        $query = "INSERT INTO student_info 
                                     (group_id, student_unique_code, name, email_id, mobile_no, password, gender, date_of_birth, date_of_registration, address, state, city, country, pincode, is_otp_verified, created_by, created_at) 
                                     VALUES 
                                     ('$group_id', '$student_unique_code', '$name', '$email_id', '$mobile_no', '$encrpted_password', '$gender', '$date_of_birth', '$date_of_registration', '$address', '$state', '$city', '$country', '$pincode', '1', '$admin_id', '$current_date' )";
-                            $result = mysqli_query($db, $query);
-                            if (mysqli_affected_rows($db) > 0) {
-                                $inserted_id = mysqli_insert_id($db);
-                                http_response_code(200);
-                                echo json_encode(array(
-                                    "message" =>  "Student successfully added",
-                                    "id" => (int)$inserted_id
-                                ));
-                            } else {
-                                array_push($error_msgs, "something went wrong with insert query.");
-                            }
+                        $result = mysqli_query($db, $query);
+                        if (mysqli_affected_rows($db) > 0) {
+                            $inserted_id = mysqli_insert_id($db);
+                            http_response_code(200);
+                            echo json_encode(array(
+                                "message" =>  "Student successfully added",
+                                "id" => (int)$inserted_id
+                            ));
                         } else {
-                            array_push($error_msgs, "Enter email id is not valid please enter valid email id .");
+                            array_push($error_msgs, "something went wrong with insert query.");
                         }
                     }
                 } else {

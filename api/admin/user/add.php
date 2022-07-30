@@ -74,27 +74,6 @@ if (count($error_msgs) == 0) {
                 $faculty_unique_code = "USER_$faculty_code";
             }
 
-            // $email_body = "Hi $faculty_name, <br/><br/>
-            //     You have been successfully registered as a faculty in GEMS Next.<br/>
-            //     Your login credentials are given below :<br/><br/>
-            //     <b>URL :</b>  https://gemsnext.com/admin/<br/>             
-            //     <b>User Id :</b> $faculty_unique_code<br/><br/>
-            //     <b>Email Id :</b> $email_id<br/>               
-            //     <b>Password :</b> $password<br/>
-            //     If you are facing any type of issue  with login, please email us at info@gemsnext.com
-            //     <br><br>
-            //     Warm Regards,
-            //     <br>
-            //     The GEMS Next Team            
-            //     ";
-            // $email_subject = "GEMS Next Faculty Registraion | $faculty_name";
-            // $email_send = email_send($email_id, $email_body, $email_subject);
-
-            // $admin_email_subject = "GEMS Next Faculty Registraion | $faculty_name";
-            // email_send($admin_email, $email_body, $admin_email_subject);
-
-
-
             $encrypted_password = md5($password);
             $query = "INSERT INTO admin_info (role, unique_code, name, email_id, mobile_no, password, subject_id, created_at) 
                         VALUES ('faculty', '$faculty_unique_code', '$faculty_name', '$email_id', '$mobile_no', '$encrypted_password', '$subject_id', '$current_date')";

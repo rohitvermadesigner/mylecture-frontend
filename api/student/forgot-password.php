@@ -50,25 +50,15 @@ if (count($error_msgs) == 0) {
 
         //  TODO: change domain name 
         $url = "https://www.gemsnext.com/api/student/generate-password.php?token=$token";
-        $email_body = "Hello $name,<br><br>
-        
-        Click below button to generate your password.
-        <br><br>
-        <a href='$url'>
-            <button style='font-size: 16px;background-color: #007bff;padding: 10px 30px;color: #fff;border: 0;border-radius: 25px;cursor: pointer;'>Generate Password</button>
-        </a>
-        <br><br>
-        If you are facing any type of issue, please email us at info@gemsnext.com
-        <br><br>
-        Warm Regards,
-        <br>
-        The GEMS Next Team";
+        msg91_otp_email_send("generatePass", $email_id, $name, array(
+            "name" => $name,
+            "url" => $url
+        ));
 
-        $email_subject = "GEMS Next Forgot Password";
-        $email_send = email_send($email_id, $email_body, $email_subject);
-
-        $admin_email_subject = "GEMS Next Student Forgot Password | $name";
-        email_send($admin_email, $email_body, $admin_email_subject);
+        msg91_otp_email_send("generatePass", $admin_email, "Admin", array(
+            "name" => $name,
+            "url" => $url
+        ));
 
         http_response_code(200);
         echo json_encode(array(

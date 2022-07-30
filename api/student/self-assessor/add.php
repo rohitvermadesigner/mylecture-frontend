@@ -71,8 +71,8 @@ if (count($error_msgs) == 0) {
                 $questionResult = mysqli_query($db, $questionQuery);
                 $total_db_rows = mysqli_num_rows($questionResult);
                 $current_date = date('Y-m-d H:i:s');
-                $insertQuery = "";
                 if ($total_db_rows ==  $total_questions) {
+
                     // insert data into config table first
                     $query = "INSERT INTO self_assessor_test_config 
                         (name, duration, is_question_random_order, is_mandatory_all_question, subject_id, topic_id, total_questions, marks_for_correct_question, created_by, created_at) 
@@ -91,13 +91,14 @@ if (count($error_msgs) == 0) {
                     }
 
                     while ($question_data = mysqli_fetch_assoc($questionResult)) {
+
                         $question_id = $question_data['id'];
-                        $insertQuery .=  "INSERT INTO self_assessor_test_question 
+                        $insertQuery =  "INSERT INTO self_assessor_test_question 
                         (test_id, question_id, created_by, created_at) 
                         VALUES 
                         ('$test_id', '$question_id', '$student_id', '$current_date'); ";
+                        mysqli_query($db, $insertQuery);
                     }
-                    mysqli_multi_query($db, $insertQuery);
 
                     http_response_code(200);
                     echo json_encode(array(

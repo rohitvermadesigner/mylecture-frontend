@@ -42,12 +42,13 @@ if (count($error_msgs) == 0) {
         $query = "SELECT * FROM student_info WHERE id = '$student_id'";
         $result = mysqli_query($db, $query);
         $student_info = mysqli_fetch_assoc($result);
-        
+
         http_response_code(200);
         echo json_encode(array(
             "name" => $student_info['name'],
             "email_id" => $student_info['email_id'],
             "mobile_no" => $student_info['mobile_no'],
+            "student_unique_code" => $student_info['student_unique_code'],
             "group_id" => (int)$student_info['group_id'],
             "gender" => $student_info['gender'],
             "date_of_birth" => !empty($student_info['date_of_birth']) ? $student_info['date_of_birth'] : '',

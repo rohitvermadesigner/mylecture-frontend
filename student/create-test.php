@@ -51,14 +51,6 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label>Questions should be random order </label><br>
-                                                    <label><input type="radio" name="is_question_random_order" value="1" /> Yes</label> &nbsp;
-                                                    <label><input type="radio" name="is_question_random_order" value="0" checked /> No</label>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-6">
-                                                <div class="form-group">
                                                     <label>Select Phase</label>
                                                     <select class="form-control" id="phase-filter" name="phase_id">
                                                         <option value="">-- Select Phase --</option>
@@ -134,7 +126,7 @@
                         "token": token,
                         "test_name": $('[name=test_name]').val(),
                         "duration": $('[name=duration]').val(),
-                        "is_question_random_order": $('[name=is_question_random_order:checked]').val(),
+                        "is_question_random_order": 0,
                         "subject_id": $('[name=subject_id]').val(),
                         "keyword": $('[name=keyword]').val(),
                         "total_questions": $('[name=total_questions]').val(),

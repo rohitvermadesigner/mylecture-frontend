@@ -127,6 +127,56 @@ function email_send($to_email, $body, $subject)
     return false;
 }
 
+function msg91_otp_email_send($template_id, $to_email, $customer_name, $variables)
+{
+    $postFields = array(
+        "domain" => "scciqv.mailer91.com",
+        "from" => array(
+            "email" => "info@scciqv.mailer91.com",
+            "name" => "Gems Next"
+        ),
+        "mail_type_id" => "1",
+        "template_id" => $template_id,
+        "to" => array(
+            array(
+                "email" => $to_email,
+                "name" => $customer_name,
+            )
+        ),
+        "variables" => $variables
+    );
+
+    $curl = curl_init();
+    curl_setopt_array($curl, [
+        CURLOPT_URL => "https://api.msg91.com/api/v5/email/send",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS => json_encode($postFields),
+        CURLOPT_HTTPHEADER => [
+            "Accept: application/json",
+            "Content-Type: application/JSON",
+            "authkey: 378556AOfHh8n562cd14ddP1"
+        ],
+    ]);
+
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+
+    if ($err) {
+        return "cURL Error #:" . $err;
+    } else {
+        return $response;
+    }
+}
+
+
+
 function generateRandomString($length = 10)
 {
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

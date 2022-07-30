@@ -53,28 +53,19 @@ if (count($error_msgs) == 0) {
             if (mysqli_affected_rows($db) > 0) {
                 // send otp via third party service.
                 $url = "https://gemsnext.com/api/student/verify-email.php?token=$token&otp=$otp";
-                $email_body = "Hello $name,<br><br>
-                Your One Time Password(OTP) is : <span style='font-size:20px'><b>$otp</b></span>
-                <br><br>
-                You can click below button to verify your email id.
-                <br><br>
-                <a href='$url'>
-                    <button style='font-size: 16px;background-color: #007bff;padding: 10px 30px;color: #fff;border: 0;border-radius: 25px;cursor: pointer;'>Verify Email Id</button>
-                </a>
-                <br><br>
-                Do not share your OTP with anyone including your Depository Participant (DP).
-                <br>
-                For any OTP related query please email us at info@gemsnext.com
-                <br><br>
-                Warm Regards,
-                <br>
-                The GEMS Next Team";
 
-                $email_subject = "GEMS Next OTP for Student Registraion";
-                $email_send = email_send($email_id, $email_body, $email_subject);
+                msg91_otp_email_send("studentRegOtp", $email_id, $name, array(
+                    "name" => $name,
+                    "otp" => $otp,
+                    "url" => $url
+                ));
 
-                $admin_email_subject = "GEMS Next OTP for Student Registraion | $name";
-                email_send($admin_email, $email_body, $admin_email_subject);
+                msg91_otp_email_send("studentRegOtp", $admin_email, "Admin", array(
+                    "name" => $name,
+                    "otp" => $otp,
+                    "url" => $url
+                ));
+
 
                 http_response_code(200);
                 echo json_encode(array(

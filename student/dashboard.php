@@ -73,13 +73,19 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Student Code</label>
+                                            <input type="text" class="form-control" name="student_unique_code" disabled />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Email</label>
                                             <input type="text" class="form-control" name="email_id" disabled />
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Mobile</label>
                                             <input type="text" class="form-control" name="mobile_no" disabled />
@@ -275,6 +281,7 @@
                     $('[name=name]').val(result.name);
                     $('[name=email_id]').val(result.email_id);
                     $('[name=mobile_no]').val(result.mobile_no);
+                    $('[name=student_unique_code]').val(result.student_unique_code);
                     $('[name=group_id]').val(result.group_id);
                     $('[name=gender]').val(result.gender);
                     $('[name=date_of_birth]').val(result.date_of_birth);
@@ -337,7 +344,7 @@
                     old_password: "required",
                     new_password: "required",
                     confirm_password: {
-                        equalTo : "#new_password"
+                        equalTo: "#new_password"
                     },
                 },
                 submitHandler: function(form) {

@@ -22,6 +22,9 @@
             <li class="questions">
                 <a href="questions.php"><i class="fa fa-laptop"></i> <span class="nav-label">Question Bank</span></a>
             </li>
+            <li class="questions">
+                <a href="question-bulk-upload.php"><i class="fa fa-laptop"></i> <span class="nav-label">Question Bulk Upload</span></a>
+            </li>
             <li class="group-management">
                 <a href="group-management.php"><i class="fa fa-users"></i> <span class="nav-label">Students Groups</span></a>
             </li>

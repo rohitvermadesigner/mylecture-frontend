@@ -82,7 +82,6 @@ if (count($error_msgs) == 0) {
                             // $marks[$question_id] = $marks_for_correct_question;
                         }
                         $question_ids_str =  implode(', ', $question_ids);
-
                         $questions_array = array();
                         $total_marks = $total_questions * $marks_for_correct_question;
                         $query = "SELECT * FROM question WHERE id IN ($question_ids_str)";

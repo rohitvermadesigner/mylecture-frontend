@@ -50,23 +50,18 @@ if (count($error_msgs) == 0) {
                 $query = "DELETE FROM student_info WHERE email_id = '$email_id'  AND id != $student_id";
                 mysqli_query($db, $query);
 
-                // TODO: change domain in URL
-                $email_body = "Hi $name, <br/><br/>
-                Your login credentials are given below : <br/><br/>
-                <b>URL :</b>  https://www.gemsnext.com<br/>               
-                <b>Email Id :</b> $email_id<br/>               
-                <b>Password :</b> $password<br/><br/>
-                If you are facing any type of issue  with login, please email us at contact@gemsnext.com
-                <br><br>
-                Warm Regards,
-                <br>
-                The My Lecture Team              
-                ";
-                $email_subject = "GEMS Next Student Login Credentials";
-                $email_send = email_send($email_id, $email_body, $email_subject);
+                msg91_otp_email_send("generatePass", $email_id, $name, array(
+                    "name" => $name,
+                    "email_id" => $email_id,
+                    "password" => $password
+                ));
 
-                $admin_email_subject = "GEMS Next Student Login Credentials | $name";
-                email_send($admin_email, $email_body, $admin_email_subject);
+                msg91_otp_email_send("generatePass", $admin_email, "Admin", array(
+                    "name" => $name,
+                    "email_id" => $email_id,
+                    "password" => $password
+                ));
+
 ?>
                 <!DOCTYPE html>
                 <html lang="en">

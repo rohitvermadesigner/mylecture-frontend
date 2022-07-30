@@ -50,7 +50,7 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            <!-- <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Questions should be random order </label><br>
                                                     <label><input type="radio" name="is_question_random_order" value="1" /> Yes</label> &nbsp;
@@ -64,7 +64,7 @@
                                                     <label><input type="radio" name="is_mandatory_all_question" value="1" /> Yes</label> &nbsp;
                                                     <label><input type="radio" name="is_mandatory_all_question" value="0" checked /> No</label>
                                                 </div>
-                                            </div>
+                                            </div> -->
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
@@ -148,8 +148,6 @@
                     rules: {
                         test_name: 'required',
                         duration: 'required',
-                        is_question_random_order: 'required',
-                        is_mandatory_all_question: 'required',
                         phase_id: 'required',
                         subject_id: 'required',
                         chapter_id: 'required',
@@ -168,8 +166,8 @@
                         "token": token,
                         "test_name": $('[name=test_name]').val(),
                         "duration": $('[name=duration]').val(),
-                        "is_question_random_order": $('[name=is_question_random_order]:checked').val(),
-                        "is_mandatory_all_question": $('[name=is_mandatory_all_question]:checked').val(),
+                        "is_question_random_order": 0,
+                        "is_mandatory_all_question": 0,
                         "subject_id": $('[name=subject_id]').val(),
                         "topic_id": $('[name=topic_id]').val(),
                         "keyword": $('[name=keyword]').val(),

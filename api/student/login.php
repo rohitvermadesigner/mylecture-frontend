@@ -21,6 +21,7 @@ $post_data = json_decode(file_get_contents("php://input"));
 $error_msgs = array();
 $error_code = 400;
 
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // make sure post data is not empty
     if (empty($post_data->email_id)) {

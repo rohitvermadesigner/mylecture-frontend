@@ -53,58 +53,44 @@ if (count($error_msgs) == 0) {
                 $failed_rows_count = 0;
                 $total_rows = 0;
                 $error_rows = array();
-                while (($fileData = fgetcsv($file, 100000, ",")) !== FALSE) {
-                    if ($row == 1) {
-                        $subject_name = $fileData[0];
-                    }
-                    if ($row > 3) {
-                        $chapter_name = str_replace('\n', '', mysqli_real_escape_string($db, trim($fileData[2])));
-                        $topic = str_replace('\n', '', mysqli_real_escape_string($db, trim($fileData[3])));
-                        $subTopic = str_replace('\n', '', mysqli_real_escape_string($db, trim($fileData[4])));
-                        $question = str_replace('\n', '', mysqli_real_escape_string($db, trim($fileData[6])));
-                        $option_1 = str_replace('\n', '', mysqli_real_escape_string($db, trim($fileData[7])));
-                        $option_2 = str_replace('\n', '', mysqli_real_escape_string($db, trim($fileData[8])));
-                        $option_3 = str_replace('\n', '', mysqli_real_escape_string($db, trim($fileData[9])));
-                        $option_4 = str_replace('\n', '', mysqli_real_escape_string($db, trim($fileData[10])));
-                        $option_5 = str_replace('\n', '', mysqli_real_escape_string($db, trim($fileData[11])));
-                        $answer = str_replace('\n', '', mysqli_real_escape_string($db, trim($fileData[12])));
-                        $description = str_replace('\n', '', mysqli_real_escape_string($db, trim($fileData[13])));
-                        $difficulty_level = "normal";
-                        if ($question) {
-                            if (!empty($subject_name)) {
-                                $subject_insert = check_subject_and_insert($subject_name, $admin_id, $db);
-                                if ($subject_insert["status"] == "success") {
-                                    $subject_id = $subject_insert["id"];
-                                    // check if answer should be exist in options.
-                                    $correct_answer = 1;
-                                    $answer = substr(trim($answer), 0, 1);
-                                    if (str_contains(strtolower($answer), strtolower('a'))) {
-                                        $correct_answer = 1;
-                                    } else if (str_contains(strtolower($answer), strtolower('b'))) {
-                                        $correct_answer = 2;
-                                    } else if (str_contains(strtolower($answer), strtolower('c'))) {
-                                        $correct_answer = 3;
-                                    } else if (str_contains(strtolower($answer), strtolower('d'))) {
-                                        $correct_answer = 4;
-                                    } else if (str_contains(strtolower($answer), strtolower('e'))) {
-                                        $correct_answer = 5;
-                                    }
+                while (($fileData = fgetcsv($file, 1000000, ",")) !== FALSE) {
+                    if ($row !== 1) {
+                        $total_rows++;
+                        $subject_name = str_replace('\n', '', mysqli_real_escape_string($db, trim($fileData[1])));
+                        $topic_name = str_replace('\n', '', mysqli_real_escape_string($db, trim($fileData[2])));
+                        $question = str_replace('\n', '', mysqli_real_escape_string($db, trim($fileData[3])));
+                        $option_1 = str_replace('\n', '', mysqli_real_escape_string($db, trim($fileData[4])));
+                        $option_2 = str_replace('\n', '', mysqli_real_escape_string($db, trim($fileData[5])));
+                        $option_3 = str_replace('\n', '', mysqli_real_escape_string($db, trim($fileData[6])));
+                        $option_4 = str_replace('\n', '', mysqli_real_escape_string($db, trim($fileData[7])));
+                        $option_5 = str_replace('\n', '', mysqli_real_escape_string($db, trim($fileData[8])));
+                        $answer = str_replace('\n', '', mysqli_real_escape_string($db, trim($fileData[9])));
+                        $description = str_replace('\n', '', mysqli_real_escape_string($db, trim($fileData[10])));
 
-                                    // if (str_contains(strtolower($answer), strtolower($option_1))) {
-                                    //     $correct_answer = 1;
-                                    // } else if (str_contains(strtolower($answer), strtolower($option_2))) {
-                                    //     $correct_answer = 2;
-                                    // } else if (str_contains(strtolower($answer), strtolower($option_3))) {
-                                    //     $correct_answer = 3;
-                                    // } else if (str_contains(strtolower($answer), strtolower($option_4))) {
-                                    //     $correct_answer = 4;
-                                    // } else if (str_contains(strtolower($answer), strtolower($option_5))) {
-                                    //     $correct_answer = 5;
-                                    // }
+                        $subject_name = preg_replace("~[^a-z0-9 ,.:-]~i", "", trim($subject_name));
+                        $topic_name = preg_replace("~[^a-z0-9 ,.:-]~i", "", trim($topic_name));
+                        $question = preg_replace("~[^a-z0-9 ,.:-]~i", "", trim($question));
+                        $option_1 = preg_replace("~[^a-z0-9 ,.:-]~i", "", trim($option_1));
+                        $option_2 = preg_replace("~[^a-z0-9 ,.:-]~i", "", trim($option_2));
+                        $option_3 = preg_replace("~[^a-z0-9 ,.:-]~i", "", trim($option_3));
+                        $option_4 = preg_replace("~[^a-z0-9 ,.:-]~i", "", trim($option_4));
+                        $option_5 = preg_replace("~[^a-z0-9 ,.:-]~i", "", trim($option_5));
+                        $answer = preg_replace("~[^a-z0-9 ,.:-]~i", "", trim($answer));
+                        $description = preg_replace("~[^a-z0-9 ,.:-]~i", "", trim($description));
+
+                        if ($subject_name != '' && $topic_name != '' && $question != '' && $option_1 != '' && $option_2 != '' && $option_3 != '' && $answer != '') {
+                            $subject_insert = check_subject_and_insert($subject_name, $admin_id, $db);
+                            if ($subject_insert['status'] == 'success') {
+                                $subject_id = $subject_insert['id'];
+                                $topic_insert = check_topic_and_insert($topic_name, $subject_id, $admin_id, $db);
+                                if ($topic_insert['status'] == 'success') {
+                                    $topic_id = $topic_insert['id'];
                                     $current_date = date('Y-m-d H:i:s');
-                                    $query = "INSERT INTO question (question, option_1, option_2, option_3, option_4, option_5, answer, subject_id, description, difficulty_level, created_by, created_at) 
-                                            VALUES 
-                                            ('$question', '$option_1', '$option_2', '$option_3', '$option_4', '$option_5', '$correct_answer', '$subject_id', '$description', '$difficulty_level', '$admin_id', '$current_date')";
+                                    $difficulty_level = "normal";
+                                    $query = "INSERT INTO question 
+                                        (question, option_1, option_2, option_3, option_4, option_5, answer, subject_id, topic_id, description, difficulty_level, created_by, created_at) 
+                                        VALUES 
+                                        ('$question', '$option_1', '$option_2', '$option_3', '$option_4', '$option_5', '$answer', '$subject_id', '$topic_id', '$description', '$difficulty_level', '$admin_id', '$current_date')";
                                     $result = mysqli_query($db, $query);
                                     if (mysqli_affected_rows($db) > 0) {
                                         $question_inserted_id = mysqli_insert_id($db);
@@ -115,16 +101,37 @@ if (count($error_msgs) == 0) {
                                     }
                                 } else {
                                     $failed_rows_count++;
-                                    $error_msg = $subject_insert['message'];
-                                    array_push($error_rows, "Question No. $question_no fail to insert because " . $error_msg);
+                                    array_push($error_rows, "Question No. $question_no fail to insert because . [" . $topic_insert['message'] . "]");
                                 }
                             } else {
                                 $failed_rows_count++;
-                                $error_msg = "Subject Name empty";
-                                array_push($error_rows, "Question No. $question_no fail to insert because " . $error_msg);
+                                array_push($error_rows, "Question No. $question_no fail to insert because . [" . $subject_insert['message'] . "]");
                             }
-                            $question_no++;
-                            $total_rows++;
+                        } else {
+                            $failed_rows_count++;
+                            $error_msg = "Question No. $question_no fail to insert because";
+                            if ($subject_name == '') {
+                                $error_msg .= " Subject should not be empty,";
+                            }
+                            if ($topic_name == '') {
+                                $error_msg .= " Topic should not be empty,";
+                            }
+                            if ($question == '') {
+                                $error_msg .= " Question should not be empty,";
+                            }
+                            if ($option_1 == '') {
+                                $error_msg .= " Option 1 should not be empty,";
+                            }
+                            if ($option_2 == '') {
+                                $error_msg .= " Option 2 should not be empty,";
+                            }
+                            if ($option_3 == '') {
+                                $error_msg .= " Option 3 should not be empty,";
+                            }
+                            if ($answer == '') {
+                                $error_msg .= " Answer should not be empty,";
+                            }
+                            array_push($error_rows, rtrim($error_msg, ","));
                         }
                     }
                     $row++;
@@ -184,9 +191,9 @@ function check_subject_and_insert($subject_name, $admin_id, $db)
     }
 }
 
-function check_chapter_and_insert($chapter_name, $subject_id, $admin_id, $db)
+function check_topic_and_insert($topic_name, $subject_id, $admin_id, $db)
 {
-    $query = "SELECT * FROM chapter WHERE name = '$chapter_name' AND subject_id = '$subject_id' AND status = 1";
+    $query = "SELECT * FROM topic WHERE name = '$topic_name' AND subject_id = '$subject_id' AND status = 1";
     $result = mysqli_query($db, $query);
     if (mysqli_num_rows($result) > 0) {
         $data = mysqli_fetch_assoc($result);
@@ -197,9 +204,7 @@ function check_chapter_and_insert($chapter_name, $subject_id, $admin_id, $db)
         exit;
     } else {
         $current_date = date('Y-m-d H:i:s');
-        $query = "INSERT INTO chapter (name, subject_id, created_by, created_at) 
-                            VALUES 
-                            ('$chapter_name', '$subject_id', '$admin_id','$current_date')";
+        $query = "INSERT INTO topic (name, subject_id, created_by, created_at) VALUES ('$topic_name', '$subject_id', '$admin_id', '$current_date')";
         $result = mysqli_query($db, $query);
         if (mysqli_affected_rows($db) > 0) {
             $inserted_id = mysqli_insert_id($db);
@@ -208,7 +213,7 @@ function check_chapter_and_insert($chapter_name, $subject_id, $admin_id, $db)
                 "id" => (int)$inserted_id
             );
         } else {
-            return array("status" => "failed", "message" => "something went wrong with chapter insert query.");
+            return array("status" => "failed", "message" => "something went wrong with topic insert query.");
         }
     }
 }
