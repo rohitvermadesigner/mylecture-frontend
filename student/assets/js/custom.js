@@ -1,9 +1,12 @@
 function logout() {
-    localStorage.removeItem('studentToken');
-    toastr.success('Logout Successfully');
-    setTimeout(function() {
-        window.location.replace('../index.php');
-    }, 1000);
+    var status = confirm('Do you want to logout?')
+    if (status == true) {
+        localStorage.removeItem('studentToken');
+        toastr.success('Logout Successfully');
+        setTimeout(function() {
+            window.location.replace('../index.php');
+        }, 1000);
+    }
 }
 
 $(function() {
