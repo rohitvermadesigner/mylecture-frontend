@@ -29,6 +29,7 @@
             <div class="toggle-button mobile-view">
                 <i class="fas fa-bars"></i>
             </div>
+            <a href="#" data-toggle="modal" data-target="#helpModal" class="help-btn-mobile">HELP</a>
         </div>
     </div>
 </div>

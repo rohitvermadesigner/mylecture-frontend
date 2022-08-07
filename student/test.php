@@ -12,10 +12,10 @@
                 <img src="assets/images/gems-next-logo.jpg" alt="" style="width: 78px;" />
             </a>
         </div>
-        <div class="right-wrap">
-            <a href="dashboard.php">
-                <button class="btn btn-primary">Back to Dashboard</button>
-            </a>
+        <div class="right-wrap back-btn-list">
+            <a href="dashboard.php" class="btn btn-primary btn-xs">Dashboard </a>
+            <a href="self-assessor.php" class="btn btn-primary">Self Assessor </a>
+            <a href="topic-simulator.php" class="btn btn-primary">Topic Simulator </a>
         </div>
     </header>
 
@@ -559,6 +559,8 @@
         } else {
             window.location.replace('/');
         }
+
+        document.addEventListener('contextmenu', event => event.preventDefault());
     </script>
 
 </body>
