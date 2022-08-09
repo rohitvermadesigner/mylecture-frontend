@@ -140,6 +140,7 @@
                         dataType: 'JSON',
                         data: paramsData,
                         success: function(result) {
+                            console.log(result);
                             let countStartAt = ((page_no - 1) * page_count) + 1;
                             totalResults = result.total_results;
                             $(".total-results-count").text(totalResults);

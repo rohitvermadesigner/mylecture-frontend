@@ -11,7 +11,7 @@
             <?php include 'include/header.php' ?>
             <div class="dashboard-title">
                 <div class="overflow-hidden">
-                    <h1 class="float-left">Student Dashboard</h1>
+                    <h1 class="float-left"><span id="student_name"></span>'s Dashboard</h1>
                 </div>
             </div>
 
@@ -279,6 +279,7 @@
                 success: function(result) {
                     console.log(result)
                     $('[name=name]').val(result.name);
+                    $('#student_name').text(result.name);
                     $('[name=email_id]').val(result.email_id);
                     $('[name=mobile_no]').val(result.mobile_no);
                     $('[name=student_unique_code]').val(result.student_unique_code);
