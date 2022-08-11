@@ -94,6 +94,12 @@
         float: right;
         margin-right: 10px;
     }
+    .result-page-section .result-status-box {
+        width: 100%;
+    }
+    .result-question-box .table td .row {
+        display: block;
+    }
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px) {}

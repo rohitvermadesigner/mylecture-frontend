@@ -206,11 +206,11 @@
             </div>
 
             <div class="result-question-box">
-                <div class="table-responsive">
-                    <table class="table table-bordered">
-                        <tbody></tbody>
-                    </table>
-                </div>
+                <!-- <div class="table-responsive"> -->
+                <table class="table table-bordered">
+                    <tbody></tbody>
+                </table>
+                <!-- </div> -->
             </div>
         </div>
     </section>
@@ -561,6 +561,11 @@
         }
 
         document.addEventListener('contextmenu', event => event.preventDefault());
+
+        $('body').bind('copy paste', function(e) {
+            e.preventDefault();
+            return false;
+        });
     </script>
 
 </body>
